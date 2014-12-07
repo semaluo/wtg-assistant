@@ -28,5 +28,10 @@ namespace wintogo
         {
             this.Close();
         }
+
+        private void label3_Click(object sender, System.EventArgs e)
+        {
+            Form1.VisitWeb("http://bbs.luobotou.org/thread-8670-1-1.html");
+        }
     }
 }

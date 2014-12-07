@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using Microsoft.Win32;
+//using Microsoft.Win32;
 namespace wintogo
 
 {
@@ -23,17 +23,18 @@ namespace wintogo
         {
             if (checkBox1.Checked == true)
             {
-                WTRegedit("nevercheckupdate", "1");
+                IniFile.WriteVal("Main", "AutoUpdate", "0", Application.StartupPath + "\\files\\settings.ini");
+                //WTRegedit("nevercheckupdate", "1");
             }
             this.Close();
         }
-        private void WTRegedit(string name, string tovalue)
-        {
-            RegistryKey hklm = Registry.CurrentUser ;
-            RegistryKey software = hklm.OpenSubKey("SOFTWARE", true);
-            RegistryKey aimdir = software.CreateSubKey(Application.ProductName);
-            aimdir.SetValue(name, tovalue);
-        }
+        //private void WTRegedit(string name, string tovalue)
+        //{
+        //    RegistryKey hklm = Registry.CurrentUser ;
+        //    RegistryKey software = hklm.OpenSubKey("SOFTWARE", true);
+        //    RegistryKey aimdir = software.CreateSubKey(Application.ProductName);
+        //    aimdir.SetValue(name, tovalue);
+        //}
 
         private void update_Load(object sender, EventArgs e)
         {

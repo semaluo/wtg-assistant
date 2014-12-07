@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,9 +73,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(86, 48);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(269, 12);
+            this.label2.Size = new System.Drawing.Size(149, 12);
             this.label2.TabIndex = 3;
-            this.label2.Text = "建议：可到论坛发帖求助，打包上传Logs文件夹。";
+            this.label2.Text = "建议：可到论坛发帖求助，";
             // 
             // linkLabel1
             // 
@@ -88,11 +89,24 @@
             this.linkLabel1.Text = "现在去论坛";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label3.ForeColor = System.Drawing.Color.Blue;
+            this.label3.Location = new System.Drawing.Point(231, 48);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(125, 12);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "打包上传Logs文件夹。";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
             // error
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 95);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -116,5 +130,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label label3;
     }
 }

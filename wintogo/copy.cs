@@ -23,14 +23,14 @@ namespace wintogo
         private void copyfiles() 
         {
             //MessageBox.Show("hekl");
-            if (System.IO.File.Exists(System.Environment.GetEnvironmentVariable("TEMP") + "\\win8.vhd"))
+            if (System.IO.File.Exists(SetTempPath .temppath  + "\\win8.vhd"))
             {
-                System.Diagnostics.Process cp = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\fastcopy.exe", " /auto_close \"" + System.Environment.GetEnvironmentVariable("TEMP") + "\\win8.vhd\" /to=\"" + udisk + "\"");
+                System.Diagnostics.Process cp = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\fastcopy.exe", " /auto_close \"" + SetTempPath .temppath + "\\win8.vhd\" /to=\"" + udisk + "\"");
                 cp.WaitForExit();
             }
             else 
             {
-                System.Diagnostics.Process cp = System.Diagnostics.Process.Start(Application.StartupPath+"\\files" + "\\fastcopy.exe", " /auto_close \"" + System.Environment.GetEnvironmentVariable("TEMP") + "\\win8.vhdx\" /to=\"" + udisk + "\"");
+                System.Diagnostics.Process cp = System.Diagnostics.Process.Start(Application.StartupPath+"\\files" + "\\fastcopy.exe", " /auto_close \"" + SetTempPath .temppath + "\\win8.vhdx\" /to=\"" + udisk + "\"");
                 cp.WaitForExit();
             }
             //////////////////////////////////////////////////////////////

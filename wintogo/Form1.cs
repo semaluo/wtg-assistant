@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Net.Mail;
+//using System.Net.Mail;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -35,7 +35,8 @@ namespace wintogo
         bool usetemp = true;
         bool useiso = false;
         bool allowesd=false;
-        bool needcopy;
+        bool needcopyvhdbootfile = false;
+        //bool needcopy;
         //bool win7togo;
         bool shouldcontinue = true;
         public delegate void AppendTextCallback(string text);
@@ -162,17 +163,17 @@ namespace wintogo
         private void 启动时自动检查更新ToolStripMenuItem_Checked(object sender, EventArgs e)
         {
 
-            if (启动时自动检查更新ToolStripMenuItem.Checked)
-            {
-                //启动时自动检查更新ToolStripMenuItem.Checked = false;
-                WTRegedit("nevercheckupdate", "0");
-            }
+            //if (启动时自动检查更新ToolStripMenuItem.Checked)
+            //{
+            //    //启动时自动检查更新ToolStripMenuItem.Checked = false;
+            //    WTRegedit("nevercheckupdate", "0");
+            //}
 
-            if (!启动时自动检查更新ToolStripMenuItem.Checked)
-            {
-                //启动时自动检查更新ToolStripMenuItem.Checked = true;
-                WTRegedit("nevercheckupdate", "1");
-            }
+            //if (!启动时自动检查更新ToolStripMenuItem.Checked)
+            //{
+            //    //启动时自动检查更新ToolStripMenuItem.Checked = true;
+            //    WTRegedit("nevercheckupdate", "1");
+            //}
         }
         //private void ExecuteCMD(string cmd)
         //{
@@ -209,6 +210,12 @@ namespace wintogo
         private void Checkfiles() 
         
         {
+            if (IsChina(Application.StartupPath)) 
+            {
+                error er = new error("程序路径中不能有中文！\n请您不要将程序放在中文文件夹中！");
+                er.ShowDialog();
+                Application.Exit();
+            }
             string[] sw_fl = new string[12]; ;//software filelist
             sw_fl[0]="\\files\\unattend.xml";
             sw_fl[1] = "\\files\\san_policy.xml";
@@ -233,8 +240,10 @@ namespace wintogo
                 if (!File.Exists(Application.StartupPath + sw_fl[i])) 
                 {
                     MessageBox.Show("程序文件不完整，请从官方论坛重新下载解压！\n缺少:" + Application.StartupPath + sw_fl[i], "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    VisitWeb("http://bbs.luobotou.org/thread-761-1-1.html"); 
-                    Application.Exit(); 
+                    VisitWeb("http://bbs.luobotou.org/thread-761-1-1.html");
+                    
+                    Application.Exit();
+                    break;
                 }
             }
 
@@ -362,6 +371,16 @@ namespace wintogo
             threadad.Start();
             udlist();
             this.Text += Application.ProductVersion;
+            ReadConfigFile();
+        }
+        private void ReadConfigFile() 
+        {
+            string autoup;
+            string tp;
+            autoup = IniFile.ReadVal("Main", "AutoUpdate", Application.StartupPath + "\\files\\settings.ini");
+            tp = IniFile.ReadVal("Main", "TempPath", Application.StartupPath + "\\files\\settings.ini");
+            if (autoup == "0") { toolStripMenuItem3.Checked = false; }
+            if (tp != "") { SetTempPath.temppath = tp; }
         }
         public void Win7REG(string installdrive) 
         {
@@ -717,7 +736,7 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
             wimpart = choosepart.part;//读取选择分卷，默认选择第一分卷
 
             //各种提示
-            if (wimbox.Text.Substring(wimbox.Text.Length - 3, 3) != "wim" && wimbox.Text.Substring(wimbox.Text.Length - 3, 3) != "esd")//不是WIM文件
+            if (wimbox.Text.Substring(wimbox.Text.Length - 3, 3) != "wim" && wimbox.Text.Substring(wimbox.Text.Length - 3, 3) != "esd" && wimbox.Text.Substring(wimbox.Text.Length - 3, 3) != "vhd" && wimbox.Text.Substring(wimbox.Text.Length - 3, 3) != "vhdx")//不是WIM文件
             {
                 MessageBox.Show("镜像文件选择错误！请选择install.wim！"); return;
             }
@@ -729,16 +748,12 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
 
 
             if (comboBox1.SelectedIndex == 0) { MessageBox.Show("请选择可移动设备！", "错误！", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }//是否选择优盘
-            //if (!System.IO.File.Exists(wimbox.Text)) { MessageBox.Show("请选择win8镜像文件或install.wim文件！", "错误！", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
             if (GetHardDiskSpace(ud) <= 12582912) //优盘容量<12 GB提示
             {
                 if (DialogResult.No == MessageBox.Show("可移动磁盘容量不足16G，继续写入可能会导致程序出错！您确定要继续吗？", "警告！", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
             }
 
-            if (GetHardDiskSpace(ud) <= 12582912) //优盘容量<12 GB提示
-            {
-                if (DialogResult.No == MessageBox.Show("可移动磁盘容量不足16G，继续写入可能会导致程序出错！您确定要继续吗？", "警告！", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
-            }
+            
             if (GetHardDiskSpace(ud) <= numericUpDown1.Value * 1048576) 
             {
                 MessageBox.Show("优盘容量小于VHD设定大小，请修改设置！","错误",MessageBoxButtons .OK ,MessageBoxIcon.Error );
@@ -768,9 +783,12 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
             ///////删除旧LOG文件
             SyncCMD ("cmd.exe /c del /f /s /q \""+Application .StartupPath +"\\logs\\*.*\"");
            //////////////将程序运行信息写入LOG
-            Log.WriteLog("Environment.log", "App Version:" + Application.ProductVersion + "\r\nApp Path:" + Application.StartupPath + "\r\nOSVersion:" + System.Environment.OSVersion.ToString() + "\r\nDism Version:" + GetFileVersion(System.Environment.GetEnvironmentVariable("windir") + "\\System32\\dism.exe") + "\r\nWim file:" + wimbox.Text + "\r\nUsb Disk:" + comboBox1.SelectedItem.ToString() + "\r\nClassical:" + radiochuantong.Checked.ToString() + "\r\nVHD:" + radiovhd.Checked.ToString() + "\r\nVHDX:" + radiovhdx.Checked.ToString() + "\r\nRe-Partition:" + checkBoxdiskpart.Checked + "\r\nVHD Size Set:" + numericUpDown1.Value.ToString() + "\r\nFixed VHD:" + checkBoxfixed.Checked.ToString() + "\r\nDonet:" + checkBoxframework.Checked.ToString() + "\r\nDisable-WinRE:" + checkBoxdiswinre.Checked.ToString() + "\r\nBlock Local Disk:" + checkBox_san_policy.Checked.ToString() + "\r\nNoTemp:" + checkBoxnotemp.Checked.ToString() + "\r\nUEFI+GPT:" + checkBoxuefi.Checked.ToString() + "\r\nUEFI+MBR:" + checkBoxuefimbr.Checked.ToString() + "\r\nWIMBOOT:" + checkBoxwimboot.Checked.ToString());
+            Log.WriteLog("Environment.log", "App Version:" + Application.ProductVersion + "\r\nApp Path:" + Application.StartupPath + "\r\nOSVersion:" + System.Environment.OSVersion.ToString() + "\r\nDism Version:" + GetFileVersion(System.Environment.GetEnvironmentVariable("windir") + "\\System32\\dism.exe") + "\r\nWim file:" + wimbox.Text + "\r\nUsb Disk:" + comboBox1.SelectedItem.ToString() + "\r\nClassical:" + radiochuantong.Checked.ToString() + "\r\nVHD:" + radiovhd.Checked.ToString() + "\r\nVHDX:" + radiovhdx.Checked.ToString() + "\r\nRe-Partition:" + checkBoxdiskpart.Checked + "\r\nVHD Size Set:" + numericUpDown1.Value.ToString() + "\r\nFixed VHD:" + checkBoxfixed.Checked.ToString() + "\r\nDonet:" + checkBoxframework.Checked.ToString() + "\r\nDisable-WinRE:" + checkBoxdiswinre.Checked.ToString() + "\r\nBlock Local Disk:" + checkBox_san_policy.Checked.ToString() + "\r\nNoTemp:" + checkBoxnotemp.Checked.ToString() + "\r\nUEFI+GPT:" + checkBoxuefi.Checked.ToString() + "\r\nUEFI+MBR:" + checkBoxuefimbr.Checked.ToString() + "\r\nWIMBOOT:" + checkBoxwimboot.Checked.ToString() + "\r\nCommon-VHD-boot-file：" + checkBoxcommon.Checked .ToString ()+"\r\nNo-format："+checkBoxunformat .Checked .ToString ());
 
-            File .Copy (Environment .GetEnvironmentVariable ("windir")+"\\Logs\\DISM\\dism.log",Application .StartupPath +"\\logs\\dism.log");
+            if (File.Exists(Environment.GetEnvironmentVariable("windir") + "\\Logs\\DISM\\dism.log"))
+            {
+                File.Copy(Environment.GetEnvironmentVariable("windir") + "\\Logs\\DISM\\dism.log", Application.StartupPath + "\\logs\\dism.log");
+            }
             ///////
             //uefi
             // 
@@ -1260,7 +1278,7 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                      detachvhd();
                      if (!shouldcontinue) { return; }
 
-                     if (checkBoxcommon.Checked||usetemp)
+                     if (needcopyvhdbootfile )
                      {
                          copyvhdbootfile();
                      }
@@ -1340,7 +1358,7 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                     else { vhd_size = (GetHardDiskFreeSpace(ud) / 1024 - 4096).ToString(); }
                 }
             }
-             needcopy = false;
+             //needcopy = false;
             wimpart = choosepart.part;
             ////win7////
             //int win7togo = iswin7(win8iso);
@@ -1373,16 +1391,20 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
             {
                 vhdmaxsize = 10485670;
             }
-            if (GetHardDiskFreeSpace(System.Environment.GetEnvironmentVariable("TEMP").Substring(0, 3)) <= vhdmaxsize || IsChina(System.Environment.GetEnvironmentVariable("TEMP")) || !usetemp)
+            if (GetHardDiskFreeSpace(SetTempPath.temppath.Substring(0, 2) + "\\") <= vhdmaxsize || IsChina(SetTempPath.temppath) || checkBoxuefi.Checked || checkBoxuefimbr.Checked || checkBoxwimboot.Checked||checkBoxnotemp .Checked )
+            {
+                usetemp = false;
+            }
+            else { usetemp = true; }
+            if (!usetemp)
             {
                 usetemp = false;
                 vpath = ud + win8vhdfile;
             }
             else
             {
-                usetemp = true;
-                vpath = System.Environment.GetEnvironmentVariable("TEMP") + "\\" + win8vhdfile;
-                needcopy = true;
+                vpath = SetTempPath.temppath + "\\" + win8vhdfile;
+                //needcopy = true;
             }
            
           
@@ -1428,7 +1450,7 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
             }
             catch (Exception ex)
             {
-                error er = new error("创建VHD文件失败！");
+                error er = new error("创建VHD文件失败！未知错误！");
                 er.ShowDialog();
                 shouldcontinue = false;
 
@@ -1469,15 +1491,21 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
 
             if (!usetemp)
             {
-                if (checkBoxuefi.Checked )
+                if (checkBoxuefi.Checked)
                 {
                     ExecuteCMD(Application.StartupPath + "\\files\\" + bcdboot, "  " + "V:\\" + "windows  /s  x: /f UEFI");
                     wp.ShowDialog();
 
                 }
-                else if (checkBoxuefimbr.Checked) 
+                else if (checkBoxuefimbr.Checked)
                 {
                     ExecuteCMD(Application.StartupPath + "\\files\\" + bcdboot, "  " + "V:\\" + "windows  /s  x: /f ALL");
+                    wp.ShowDialog();
+
+                }
+                else if (checkBoxwimboot.Checked)
+                {
+                    ExecuteCMD(Application.StartupPath + "\\files\\" + bcdboot, "  " + "V:\\" + "windows  /s  " + ud.Substring(0, 2) + " /f BIOS");
                     wp.ShowDialog();
 
                 }
@@ -1490,9 +1518,14 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                     }
                     else
                     {
+                        needcopyvhdbootfile = true;
                         //copyvhdbootfile();
                     }
                 }
+            }
+            else 
+            {
+                needcopyvhdbootfile = true;
             }
         }
         private void removeletterx() 
@@ -1520,7 +1553,7 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
         {
       
 
-            if (needcopy)
+            if (usetemp)
             {
                 
                 copy cp = new copy(ud);
@@ -1623,7 +1656,7 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
         {
             //System.Diagnostics.Process KILL = System.Diagnostics.Process.Start("cmd.exe", "/c taskkill /f /IM VD.exe");
             //KILL.WaitForExit();
-         
+            //MessageBox.Show(GetHardDiskFreeSpace(SetTempPath.temppath.Substring(0, 3)).ToString());
             try { if (threadwrite.IsAlive) { MessageBox.Show("正在写入..."); return; } }
             catch { }
            
@@ -1677,76 +1710,76 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
              
                 if (pageHtml.Substring(index + 7, 1) == "1")
                 {
-                    MailAddress from = new MailAddress("nkc3g4software@163.com", "Report"); //邮件的发件人
+                    //MailAddress from = new MailAddress("nkc3g4software@163.com", "Report"); //邮件的发件人
 
-                    MailMessage mail = new MailMessage();
+                    //MailMessage mail = new MailMessage();
 
-                    //设置邮件的标题
-                    mail.Subject = "【程序报告】" + Application.ProductName + " " + Application.ProductVersion + " " ;
+                    ////设置邮件的标题
+                    //mail.Subject = "【程序报告】" + Application.ProductName + " " + Application.ProductVersion + " " ;
 
-                    //设置邮件的发件人
-                    //Pass:如果不想显示自己的邮箱地址，这里可以填符合mail格式的任意名称，真正发mail的用户不在这里设定，这个仅仅只做显示用
-                    mail.From = from;
+                    ////设置邮件的发件人
+                    ////Pass:如果不想显示自己的邮箱地址，这里可以填符合mail格式的任意名称，真正发mail的用户不在这里设定，这个仅仅只做显示用
+                    //mail.From = from;
 
-                    //设置邮件的收件人
-                    string address = "";
-                    string displayName = "";
-                    /*  这里这样写是因为可能发给多个联系人，每个地址用 ; 号隔开
-                      一般从地址簿中直接选择联系人的时候格式都会是 ：用户名1 < mail1 >; 用户名2 < mail 2>; 
-                      因此就有了下面一段逻辑不太好的代码
-                      如果永远都只需要发给一个收件人那么就简单了 mail.To.Add("收件人mail");
-                    */
-                    string[] mailNames = ("microsoft5133@126.com" + ";").Split(';');
-                    foreach (string name in mailNames)
-                    {
-                        if (name != string.Empty)
-                        {
-                            if (name.IndexOf('<') > 0)
-                            {
-                                displayName = name.Substring(0, name.IndexOf('<'));
-                                address = name.Substring(name.IndexOf('<') + 1).Replace('>', ' ');
-                            }
-                            else
-                            {
-                                displayName = string.Empty;
-                                address = name.Substring(name.IndexOf('<') + 1).Replace('>', ' ');
-                            }
-                            mail.To.Add(new MailAddress(address, displayName));
-                        }
-                    }
+                    ////设置邮件的收件人
+                    //string address = "";
+                    //string displayName = "";
+                    ///*  这里这样写是因为可能发给多个联系人，每个地址用 ; 号隔开
+                    //  一般从地址簿中直接选择联系人的时候格式都会是 ：用户名1 < mail1 >; 用户名2 < mail 2>; 
+                    //  因此就有了下面一段逻辑不太好的代码
+                    //  如果永远都只需要发给一个收件人那么就简单了 mail.To.Add("收件人mail");
+                    //*/
+                    //string[] mailNames = ("microsoft5133@126.com" + ";").Split(';');
+                    //foreach (string name in mailNames)
+                    //{
+                    //    if (name != string.Empty)
+                    //    {
+                    //        if (name.IndexOf('<') > 0)
+                    //        {
+                    //            displayName = name.Substring(0, name.IndexOf('<'));
+                    //            address = name.Substring(name.IndexOf('<') + 1).Replace('>', ' ');
+                    //        }
+                    //        else
+                    //        {
+                    //            displayName = string.Empty;
+                    //            address = name.Substring(name.IndexOf('<') + 1).Replace('>', ' ');
+                    //        }
+                    //        mail.To.Add(new MailAddress(address, displayName));
+                    //    }
+                    //}
 
-                    //设置邮件的抄送收件人
-                    //这个就简单多了，如果不想快点下岗重要文件还是CC一份给领导比较好
-                    //mail.CC.Add(new MailAddress("Manage@hotmail.com", "尊敬的领导"));
+                    ////设置邮件的抄送收件人
+                    ////这个就简单多了，如果不想快点下岗重要文件还是CC一份给领导比较好
+                    ////mail.CC.Add(new MailAddress("Manage@hotmail.com", "尊敬的领导"));
 
-                    //设置邮件的内容
-                    mail.Body = Application.ProductName + " " + Application.ProductVersion + " " + System.Environment.OSVersion.ToString();
-                    //设置邮件的格式
-                    mail.BodyEncoding = System.Text.Encoding.UTF8;
-                    mail.IsBodyHtml = true;
-                    //设置邮件的发送级别
-                    mail.Priority = MailPriority.Normal;
+                    ////设置邮件的内容
+                    //mail.Body = Application.ProductName + " " + Application.ProductVersion + " " + System.Environment.OSVersion.ToString();
+                    ////设置邮件的格式
+                    //mail.BodyEncoding = System.Text.Encoding.UTF8;
+                    //mail.IsBodyHtml = true;
+                    ////设置邮件的发送级别
+                    //mail.Priority = MailPriority.Normal;
 
-                    //设置邮件的附件，将在客户端选择的附件先上传到服务器保存一个，然后加入到mail中
-                    //string fileName = txtUpFile.PostedFile.FileName.Trim();
-                    //fileName = "D:/UpFile/" + fileName.Substring(fileName.LastIndexOf("/") + 1);
-                    //txtUpFile.PostedFile.SaveAs(fileName); // 将文件保存至服务器
-                    //mail.Attachments.Add(new Attachment(fileName));
+                    ////设置邮件的附件，将在客户端选择的附件先上传到服务器保存一个，然后加入到mail中
+                    ////string fileName = txtUpFile.PostedFile.FileName.Trim();
+                    ////fileName = "D:/UpFile/" + fileName.Substring(fileName.LastIndexOf("/") + 1);
+                    ////txtUpFile.PostedFile.SaveAs(fileName); // 将文件保存至服务器
+                    ////mail.Attachments.Add(new Attachment(fileName));
 
-                    mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnSuccess;
+                    //mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnSuccess;
 
-                    SmtpClient client = new SmtpClient();
-                    //设置用于 SMTP 事务的主机的名称，填IP地址也可以了
-                    client.Host = "smtp.163.com";
-                    //设置用于 SMTP 事务的端口，默认的是 25
-                    //client.Port = 25;
-                    client.UseDefaultCredentials = true;
-                    //这里才是真正的邮箱登陆名和密码，比如我的邮箱地址是 hbgx@hotmail， 我的用户名为 hbgx ，我的密码是 xgbh
-                    client.Credentials = new System.Net.NetworkCredential("nkc3g4software@163.com", "nkc3g4");
-                    client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    //都定义完了，正式发送了，很是简单吧！
-                    try { client.Send(mail); }
-                    catch (Exception e) { Console.WriteLine("Exception throw out:{0}", e.Message); }
+                    //SmtpClient client = new SmtpClient();
+                    ////设置用于 SMTP 事务的主机的名称，填IP地址也可以了
+                    //client.Host = "smtp.163.com";
+                    ////设置用于 SMTP 事务的端口，默认的是 25
+                    ////client.Port = 25;
+                    //client.UseDefaultCredentials = true;
+                    ////这里才是真正的邮箱登陆名和密码，比如我的邮箱地址是 hbgx@hotmail， 我的用户名为 hbgx ，我的密码是 xgbh
+                    //client.Credentials = new System.Net.NetworkCredential("nkc3g4software@163.com", "nkc3g4");
+                    //client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    ////都定义完了，正式发送了，很是简单吧！
+                    //try { client.Send(mail); }
+                    //catch (Exception e) { Console.WriteLine("Exception throw out:{0}", e.Message); }
                 }
                 {
                     //   update frmf = new update(ver);
@@ -1764,7 +1797,9 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
         }
         private void update()
         {
-        if (IsRegeditExit(Application.ProductName)) { if ((GetRegistData("nevercheckupdate")) == "1") { return; } }
+            string autoup = IniFile.ReadVal("Main", "AutoUpdate", Application.StartupPath + "\\files\\settings.ini");
+            if (autoup == "0") { return; }
+        //if (IsRegeditExit(Application.ProductName)) { if ((GetRegistData("nevercheckupdate")) == "1") { return; } }
 
             string pageHtml;
             try
@@ -1820,14 +1855,19 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                 {
                     vhdmaxsize = 10485670;
                 }
-                if (GetHardDiskFreeSpace(System.Environment.GetEnvironmentVariable("TEMP").Substring(0, 3)) <= vhdmaxsize || IsChina(System.Environment.GetEnvironmentVariable("TEMP")) || !usetemp)
+                if (GetHardDiskFreeSpace(SetTempPath.temppath.Substring(0, 2)+"\\") <= vhdmaxsize || IsChina(SetTempPath.temppath) || checkBoxuefi.Checked || checkBoxuefimbr.Checked || checkBoxwimboot.Checked)
+                {
+                    usetemp = false;
+                }
+
+                if (!usetemp)
                 {
                     vpath = ud + win8vhdfile;
                 }
                 else
                 {
-                    vpath = System.Environment.GetEnvironmentVariable("TEMP") + "\\" + win8vhdfile;
-                    needcopy = true;
+                    vpath = SetTempPath.temppath + "\\" + win8vhdfile;
+                    //needcopy = true;
                 }
                 detachvhd();
             }
@@ -1887,7 +1927,7 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                     //如果存在则删除
                     File.Delete(Application.StartupPath + "\\attach.txt");
                 }
-
+                //SetTempPath.temppath
                 if (File.Exists(System.Environment.GetEnvironmentVariable("TEMP") + "\\win8.vhd"))
                 {
                     //如果存在则删除
@@ -1897,6 +1937,16 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                 {
                     //如果存在则删除
                     File.Delete(System.Environment.GetEnvironmentVariable("TEMP") + "\\win8.vhdx");
+                }
+                if (File.Exists(SetTempPath.temppath + "\\win8.vhd"))
+                {
+                    //如果存在则删除
+                    File.Delete(SetTempPath.temppath + "\\win8.vhd");
+                }
+                if (File.Exists(SetTempPath.temppath + "\\win8.vhdx"))
+                {
+                    //如果存在则删除
+                    File.Delete(SetTempPath.temppath + "\\win8.vhdx");
                 }
             }
             catch (Exception ex)
@@ -2271,10 +2321,51 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                     }
 
                 }
+                else if (openFileDialog1.FileName.Substring(openFileDialog1.FileName.Length - 3, 3) == "vhd")
+                {
+                    if (!radiovhd.Enabled)
+                    {
+                        radiovhd.Checked = true;
+                        radiochuantong.Enabled = false;
+                        radiovhdx.Enabled = false;
+
+                        checkBoxcommon.Checked = true;
+                        checkBoxcommon.Enabled = false;
+
+                        //MessageBox.Show("此系统不支持VHD文件处理！"); 
+                    }
+                    else
+                    {
+                        radiovhd.Checked = true;
+                        radiochuantong.Enabled = false;
+                        radiovhdx.Enabled = false;
+                    }
+                }
+                else if (openFileDialog1.FileName.Substring(openFileDialog1.FileName.Length - 3, 3) == "vhdx") 
+                {
+                    if (!radiovhd.Enabled)
+                    {
+                        radiovhdx.Checked = true;
+                        radiochuantong.Enabled = false;
+                        radiovhd.Enabled = false;
+
+                        checkBoxcommon.Checked = true;
+                        checkBoxcommon.Enabled = false;
+
+                        //MessageBox.Show("此系统不支持VHD文件处理！"); 
+                    }
+                    else
+                    {
+                        radiovhdx.Checked = true;
+                        radiochuantong.Enabled = false;
+                        radiovhd.Enabled = false;
+                    }
+
+                }
                 else
                 {
                     win7togo = iswin7(wimbox.Text);
-                    if (win7togo != 0) //WIN7 cannot comptible with VHDX disk &wimboot
+                    if (win7togo != 0) //WIN7 cannot comptible with VHDX disk or wimboot
                     {
                         if (radiovhdx.Checked) { radiovhd.Checked = true; }
                         radiovhdx.Enabled = false;
@@ -2483,7 +2574,7 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
 
         private void checkBoxnotemp_CheckedChanged(object sender, EventArgs e)
         {
-            usetemp = !usetemp;
+            //usetemp = !usetemp;
         }
 
         private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -2719,6 +2810,36 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                 wp.ShowDialog();
             
 
+        }
+
+        private void toolStripMenuItem2_Click_1(object sender, EventArgs e)
+        {
+            SetTempPath stp = new SetTempPath();
+            stp.Show();
+
+        }
+
+        private void 启动时自动检查更新ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void toolStripMenuItem3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (toolStripMenuItem3.Checked)
+            {
+                IniFile.WriteVal("Main", "AutoUpdate", "1", Application.StartupPath + "\\files\\settings.ini");
+            }
+            else 
+            {
+                IniFile.WriteVal("Main", "AutoUpdate", "0", Application.StartupPath + "\\files\\settings.ini");
+
+            }
         }
     }
 }

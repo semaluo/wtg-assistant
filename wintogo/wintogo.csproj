@@ -116,6 +116,13 @@
     <Compile Include="error.Designer.cs">
       <DependentUpon>error.cs</DependentUpon>
     </Compile>
+    <Compile Include="IniOperation.cs" />
+    <Compile Include="SetTempPath.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetTempPath.Designer.cs">
+      <DependentUpon>SetTempPath.cs</DependentUpon>
+    </Compile>
     <Compile Include="Wimapi.cs" />
     <Compile Include="copy.cs">
       <SubType>Form</SubType>
@@ -148,6 +155,12 @@
     <Compile Include="UsbManager.cs" />
     <Compile Include="UsbStateChange.cs" />
     <Compile Include="UsbStateChangedEventArgs.cs" />
+    <Compile Include="Win8PB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Win8PB.Designer.cs">
+      <DependentUpon>Win8PB.cs</DependentUpon>
+    </Compile>
     <Compile Include="WmiExtensions.cs" />
     <Compile Include="WriteLog.cs" />
     <Compile Include="writeprogress.cs">
@@ -184,8 +197,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SetTempPath.resx">
+      <DependentUpon>SetTempPath.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="update.resx">
       <DependentUpon>update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Win8PB.resx">
+      <DependentUpon>Win8PB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="writeprogress.resx">
       <DependentUpon>writeprogress.cs</DependentUpon>

@@ -35,8 +35,6 @@
             this.wimbox = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.启动时自动检查更新ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.打开程序运行目录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.手动执行命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imagex解压写入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.写入引导文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,9 +90,11 @@
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.工具ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.自动检查更新ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.diskpart重新分区ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.vHD扩容ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.选择安装分卷ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.wIN7TOGOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bOOTICEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -113,7 +113,7 @@
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "请选择可移动设备"});
@@ -128,7 +128,7 @@
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button1.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button1.Location = new System.Drawing.Point(94, 181);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
@@ -140,14 +140,14 @@
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.Filter = "映像文件|install.wim;*.esd|所有文件|*.*";
+            this.openFileDialog1.Filter = "映像文件|install.wim;*.esd;*.vhd;*.vhdx|所有文件|*.*";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // wimbox
             // 
             this.wimbox.AutoSize = true;
             this.wimbox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.wimbox.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.wimbox.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.wimbox.ForeColor = System.Drawing.Color.Blue;
             this.wimbox.Location = new System.Drawing.Point(15, 89);
             this.wimbox.Name = "wimbox";
@@ -163,31 +163,12 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.启动时自动检查更新ToolStripMenuItem,
-            this.打开程序运行目录ToolStripMenuItem,
             this.手动执行命令ToolStripMenuItem,
             this.强制格式化ToolStripMenuItem,
             this.萝卜头IT论坛ToolStripMenuItem,
             this.错误提示测试ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(185, 136);
-            // 
-            // 启动时自动检查更新ToolStripMenuItem
-            // 
-            this.启动时自动检查更新ToolStripMenuItem.Checked = true;
-            this.启动时自动检查更新ToolStripMenuItem.CheckOnClick = true;
-            this.启动时自动检查更新ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.启动时自动检查更新ToolStripMenuItem.Name = "启动时自动检查更新ToolStripMenuItem";
-            this.启动时自动检查更新ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.启动时自动检查更新ToolStripMenuItem.Text = "启动时自动检查更新";
-            this.启动时自动检查更新ToolStripMenuItem.CheckedChanged += new System.EventHandler(this.启动时自动检查更新ToolStripMenuItem_Checked);
-            // 
-            // 打开程序运行目录ToolStripMenuItem
-            // 
-            this.打开程序运行目录ToolStripMenuItem.Name = "打开程序运行目录ToolStripMenuItem";
-            this.打开程序运行目录ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.打开程序运行目录ToolStripMenuItem.Text = "打开程序运行目录";
-            this.打开程序运行目录ToolStripMenuItem.Click += new System.EventHandler(this.打开程序运行目录ToolStripMenuItem_Click);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 92);
             // 
             // 手动执行命令ToolStripMenuItem
             // 
@@ -209,7 +190,7 @@
             this.vHDUEFIBCDToolStripMenuItem,
             this.wIN7USBBOOTToolStripMenuItem});
             this.手动执行命令ToolStripMenuItem.Name = "手动执行命令ToolStripMenuItem";
-            this.手动执行命令ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.手动执行命令ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.手动执行命令ToolStripMenuItem.Text = "手动执行命令(慎用)";
             // 
             // imagex解压写入ToolStripMenuItem
@@ -351,28 +332,28 @@
             // 
             this.强制格式化ToolStripMenuItem.CheckOnClick = true;
             this.强制格式化ToolStripMenuItem.Name = "强制格式化ToolStripMenuItem";
-            this.强制格式化ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.强制格式化ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.强制格式化ToolStripMenuItem.Text = "强制格式化";
             this.强制格式化ToolStripMenuItem.Click += new System.EventHandler(this.强制格式化ToolStripMenuItem_Click);
             // 
             // 萝卜头IT论坛ToolStripMenuItem
             // 
             this.萝卜头IT论坛ToolStripMenuItem.Name = "萝卜头IT论坛ToolStripMenuItem";
-            this.萝卜头IT论坛ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.萝卜头IT论坛ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.萝卜头IT论坛ToolStripMenuItem.Text = "萝卜头IT论坛";
             this.萝卜头IT论坛ToolStripMenuItem.Click += new System.EventHandler(this.萝卜头IT论坛ToolStripMenuItem_Click);
             // 
             // 错误提示测试ToolStripMenuItem
             // 
             this.错误提示测试ToolStripMenuItem.Name = "错误提示测试ToolStripMenuItem";
-            this.错误提示测试ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.错误提示测试ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.错误提示测试ToolStripMenuItem.Text = "错误提示测试";
             this.错误提示测试ToolStripMenuItem.Click += new System.EventHandler(this.错误提示测试ToolStripMenuItem_Click);
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("微软雅黑", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.linkLabel1.LinkColor = System.Drawing.Color.Red;
             this.linkLabel1.Location = new System.Drawing.Point(293, 36);
             this.linkLabel1.Name = "linkLabel1";
@@ -385,7 +366,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label3.Location = new System.Drawing.Point(16, 36);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(288, 51);
@@ -395,7 +376,7 @@
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel2.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel2.Location = new System.Drawing.Point(13, 225);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(66, 17);
@@ -408,7 +389,7 @@
             // radiovhd
             // 
             this.radiovhd.AutoSize = true;
-            this.radiovhd.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.radiovhd.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.radiovhd.Location = new System.Drawing.Point(75, 156);
             this.radiovhd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radiovhd.Name = "radiovhd";
@@ -422,7 +403,7 @@
             // 
             // button2
             // 
-            this.button2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button2.Font = new System.Drawing.Font("Microsoft YaHei", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button2.Location = new System.Drawing.Point(354, 89);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
@@ -436,7 +417,7 @@
             // linkLabel3
             // 
             this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Font = new System.Drawing.Font("微软雅黑", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.linkLabel3.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.linkLabel3.LinkColor = System.Drawing.Color.Red;
             this.linkLabel3.Location = new System.Drawing.Point(330, 157);
             this.linkLabel3.Name = "linkLabel3";
@@ -450,7 +431,7 @@
             // linkLabel5
             // 
             this.linkLabel5.AutoSize = true;
-            this.linkLabel5.Font = new System.Drawing.Font("微软雅黑", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.linkLabel5.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.linkLabel5.LinkColor = System.Drawing.Color.Red;
             this.linkLabel5.Location = new System.Drawing.Point(65, 0);
             this.linkLabel5.Name = "linkLabel5";
@@ -463,6 +444,7 @@
             // 
             // button3
             // 
+            this.button3.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button3.Location = new System.Drawing.Point(315, 117);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(32, 25);
@@ -518,7 +500,7 @@
             // 
             this.radiochuantong.AutoSize = true;
             this.radiochuantong.Checked = true;
-            this.radiochuantong.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.radiochuantong.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.radiochuantong.Location = new System.Drawing.Point(16, 156);
             this.radiochuantong.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radiochuantong.Name = "radiochuantong";
@@ -532,7 +514,7 @@
             // radiovhdx
             // 
             this.radiovhdx.AutoSize = true;
-            this.radiovhdx.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.radiovhdx.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.radiovhdx.Location = new System.Drawing.Point(140, 156);
             this.radiovhdx.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radiovhdx.Name = "radiovhdx";
@@ -723,9 +705,11 @@
             // 
             this.工具ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.自动检查更新ToolStripMenuItem,
+            this.toolStripMenuItem3,
             this.diskpart重新分区ToolStripMenuItem1,
             this.vHD扩容ToolStripMenuItem,
             this.选择安装分卷ToolStripMenuItem1,
+            this.toolStripMenuItem2,
             this.wIN7TOGOToolStripMenuItem,
             this.bOOTICEToolStripMenuItem});
             this.工具ToolStripMenuItem.Name = "工具ToolStripMenuItem";
@@ -735,21 +719,32 @@
             // 自动检查更新ToolStripMenuItem
             // 
             this.自动检查更新ToolStripMenuItem.Name = "自动检查更新ToolStripMenuItem";
-            this.自动检查更新ToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.自动检查更新ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.自动检查更新ToolStripMenuItem.Text = "检查更新";
             this.自动检查更新ToolStripMenuItem.Click += new System.EventHandler(this.自动检查更新ToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Checked = true;
+            this.toolStripMenuItem3.CheckOnClick = true;
+            this.toolStripMenuItem3.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(184, 22);
+            this.toolStripMenuItem3.Text = "启动时自动检查更新";
+            this.toolStripMenuItem3.CheckedChanged += new System.EventHandler(this.toolStripMenuItem3_CheckedChanged);
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // diskpart重新分区ToolStripMenuItem1
             // 
             this.diskpart重新分区ToolStripMenuItem1.Name = "diskpart重新分区ToolStripMenuItem1";
-            this.diskpart重新分区ToolStripMenuItem1.Size = new System.Drawing.Size(173, 22);
+            this.diskpart重新分区ToolStripMenuItem1.Size = new System.Drawing.Size(184, 22);
             this.diskpart重新分区ToolStripMenuItem1.Text = "Diskpart重新分区";
             this.diskpart重新分区ToolStripMenuItem1.Click += new System.EventHandler(this.diskpart重新分区ToolStripMenuItem1_Click);
             // 
             // vHD扩容ToolStripMenuItem
             // 
             this.vHD扩容ToolStripMenuItem.Name = "vHD扩容ToolStripMenuItem";
-            this.vHD扩容ToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.vHD扩容ToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.vHD扩容ToolStripMenuItem.Text = "VHD扩容";
             this.vHD扩容ToolStripMenuItem.Visible = false;
             this.vHD扩容ToolStripMenuItem.Click += new System.EventHandler(this.vHD扩容ToolStripMenuItem_Click);
@@ -757,22 +752,29 @@
             // 选择安装分卷ToolStripMenuItem1
             // 
             this.选择安装分卷ToolStripMenuItem1.Name = "选择安装分卷ToolStripMenuItem1";
-            this.选择安装分卷ToolStripMenuItem1.Size = new System.Drawing.Size(173, 22);
+            this.选择安装分卷ToolStripMenuItem1.Size = new System.Drawing.Size(184, 22);
             this.选择安装分卷ToolStripMenuItem1.Text = "选择安装分卷";
             this.选择安装分卷ToolStripMenuItem1.Click += new System.EventHandler(this.选择安装分卷ToolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(184, 22);
+            this.toolStripMenuItem2.Text = "设置临时文件夹";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click_1);
             // 
             // wIN7TOGOToolStripMenuItem
             // 
             this.wIN7TOGOToolStripMenuItem.CheckOnClick = true;
             this.wIN7TOGOToolStripMenuItem.Name = "wIN7TOGOToolStripMenuItem";
-            this.wIN7TOGOToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.wIN7TOGOToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.wIN7TOGOToolStripMenuItem.Text = "WIN7 TO GO";
             this.wIN7TOGOToolStripMenuItem.CheckedChanged += new System.EventHandler(this.wIN7TOGOToolStripMenuItem_CheckedChanged);
             // 
             // bOOTICEToolStripMenuItem
             // 
             this.bOOTICEToolStripMenuItem.Name = "bOOTICEToolStripMenuItem";
-            this.bOOTICEToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.bOOTICEToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.bOOTICEToolStripMenuItem.Text = "BOOTICE";
             this.bOOTICEToolStripMenuItem.Click += new System.EventHandler(this.bOOTICEToolStripMenuItem_Click);
             // 
@@ -810,7 +812,7 @@
             // checkBoxdiskpart
             // 
             this.checkBoxdiskpart.AutoSize = true;
-            this.checkBoxdiskpart.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.checkBoxdiskpart.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.checkBoxdiskpart.ForeColor = System.Drawing.SystemColors.ControlText;
             this.checkBoxdiskpart.Location = new System.Drawing.Point(210, 156);
             this.checkBoxdiskpart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -867,7 +869,7 @@
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox1);
-            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = global::wintogo.Properties.Resources._2001;
             this.MainMenuStrip = this.menuStrip1;
@@ -897,10 +899,8 @@
         private System.Windows.Forms.Label wimbox;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 启动时自动检查更新ToolStripMenuItem;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ToolStripMenuItem 打开程序运行目录ToolStripMenuItem;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.ToolStripMenuItem 手动执行命令ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem imagex解压写入ToolStripMenuItem;
@@ -966,6 +966,8 @@
         private System.Windows.Forms.CheckBox checkBoxcommon;
         private System.Windows.Forms.CheckBox checkBoxunformat;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemvhdx;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
     }
 }
 
