@@ -16,7 +16,7 @@ namespace wintogo
         {
             InitializeComponent();
         }
-
+        int num = 0;
         private void writeprogress_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -35,6 +35,7 @@ namespace wintogo
                 }
                 catch { }
                 sw.Close();
+                textBox1.Text = "";
             }
             catch { }
 
@@ -42,7 +43,37 @@ namespace wintogo
 
         private void writeprogress_Load(object sender, EventArgs e)
         {
-            //textBox1.Text = "";
+            Random ra = new Random();
+            num=ra.Next(0, 9);
+            
+            linkLabel1.Text = Form1.topicname [num];
+            textBox1.Focus();
+            //设置光标的位置到文本尾
+            textBox1.Select(textBox1.TextLength, 0);
+            //滚动到控件光标处
+            textBox1.ScrollToCaret();
+
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void win8PB1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Form1.VisitWeb(Form1.topiclink [num]);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

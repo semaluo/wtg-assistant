@@ -36,7 +36,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(19, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(269, 42);
@@ -60,6 +60,7 @@
             this.win8PB1.Name = "win8PB1";
             this.win8PB1.Size = new System.Drawing.Size(300, 10);
             this.win8PB1.TabIndex = 3;
+            this.win8PB1.Load += new System.EventHandler(this.win8PB1_Load);
             // 
             // copy
             // 
@@ -69,12 +70,12 @@
             this.Controls.Add(this.win8PB1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = global::wintogo.Properties.Resources._2001;
+            this.MaximizeBox = false;
             this.Name = "copy";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "复制文件...";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.copy_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

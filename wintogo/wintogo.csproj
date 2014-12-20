@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>wintogo</RootNamespace>
     <AssemblyName>wintogo</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
@@ -50,6 +50,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -124,12 +125,6 @@
       <DependentUpon>SetTempPath.cs</DependentUpon>
     </Compile>
     <Compile Include="Wimapi.cs" />
-    <Compile Include="copy.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="copy.Designer.cs">
-      <DependentUpon>copy.cs</DependentUpon>
-    </Compile>
     <Compile Include="finish.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,9 +169,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="choosepart.resx">
       <DependentUpon>choosepart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="copy.resx">
-      <DependentUpon>copy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="error.resx">
       <DependentUpon>error.cs</DependentUpon>

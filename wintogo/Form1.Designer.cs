@@ -117,11 +117,11 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "请选择可移动设备"});
-            this.comboBox1.Location = new System.Drawing.Point(16, 117);
+            this.comboBox1.Location = new System.Drawing.Point(16, 109);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox1.MaxDropDownItems = 10;
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(293, 25);
+            this.comboBox1.Size = new System.Drawing.Size(315, 25);
             this.comboBox1.TabIndex = 2;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             this.comboBox1.MouseHover += new System.EventHandler(this.comboBox1_MouseHover);
@@ -129,10 +129,10 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(94, 181);
+            this.button1.Location = new System.Drawing.Point(120, 181);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(162, 38);
+            this.button1.Size = new System.Drawing.Size(161, 45);
             this.button1.TabIndex = 6;
             this.button1.Text = "写入";
             this.button1.UseVisualStyleBackColor = true;
@@ -149,11 +149,11 @@
             this.wimbox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.wimbox.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.wimbox.ForeColor = System.Drawing.Color.Blue;
-            this.wimbox.Location = new System.Drawing.Point(15, 89);
+            this.wimbox.Location = new System.Drawing.Point(15, 79);
             this.wimbox.Name = "wimbox";
-            this.wimbox.Size = new System.Drawing.Size(283, 19);
+            this.wimbox.Size = new System.Drawing.Size(352, 19);
             this.wimbox.TabIndex = 1;
-            this.wimbox.Text = "点此选择ISO镜像sources目录下的install.wim\r\n";
+            this.wimbox.Text = "点此选择ISO镜像sources目录下的install.wim或VHD文件\r\n";
             this.wimbox.Click += new System.EventHandler(this.wimbox_Click);
             // 
             // folderBrowserDialog1
@@ -355,7 +355,7 @@
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.linkLabel1.LinkColor = System.Drawing.Color.Red;
-            this.linkLabel1.Location = new System.Drawing.Point(293, 36);
+            this.linkLabel1.Location = new System.Drawing.Point(337, 33);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(54, 20);
             this.linkLabel1.TabIndex = 7;
@@ -369,15 +369,16 @@
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label3.Location = new System.Drawing.Point(16, 36);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(288, 51);
+            this.label3.Size = new System.Drawing.Size(315, 34);
             this.label3.TabIndex = 29;
-            this.label3.Text = "“Windows To Go”，制作在U盘上\r\n运行的 Windows7/8/10，让你的Windows带着走！\r\n推荐使用Windows 8.1企业版！";
+            this.label3.Text = "“Windows To Go”，制作在U盘上运行的系统，\r\n让你的Windows带着走！推荐使用Windows 8.1企业版！";
             // 
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel2.Location = new System.Drawing.Point(13, 225);
+            this.linkLabel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.linkLabel2.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.linkLabel2.Location = new System.Drawing.Point(160, 5);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(66, 17);
             this.linkLabel2.TabIndex = 9;
@@ -390,7 +391,7 @@
             // 
             this.radiovhd.AutoSize = true;
             this.radiovhd.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radiovhd.Location = new System.Drawing.Point(75, 156);
+            this.radiovhd.Location = new System.Drawing.Point(75, 142);
             this.radiovhd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radiovhd.Name = "radiovhd";
             this.radiovhd.Size = new System.Drawing.Size(56, 23);
@@ -404,7 +405,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft YaHei", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button2.Location = new System.Drawing.Point(354, 89);
+            this.button2.Location = new System.Drawing.Point(391, 79);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(24, 80);
@@ -419,7 +420,7 @@
             this.linkLabel3.AutoSize = true;
             this.linkLabel3.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.linkLabel3.LinkColor = System.Drawing.Color.Red;
-            this.linkLabel3.Location = new System.Drawing.Point(330, 157);
+            this.linkLabel3.Location = new System.Drawing.Point(353, 142);
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.Size = new System.Drawing.Size(16, 19);
             this.linkLabel3.TabIndex = 42;
@@ -445,7 +446,7 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button3.Location = new System.Drawing.Point(315, 117);
+            this.button3.Location = new System.Drawing.Point(337, 109);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(32, 25);
             this.button3.TabIndex = 45;
@@ -501,7 +502,7 @@
             this.radiochuantong.AutoSize = true;
             this.radiochuantong.Checked = true;
             this.radiochuantong.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radiochuantong.Location = new System.Drawing.Point(16, 156);
+            this.radiochuantong.Location = new System.Drawing.Point(16, 142);
             this.radiochuantong.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radiochuantong.Name = "radiochuantong";
             this.radiochuantong.Size = new System.Drawing.Size(53, 23);
@@ -515,7 +516,7 @@
             // 
             this.radiovhdx.AutoSize = true;
             this.radiovhdx.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radiovhdx.Location = new System.Drawing.Point(140, 156);
+            this.radiovhdx.Location = new System.Drawing.Point(139, 142);
             this.radiovhdx.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radiovhdx.Name = "radiovhdx";
             this.radiovhdx.Size = new System.Drawing.Size(64, 23);
@@ -558,11 +559,11 @@
             this.groupBoxadv.Controls.Add(this.label2);
             this.groupBoxadv.Controls.Add(this.label1);
             this.groupBoxadv.Controls.Add(this.numericUpDown1);
-            this.groupBoxadv.Location = new System.Drawing.Point(405, 44);
+            this.groupBoxadv.Location = new System.Drawing.Point(442, 36);
             this.groupBoxadv.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBoxadv.Name = "groupBoxadv";
             this.groupBoxadv.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBoxadv.Size = new System.Drawing.Size(196, 184);
+            this.groupBoxadv.Size = new System.Drawing.Size(196, 181);
             this.groupBoxadv.TabIndex = 41;
             this.groupBoxadv.TabStop = false;
             this.groupBoxadv.Text = "高级选项";
@@ -589,6 +590,7 @@
             this.checkBoxcommon.TabIndex = 48;
             this.checkBoxcommon.Text = "通用启动文件";
             this.checkBoxcommon.UseVisualStyleBackColor = true;
+            this.checkBoxcommon.CheckedChanged += new System.EventHandler(this.checkBoxcommon_CheckedChanged);
             // 
             // checkBoxwimboot
             // 
@@ -658,6 +660,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.文件ToolStripMenuItem,
             this.工具ToolStripMenuItem,
@@ -665,7 +668,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(607, 27);
+            this.menuStrip1.Size = new System.Drawing.Size(650, 27);
             this.menuStrip1.TabIndex = 43;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -814,7 +817,7 @@
             this.checkBoxdiskpart.AutoSize = true;
             this.checkBoxdiskpart.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.checkBoxdiskpart.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.checkBoxdiskpart.Location = new System.Drawing.Point(210, 156);
+            this.checkBoxdiskpart.Location = new System.Drawing.Point(217, 142);
             this.checkBoxdiskpart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBoxdiskpart.Name = "checkBoxdiskpart";
             this.checkBoxdiskpart.Size = new System.Drawing.Size(114, 23);
@@ -828,7 +831,7 @@
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(262, 183);
+            this.label4.Location = new System.Drawing.Point(297, 181);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(18, 37);
             this.label4.TabIndex = 46;
@@ -839,7 +842,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(286, 183);
+            this.label5.Location = new System.Drawing.Point(321, 182);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(91, 30);
             this.label5.TabIndex = 47;
@@ -850,8 +853,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(607, 251);
+            this.ClientSize = new System.Drawing.Size(650, 239);
             this.ContextMenuStrip = this.contextMenuStrip1;
+            this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -866,7 +870,6 @@
             this.Controls.Add(this.radiovhdx);
             this.Controls.Add(this.radiovhd);
             this.Controls.Add(this.radiochuantong);
-            this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox1);
             this.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -893,7 +896,6 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label wimbox;
@@ -968,6 +970,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemvhdx;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        public System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

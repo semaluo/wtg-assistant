@@ -32,6 +32,17 @@ namespace wintogo
 
         private void Win8PB_Load(object sender, EventArgs e)
         {
+            //MessageBox.Show("Test");
+            //MessageBox.Show ("")
+            timer1.Enabled = true;
+            timer2.Enabled = true;
+            timer3.Enabled = true;
+            timer4.Enabled = true;
+            timer5.Enabled = true;
+
+
+
+
             timer1.Interval = 50;
             timer2.Interval = 50;
             timer3.Interval = 50;
@@ -57,12 +68,26 @@ namespace wintogo
         {
             if (p1 == 1) 
             {
+                //label1.Invoke((MethodInvoker)delegate
+                //{
+                //    // Show the current time in the form's title bar.
+                //    label1.Left += v1;
+                //    //this.Text = DateTime.Now.ToLongTimeString();
+                //});
+
                 label1.Left += v1;
                 v1 = v1 - 1;
                 if (v1 == 2) { p1 = 2; }
             }
-            else if (p1 == 2) 
+            else if (p1 == 2)
             {
+            //    label1.Invoke((MethodInvoker)delegate
+            //    {
+            //        // Show the current time in the form's title bar.
+            //        label1.Left += v1;
+            //        //this.Text = DateTime.Now.ToLongTimeString();
+            //    });
+
                 label1.Left += v1;
                 if (label1.Left >= 150) 
                 {

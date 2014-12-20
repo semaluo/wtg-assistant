@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
+using System.IO;
 namespace wintogo
 {
     public partial class copy : Form
@@ -23,15 +24,16 @@ namespace wintogo
         private void copyfiles() 
         {
             //MessageBox.Show("hekl");
-            if (System.IO.File.Exists(SetTempPath .temppath  + "\\win8.vhd"))
+            if (System.IO.File.Exists(Form1.vpath ))
             {
-                System.Diagnostics.Process cp = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\fastcopy.exe", " /auto_close \"" + SetTempPath .temppath + "\\win8.vhd\" /to=\"" + udisk + "\"");
+                System.Diagnostics.Process cp = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\fastcopy.exe", " /auto_close \"" + Form1.vpath+"\" /to=\"" + udisk + "\"");
                 cp.WaitForExit();
             }
-            else 
+            if ((Form1.filetype == "vhd" && !Form1.vpath.EndsWith("win8.vhd")) || (Form1.filetype == "vhdx" && !Form1.vpath.EndsWith("win8.vhdx"))) 
             {
-                System.Diagnostics.Process cp = System.Diagnostics.Process.Start(Application.StartupPath+"\\files" + "\\fastcopy.exe", " /auto_close \"" + SetTempPath .temppath + "\\win8.vhdx\" /to=\"" + udisk + "\"");
-                cp.WaitForExit();
+                //Rename
+                try { File.Move(udisk + Form1.vpath.Substring(Form1.vpath.LastIndexOf("\\") + 1), udisk + Form1.win8vhdfile); }
+                catch (Exception ex) { MessageBox.Show("重命名错误"+ex.ToString ()); }
             }
             //////////////////////////////////////////////////////////////
             this.Close();
@@ -47,6 +49,11 @@ namespace wintogo
             if (DialogResult.No == MessageBox.Show("确认取消？", "警告！", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
 
             System.Diagnostics.Process.Start("cmd.exe", "/c taskkill /f /IM fastcopy.exe");
+        }
+
+        private void win8PB1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
