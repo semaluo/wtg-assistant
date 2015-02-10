@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace wintogo
@@ -8,6 +9,7 @@ namespace wintogo
     {
         public finish()
         {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = Form1.ci;
             InitializeComponent();
         }
 

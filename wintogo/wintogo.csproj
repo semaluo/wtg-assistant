@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>wintogo</RootNamespace>
     <AssemblyName>wintogo</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
@@ -118,6 +118,16 @@
       <DependentUpon>error.cs</DependentUpon>
     </Compile>
     <Compile Include="IniOperation.cs" />
+    <Compile Include="ResourceLang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceLang.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceLang.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceLang.en.resx</DependentUpon>
+    </Compile>
     <Compile Include="SetTempPath.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,19 +174,49 @@
     <Compile Include="writeprogress.Designer.cs">
       <DependentUpon>writeprogress.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AboutBox.en.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutBox.zh-Hant.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="choosepart.en.resx">
+      <DependentUpon>choosepart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="choosepart.resx">
       <DependentUpon>choosepart.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="choosepart.zh-Hant.resx">
+      <DependentUpon>choosepart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="error.en.resx">
+      <DependentUpon>error.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="error.resx">
       <DependentUpon>error.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="error.zh-Hant.resx">
+      <DependentUpon>error.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="finish.en.resx">
+      <DependentUpon>finish.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="finish.resx">
       <DependentUpon>finish.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="finish.zh-Hant.resx">
+      <DependentUpon>finish.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.en.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.zh-Hant.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -189,16 +229,43 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ResourceLang.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceLang.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceLang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceLang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceLang.zh-Hant.resx" />
+    <EmbeddedResource Include="SetTempPath.en.resx">
+      <DependentUpon>SetTempPath.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SetTempPath.resx">
       <DependentUpon>SetTempPath.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SetTempPath.zh-Hant.resx">
+      <DependentUpon>SetTempPath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="update.en.resx">
+      <DependentUpon>update.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="update.resx">
+      <DependentUpon>update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="update.zh-Hant.resx">
       <DependentUpon>update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Win8PB.resx">
       <DependentUpon>Win8PB.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="writeprogress.en.resx">
+      <DependentUpon>writeprogress.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="writeprogress.resx">
+      <DependentUpon>writeprogress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="writeprogress.zh-Hant.resx">
       <DependentUpon>writeprogress.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config">
@@ -219,6 +286,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="2001.ico" />
+    <Content Include="LanguageDefault.xml" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

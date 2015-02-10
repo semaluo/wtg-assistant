@@ -9,6 +9,8 @@ namespace wintogo
         string args = null;
         public update(string args)
         {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = Form1.ci;
+
             InitializeComponent();
             this.args = args;
         }

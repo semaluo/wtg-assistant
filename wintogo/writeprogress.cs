@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,10 @@ namespace wintogo
     {
         public writeprogress()
         {
+            //CultureInfo ca = new System.Globalization.CultureInfo("en");
+            //MessageBox.Show(Form1.ci.DisplayName);
+            System.Threading.Thread.CurrentThread.CurrentUICulture = Form1.ci ;
+
             InitializeComponent();
         }
         int num = 0;

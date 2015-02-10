@@ -14,6 +14,8 @@ namespace wintogo
         public static string temppath = System.Environment.GetEnvironmentVariable("TEMP");
         public SetTempPath()
         {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = Form1.ci;
+
             InitializeComponent();
         }
 

@@ -117,163 +117,127 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="FileName_VHD_Dynamic" xml:space="preserve">
+    <value>VHD模式說明.TXT</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>请耐心等待</value>
+  <data name="IsChinaMsg" xml:space="preserve">
+    <value>請不要將程序放入中文文件夾運行。</value>
   </data>
-  <data name="textBox1.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="Msg_BCDError" xml:space="preserve">
+    <value>引導文件寫入出錯！boot文件夾不存在！</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Msg_bootmgrError" xml:space="preserve">
+    <value>文件寫入出錯！bootmgr不存在！\n請檢查寫入過程是否中斷</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
+  <data name="Msg_chooseinstallwim" xml:space="preserve">
+    <value>鏡像文件選擇錯誤！請選擇install.wim！</value>
   </data>
-  <data name="win8PB1.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="Msg_chooseud" xml:space="preserve">
+    <value>請選擇可移動設備</value>
   </data>
-  <data name="&gt;&gt;win8PB1.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="Msg_ClearPartition" xml:space="preserve">
+    <value>此操作將會清除移動磁盤所有分區的所有數據，確認？</value>
   </data>
-  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 12pt, style=Bold</value>
+  <data name="Msg_Complete" xml:space="preserve">
+    <value>操作完成！</value>
   </data>
-  <data name="&gt;&gt;linkLabel1.Name" xml:space="preserve">
-    <value>linkLabel1</value>
+  <data name="Msg_ConfirmChoose" xml:space="preserve">
+    <value>請確認您所選擇的</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>正在执行...</value>
+  <data name="Msg_ConfirmRestart" xml:space="preserve">
+    <value>程序將會重啟，確認繼續？</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Msg_DeleteTempError" xml:space="preserve">
+    <value>程序刪除臨時文件出錯！可重啟程序或重啟電腦重試！\n</value>
   </data>
-  <data name="linkLabel1.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="Msg_DiskSpaceError" xml:space="preserve">
+    <value>優盤容量小於VHD設定大小，請修改設置！</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>writeprogress</value>
+  <data name="Msg_DiskSpaceWarning" xml:space="preserve">
+    <value>可移動磁盤容量不足16G，繼續寫入可能會導致程序出錯！您確定要繼續嗎？</value>
   </data>
-  <data name="&gt;&gt;textBox1.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="Msg_Disk_Space" xml:space="preserve">
+    <value>盤，容量</value>
   </data>
-  <data name="&gt;&gt;win8PB1.Type" xml:space="preserve">
-    <value>wintogo.Win8PB, wintogo, Version=3.0.2.0, Culture=neutral, PublicKeyToken=null</value>
+  <data name="Msg_DoWhat" xml:space="preserve">
+    <value>如果您不清楚您在做什麼，請立即停止操作！</value>
   </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>132, 9</value>
+  <data name="Msg_error" xml:space="preserve">
+    <value>錯誤！</value>
   </data>
-  <data name="linkLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 12</value>
+  <data name="Msg_ESDError" xml:space="preserve">
+    <value>此系統不支持ESD文件處理！</value>
   </data>
-  <data name="textBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>341, 72</value>
+  <data name="Msg_Failure" xml:space="preserve">
+    <value>操作失敗！</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>371, 165</value>
+  <data name="Msg_FormatTip" xml:space="preserve">
+    <value>GB 是將要寫入的優盤或移動硬盤\n誤格式化，後果自負！</value>
   </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="Msg_FormatWarning" xml:space="preserve">
+    <value>盤將會被格式化，此操作將不可恢復，您確定要繼續嗎？\n由於寫入時間較長，請您耐心等待！\n寫入過程中彈出寫入可能無效屬於正常現象，選是即可。</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
+  <data name="Msg_LetterV" xml:space="preserve">
+    <value>盤符V不能被佔用！</value>
   </data>
-  <data name="&gt;&gt;linkLabel1.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="Msg_ntfsstream" xml:space="preserve">
+    <value>NTFS文件流異常\n請放心，此錯誤不影響正常使用</value>
   </data>
-  <data name="textBox1.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
-    <value>Vertical</value>
+  <data name="Msg_OnlyNonUefi" xml:space="preserve">
+    <value>此選項僅在非UEFI模式下有效！</value>
   </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="Msg_RenameError" xml:space="preserve">
+    <value>重命名錯誤</value>
   </data>
-  <data name="&gt;&gt;linkLabel1.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="Msg_Repartition" xml:space="preserve">
+    <value>您勾選了重新分區，優盤或移動硬盤上的所有文件將被刪除！\n注意是整個磁盤，不是一個分區！</value>
   </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
+  <data name="Msg_Tip" xml:space="preserve">
+    <value>提示！</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="Msg_UDRoot" xml:space="preserve">
+    <value>請選擇優盤根目錄</value>
   </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="Msg_UefiError" xml:space="preserve">
+    <value>此優盤不支持UEFI模式\n只有 Fixed Disk格式支持\n詳情請看論壇說明！</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="Msg_UefiFormatWarning" xml:space="preserve">
+    <value>您所選擇的是UEFI模式，此模式將會格式化您的整個移動磁盤！\n注意是整個磁盤！！！\n程序將會刪除所有優盤分區！</value>
   </data>
-  <data name="linkLabel1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="Msg_UpdateTip" xml:space="preserve">
+    <value>若無彈出窗口，則當前程序已是最新版本！</value>
   </data>
-  <data name="&gt;&gt;textBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Msg_VHDBcdbootError" xml:space="preserve">
+    <value>VHD模式下BCDBOOT執行出錯！</value>
   </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="Msg_VHDCreationError" xml:space="preserve">
+    <value>VHD文件創建出錯！</value>
   </data>
-  <data name="textBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 17</value>
+  <data name="Msg_VHDDynamicSize" xml:space="preserve">
+    <value>您創建的VHD為動態大小VHD，實際VHD容量：</value>
   </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 50</value>
+  <data name="Msg_VHDDynamicSize2" xml:space="preserve">
+    <value>在VHD系統啟動後將自動擴充為實際容量。請您在優盤留有足夠空間確保系統正常啟動！</value>
   </data>
-  <data name="&gt;&gt;textBox1.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="Msg_warning" xml:space="preserve">
+    <value>警告！</value>
   </data>
-  <data name="&gt;&gt;win8PB1.Name" xml:space="preserve">
-    <value>win8PB1</value>
+  <data name="Msg_wiminfoerror" xml:space="preserve">
+    <value>WIM文件信息獲取失敗\n將按WIN8系統安裝</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 22</value>
+  <data name="Msg_win7usberror" xml:space="preserve">
+    <value>處理WIN7 USB啟動時出現問題</value>
   </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Msg_WriteProcessing" xml:space="preserve">
+    <value>正在寫入...</value>
   </data>
-  <data name="textBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="Msg_WritingAbort" xml:space="preserve">
+    <value>正在寫入，您確定要取消嗎？</value>
   </data>
-  <data name="win8PB1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>300, 10</value>
+  <data name="Msg_XPNotCOMP" xml:space="preserve">
+    <value>XP系統不支持此操作</value>
   </data>
-  <data name="&gt;&gt;linkLabel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Msg_XPUefiError" xml:space="preserve">
+    <value>XP系統不支持UEFI模式寫入</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>输出日志</value>
-  </data>
-  <data name="textBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="linkLabel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 145</value>
-  </data>
-  <data name="linkLabel1.Text" xml:space="preserve">
-    <value>labelad</value>
-  </data>
-  <data name="&gt;&gt;textBox1.Name" xml:space="preserve">
-    <value>textBox1</value>
-  </data>
-  <data name="win8PB1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>33, 34</value>
-  </data>
-  <data name="&gt;&gt;win8PB1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>347, 92</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>zh-Hant</value>
-  </metadata>
 </root>

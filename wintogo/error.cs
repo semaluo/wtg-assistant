@@ -7,6 +7,8 @@ namespace wintogo
         string errmsg;
         public error(string errmsg)
         {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = Form1.ci;
+
             this.errmsg = errmsg;
             InitializeComponent();
             

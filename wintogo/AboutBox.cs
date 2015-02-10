@@ -12,10 +12,12 @@ namespace wintogo
     {
         public AboutBox()
         {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = Form1.ci;
+
             InitializeComponent();
-            this.Text = String.Format("关于 {0}", AssemblyTitle);
+            //this.Text = String.Format("关于(About) {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("版本 {0}", AssemblyVersion);
+            this.labelVersion.Text = String.Format("版本(Version) {0}", AssemblyVersion);
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
             //this.textBoxDescription.Text = AssemblyDescription;

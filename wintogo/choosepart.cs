@@ -8,6 +8,8 @@ namespace wintogo
         public static int part;
         public choosepart()
         {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = Form1.ci;
+
             InitializeComponent();
         }
 

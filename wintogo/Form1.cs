@@ -16,10 +16,16 @@ using System.Xml;
 using System.Text.RegularExpressions;
 using Trinet.Core.IO.Ntfs;
 using System.Collections;
+using System.Resources;
+using System.Globalization;
+using System.Data;
 namespace wintogo
 {
     public partial class Form1 : Form
     {
+        public static CultureInfo ci = Thread.CurrentThread.CurrentCulture;
+
+        //string msg = Properties.Resources.InfoMsg;
         private UsbManager manager;
         string vhd_size = "";//VHD 文件尺寸
         string ud;//优盘盘符
@@ -44,20 +50,24 @@ namespace wintogo
         bool needcopyvhdbootfile = false;
         //bool needcopy;
         //bool win7togo;
+        bool autoupdate = true;
         bool shouldcontinue = true;
         public delegate void AppendTextCallback(string text);
-        writeprogress wp = new writeprogress();
+        writeprogress wp;
         delegate void set_Text(string s); //定义委托
         set_Text Set_Text;
         Thread threadad;
         private Thread threadupdate;
         Thread threadreport;
         private Thread threadwrite;
-        Thread copyfile;
+        //Thread copyfile;
         Thread Udlist;
         bool isesd = false;
         int win7togo;
         string udiskstring;
+
+        ArrayList UDList = new ArrayList();
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ResourceLang));
 
 
         private string Distinguish64or32System()
@@ -86,37 +96,41 @@ namespace wintogo
 
         private void Fixletter(string targetletter, string currentos) 
         {
-            byte[] registData;
-            RegistryKey hkml = Registry.LocalMachine ;
-            RegistryKey software = hkml.OpenSubKey("SYSTEM", false);
-            RegistryKey aimdir = software.OpenSubKey("MountedDevices", false);
-            registData = (byte[])aimdir.GetValue("\\DosDevices\\" + currentos);
-            if (registData != null) 
+            try
             {
-                SyncCMD("reg.exe load HKU\\TEMP " + currentos + "\\Windows\\System32\\Config\\SYSTEM  > \"" + Application.StartupPath + "\\logs\\loadreg.log\"");
-                RegistryKey hklm = Registry.Users  ;
-                RegistryKey temp = hklm.OpenSubKey("TEMP", true);
-                try
+                byte[] registData;
+                RegistryKey hkml = Registry.LocalMachine;
+                RegistryKey software = hkml.OpenSubKey("SYSTEM", false);
+                RegistryKey aimdir = software.OpenSubKey("MountedDevices", false);
+                registData = (byte[])aimdir.GetValue("\\DosDevices\\" + currentos);
+                if (registData != null)
                 {
-                    temp.DeleteSubKey("MountedDevices");
-                }
-                catch { }
-                RegistryKey wtgreg = temp.CreateSubKey("MountedDevices");
-                wtgreg.SetValue("\\DosDevices\\" + targetletter, registData, RegistryValueKind.Binary );
-                wtgreg.Close();
-                temp.Close();
+                    SyncCMD("reg.exe load HKU\\TEMP " + currentos + "\\Windows\\System32\\Config\\SYSTEM  > \"" + Application.StartupPath + "\\logs\\loadreg.log\"");
+                    RegistryKey hklm = Registry.Users;
+                    RegistryKey temp = hklm.OpenSubKey("TEMP", true);
+                    try
+                    {
+                        temp.DeleteSubKey("MountedDevices");
+                    }
+                    catch { }
+                    RegistryKey wtgreg = temp.CreateSubKey("MountedDevices");
+                    wtgreg.SetValue("\\DosDevices\\" + targetletter, registData, RegistryValueKind.Binary);
+                    wtgreg.Close();
+                    temp.Close();
                     SyncCMD("reg.exe unload HKU\\TEMP > \"" + Application.StartupPath + "\\logs\\unloadreg.log\"");
-                
-               
 
-                //string code = ToHexString(registData);
-                ////for (int i = 0; i < registData.Length; i++) 
-                ////{
-                ////    code += ToHexString(registData);
-                ////}
-                //MessageBox.Show(code);
-                
+
+
+                    //string code = ToHexString(registData);
+                    ////for (int i = 0; i < registData.Length; i++) 
+                    ////{
+                    ////    code += ToHexString(registData);
+                    ////}
+                    //MessageBox.Show(code);
+
+                }
             }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
         }
         public static string ToHexString(byte[] bytes) // 0xae00cf => "AE00CF "  
         {
@@ -136,8 +150,10 @@ namespace wintogo
 
         public Form1()
         {
-            InitializeComponent();
+            ReadConfigFile();
 
+            InitializeComponent();
+            wp = new writeprogress();
             //CheckForIllegalCrossThreadCalls = false;
         }
         private void set_textboxText(string s)
@@ -198,83 +214,51 @@ namespace wintogo
         private void 启动时自动检查更新ToolStripMenuItem_Checked(object sender, EventArgs e)
         {
 
-            //if (启动时自动检查更新ToolStripMenuItem.Checked)
-            //{
-            //    //启动时自动检查更新ToolStripMenuItem.Checked = false;
-            //    WTRegedit("nevercheckupdate", "0");
-            //}
-
-            //if (!启动时自动检查更新ToolStripMenuItem.Checked)
-            //{
-            //    //启动时自动检查更新ToolStripMenuItem.Checked = true;
-            //    WTRegedit("nevercheckupdate", "1");
-            //}
+      
         }
-        //private void ExecuteCMD(string cmd)
-        //{
-
-        //    System.Diagnostics.Process process = new System.Diagnostics.Process();
-
-        //    try
-        //    {
-        //        process.StartInfo.FileName = "cmd.exe";
-        //        process.StartInfo.UseShellExecute = false ;
-        //        process.StartInfo.RedirectStandardInput = true;
-        //        process.StartInfo.RedirectStandardOutput = true;
-        //        process.StartInfo.RedirectStandardError = true;
-        //        process.StartInfo.CreateNoWindow = true;
-
-        //        process.Start();
-        //        process.StandardInput.WriteLine(cmd);
-
-        //        process.StandardInput.WriteLine("exit");
-        //        process.WaitForExit();
-
-
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.ToString ()+"操作失败");
-        //    }
-        //    finally
-        //    {
-        //        process.Close();
-        //    }
-        //}
+      
         private void Checkfiles() 
         
         {
             if (IsChina(Application.StartupPath)) 
             {
-                error er = new error("程序路径中不能有中文！\n请您不要将程序放在中文文件夹中！");
+
+                // Assign the string for the "strMessage" key to a message box.
+
+                //MessageBox.Show(GetResString("IsChinaMsg"));
+
+
+                error er = new error(GetResString("IsChinaMsg",ci));
                 er.ShowDialog();
                 Environment.Exit(0);
             }
-            string[] sw_fl = new string[13]; ;//software filelist
-            sw_fl[0]="\\files\\unattend.xml";
-            sw_fl[1] = "\\files\\san_policy.xml";
-            sw_fl[2] = "\\files\\imagex_x86.exe";
-            sw_fl[3] = "\\files\\fbinst.exe";
-            sw_fl[4] = "\\files\\FastExt1.dll";
-            sw_fl[5] = "\\files\\FastEx64.dll";
-            sw_fl[6] = "\\files\\FastCopy.exe";
-            sw_fl[7] = "\\files\\bootsect.exe";
-            sw_fl[8] = "\\files\\BOOTICE.EXE";
-            sw_fl[9] = "\\files\\bcdboot.exe";
-            sw_fl[10] = "\\files\\bcdboot7601.exe";
-            sw_fl[11] = "\\files\\imagex_x64.exe";
-            sw_fl[12] = "\\files\\usb.reg";
+            //string[] sw_fl = new string[13]; ;//software filelist
+            ArrayList sw_filelist = new ArrayList();
+            sw_filelist.Add("\\files\\unattend.xml");
+            sw_filelist.Add("\\files\\san_policy.xml");
+            sw_filelist.Add("\\files\\imagex_x86.exe");
+            sw_filelist.Add("\\files\\fbinst.exe");
+            sw_filelist.Add("\\files\\FastCopy.exe");
+            sw_filelist.Add("\\files\\bootsect.exe");
+            sw_filelist.Add("\\files\\BOOTICE.EXE");
+
+            sw_filelist.Add("\\files\\bcdboot.exe");
+            sw_filelist.Add("\\files\\bcdboot7601.exe");
+            sw_filelist.Add("\\files\\imagex_x64.exe");
+            sw_filelist.Add("\\files\\usb.reg");
+            sw_filelist.Add("\\files\\settings.ini");
 
 
 
 
 
-            for (int i = 1; i < sw_fl.Length; i++) 
+            for (int i = 1; i < sw_filelist.Count ; i++) 
             {
-                if (!File.Exists(Application.StartupPath + sw_fl[i])) 
+                if (!File.Exists(Application.StartupPath + sw_filelist[i])) 
                 {
-                    MessageBox.Show("程序文件不完整，请从官方论坛重新下载解压！\n缺少:" + Application.StartupPath + sw_fl[i], "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //GetResString("Msg_filelist")
+
+                    MessageBox.Show(GetResString("Msg_filelist", ci) + Application.StartupPath + sw_filelist[i], GetResString("Msg_error", ci), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     VisitWeb("http://bbs.luobotou.org/thread-761-1-1.html");
 
                     Environment.Exit(0);
@@ -282,6 +266,10 @@ namespace wintogo
                 }
             }
 
+        }
+        private string GetResString(string rname, CultureInfo culi)
+        {
+            return resources.GetString(rname, culi).Replace("\\n", Environment.NewLine);
         }
         private void CleanLockStream() 
         {
@@ -326,7 +314,9 @@ namespace wintogo
             }
             catch (Exception ex) 
             {
-                MessageBox.Show("NTFS文件流异常\n请放心，此错误不影响正常使用！\n"+ex.ToString(),"警告",MessageBoxButtons .OK ,MessageBoxIcon.Information );
+                //NTFS文件流异常\n请放心，此错误不影响正常使用
+                //GetResString("Msg_ntfsstream");
+                MessageBox.Show(GetResString("Msg_ntfsstream", ci) + ex.ToString(), GetResString("Msg_warning", ci), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         public string GetFileVersion(string path)
@@ -340,18 +330,20 @@ namespace wintogo
                 //textBox1.Text = "File: " + myFileVersionInfo.FileDescription + '\n' +
                 //"Version number: " + myFileVersionInfo.FileVersion;
             }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); return ""; }
-        }    
-
+            catch { return ""; }
+        }
+       
         private void Form1_Load(object sender, EventArgs e)
         {
+            //MessageBox.Show(GetHardDiskFreeSpace(SetTempPath.temppath.Substring(0, 2) + "\\").ToString ());
+            toolStripMenuItem3.Checked = autoupdate;
             //MessageBox.Show(Distinguish64or32System());
             //MessageBox.Show(GetFileVersion(System.Environment .GetEnvironmentVariable ("windir")+"\\System32\\dism.exe"));
             Checkfiles();
             CleanLockStream();
             //this.Width = 469;
             this.Width = (int)((double)this.Width * 0.675);
-            bcdboot = "\\bcdboot.exe";
+            bcdboot = "bcdboot.exe";
             if (System.Environment.OSVersion.ToString().Contains("5.1")) //XP 禁用功能
             {
                 radiovhd.Enabled = false; radiovhdx.Enabled = false; radiochuantong.Checked = true;
@@ -361,7 +353,7 @@ namespace wintogo
                 checkBoxdiskpart.Enabled = false;
                 bcdboot9200.Checked = false;
                 bcdboot7601.Checked = true;
-                bcdboot = "\\bcdboot7601.exe";
+                bcdboot = "bcdboot7601.exe";
                 label4.Visible = true;
                 label5.Visible = true;
 
@@ -375,7 +367,7 @@ namespace wintogo
                 checkBoxdiskpart.Enabled = false;
                 bcdboot9200.Checked = false;
                 bcdboot7601.Checked = true;
-                bcdboot = "\\bcdboot7601.exe";
+                bcdboot = "bcdboot7601.exe";
                 label4.Visible = true;
                 label5.Visible = true;
 
@@ -415,16 +407,38 @@ namespace wintogo
             threadad.Start();
             udlist();
             this.Text += Application.ProductVersion;
-            ReadConfigFile();
         }
         private void ReadConfigFile() 
         {
             string autoup;
             string tp;
+            string language;
             autoup = IniFile.ReadVal("Main", "AutoUpdate", Application.StartupPath + "\\files\\settings.ini");
             tp = IniFile.ReadVal("Main", "TempPath", Application.StartupPath + "\\files\\settings.ini");
-            if (autoup == "0") { toolStripMenuItem3.Checked = false; }
+            language = IniFile.ReadVal("Main", "Language", Application.StartupPath + "\\files\\settings.ini");
+            if (autoup == "0") { autoupdate = false; }
             if (tp != "") { SetTempPath.temppath = tp; }
+            if (language == "EN") 
+            {
+                ci = new System.Globalization.CultureInfo("en");
+
+                System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
+
+            }
+            else if (language == "ZH-HANS") 
+            {
+                ci = new System.Globalization.CultureInfo("zh-cn");
+
+                System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
+
+            }
+            else if (language == "ZH-HANT") 
+            {
+                ci = new System.Globalization.CultureInfo("zh-Hant");
+
+                System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
+
+            }
         }
         public void Win7REG(string installdrive) 
         {
@@ -437,12 +451,14 @@ namespace wintogo
                 wp.ShowDialog();
                 ExecuteCMD("reg.exe", " unload HKLM\\sys");
                 wp.ShowDialog();
-                Fixletter("C:", ud.Substring(0, 2));
+                Fixletter("C:", installdrive);
                 //SyncCMD("\""+Application.StartupPath + "\\files\\osletter7.bat\" /targetletter:c /currentos:" + ud.Substring(0, 1) + " > \"" + Application.StartupPath + "\\logs\\osletter7.log\"");
             }
             catch(Exception err) 
             {
-                MessageBox.Show("处理WIN7 USB启动时出现问题\n" + err.ToString());
+                //GetResString("Msg_win7usberror")
+                //处理WIN7 USB启动时出现问题
+                MessageBox.Show(GetResString("Msg_win7usberror", ci) + err.ToString());
             }
         }
         #region not used USBDRIVER
@@ -597,7 +613,9 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
             string strFilename = Application.StartupPath + "\\logs\\wiminfo.xml";
             if (System.IO.File.Exists(strFilename) == false)
             {
-                MessageBox.Show(this, strFilename + "WIM文件信息获取失败\n将按WIN8系统安装。", this.Text);
+                //GetResString("Msg_wiminfoerror")
+                //WIM文件信息获取失败\n将按WIN8系统安装
+                MessageBox.Show(this, strFilename + GetResString("Msg_wiminfoerror", ci), this.Text);
                 return 0;
             }
             try
@@ -633,7 +651,7 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
             }
             catch (Exception  ex)
             {
-                MessageBox.Show(this, strFilename + "WIM文件分析失败\n将按WIN8系统安装。" + ex.ToString(), this.Text);
+                MessageBox.Show(this, strFilename + GetResString("Msg_wiminfoerror", ci) + ex.ToString(), this.Text);
                 return 0;
             }
 
@@ -664,24 +682,24 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
 
 
 
-        public delegate void OutDelegate(ArrayList text);
-        public void OutText(ArrayList text)
+        public delegate void OutDelegate(bool isend);
+        public void OutText(bool isend)
         {
             //object ddd=new object[];
             if (comboBox1.InvokeRequired)
             {
                 OutDelegate outdelegate = new OutDelegate(OutText);
-                this.BeginInvoke(outdelegate, new object[] { text });
+                this.BeginInvoke(outdelegate, new object[] { isend });
                 return;
             }
             //comboBox1.Items.Clear();
             comboBox1.DataSource = null;
-            comboBox1.DataSource = text;
+            comboBox1.DataSource = UDList;
             if (comboBox1.Items.Count != 0)
             {
                 comboBox1.SelectedIndex = 0;
             }
-
+            if (isend) { comboBox1.SelectedIndex = comboBox1.Items.Count - 1; }
             //comboBox1.AppendText("\t\n");
         }
         public void GetUdiskInfo() 
@@ -696,26 +714,21 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
             }
             if (newlist != currentlist)
             {
-                ArrayList List = new ArrayList();
-
-                //comboBox1.Items.Add(List);
-                //comboBox1.Items.Clear();
-                List.Add("请选择可移动设备");
+                UDList.Clear();
+                //GetResString("Msg_chooseud")
+                //请选择可移动设备
+                UDList.Add(GetResString("Msg_chooseud", ci));
                 foreach (UsbDisk disk in disks)
                 {
-                    List.Add(disk.ToString());
+                    UDList.Add(disk.ToString());
                     //textBox.AppendText(disk.ToString() + CR);
                 }
                 currentlist = newlist;
-                OutText(List);
+
+                OutText(false );
             }
 
-            //MessageBox.Show("Test");
-            //if (comboBox1.Items.Count != 0)
-            //{
-            //    comboBox1.SelectedIndex = 0;
-            //}
-
+           
         }
         public void udlist()
         {
@@ -724,55 +737,7 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
             Udlist.Start();
 
         }
-            //var drv = System.IO.DriveInfo.GetDrives();
-            
-            //foreach (var item in drv)
-            //{
-            //    if (item.DriveType != DriveType.CDRom )
-            //    {
-            //        string driverletter = item.RootDirectory.ToString();
-            //        if (driverletter.Substring(0, 1) != "A" && driverletter.Substring(0, 1) != "C")
-            //        {
-            //            //MessageBox.Show(GetDriveInfoDetail("F:"));
-            //            newlist = newlist + driverletter;
-            //            //comboBox1.Items.Add(driverletter + GetDriveInfoDetail(driverletter) + " (" + item.TotalSize / 1073741824 + "GB)");
-                        
-            //        }
-
-            //    }//获取优盘列表
-
-            //}
-            //if (newlist != currentlist) 
-            //{
-            //    //comboBox1.Items.Clear();
-            //    //comboBox1.Items.Add("请选择可移动设备");
-
-            //    //foreach (var item in drv)
-            //    //{
-            //    //    if (item.DriveType != DriveType.CDRom)
-            //    //    {
-            //    //        string driverletter = item.RootDirectory.ToString();
-            //    //        if (driverletter.Substring(0, 1) != "A" && driverletter.Substring(0, 1) != "C")
-            //    //        {
-                            
-            //    //            //newlist = newlist + driverletter;
-            //    //            try { comboBox1.Items.Add(driverletter + " " + item.DriveType  + " (" + item.TotalSize / 1073741824 + "GB)"); }
-            //    //            catch { }
-
-            //    //        }
-
-            //    //    }//获取优盘列表
-
-            //    }
-
-                //currentlist = newlist;
-//            }
-//            //if (comboBox1.Items.Count != 0)
-//            //{
-//            //    comboBox1.SelectedIndex = 0;
-//            //}
-
-//}
+           
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -835,33 +800,53 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
             //各种提示
             if (wimbox.Text.ToLower().Substring(wimbox.Text.Length - 3, 3) != "wim" && wimbox.Text.ToLower().Substring(wimbox.Text.Length - 3, 3) != "esd" && wimbox.Text.ToLower().Substring(wimbox.Text.Length - 3, 3) != "vhd" && wimbox.Text.ToLower().Substring(wimbox.Text.Length - 3, 3) != "vhdx")//不是WIM文件
             {
-                MessageBox.Show("镜像文件选择错误！请选择install.wim！"); return;
+//                GetResString("Msg_chooseinstallwim")
+                //镜像文件选择错误！请选择install.wim！
+                MessageBox.Show(GetResString("Msg_chooseinstallwim", ci)); return;
             }
             else
             {
-                if (!System.IO.File.Exists(wimbox.Text)) { MessageBox.Show("请选择install.wim文件！", "错误！", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }//文件不存在.
+                //请选择install.wim文件
+                if (!System.IO.File.Exists(wimbox.Text)) { MessageBox.Show(GetResString("Msg_chooseinstallwim", ci), GetResString("Msg_error", ci), MessageBoxButtons.OK, MessageBoxIcon.Error); return; }//文件不存在.
                 win8iso = wimbox.Text;
             }
 
 
-            if (!Directory .Exists (ud)) { MessageBox.Show("请选择可移动设备！", "错误！", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }//是否选择优盘
+            if (!Directory.Exists(ud)) { MessageBox.Show(GetResString("Msg_chooseud", ci) + "!", GetResString("Msg_error", ci), MessageBoxButtons.OK, MessageBoxIcon.Error); return; }//是否选择优盘
             if (GetHardDiskSpace(ud) <= 12582912) //优盘容量<12 GB提示
             {
-                if (DialogResult.No == MessageBox.Show("可移动磁盘容量不足16G，继续写入可能会导致程序出错！您确定要继续吗？", "警告！", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
+                //GetResString("Msg_DiskSpaceWarning") 
+                //可移动磁盘容量不足16G，继续写入可能会导致程序出错！您确定要继续吗？
+                if (DialogResult.No == MessageBox.Show(GetResString("Msg_DiskSpaceWarning", ci), GetResString("Msg_warning", ci), MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
             }
 
             
             if (GetHardDiskSpace(ud) <= numericUpDown1.Value * 1048576) 
             {
-                MessageBox.Show("优盘容量小于VHD设定大小，请修改设置！","错误",MessageBoxButtons .OK ,MessageBoxIcon.Error );
+                //优盘容量小于VHD设定大小，请修改设置！
+                //GetResString("Msg_DiskSpaceError")
+                MessageBox.Show(GetResString("Msg_DiskSpaceError", ci), GetResString("Msg_error", ci), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            //GetResString("Msg_ConfirmChoose")
+            //请确认您所选择的
+            //GetResString("Msg_Disk_Space") 盘，容量
+            //Msg_FormatTip
+            
+            //GB 是将要写入的优盘或移动硬盘\n误格式化，后果自负！
 
-            if (DialogResult.No == MessageBox.Show("请确认您所选择的 " + ud.Substring(0, 1) + "盘，容量" + GetHardDiskSpace(ud) / 1024 / 1024 + "GB 是将要写入的优盘或移动硬盘\n误格式化，后果自负！", "警告！", MessageBoxButtons.YesNo,MessageBoxIcon.Asterisk )) { return; } 
+            if (DialogResult.No == MessageBox.Show(GetResString("Msg_ConfirmChoose", ci) + ud.Substring(0, 1) + GetResString("Msg_Disk_Space", ci) + GetHardDiskSpace(ud) / 1024 / 1024 + GetResString("Msg_FormatTip", ci), GetResString("Msg_warning", ci), MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk)) { return; } 
             if (checkBoxdiskpart.Checked&&!checkBoxuefi.Checked&&!checkBoxuefimbr .Checked  )//勾选重新分区提示
             {
-                if (DialogResult.No == MessageBox.Show("您勾选了重新分区，优盘或移动硬盘上的所有文件将被删除！\n注意是整个磁盘，不是一个分区！", "警告！", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
-                if (DialogResult.No == MessageBox.Show("如果您不清楚您在做什么，请立即停止操作！", "警告！", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
+                //GetResString("Msg_Repartition")
+                //Msg_Repartition
+                //您勾选了重新分区，优盘或移动硬盘上的所有文件将被删除！\n注意是整个磁盘，不是一个分区！
+                if (DialogResult.No == MessageBox.Show(GetResString("Msg_Repartition", ci), GetResString("Msg_warning", ci), MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
+
+                //GetResString("Msg_DoWhat")
+                //如果您不清楚您在做什么，请立即停止操作！
+
+                if (DialogResult.No == MessageBox.Show(GetResString("Msg_DoWhat", ci), GetResString("Msg_warning", ci), MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
 
                 diskpart();
             }
@@ -869,7 +854,9 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
             {
                 if (!checkBoxunformat.Checked)
                 {
-                    if (DialogResult.No == MessageBox.Show(ud.Substring(0, 1) + "盘将会被格式化，此操作将不可恢复，您确定要继续吗？\n由于写入时间较长，请您耐心等待！\n写入过程中弹出写入可能无效属于正常现象，选是即可。", "警告！", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
+                    //GetResString("Msg_FormatWarning")
+                    //盘将会被格式化，此操作将不可恢复，您确定要继续吗？\n由于写入时间较长，请您耐心等待！\n写入过程中弹出写入可能无效属于正常现象，选是即可。
+                    if (DialogResult.No == MessageBox.Show(ud.Substring(0, 1) + GetResString("Msg_FormatWarning", ci), GetResString("Msg_warning", ci), MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
                     //if (DialogResult.No == MessageBox.Show("如果您不清楚您在做什么，请立即停止操作！", "警告！", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
                 }
             }
@@ -880,7 +867,8 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
             ///////删除旧LOG文件
             SyncCMD ("cmd.exe /c del /f /s /q \""+Application .StartupPath +"\\logs\\*.*\"");
            //////////////将程序运行信息写入LOG
-            Log.WriteLog("Environment.log", "App Version:" + Application.ProductVersion + "\r\nApp Path:" + Application.StartupPath + "\r\nOSVersion:" + System.Environment.OSVersion.ToString() + "\r\nDism Version:" + GetFileVersion(System.Environment.GetEnvironmentVariable("windir") + "\\System32\\dism.exe") + "\r\nWim file:" + wimbox.Text + "\r\nUsb Disk:" + udiskstring  + "\r\nClassical:" + radiochuantong.Checked.ToString() + "\r\nVHD:" + radiovhd.Checked.ToString() + "\r\nVHDX:" + radiovhdx.Checked.ToString() + "\r\nRe-Partition:" + checkBoxdiskpart.Checked + "\r\nVHD Size Set:" + numericUpDown1.Value.ToString() + "\r\nFixed VHD:" + checkBoxfixed.Checked.ToString() + "\r\nDonet:" + checkBoxframework.Checked.ToString() + "\r\nDisable-WinRE:" + checkBoxdiswinre.Checked.ToString() + "\r\nBlock Local Disk:" + checkBox_san_policy.Checked.ToString() + "\r\nNoTemp:" + checkBoxnotemp.Checked.ToString() + "\r\nUEFI+GPT:" + checkBoxuefi.Checked.ToString() + "\r\nUEFI+MBR:" + checkBoxuefimbr.Checked.ToString() + "\r\nWIMBOOT:" + checkBoxwimboot.Checked.ToString() + "\r\nCommon-VHD-boot-file：" + checkBoxcommon.Checked .ToString ()+"\r\nNo-format："+checkBoxunformat .Checked .ToString ());
+            try { Log.WriteLog("Environment.log", "App Version:" + Application.ProductVersion + "\r\nApp Path:" + Application.StartupPath + "\r\nOSVersion:" + System.Environment.OSVersion.ToString() + "\r\nDism Version:" + GetFileVersion(System.Environment.GetEnvironmentVariable("windir") + "\\System32\\dism.exe") + "\r\nWim file:" + wimbox.Text + "\r\nUsb Disk:" + udiskstring + "\r\nClassical:" + radiochuantong.Checked.ToString() + "\r\nVHD:" + radiovhd.Checked.ToString() + "\r\nVHDX:" + radiovhdx.Checked.ToString() + "\r\nRe-Partition:" + checkBoxdiskpart.Checked + "\r\nVHD Size Set:" + numericUpDown1.Value.ToString() + "\r\nFixed VHD:" + checkBoxfixed.Checked.ToString() + "\r\nDonet:" + checkBoxframework.Checked.ToString() + "\r\nDisable-WinRE:" + checkBoxdiswinre.Checked.ToString() + "\r\nBlock Local Disk:" + checkBox_san_policy.Checked.ToString() + "\r\nNoTemp:" + checkBoxnotemp.Checked.ToString() + "\r\nUEFI+GPT:" + checkBoxuefi.Checked.ToString() + "\r\nUEFI+MBR:" + checkBoxuefimbr.Checked.ToString() + "\r\nWIMBOOT:" + checkBoxwimboot.Checked.ToString() + "\r\nCommon-VHD-boot-file：" + checkBoxcommon.Checked.ToString() + "\r\nNo-format：" + checkBoxunformat.Checked.ToString()); }
+            catch (Exception ex) { MessageBox.Show("Error!\n" + ex.ToString()); }
 
             if (File.Exists(Environment.GetEnvironmentVariable("windir") + "\\Logs\\DISM\\dism.log"))
             {
@@ -893,14 +881,23 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
             if (checkBoxuefi.Checked)
             {
                 //UEFI+GPT
-                if (System.Environment.OSVersion.ToString().Contains("5.1") || System.Environment.OSVersion.ToString().Contains("5.2")) { MessageBox.Show("XP系统不支持UEFI模式写入！"); return; }
+                if (System.Environment.OSVersion.ToString().Contains("5.1") || System.Environment.OSVersion.ToString().Contains("5.2")) 
+                {
+                    //GetResString("Msg_XPUefiError")
+                    //XP系统不支持UEFI模式写入
+                    MessageBox.Show(GetResString("Msg_XPUefiError", ci)); return; 
+                }
                 if (udiskstring.Contains("Removable Disk")) 
-                { 
-                    MessageBox.Show("此优盘不支持UEFI模式\n只有 Fixed Disk格式支持\n详情请看论坛说明！","错误",MessageBoxButtons .OK ,MessageBoxIcon.Error ); 
+                {
+                    //GetResString("Msg_UefiError")
+                    //此优盘不支持UEFI模式\n只有 Fixed Disk格式支持\n详情请看论坛说明！
+                    MessageBox.Show(GetResString("Msg_UefiError", ci), GetResString("Msg_error", ci), MessageBoxButtons.OK, MessageBoxIcon.Error); 
                     VisitWeb("http://bbs.luobotou.org/thread-6506-1-1.html"); 
                     return;
                 }
-                if (DialogResult.No == MessageBox.Show("您所选择的是UEFI模式，此模式将会格式化您的整个移动磁盘！\n注意是整个磁盘！！！\n程序将会删除所有优盘分区！\n注意：此模式只能写入64位系统！", "警告！", MessageBoxButtons.YesNo,MessageBoxIcon.Warning )) { return; }
+                //GetResString("Msg_UefiFormatWarning")
+                //您所选择的是UEFI模式，此模式将会格式化您的整个移动磁盘！\n注意是整个磁盘！！！\n程序将会删除所有优盘分区！
+                if (DialogResult.No == MessageBox.Show(GetResString("Msg_UefiFormatWarning", ci), GetResString("Msg_warning", ci), MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
                 FileStream fs0 = new FileStream(Application.StartupPath + "\\uefi.txt", FileMode.Create, FileAccess.Write);
                 fs0.SetLength(0);
                 StreamWriter sw0 = new StreamWriter(fs0, Encoding.Default);
@@ -996,6 +993,7 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                     
                     if (checkBoxdiswinre.Checked)
                     {
+                        
                         File.Copy(Application.StartupPath + "\\files\\unattend.xml", ud + "Windows\\System32\\sysprep\\unattend.xml");
                     }
                     //BCDBOOT WRITE BOOT FILE    
@@ -1036,7 +1034,9 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                     }
                     else
                     {
-                        error er = new error("VHD文件创建出错！");
+                        //                //GetResString("Msg_VHDCreationError")
+                        //VHD文件创建出错！
+                        error er = new error(GetResString("Msg_VHDCreationError", ci));
                         er.ShowDialog();
                         //MessageBox.Show("Win8 VHD文件不存在！，可到论坛发帖求助！\n建议将程序目录下logs文件夹打包上传，谢谢！","出错啦！",MessageBoxButtons .OK ,MessageBoxIcon.Error );
                         //System.Diagnostics.Process.Start("http://bbs.luobotou.org/forum-88-1.html");
@@ -1053,11 +1053,11 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                 //UEFI+MBR
                 if (udiskstring.Contains("Removable Disk"))
                 {
-                    MessageBox.Show("此优盘不支持UEFI模式\n只有 Fixed Disk格式支持\n详情请看论坛说明！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(GetResString("Msg_UefiError", ci), GetResString("Msg_error", ci), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     VisitWeb("http://bbs.luobotou.org/thread-6506-1-1.html");
                     return;
                 }
-                if (DialogResult.No == MessageBox.Show("您所选择的是UEFI模式，此模式将会格式化您的整个移动磁盘！\n注意是整个磁盘！！！\n程序将会删除所有优盘分区！\n注意：此模式只能写入64位系统！", "警告！", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
+                if (DialogResult.No == MessageBox.Show(GetResString("Msg_UefiFormatWarning", ci), GetResString("Msg_warning", ci), MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
                 FileStream fs0 = new FileStream(Application.StartupPath + "\\uefimbr.txt", FileMode.Create, FileAccess.Write);
                 fs0.SetLength(0);
                 StreamWriter sw0 = new StreamWriter(fs0, Encoding.Default);
@@ -1200,7 +1200,7 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                     }
                     else
                     {
-                        error er = new error("Win8 VHD文件不存在！");
+                        error er = new error(GetResString("Msg_VHDCreationError", ci));
                         er.ShowDialog();
                         shouldcontinue = false;
                     }
@@ -1269,14 +1269,21 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                     /////////////
                     if (win7togo != 0) { Win7REG(ud); }
                     /////////////
-                    System.Diagnostics.Process booice = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\BOOTICE.exe", (" /DEVICE=" + ud.Substring(0, 2) + " /mbr /install /type=nt60 /quiet"));//写入引导
-                    booice.WaitForExit();
-                    System.Diagnostics.Process pbr = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\BOOTICE.exe", (" /DEVICE=" + ud.Substring(0, 2) + " /pbr /install /type=bootmgr  /quiet"));//写入引导
-                    pbr.WaitForExit();
-                    System.Diagnostics.Process p2 = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\bootice.exe", " /DEVICE=" + ud.Substring(0, 2) + " /partitions /activate  /quiet");
-                    p2.WaitForExit();
-                    SyncCMD("\"" + Application.StartupPath + "\\files\\" + bcdboot + "\"  " + ud.Substring(0, 3) + "windows  /s  " + ud.Substring(0, 2));
-
+                    try
+                    {
+                        System.Diagnostics.Process booice = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\BOOTICE.exe", (" /DEVICE=" + ud.Substring(0, 2) + " /mbr /install /type=nt60 /quiet"));//写入引导
+                        booice.WaitForExit();
+                        System.Diagnostics.Process pbr = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\BOOTICE.exe", (" /DEVICE=" + ud.Substring(0, 2) + " /pbr /install /type=bootmgr  /quiet"));//写入引导
+                        pbr.WaitForExit();
+                        System.Diagnostics.Process p2 = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\BOOTICE.exe", " /DEVICE=" + ud.Substring(0, 2) + " /partitions /activate  /quiet");
+                        p2.WaitForExit();
+                    }
+                    catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+                    ExecuteCMD("\"" + Application.StartupPath + "\\files\\" + bcdboot ,  ud.Substring(0, 3) + "windows  /s  " + ud.Substring(0, 2) + " /f ALL");
+                    wp.ShowDialog();
+                    //MessageBox.Show("Test");
+                    //ExecuteCMD(Application.StartupPath + "\\files\\" + bcdboot, ud.Substring(0, 3) + "windows  /s  " + ud.Substring(0, 2));
+                    //wp.ShowDialog();
 
                     /////////////.net3.5//////////////////////
                     if (checkBoxframework.Checked)
@@ -1302,14 +1309,18 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                     ///////////////////////////////////////////
                     if (!System.IO.File.Exists(ud + "\\Boot\\BCD"))
                     {
-                        error er = new error("引导文件写入出错！boot文件夹不存在！");
+                        //GetResString("Msg_BCDError")
+                        //引导文件写入出错！boot文件夹不存在！
+                        error er = new error(GetResString("Msg_BCDError", ci));
                         er.ShowDialog();
                         //MessageBox.Show("引导文件写入出错！boot文件夹不存在\n请看论坛教程！", "出错啦", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         //System.Diagnostics.Process.Start("http://bbs.luobotou.org/thread-1625-1-1.html");
                     }
                     else if (!System.IO.File.Exists(ud + "bootmgr"))
                     {
-                        error er = new error("文件写入出错！bootmgr不存在！\n请检查写入过程是否中断");
+                        //GetResString("Msg_bootmgrError")
+                        //文件写入出错！bootmgr不存在！\n请检查写入过程是否中断
+                        error er = new error(GetResString("Msg_bootmgrError", ci));
                         er.ShowDialog();
 
                         //MessageBox.Show("文件写入出错！bootmgr不存在！\n请检查写入过程是否中断\n如有疑问，请访问官方论坛！");
@@ -1350,7 +1361,9 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
 
                     if (!System.IO.File.Exists(ud + win8vhdfile))
                     {
-                        error er = new error("Win8 VHD文件不存在！未知错误原因！");
+                        //GetResString("Msg_VHDCreationError")
+                        //Win8 VHD文件不存在！未知错误原因！
+                        error er = new error(GetResString("Msg_VHDCreationError", ci));
                         er.ShowDialog();
                         //MessageBox.Show("Win8 VHD文件不存在！可到论坛发帖求助！\n建议将logs文件夹打包上传！");
                         //System.Diagnostics.Process.Start("http://bbs.luobotou.org/forum-88-1.html");                
@@ -1358,7 +1371,9 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
 
                     else if (!System.IO.File.Exists(ud + "\\Boot\\BCD"))
                     {
-                        error er = new error("VHD模式下BCDBOOT执行出错！");
+                        //GetResString("Msg_VHDBcdbootError")
+                        //VHD模式下BCDBOOT执行出错！
+                        error er = new error(GetResString("Msg_VHDBcdbootError", ci));
                         er.ShowDialog();
 
                         //MessageBox.Show("VHD模式下BCDBOOT执行出错！\nboot文件夹不存在\n请看论坛教程！","出错啦",MessageBoxButtons .OK ,MessageBoxIcon.Error );
@@ -1366,7 +1381,7 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                     }
                     else if (!System.IO.File.Exists(ud + "bootmgr"))
                     {
-                        error er = new error("文件写入出错！bootmgr不存在！");
+                        error er = new error(GetResString("Msg_bootmgrError", ci));
                         er.ShowDialog();
 
                         //MessageBox.Show("文件写入出错！bootmgr不存在！\n请检查写入过程是否中断\n如有疑问，请访问官方论坛！");
@@ -1472,7 +1487,7 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                 int vhdmaxsize;
                 if (checkBoxfixed.Checked)
                 {
-                    vhdmaxsize = System.Int32.Parse(vhd_size) * 1048576 + 1024;
+                    vhdmaxsize = System.Int32.Parse(vhd_size) * 1024 + 1024;
                 }
                 else
                 {
@@ -1527,7 +1542,7 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                 {
                     if (!System.IO.Directory.Exists("V:\\"))
                     {
-                        error er = new error("创建VHD文件失败！");
+                        error er = new error(GetResString("Msg_VHDCreationError", ci));
                         er.ShowDialog();
                         shouldcontinue = false;
                         return;
@@ -1535,7 +1550,8 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                 }
                 catch
                 {
-                    error er = new error("创建VHD文件失败！未知错误！");
+                    //创建VHD失败，未知错误
+                    error er = new error(GetResString("Msg_VHDCreationError", ci));
                     er.ShowDialog();
                     shouldcontinue = false;
 
@@ -1590,7 +1606,7 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                 }
                 else if (checkBoxwimboot.Checked)
                 {
-                    ExecuteCMD(Application.StartupPath + "\\files\\" + bcdboot, "  " + "V:\\" + "windows  /s  " + ud.Substring(0, 2) + " /f BIOS");
+                    ExecuteCMD(Application.StartupPath + "\\files\\" + bcdboot, "  " + "V:\\" + "windows  /s  " + ud.Substring(0, 2) + " /f ALL");
                     wp.ShowDialog();
 
                 }
@@ -1598,7 +1614,7 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                 {
                     if (!checkBoxcommon.Checked)
                     {
-                        ExecuteCMD(Application.StartupPath + "\\files\\" + bcdboot, "  " + "V:\\" + "windows  /s  " + ud.Substring(0, 2) + " /f BIOS");
+                        ExecuteCMD(Application.StartupPath + "\\files\\" + bcdboot, "  " + "V:\\" + "windows  /s  " + ud.Substring(0, 2) + " /f ALL");
                         wp.ShowDialog();
                     }
                     else
@@ -1647,7 +1663,9 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                     //Application.DoEvents();
 
                     ExecuteCMD(Application.StartupPath + "\\files" + "\\fastcopy.exe", " /auto_close \"" + Form1.vpath + "\" /to=\"" + ud + "\"");
-                    AppendText("复制文件中...大约需要10分钟~1小时，请耐心等待！\r\n");
+                    //GetResString("Msg_Copy")
+                    //复制文件中...大约需要10分钟~1小时，请耐心等待！\r\n
+                    AppendText(GetResString("Msg_Copy", ci));
 
                     wp.ShowDialog();
                     //AppendText("复制文件中...大约需要10分钟~1小时，请耐心等待！");
@@ -1660,8 +1678,10 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                 if ((Form1.filetype == "vhd" && !Form1.vpath.EndsWith("win8.vhd")) || (Form1.filetype == "vhdx" && !Form1.vpath.EndsWith("win8.vhdx")))
                 {
                     //Rename
+                    //GetResString("Msg_RenameError")
+                    //重命名错误
                     try { File.Move(ud + Form1.vpath.Substring(Form1.vpath.LastIndexOf("\\") + 1), ud + Form1.win8vhdfile); }
-                    catch (Exception ex) { MessageBox.Show("重命名错误" + ex.ToString()); }
+                    catch (Exception ex) { MessageBox.Show(GetResString("Msg_RenameError", ci) + ex.ToString()); }
                 }
 
                 //copy cp = new copy(ud);
@@ -1740,15 +1760,21 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
 
         private void vhd_dynamic_instructions() 
         {
-            FileStream fs1 = new FileStream(ud + "VHD模式说明.txt", FileMode.Create, FileAccess.Write);
+            //GetResString("FileName_VHD_Dynamic")
+            //VHD模式说明.TXT
+            FileStream fs1 = new FileStream(ud + GetResString("FileName_VHD_Dynamic", ci), FileMode.Create, FileAccess.Write);
             fs1.SetLength(0);
             StreamWriter sw1 = new StreamWriter(fs1, Encoding.Default);
             string ws1 = "";
             try
             {
-                ws1 = "您创建的VHD为动态大小VHD，实际VHD容量：" + vhd_size + "MB\n";
+                //GetResString("Msg_VHDDynamicSize")
+                //您创建的VHD为动态大小VHD，实际VHD容量：
+                ////GetResString("Msg_VHDDynamicSize2")
+                //在VHD系统启动后将自动扩充为实际容量。请您在优盘留有足够空间确保系统正常启动！
+                ws1 = GetResString("Msg_VHDDynamicSize", ci) + vhd_size + "MB\n";
                 sw1.WriteLine(ws1);
-                ws1 = "在VHD系统启动后将自动扩充为实际容量。请您在优盘留有足够空间确保系统正常启动！";
+                ws1 = GetResString("Msg_VHDDynamicSize2", ci);
                 sw1.WriteLine(ws1);
             }
             catch { }
@@ -1766,7 +1792,8 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
             //System.Diagnostics.Process KILL = System.Diagnostics.Process.Start("cmd.exe", "/c taskkill /f /IM VD.exe");
             //KILL.WaitForExit();
             //MessageBox.Show(GetHardDiskFreeSpace(SetTempPath.temppath.Substring(0, 3)).ToString());
-            try { if (threadwrite.IsAlive) { MessageBox.Show("正在写入..."); return; } }
+            //GetResString("Msg_WriteProcessing")
+            try { if (threadwrite.IsAlive) { MessageBox.Show(GetResString("Msg_WriteProcessing", ci)); return; } }
             catch { }
             ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
             udiskstring = comboBox1.SelectedItem.ToString();
@@ -1789,18 +1816,22 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //contextMenuStrip1.Show(Control.MousePosition);
 
             folderBrowserDialog1.ShowDialog();
             if (folderBrowserDialog1.SelectedPath.Length != 3)
             {
                 if (folderBrowserDialog1.SelectedPath != "")
-                { MessageBox.Show("请选择优盘根目录"); }
+                { 
+                    //GetResString("Msg_UDRoot")
+                    //请选择优盘根目录
+                    MessageBox.Show(GetResString("Msg_UDRoot", ci)); 
+                }
                 return;
 
             }
-            comboBox1.Items.Add(folderBrowserDialog1.SelectedPath);
-            comboBox1.SelectedItem = folderBrowserDialog1.SelectedPath;
+            UDList.Add(folderBrowserDialog1.SelectedPath);
+            OutText(true );
+
         }
         private void report()
         {
@@ -1830,91 +1861,9 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                     System.IO.StreamReader myreader = new System.IO.StreamReader(response.GetResponseStream(), Encoding.UTF8);
                     string responseText = myreader.ReadToEnd();
                     myreader.Close();
-                    //MessageBox.Show(responseText);
-
-                    //WebClient MyWebClient2 = new WebClient();
-
-                    //MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于对向Internet资源的请求进行身份验证的网络凭据。
-                    ////MessageBox.Show("Test");
-                    //Byte[] pageData2 = MyWebClient2.DownloadData("http://bbs.luobotou.org/app/wtg.php?wtg="+Application.ProductVersion ); //从指定网站下载数据
-
-
-                    //MailAddress from = new MailAddress("nkc3g4software@163.com", "Report"); //邮件的发件人
-
-                    //MailMessage mail = new MailMessage();
-
-                    ////设置邮件的标题
-                    //mail.Subject = "【程序报告】" + Application.ProductName + " " + Application.ProductVersion + " " ;
-
-                    ////设置邮件的发件人
-                    ////Pass:如果不想显示自己的邮箱地址，这里可以填符合mail格式的任意名称，真正发mail的用户不在这里设定，这个仅仅只做显示用
-                    //mail.From = from;
-
-                    ////设置邮件的收件人
-                    //string address = "";
-                    //string displayName = "";
-                    ///*  这里这样写是因为可能发给多个联系人，每个地址用 ; 号隔开
-                    //  一般从地址簿中直接选择联系人的时候格式都会是 ：用户名1 < mail1 >; 用户名2 < mail 2>; 
-                    //  因此就有了下面一段逻辑不太好的代码
-                    //  如果永远都只需要发给一个收件人那么就简单了 mail.To.Add("收件人mail");
-                    //*/
-                    //string[] mailNames = ("microsoft5133@126.com" + ";").Split(';');
-                    //foreach (string name in mailNames)
-                    //{
-                    //    if (name != string.Empty)
-                    //    {
-                    //        if (name.IndexOf('<') > 0)
-                    //        {
-                    //            displayName = name.Substring(0, name.IndexOf('<'));
-                    //            address = name.Substring(name.IndexOf('<') + 1).Replace('>', ' ');
-                    //        }
-                    //        else
-                    //        {
-                    //            displayName = string.Empty;
-                    //            address = name.Substring(name.IndexOf('<') + 1).Replace('>', ' ');
-                    //        }
-                    //        mail.To.Add(new MailAddress(address, displayName));
-                    //    }
-                    //}
-
-                    ////设置邮件的抄送收件人
-                    ////这个就简单多了，如果不想快点下岗重要文件还是CC一份给领导比较好
-                    ////mail.CC.Add(new MailAddress("Manage@hotmail.com", "尊敬的领导"));
-
-                    ////设置邮件的内容
-                    //mail.Body = Application.ProductName + " " + Application.ProductVersion + " " + System.Environment.OSVersion.ToString();
-                    ////设置邮件的格式
-                    //mail.BodyEncoding = System.Text.Encoding.UTF8;
-                    //mail.IsBodyHtml = true;
-                    ////设置邮件的发送级别
-                    //mail.Priority = MailPriority.Normal;
-
-                    ////设置邮件的附件，将在客户端选择的附件先上传到服务器保存一个，然后加入到mail中
-                    ////string fileName = txtUpFile.PostedFile.FileName.Trim();
-                    ////fileName = "D:/UpFile/" + fileName.Substring(fileName.LastIndexOf("/") + 1);
-                    ////txtUpFile.PostedFile.SaveAs(fileName); // 将文件保存至服务器
-                    ////mail.Attachments.Add(new Attachment(fileName));
-
-                    //mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnSuccess;
-
-                    //SmtpClient client = new SmtpClient();
-                    ////设置用于 SMTP 事务的主机的名称，填IP地址也可以了
-                    //client.Host = "smtp.163.com";
-                    ////设置用于 SMTP 事务的端口，默认的是 25
-                    ////client.Port = 25;
-                    //client.UseDefaultCredentials = true;
-                    ////这里才是真正的邮箱登陆名和密码，比如我的邮箱地址是 hbgx@hotmail， 我的用户名为 hbgx ，我的密码是 xgbh
-                    //client.Credentials = new System.Net.NetworkCredential("nkc3g4software@163.com", "nkc3g4");
-                    //client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    ////都定义完了，正式发送了，很是简单吧！
-                    //try { client.Send(mail); }
-                    //catch (Exception e) { Console.WriteLine("Exception throw out:{0}", e.Message); }
+                  
                 }
-                {
-                    //   update frmf = new update(ver);
-                    // frmf.ShowDialog();
-                    //     //frmf.Show();
-                }
+               
 
             }
             catch (WebException webEx)
@@ -2003,7 +1952,9 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
             }
             if (System.IO.Directory.Exists("V:\\")) 
             {
-                error er = new error("盘符V不能被占用！");
+                //GetResString("Msg_LetterV")
+                //盘符V不能被占用！
+                error er = new error(GetResString("Msg_LetterV", ci));
                 er.ShowDialog();
             }
             //if (useiso) { SyncCMD("\""+Application.StartupPath + "\\files\\" + "\\isocmd.exe\" -eject 0: "); }
@@ -2084,7 +2035,9 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
             }
             catch (Exception ex)
             {
-                MessageBox.Show("程序删除临时文件出错！可重启程序或重启电脑重试！\n" + ex.ToString());
+                //GetResString("Msg_DeleteTempError")
+                //程序删除临时文件出错！可重启程序或重启电脑重试！\n
+                MessageBox.Show(GetResString("Msg_DeleteTempError", ci) + ex.ToString());
                 shouldcontinue = false;
             }
         }
@@ -2095,7 +2048,9 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
             {
                 if (threadwrite.IsAlive)
                 {
-                    if (DialogResult.No == MessageBox.Show("正在写入，您确定要取消吗？", "警告！", MessageBoxButtons.YesNo)) { e.Cancel = true; }
+                    //GetResString("Msg_WritingAbort")
+                    //正在写入，您确定要取消吗？
+                    if (DialogResult.No == MessageBox.Show(GetResString("Msg_WritingAbort", ci), GetResString("Msg_warning", ci), MessageBoxButtons.YesNo)) { e.Cancel = true; }
                     Environment.Exit(0);
                     //threadwrite.Abort();
                 }
@@ -2133,7 +2088,9 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                 int index = pageHtml1.IndexOf("announcement=");
                 int indexbbs = pageHtml1.IndexOf("bbs=");
                 // MessageBox.Show(pageHtml1.Substring(index + 13, 1));
-                if (pageHtml1.Substring(index + 13, 1) != "0")
+                //MessageBox.Show(ci.EnglishName );
+                //CultureInfo ca = new CultureInfo("en");
+                if (pageHtml1.Substring(index + 13, 1) != "0" && ci.EnglishName !="English")
                 {
                     if (pageHtml1.Substring(indexbbs + 4, 1) == "1")
                     {
@@ -2254,50 +2211,54 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                 }
                 else { wimpart = 1; }
             }
-
-            if (comboBox1.SelectedIndex == 0) { MessageBox.Show("请选择优盘！"); return; }
-            if (!System.IO.File.Exists(wimbox.Text)) { MessageBox.Show("请选择install.wim文件！", "错误！", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            //GetResString("Msg_FormatTip")
+            if (comboBox1.SelectedIndex == 0) { MessageBox.Show(GetResString("Msg_chooseud", ci)); return; }
+            if (!System.IO.File.Exists(wimbox.Text)) { MessageBox.Show(GetResString("Msg_chooseinstallwim", ci), GetResString("Msg_error", ci), MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
             ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
-            if (DialogResult.No == MessageBox.Show("请再次确认您所选择的 " + ud.Substring(0, 1) + "盘是将要写入的优盘或移动硬盘\n误格式化，后果自负！", "警告！", MessageBoxButtons.YesNo)) { return; }
+            if (DialogResult.No == MessageBox.Show(GetResString("Msg_ConfirmChoose", ci) + ud.Substring(0, 1) + GetResString("Msg_Disk_Space", ci) + GetHardDiskSpace(ud) / 1024 / 1024 + GetResString("Msg_FormatTip", ci), GetResString("Msg_warning", ci), MessageBoxButtons.YesNo)) { return; }
             System.Diagnostics.Process p = System.Diagnostics.Process.Start(Application.StartupPath + "\\files\\" + imagex, " /apply " + "\"" + wimbox.Text + "\"" + " " + wimpart + " " + ud);
             p.WaitForExit();
-            MessageBox.Show("操作完成！");
+            //GetResString("Msg_Complete")
+            MessageBox.Show(GetResString("Msg_Complete", ci));
         }
 
         private void 写入引导文件ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex == 0) { MessageBox.Show("请选择优盘！"); return; }
+            if (comboBox1.SelectedIndex == 0) { MessageBox.Show(GetResString("Msg_chooseud", ci)); return; }
 
             ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
-            if (DialogResult.No == MessageBox.Show("请再次确认您所选择的 " + ud.Substring(0, 1) + "盘是将要写入的优盘或移动硬盘\n误格式化，后果自负！", "警告！", MessageBoxButtons.YesNo)) { return; }
-            System.Diagnostics.Process p1 = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + bcdboot, "  " + ud.Substring(0, 3) + "windows  /s  " + ud.Substring(0, 2));
-            p1.WaitForExit();
-            MessageBox.Show("操作完成！");
+            if (DialogResult.No == MessageBox.Show(GetResString("Msg_ConfirmChoose", ci) + ud.Substring(0, 1) + GetResString("Msg_Disk_Space", ci) + GetHardDiskSpace(ud) / 1024 / 1024 + GetResString("Msg_FormatTip", ci), GetResString("Msg_warning", ci), MessageBoxButtons.YesNo)) { return; }
+            //MessageBox.Show("\"" + Application.StartupPath + "\\files\\" + bcdboot + "\"  " + ud.Substring(0, 3) + "windows  /s  " + ud.Substring(0, 2));
+            SyncCMD("\"" + Application.StartupPath + "\\files\\" + bcdboot + "\"  " + ud.Substring(0, 3) + "windows  /s  " + ud.Substring(0, 2)+" /f ALL");
+
+            //System.Diagnostics.Process p1 = System.Diagnostics.Process.Start(Application.StartupPath + "\\files\\" + bcdboot, "  " + ud.Substring(0, 3) + "windows  /s  " + ud.Substring(0, 2));
+            //p1.WaitForExit();
+            MessageBox.Show(GetResString("Msg_Complete", ci));
         }
 
         private void 设置活动分区ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex == 0) { MessageBox.Show("请选择优盘！"); return; }
+            if (comboBox1.SelectedIndex == 0) { MessageBox.Show(GetResString("Msg_chooseud", ci)); return; }
 
             ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
 
-            if (DialogResult.No == MessageBox.Show("请再次确认您所选择的 " + ud.Substring(0, 1) + "盘是将要写入的优盘或移动硬盘\n误格式化，后果自负！", "警告！", MessageBoxButtons.YesNo)) { return; }
-            System.Diagnostics.Process p2 = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\bootice.exe", " /DEVICE=" + ud.Substring(0, 2) + " /partitions /activate /quiet");
+            if (DialogResult.No == MessageBox.Show(GetResString("Msg_ConfirmChoose", ci) + ud.Substring(0, 1) + GetResString("Msg_Disk_Space", ci) + GetHardDiskSpace(ud) / 1024 / 1024 + GetResString("Msg_FormatTip", ci), GetResString("Msg_warning", ci), MessageBoxButtons.YesNo)) { return; }
+            System.Diagnostics.Process p2 = System.Diagnostics.Process.Start(Application.StartupPath + "\\files\\bootice.exe", " /DEVICE=" + ud.Substring(0, 2) + " /partitions /activate /quiet");
             p2.WaitForExit();
-            MessageBox.Show("操作完成！");
+            MessageBox.Show(GetResString("Msg_Complete", ci));
         }
 
         private void 写入磁盘引导ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex == 0) { MessageBox.Show("请选择优盘！"); return; }
+            if (comboBox1.SelectedIndex == 0) { MessageBox.Show(GetResString("Msg_chooseud", ci)); return; }
 
             ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
-            if (DialogResult.No == MessageBox.Show("请再次确认您所选择的 " + ud.Substring(0, 1) + "盘是将要写入的优盘或移动硬盘\n误格式化，后果自负！", "警告！", MessageBoxButtons.YesNo)) { return; }
+            if (DialogResult.No == MessageBox.Show(GetResString("Msg_ConfirmChoose", ci) + ud.Substring(0, 1) + GetResString("Msg_Disk_Space", ci) + GetHardDiskSpace(ud) / 1024 / 1024 + GetResString("Msg_FormatTip", ci), GetResString("Msg_warning", ci), MessageBoxButtons.YesNo)) { return; }
             System.Diagnostics.Process booice = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\BOOTICE.exe", (" /DEVICE=" + ud.Substring(0, 2) + " /mbr /install /type=nt60 /quiet"));//写入引导
             booice.WaitForExit();
-            System.Diagnostics.Process pbr = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\BOOTICE.exe", (" /DEVICE=" + ud.Substring(0, 2) + " /pbr /install /type=bootmgr /quiet"));//写入引导
+            System.Diagnostics.Process pbr = System.Diagnostics.Process.Start(Application.StartupPath + "\\files\\BOOTICE.exe", (" /DEVICE=" + ud.Substring(0, 2) + " /pbr /install /type=bootmgr /quiet"));//写入引导
             pbr.WaitForExit();
-            MessageBox.Show("操作完成！");
+            MessageBox.Show(GetResString("Msg_Complete", ci));
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -2323,13 +2284,13 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             bcdboot9200.Checked = false;
-            bcdboot = "\\bcdboot7601.exe";
+            bcdboot = "bcdboot7601.exe";
         }
 
         private void bcdboot9200_Click(object sender, EventArgs e)
         {
             bcdboot7601.Checked = false;
-            bcdboot = "\\bcdboot.exe";
+            bcdboot = "bcdboot.exe";
         }
 
         private void 选择安装分卷ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2462,7 +2423,9 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
             }
             catch (Exception ex)
             {
-                MessageBox.Show("操作失败"+ex.ToString ());
+                //GetResString("Msg_Failure")
+                //操作失败
+                MessageBox.Show(GetResString("Msg_Failure", ci) + ex.ToString());
             }
           
         }
@@ -2473,7 +2436,7 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
             try
             {
                 process.StartInfo.FileName = "cmd.exe";
-             
+
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.RedirectStandardInput = true;
                 process.StartInfo.RedirectStandardOutput = true;
@@ -2491,7 +2454,7 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
             }
             catch (Exception ex)
             {
-                MessageBox.Show("操作失败"+ex.ToString ());
+                MessageBox.Show(GetResString("Msg_Failure", ci) + ex.ToString());
             }
             finally
             {
@@ -2540,7 +2503,9 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
                 {
                     if (!allowesd)
                     {
-                        MessageBox.Show("此系统不支持ESD文件处理！");
+                        //GetResString("Msg_ESDError")
+                        //此系统不支持ESD文件处理！");
+                        MessageBox.Show(GetResString("Msg_ESDError", ci));
 
                         return;
                     }
@@ -2665,7 +2630,8 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
 
         private void 复制VHD启动文件ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex == 0) { MessageBox.Show("请选择优盘！"); return; }
+            //GetResString("Msg_chooseud")
+            if (comboBox1.SelectedIndex == 0) { MessageBox.Show(GetResString("Msg_chooseud", ci)); return; }
             ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
             ExecuteCMD("takeown.exe", " /f \""+ud+"\\boot\\"+"\" /r /d y && icacls \""+ud+"\\boot\\"+"\" /grant administrators:F /t");
             wp.ShowDialog();
@@ -2680,7 +2646,7 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
 
         private void 复制win8vhdToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex == 0) { MessageBox.Show("请选择优盘！"); return; }
+            if (comboBox1.SelectedIndex == 0) { MessageBox.Show(GetResString("Msg_chooseud", ci)); return; }
             ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
             copyvhd();
             //Copy(System.Environment.GetEnvironmentVariable("TEMP") + "\\" + win8vhdfile, ud);
@@ -2774,11 +2740,11 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
 
         private void bootsectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex == 0) { MessageBox.Show("请选择优盘！"); return; }
-
+            if (comboBox1.SelectedIndex == 0) { MessageBox.Show(GetResString("Msg_chooseud", ci)); return; }
+            //
             System.Diagnostics.Process p1 = System.Diagnostics.Process.Start(Application.StartupPath + "\\files\\" + "\\bootsect.exe", " /nt60 " + ud.Substring(0, 2) + " /force /mbr");
             p1.WaitForExit();
-            MessageBox.Show("操作完成！");
+            MessageBox.Show(GetResString("Msg_Complete", ci));
         }
 
         private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
@@ -2828,20 +2794,26 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
 
         private void diskpart重新分区ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex == 0) { MessageBox.Show("请选择优盘！"); return; }
+            //GetResString("Msg_chooseud")
+            if (comboBox1.SelectedIndex == 0) { MessageBox.Show(GetResString("Msg_chooseud", ci)); return; }
+            ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
+            //GetResString("Msg_XPNotCOMP")
+            //XP系统不支持此操作
+            //GetResString("Msg_ClearPartition")
+            //此操作将会清除移动磁盘所有分区的所有数据，确认？
+            if (System.Environment.OSVersion.ToString().Contains("5.1") || System.Environment.OSVersion.ToString().Contains("5.2")) { MessageBox.Show(GetResString("Msg_chooseud", ci)); return; }
+            if (DialogResult.No == MessageBox.Show(GetResString("Msg_ClearPartition", ci), GetResString("Msg_warning", ci), MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
 
-            if (System.Environment.OSVersion.ToString().Contains("5.1") || System.Environment.OSVersion.ToString().Contains("5.2")) { MessageBox.Show("XP系统不支持此操作！"); return; }
-            if (DialogResult.No == MessageBox.Show("此操作将会清除移动磁盘所有分区的所有数据，确认？", "警告！", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
-            if (DialogResult.No == MessageBox.Show("您确定要继续吗？", "警告！", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; } 
-
+            //if (DialogResult.No == MessageBox.Show("您确定要继续吗？", "警告！", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; } 
+            //Msg_Complete
             diskpart();
-            MessageBox.Show("完成！");
+            MessageBox.Show(GetResString("Msg_Complete", ci));
 
         }
         private void diskpart() 
         {
 
-            ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
+            //ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
             //if (DialogResult.No == MessageBox.Show("此操作将会清除移动磁盘所有分区的所有数据，确认？", "警告！", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
             //if (DialogResult.No == MessageBox.Show("您确定要继续吗？", "警告！", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; } 
 
@@ -2925,14 +2897,17 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
         {
             threadupdate = new Thread(update);
             threadupdate.Start();
-            MessageBox.Show("若无弹出窗口，则当前程序已是最新版本.");
+            //GetResString("Msg_UpdateTip")
+            //若无弹出窗口，则当前程序已是最新版本！
+            MessageBox.Show(GetResString("Msg_UpdateTip", ci));
         }
 
         private void checkBoxdiskpart_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxdiskpart.Checked)
             {
-                MessageBox.Show("请注意勾选此选项将会清空移动磁盘所有数据！", "警告！", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //Msg_Repartition
+                MessageBox.Show(GetResString("Msg_Repartition", ci), GetResString("Msg_warning", ci), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 checkBoxunformat.Checked = false;
                 checkBoxunformat.Enabled = false;
             }
@@ -3011,7 +2986,9 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
             }
             catch(Exception ex)
             {
-                MessageBox.Show("程序遇到严重错误\n官方支持论坛：bbs.luobotou.org\n" + ex.ToString());
+                //GetResString("Msg_FatalError")
+                //程序遇到严重错误\n官方支持论坛：bbs.luobotou.org\n
+                MessageBox.Show("程序遇到严重错误\nFATAL ERROR!官方支持论坛：bbs.luobotou.org\n" + ex.ToString());
                
             }
 
@@ -3042,12 +3019,14 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
 
         private void checkBoxunformat_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxunformat.Checked) { MessageBox.Show("此选项仅在非UEFI模式下有效！"); }
+            //GetResString("Msg_OnlyNonUefi")
+            //此选项仅在非UEFI模式下有效！
+            if (checkBoxunformat.Checked) { MessageBox.Show(GetResString("Msg_OnlyNonUefi", ci)); }
         }
 
         private void toolStripMenuItemvhdx_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex == 0) { MessageBox.Show("请选择优盘！"); return; }
+            if (comboBox1.SelectedIndex == 0) { MessageBox.Show(GetResString("Msg_chooseud", ci)); return; }
             ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
 
             ExecuteCMD("xcopy.exe", "\"" + Application.StartupPath + "\\files" + "\\" + "vhd" + "\\" + "*.*" + "\"" + " " + ud + " /e /h /y");
@@ -3131,6 +3110,36 @@ foreach(ManagementObject drive in new ManagementObjectSearcher(
 
         private void checkBoxcommon_CheckedChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            VisitWeb("http://bbs.luobotou.org/thread-1625-1-1.html");
+
+        }
+
+        private void englishToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.No == MessageBox.Show("This program will restart,continue?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk)) { return; } 
+
+            IniFile.WriteVal("Main", "Language", "EN", Application.StartupPath + "\\files\\settings.ini");
+            Application.Restart();
+        }
+
+        private void chineseSimpleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.No == MessageBox.Show("程序将会重启，确认继续？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk)) { return; }
+            IniFile.WriteVal("Main", "Language", "ZH-HANS", Application.StartupPath + "\\files\\settings.ini");
+            Application.Restart();
+
+        }
+
+        private void 繁体中文ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.No == MessageBox.Show("程序將會重啟，確認繼續？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk)) { return; }
+            IniFile.WriteVal("Main", "Language", "ZH-HANT", Application.StartupPath + "\\files\\settings.ini");
+            Application.Restart();
 
         }
 
