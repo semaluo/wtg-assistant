@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>wintogo</RootNamespace>
     <AssemblyName>wintogo</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
@@ -82,7 +82,6 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
@@ -99,124 +98,144 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutBox.cs">
+    <Compile Include="CoreOperation\DiskpartScriptManager.cs" />
+    <Compile Include="Forms\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AboutBox.Designer.cs">
+    <Compile Include="Forms\AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="choosepart.cs">
+    <Compile Include="CoreOperation\BootFileOperation.cs" />
+    <Compile Include="Forms\ChoosePart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="choosepart.Designer.cs">
-      <DependentUpon>choosepart.cs</DependentUpon>
+    <Compile Include="Forms\ChoosePart.Designer.cs">
+      <DependentUpon>ChoosePart.cs</DependentUpon>
     </Compile>
-    <Compile Include="error.cs">
+    <Compile Include="CoreOperation\DiskOperation.cs" />
+    <Compile Include="Forms\EfiSize.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="error.Designer.cs">
-      <DependentUpon>error.cs</DependentUpon>
+    <Compile Include="Forms\EfiSize.Designer.cs">
+      <DependentUpon>EfiSize.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ErrorMsg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ErrorMsg.Designer.cs">
+      <DependentUpon>ErrorMsg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CoreOperation\FileOperation.cs" />
+    <Compile Include="CoreOperation\ImageOperation.cs" />
     <Compile Include="IniOperation.cs" />
-    <Compile Include="ResourceLang.Designer.cs">
+    <Compile Include="MultiLanguage\MsgManager.cs" />
+    <Compile Include="CoreOperation\Operation.cs" />
+    <Compile Include="ProcessManager.cs" />
+    <Compile Include="MultiLanguage\ResourceLang.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceLang.resx</DependentUpon>
     </Compile>
-    <Compile Include="ResourceLang.en.Designer.cs">
+    <Compile Include="MultiLanguage\ResourceLang.en.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceLang.en.resx</DependentUpon>
     </Compile>
-    <Compile Include="SetTempPath.cs">
+    <Compile Include="Forms\SetTempPath.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SetTempPath.Designer.cs">
+    <Compile Include="Forms\SetTempPath.Designer.cs">
       <DependentUpon>SetTempPath.cs</DependentUpon>
     </Compile>
+    <Compile Include="StringOperation.cs" />
+    <Compile Include="SWOnline.cs" />
+    <Compile Include="CoreOperation\VHDOperation.cs" />
     <Compile Include="Wimapi.cs" />
-    <Compile Include="finish.cs">
+    <Compile Include="Forms\Finish.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="finish.designer.cs">
-      <DependentUpon>finish.cs</DependentUpon>
+    <Compile Include="Forms\Finish.designer.cs">
+      <DependentUpon>Finish.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Forms\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="update.cs">
+    <Compile Include="Forms\Update.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="update.designer.cs">
-      <DependentUpon>update.cs</DependentUpon>
+    <Compile Include="Forms\Update.designer.cs">
+      <DependentUpon>Update.cs</DependentUpon>
     </Compile>
-    <Compile Include="UsbDisk.cs" />
-    <Compile Include="UsbDiskCollection.cs" />
-    <Compile Include="UsbManager.cs" />
-    <Compile Include="UsbStateChange.cs" />
-    <Compile Include="UsbStateChangedEventArgs.cs" />
-    <Compile Include="Win8PB.cs">
+    <Compile Include="Forms\Win8PB.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Win8PB.Designer.cs">
+    <Compile Include="Forms\Win8PB.Designer.cs">
       <DependentUpon>Win8PB.cs</DependentUpon>
     </Compile>
-    <Compile Include="WmiExtensions.cs" />
     <Compile Include="WriteLog.cs" />
-    <Compile Include="writeprogress.cs">
+    <Compile Include="Forms\WriteProgress.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="writeprogress.Designer.cs">
-      <DependentUpon>writeprogress.cs</DependentUpon>
+    <Compile Include="Forms\WriteProgress.Designer.cs">
+      <DependentUpon>WriteProgress.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AboutBox.en.resx">
+    <EmbeddedResource Include="Forms\AboutBox.en.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AboutBox.resx">
+    <EmbeddedResource Include="Forms\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AboutBox.zh-Hant.resx">
+    <EmbeddedResource Include="Forms\AboutBox.zh-Hant.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="choosepart.en.resx">
-      <DependentUpon>choosepart.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ChoosePart.en.resx">
+      <DependentUpon>ChoosePart.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="choosepart.resx">
-      <DependentUpon>choosepart.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ChoosePart.resx">
+      <DependentUpon>ChoosePart.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="choosepart.zh-Hant.resx">
-      <DependentUpon>choosepart.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ChoosePart.zh-Hant.resx">
+      <DependentUpon>ChoosePart.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="error.en.resx">
-      <DependentUpon>error.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\EfiSize.en.resx">
+      <DependentUpon>EfiSize.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="error.resx">
-      <DependentUpon>error.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\EfiSize.resx">
+      <DependentUpon>EfiSize.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="error.zh-Hant.resx">
-      <DependentUpon>error.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\EfiSize.zh-Hant.resx">
+      <DependentUpon>EfiSize.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="finish.en.resx">
-      <DependentUpon>finish.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ErrorMsg.en.resx">
+      <DependentUpon>ErrorMsg.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="finish.resx">
-      <DependentUpon>finish.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ErrorMsg.resx">
+      <DependentUpon>ErrorMsg.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="finish.zh-Hant.resx">
-      <DependentUpon>finish.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ErrorMsg.zh-Hant.resx">
+      <DependentUpon>ErrorMsg.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.en.resx">
+    <EmbeddedResource Include="Forms\Finish.en.resx">
+      <DependentUpon>Finish.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Finish.resx">
+      <DependentUpon>Finish.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Finish.zh-Hant.resx">
+      <DependentUpon>Finish.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Form1.en.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.zh-Hant.resx">
+    <EmbeddedResource Include="Forms\Form1.zh-Hant.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -229,44 +248,44 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ResourceLang.en.resx">
+    <EmbeddedResource Include="MultiLanguage\ResourceLang.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceLang.en.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ResourceLang.resx">
+    <EmbeddedResource Include="MultiLanguage\ResourceLang.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceLang.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ResourceLang.zh-Hant.resx" />
-    <EmbeddedResource Include="SetTempPath.en.resx">
+    <EmbeddedResource Include="MultiLanguage\ResourceLang.zh-Hant.resx" />
+    <EmbeddedResource Include="Forms\SetTempPath.en.resx">
       <DependentUpon>SetTempPath.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SetTempPath.resx">
+    <EmbeddedResource Include="Forms\SetTempPath.resx">
       <DependentUpon>SetTempPath.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SetTempPath.zh-Hant.resx">
+    <EmbeddedResource Include="Forms\SetTempPath.zh-Hant.resx">
       <DependentUpon>SetTempPath.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="update.en.resx">
-      <DependentUpon>update.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Update.en.resx">
+      <DependentUpon>Update.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="update.resx">
-      <DependentUpon>update.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Update.resx">
+      <DependentUpon>Update.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="update.zh-Hant.resx">
-      <DependentUpon>update.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Update.zh-Hant.resx">
+      <DependentUpon>Update.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Win8PB.resx">
+    <EmbeddedResource Include="Forms\Win8PB.resx">
       <DependentUpon>Win8PB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="writeprogress.en.resx">
-      <DependentUpon>writeprogress.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\WriteProgress.en.resx">
+      <DependentUpon>WriteProgress.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="writeprogress.resx">
-      <DependentUpon>writeprogress.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\WriteProgress.resx">
+      <DependentUpon>WriteProgress.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="writeprogress.zh-Hant.resx">
-      <DependentUpon>writeprogress.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\WriteProgress.zh-Hant.resx">
+      <DependentUpon>WriteProgress.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>
@@ -286,7 +305,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="2001.ico" />
-    <Content Include="LanguageDefault.xml" />
+    <None Include="OldCode.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -303,6 +322,17 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IPlugin\IPlugin.csproj">
+      <Project>{0a37a5bf-af83-4926-a1c2-f8998bca0be6}</Project>
+      <Name>IPlugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\iTuner\iTuner.csproj">
+      <Project>{2ebfb74e-ff39-4bb0-96f7-3af1a99b1a15}</Project>
+      <Name>iTuner</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

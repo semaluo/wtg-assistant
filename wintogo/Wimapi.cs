@@ -303,6 +303,7 @@ namespace Microsoft.WimgApi
             NativeMethods.CloseHandle(windowsImageHandle);
             GC.KeepAlive(this);
         }
+       
 
         ///<summary>
         ///Default event handler
