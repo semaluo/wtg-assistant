@@ -166,17 +166,28 @@ namespace wintogo
         }
         public void CreateVHD()
         {
+
             if (!ShouldContinue) return;
             else ShouldContinue = false;
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("create vdisk file=" + this.VhdPath + " type=" + this.VhdType + " maximum=" + this.VhdSize);
-            sb.AppendLine("select vdisk file=" + this.VhdPath);
-            sb.AppendLine("attach vdisk");
-            sb.AppendLine("create partition primary");
-            sb.AppendLine("format fs=ntfs quick");
-            sb.AppendLine("assign letter=v");
-            sb.AppendLine("assign letter=v");
-            sb.AppendLine("exit");
+            if (filetype == "vhd")
+            {
+                //sb.AppendLine("create vdisk file=" + this.VhdPath + " type=" + this.VhdType + " maximum=" + this.VhdSize);
+                sb.AppendLine("select vdisk file=" + this.VhdPath);
+                sb.AppendLine("attach vdisk");
+                sb.AppendLine("assign letter=v");
+                sb.AppendLine("exit");
+            }
+            else
+            {
+                sb.AppendLine("create vdisk file=" + this.VhdPath + " type=" + this.VhdType + " maximum=" + this.VhdSize);
+                sb.AppendLine("select vdisk file=" + this.VhdPath);
+                sb.AppendLine("attach vdisk");
+                sb.AppendLine("create partition primary");
+                sb.AppendLine("format fs=ntfs quick");
+                sb.AppendLine("assign letter=v");
+                sb.AppendLine("exit");
+            }
             DiskpartScriptManager dsm = new DiskpartScriptManager();
             Log.WriteLog("CreateVHDScript.log", sb.ToString());
             //MessageBox.Show(sb.ToString());
@@ -196,7 +207,7 @@ namespace wintogo
                 }
                 else
                 {
-                    this.ShouldContinue = true ;
+                    this.ShouldContinue = true;
 
                 }
             }
@@ -209,9 +220,11 @@ namespace wintogo
                 //shouldcontinue = false;
 
             }
-
-            ApplyToVdisk();
-            if (!iswimboot && !File.Exists(@"v:\windows\regedit.exe"))
+            if (filetype != "vhd" && filetype != "vhdx")
+            {
+                ApplyToVdisk();
+            }
+            if (filetype != "vhd" && filetype != "vhdx" && !iswimboot && !File.Exists(@"v:\windows\regedit.exe"))
             {
                 ErrorMsg er = new ErrorMsg(MsgManager.getResString("Msg_ApplyError", MsgManager.ci));
                 er.ShowDialog();
@@ -243,7 +256,7 @@ namespace wintogo
                     //Thread.Sleep(100);
                     //Application.DoEvents();
 
-                    ProcessManager.ECMD(Application.StartupPath + "\\files" + "\\fastcopy.exe", " /auto_close \"" + this.VhdPath + "\" /to=\"" + WTGOperation.ud + "\"");
+                    ProcessManager.ECMD(WTGOperation.filesPath+ "\\fastcopy.exe", " /auto_close \"" + this.VhdPath + "\" /to=\"" + WTGOperation.ud + "\"");
                     //BigFileCopy ()
                     //MsgManager.getResString("Msg_Copy")
                     //复制文件中...大约需要10分钟~1小时，请耐心等待！\r\n
@@ -253,7 +266,7 @@ namespace wintogo
                     //AppendText("复制文件中...大约需要10分钟~1小时，请耐心等待！");
                     //wp.Show();
                     //Application.DoEvents();
-                    //System.Diagnostics.Process cp = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\fastcopy.exe", " /auto_close \"" + Form1.vpath + "\" /to=\"" + ud + "\"");
+                    //System.Diagnostics.Process cp = System.Diagnostics.Process.Start(WTGOperation.filesPath+ "\\fastcopy.exe", " /auto_close \"" + Form1.vpath + "\" /to=\"" + ud + "\"");
                     //cp.WaitForExit();
                     //wp.Close();
                 }
@@ -319,109 +332,141 @@ namespace wintogo
         public void Execute()
         {
             CleanTemp();
-
-            this.CreateVHD();
-            this.VHDExtra();
-            this.WriteBootFiles();
-            this.DetachVHD();
-            this.CopyVHD();
-            this.TwiceAttachVHDAndWriteBootFile();
-            if (this.VhdType != "fixed") this.VHDDynamicSizeIns();
+            if (filetype == "vhd" || filetype == "vhdx")
+            {
+                this.CopyVHD();
+                if (commonbootfiles)
+                {
+                    this.CopyVHDBootFiles();
+                }
+                else
+                {
+                    this.TwiceAttachVHDAndWriteBootFile();
+                }
+            }
+            else
+            {
+                this.CreateVHD();
+                this.VHDExtra();
+                this.WriteBootFiles();
+                this.DetachVHD();
+                this.CopyVHD();
+                this.TwiceAttachVHDAndWriteBootFile();
+                BootFileOperation.BooticeWriteMBRPBRAndAct(WTGOperation.ud);
+                if (this.VhdType != "fixed") this.VHDDynamicSizeIns();
+            }
         }
 
         private void TwiceAttachVHDAndWriteBootFile()
         {
             if (!ShouldContinue) return;
-            AttachVHD(StringOperation.Combine(WTGOperation.ud, win8VhdFile));
+            //AttachVHD(StringOperation.Combine(WTGOperation.ud, win8VhdFile));
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("select vdisk file=" + StringOperation.Combine(WTGOperation.ud, win8VhdFile));
+            sb.AppendLine("attach vdisk");
+            sb.AppendLine("sel partition 1");
+            sb.AppendLine("assign letter=v");
+            sb.AppendLine("exit");
+            DiskpartScriptManager dsm = new DiskpartScriptManager();
+            Log.WriteLog("TwiceAttachVhd.log", sb.ToString());
+
+            dsm.args = sb.ToString();
+            dsm.RunDiskpartScript();
+
+            try
+            {
+                if (!System.IO.Directory.Exists("V:\\"))
+                {
+                    Log.WriteLog("TwiceAttachVhdError.log", "二次加载VHD失败");
+                }
+
+            }
+            catch
+            {
+                //创建VHD失败，未知错误
+                ErrorMsg er = new ErrorMsg(MsgManager.getResString("Msg_VHDCreationError", MsgManager.ci));
+                er.ShowDialog();
+                this.ShouldContinue = false;
+                //shouldcontinue = false;
+
+            }
             BootFileOperation.BcdbootWriteALLBootFile(@"V:\", WTGOperation.ud, WTGOperation.bcdboot);
             DetachVHD(StringOperation.Combine(WTGOperation.ud, win8VhdFile));
             if (!System.IO.File.Exists(WTGOperation.ud + "\\Boot\\BCD"))
             {
-                //NeedTwiceAttach = false;
+
                 CopyVHDBootFiles();
                 //Log.WriteLog ("TwiceAttachFailed.log")
             }
-            //throw new NotImplementedException();
+
         }
 
         #region 私有方法
         private void SetVhdProp()
         {
-            //    ////////////////vhd设定///////////////////////
-            //    string vhd_type = "expandable";
-            //    vhd_size = "";
-            if (isfixed)
+            if (Path.GetExtension(imageFilePath) == ".vhd" || Path.GetExtension(imageFilePath) == ".vhdx")
             {
-                this.VhdType = "fixed";
+                this.VhdType = string.Empty;
+                this.VhdSize = string.Empty;
+                this.VhdFileName = string.Empty;
+                this.ExtensionType = string.Empty;
+                this.VhdPath = imageFilePath;
+                this.NeedCopy = true;
             }
             else
             {
-                this.VhdType = "expandable";
-            }
-            if (userSetSize != 0)
-            {
-                this.VhdSize = (userSetSize * 1024).ToString();
-            }
-            else
-            {
-                if (!iswimboot)
+                //    ////////////////vhd设定///////////////////////
+                //    string vhd_type = "expandable";
+                //    vhd_size = "";
+                if (isfixed)
                 {
-                    if (DiskOperation.GetHardDiskFreeSpace(WTGOperation.ud) / 1024 >= 21504) { this.VhdSize = "20480"; }
-                    else { this.VhdSize = (DiskOperation.GetHardDiskFreeSpace(WTGOperation.ud) / 1024 - 500).ToString(); }
+                    this.VhdType = "fixed";
                 }
                 else
                 {
-                    if (DiskOperation.GetHardDiskFreeSpace(WTGOperation.ud) / 1024 >= 24576) { this.VhdSize = "20480"; }
-                    else { this.VhdSize = (DiskOperation.GetHardDiskFreeSpace(WTGOperation.ud) / 1024 - 4096).ToString(); }
+                    this.VhdType = "expandable";
                 }
+                if (userSetSize != 0)
+                {
+                    this.VhdSize = (userSetSize * 1024).ToString();
+                }
+                else
+                {
+                    if (!iswimboot)
+                    {
+                        if (DiskOperation.GetHardDiskFreeSpace(WTGOperation.ud) / 1024 >= 21504) { this.VhdSize = "20480"; }
+                        else { this.VhdSize = (DiskOperation.GetHardDiskFreeSpace(WTGOperation.ud) / 1024 - 500).ToString(); }
+                    }
+                    else
+                    {
+                        if (DiskOperation.GetHardDiskFreeSpace(WTGOperation.ud) / 1024 >= 24576) { this.VhdSize = "20480"; }
+                        else { this.VhdSize = (DiskOperation.GetHardDiskFreeSpace(WTGOperation.ud) / 1024 - 4096).ToString(); }
+                    }
+                }
+                ////////////////判断临时文件夹,VHD needcopy?///////////////////
+                int vhdmaxsize;
+                if (WTGOperation.isfixed)
+                {
+                    vhdmaxsize = System.Int32.Parse(this.VhdSize) * 1024 + 1024;
+                }
+                else
+                {
+                    vhdmaxsize = 10485670;
+                }
+
+                if (DiskOperation.GetHardDiskFreeSpace(SetTempPath.temppath.Substring(0, 2) + "\\") <= vhdmaxsize || StringOperation.IsChina(SetTempPath.temppath) || isuefigpt || isuefimbr || iswimboot || isnotemp)
+                {
+                    this.NeedCopy = false;
+                    this.VhdPath = StringOperation.Combine(WTGOperation.ud, win8VhdFile);
+                }
+                else
+                {
+                    this.NeedCopy = true;
+                    this.VhdPath = StringOperation.Combine(SetTempPath.temppath, win8VhdFile);
+                }
+
             }
-            //needcopy = false;
-            //WTGOperation.wimpart = ChoosePart.part;
-
-            ////win7////
-            //int win7togo = iswin7(win8iso);
-            //if (win7togo != 0 && radiovhdx.Checked) { MessageBox.Show("WIN7 WTG系统不支持VHDX模式！"); return; }
-            //if (wimpart == 0)
-            //{//自动判断模式
-
-            //    if (win7togo == 1)
-            //    {//WIN7 32 bit
-
-            //        wimpart = 5;
-            //    }
-            //    else if (win7togo == 2)
-            //    { //WIN7 64 BIT
-
-            //        wimpart = 4;
-            //    }
-            //    else { wimpart = 1; }
-            //}
-            //MessageBox.Show(wimpart.ToString());
-            //////////////
-
-            ////////////////判断临时文件夹,VHD needcopy?///////////////////
-            int vhdmaxsize;
-            if (WTGOperation.isfixed)
-            {
-                vhdmaxsize = System.Int32.Parse(this.VhdSize) * 1024 + 1024;
-            }
-            else
-            {
-                vhdmaxsize = 10485670;
-            }
-
-            if (DiskOperation.GetHardDiskFreeSpace(SetTempPath.temppath.Substring(0, 2) + "\\") <= vhdmaxsize || StringOperation.IsChina(SetTempPath.temppath) || isuefigpt || isuefimbr || iswimboot || isnotemp)
-            {
-                this.NeedCopy = false;
-                this.VhdPath = StringOperation.Combine(WTGOperation.ud, win8VhdFile);
-            }
-            else
-            {
-                this.NeedCopy = true;
-                this.VhdPath = StringOperation.Combine(SetTempPath.temppath, win8VhdFile);
-            }
-
-
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(this.ExtensionType);
             sb.AppendLine(this.NeedCopy.ToString());
@@ -453,33 +498,36 @@ namespace wintogo
             //ImageOperation.AutoChooseWimIndex(ref WTGOperation.wimpart, WTGOperation.win7togo);
             //MessageBox.Show(WTGOperation.wimpart);
             //MessageBox.Show(WTGOperation.wimpart);
+
             ImageOperation.AutoChooseWimIndex(ref WTGOperation.wimpart, WTGOperation.win7togo);
             ImageOperation.ImageApply(iswimboot, WTGOperation.isesd, WTGOperation.imagex, WTGOperation.imageFilePath, WTGOperation.wimpart, @"v:\", WTGOperation.ud);
 
         }
+        /// <summary>
+        /// WIN7注册表和FixLetter 。所有VHD都需要FixLetter
+        /// </summary>
         private void UEFIAndWin7ToGo()
         {
             if (WTGOperation.win7togo != 0) { ImageOperation.Win7REG("V:\\"); }
             //////////////
-            if (isuefigpt)
-            {
-                ImageOperation.Fixletter("C:", "V:");
-                //ProcessManager.SyncCMD("\""+Application.StartupPath + "\\files\\osletter7.bat\" /targetletter:c /currentos:v  > \"" + Application.StartupPath + "\\logs\\osletter7.log\"");
-            }
+            //if (isuefigpt)
+            //{
+            ImageOperation.Fixletter("C:", "V:");
+            //ProcessManager.SyncCMD("\""+Application.StartupPath + "\\files\\osletter7.bat\" /targetletter:c /currentos:v  > \"" + Application.StartupPath + "\\logs\\osletter7.log\"");
+            //}
         }
 
         private void CopyVHDBootFiles()
         {
             //this.CopyVHD();
             //if (!needcopyvhdbootfile) return;
-            ProcessManager.ECMD("xcopy.exe", "\"" + Application.StartupPath + "\\files" + "\\" + "vhd" + "\\" + "*.*" + "\"" + " " + WTGOperation.ud + " /e /h /y");
+            ProcessManager.ECMD("xcopy.exe", "\"" + WTGOperation.filesPath+ "\\" + "vhd" + "\\" + "*.*" + "\"" + " " + WTGOperation.ud + " /e /h /y");
 
             if (this.ExtensionType == "vhdx")
             {
-                ProcessManager.ECMD("xcopy.exe", "\"" + Application.StartupPath + "\\files" + "\\" + "vhdx" + "\\" + "*.*" + "\"" + " " + WTGOperation.ud + "\\boot\\ /e /h /y");
-
+                ProcessManager.ECMD("xcopy.exe", "\"" + WTGOperation.filesPath+ "\\" + "vhdx" + "\\" + "*.*" + "\"" + " " + WTGOperation.ud + "\\boot\\ /e /h /y");
             }
-            BootFileOperation.BooticeWriteMBRPBRAndAct(WTGOperation.ud);
+            Log.WriteLog("CopyVHDBootFiles.log", "xcopy.exe" + "\"" + WTGOperation.filesPath+ "\\" + "vhdx" + "\\" + "*.*" + "\"" + " " + WTGOperation.ud + "\\boot\\ /e /h /y");
         }
         private void BigFileCopy(string source, string target, int buffersize)
         {

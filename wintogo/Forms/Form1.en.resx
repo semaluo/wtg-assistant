@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="comboBox1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="button1.Text" xml:space="preserve">
     <value>Write To Disk</value>
+  </data>
+  <data name="button1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="wimbox.Size" type="System.Drawing.Size, System.Drawing">
@@ -126,6 +132,9 @@
   </data>
   <data name="wimbox.Text" xml:space="preserve">
     <value>Click here to choose the install.wim or VHD files</value>
+  </data>
+  <data name="wimbox.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="手动执行命令ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>155, 22</value>
@@ -151,11 +160,17 @@
   <data name="contextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 92</value>
   </data>
+  <data name="contextMenuStrip1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="linkLabel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>
   </data>
   <data name="linkLabel1.Text" xml:space="preserve">
     <value>Help</value>
+  </data>
+  <data name="linkLabel1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>340, 51</value>
@@ -164,6 +179,12 @@
     <value>Windows To Go is a new feature for enterprise users 
 of Windows® 8 that enables users to boot a full version 
 of Windows from external USB drives on host PCs.</value>
+  </data>
+  <data name="label3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="linkLabel2.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="linkLabel3.ToolTip" xml:space="preserve">
     <value>More Details(Chinese)</value>
@@ -183,11 +204,23 @@ of Windows from external USB drives on host PCs.</value>
   <data name="checkBox_san_policy.Text" xml:space="preserve">
     <value>Hide LCL Disk</value>
   </data>
+  <data name="checkBoxuefi.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="radiochuantong.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 23</value>
   </data>
   <data name="radiochuantong.Text" xml:space="preserve">
     <value>Legacy</value>
+  </data>
+  <data name="radiochuantong.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="radiovhdx.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="numericUpDown1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 34</value>
@@ -196,11 +229,17 @@ of Windows from external USB drives on host PCs.</value>
     <value>VHD size
 (0=automatic)</value>
   </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="checkBoxunformat.Size" type="System.Drawing.Size, System.Drawing">
     <value>94, 21</value>
   </data>
   <data name="checkBoxunformat.Text" xml:space="preserve">
     <value>Not Format</value>
+  </data>
+  <data name="checkBoxunformat.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="checkBoxcommon.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 21</value>
@@ -208,8 +247,23 @@ of Windows from external USB drives on host PCs.</value>
   <data name="checkBoxcommon.Text" xml:space="preserve">
     <value>General BCD</value>
   </data>
+  <data name="checkBoxcommon.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="checkBoxwimboot.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="checkBoxuefimbr.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="checkBoxdiswinre.Text" xml:space="preserve">
     <value>DIS WinRE</value>
+  </data>
+  <data name="checkBoxdiswinre.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="checkBoxframework.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="checkBoxfixed.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 21</value>
@@ -217,8 +271,17 @@ of Windows from external USB drives on host PCs.</value>
   <data name="checkBoxfixed.Text" xml:space="preserve">
     <value>Fixed Size</value>
   </data>
+  <data name="checkBoxfixed.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="groupBoxadv.Text" xml:space="preserve">
     <value>Advanced Options</value>
+  </data>
+  <data name="groupBoxadv.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="打开程序运行目录ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>183, 22</value>
@@ -245,46 +308,61 @@ of Windows from external USB drives on host PCs.</value>
     <value>File</value>
   </data>
   <data name="自动检查更新ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+    <value>254, 22</value>
   </data>
   <data name="自动检查更新ToolStripMenuItem.Text" xml:space="preserve">
     <value>Check Updates</value>
   </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+    <value>254, 22</value>
   </data>
   <data name="toolStripMenuItem3.Text" xml:space="preserve">
     <value>Check Updates on Startup</value>
   </data>
   <data name="diskpart重新分区ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+    <value>254, 22</value>
   </data>
   <data name="diskpart重新分区ToolStripMenuItem1.Text" xml:space="preserve">
     <value>Re-partition with Diskpart</value>
   </data>
   <data name="vHD扩容ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+    <value>254, 22</value>
   </data>
   <data name="vHD扩容ToolStripMenuItem.Text" xml:space="preserve">
     <value>VHD size</value>
   </data>
   <data name="选择安装分卷ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+    <value>254, 22</value>
   </data>
   <data name="选择安装分卷ToolStripMenuItem1.Text" xml:space="preserve">
     <value>Choose WIM Index</value>
   </data>
+  <data name="toolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>254, 22</value>
+  </data>
+  <data name="toolStripMenuItem6.Text" xml:space="preserve">
+    <value>Set up capacity of EFI partition</value>
+  </data>
   <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+    <value>254, 22</value>
   </data>
   <data name="toolStripMenuItem2.Text" xml:space="preserve">
     <value>Set Temp Folder</value>
   </data>
   <data name="wIN7TOGOToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+    <value>254, 22</value>
+  </data>
+  <data name="wIN7TOGOToolStripMenuItem.Text" xml:space="preserve">
+    <value>Force WIN7 TO GO</value>
   </data>
   <data name="bOOTICEToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+    <value>254, 22</value>
+  </data>
+  <data name="修复盘符ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>254, 22</value>
+  </data>
+  <data name="修复盘符ToolStripMenuItem.Text" xml:space="preserve">
+    <value>FixLetter</value>
   </data>
   <data name="工具ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 21</value>
@@ -328,11 +406,20 @@ of Windows from external USB drives on host PCs.</value>
   <data name="帮助ToolStripMenuItem.Text" xml:space="preserve">
     <value>Help</value>
   </data>
+  <data name="menuStrip1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="checkBoxdiskpart.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 23</value>
   </data>
   <data name="checkBoxdiskpart.Text" xml:space="preserve">
     <value>Re-partition</value>
+  </data>
+  <data name="checkBoxdiskpart.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 45</value>
@@ -342,7 +429,13 @@ of Windows from external USB drives on host PCs.</value>
 not available on
 XP or WIN7 system</value>
   </data>
+  <data name="label5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>WTG Assistant</value>
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
   </data>
 </root>

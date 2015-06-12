@@ -52,7 +52,6 @@
             this.复制win8vhdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.清理临时文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bootsectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.diskpart重新分区ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vHDUEFIBCDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wIN7USBBOOTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.强制格式化ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,12 +62,14 @@
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.radiovhd = new System.Windows.Forms.RadioButton();
-            this.button2 = new System.Windows.Forms.Button();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.button3 = new System.Windows.Forms.Button();
             this.checkBoxnotemp = new System.Windows.Forms.CheckBox();
             this.checkBox_san_policy = new System.Windows.Forms.CheckBox();
+            this.checkBoxwimboot = new System.Windows.Forms.CheckBox();
+            this.checkBoxframework = new System.Windows.Forms.CheckBox();
+            this.checkBoxfixed = new System.Windows.Forms.CheckBox();
             this.checkBoxuefi = new System.Windows.Forms.CheckBox();
             this.radiochuantong = new System.Windows.Forms.RadioButton();
             this.radiovhdx = new System.Windows.Forms.RadioButton();
@@ -77,11 +78,8 @@
             this.groupBoxadv = new System.Windows.Forms.GroupBox();
             this.checkBoxunformat = new System.Windows.Forms.CheckBox();
             this.checkBoxcommon = new System.Windows.Forms.CheckBox();
-            this.checkBoxwimboot = new System.Windows.Forms.CheckBox();
             this.checkBoxuefimbr = new System.Windows.Forms.CheckBox();
             this.checkBoxdiswinre = new System.Windows.Forms.CheckBox();
-            this.checkBoxframework = new System.Windows.Forms.CheckBox();
-            this.checkBoxfixed = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,6 +96,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.wIN7TOGOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bOOTICEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.修复盘符ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chineseSimpleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -125,7 +124,6 @@
             this.comboBox1.Items.AddRange(new object[] {
             resources.GetString("comboBox1.Items")});
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             this.comboBox1.MouseHover += new System.EventHandler(this.comboBox1_MouseHover);
             // 
             // button1
@@ -173,7 +171,6 @@
             this.复制win8vhdToolStripMenuItem,
             this.清理临时文件ToolStripMenuItem,
             this.bootsectToolStripMenuItem,
-            this.diskpart重新分区ToolStripMenuItem,
             this.vHDUEFIBCDToolStripMenuItem,
             this.wIN7USBBOOTToolStripMenuItem});
             this.手动执行命令ToolStripMenuItem.Name = "手动执行命令ToolStripMenuItem";
@@ -275,12 +272,6 @@
             resources.ApplyResources(this.bootsectToolStripMenuItem, "bootsectToolStripMenuItem");
             this.bootsectToolStripMenuItem.Click += new System.EventHandler(this.bootsectToolStripMenuItem_Click);
             // 
-            // diskpart重新分区ToolStripMenuItem
-            // 
-            this.diskpart重新分区ToolStripMenuItem.Name = "diskpart重新分区ToolStripMenuItem";
-            resources.ApplyResources(this.diskpart重新分区ToolStripMenuItem, "diskpart重新分区ToolStripMenuItem");
-            this.diskpart重新分区ToolStripMenuItem.Click += new System.EventHandler(this.diskpart重新分区ToolStripMenuItem_Click);
-            // 
             // vHDUEFIBCDToolStripMenuItem
             // 
             this.vHDUEFIBCDToolStripMenuItem.Name = "vHDUEFIBCDToolStripMenuItem";
@@ -338,16 +329,7 @@
             this.radiovhd.Name = "radiovhd";
             this.toolTip1.SetToolTip(this.radiovhd, resources.GetString("radiovhd.ToolTip"));
             this.radiovhd.UseVisualStyleBackColor = true;
-            this.radiovhd.CheckedChanged += new System.EventHandler(this.radiovhd_CheckedChanged);
             this.radiovhd.EnabledChanged += new System.EventHandler(this.radiovhd_EnabledChanged);
-            // 
-            // button2
-            // 
-            resources.ApplyResources(this.button2, "button2");
-            this.button2.Name = "button2";
-            this.toolTip1.SetToolTip(this.button2, resources.GetString("button2.ToolTip"));
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // linkLabel3
             // 
@@ -389,6 +371,27 @@
             this.toolTip1.SetToolTip(this.checkBox_san_policy, resources.GetString("checkBox_san_policy.ToolTip"));
             this.checkBox_san_policy.UseVisualStyleBackColor = true;
             // 
+            // checkBoxwimboot
+            // 
+            resources.ApplyResources(this.checkBoxwimboot, "checkBoxwimboot");
+            this.checkBoxwimboot.Name = "checkBoxwimboot";
+            this.toolTip1.SetToolTip(this.checkBoxwimboot, resources.GetString("checkBoxwimboot.ToolTip"));
+            this.checkBoxwimboot.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxframework
+            // 
+            resources.ApplyResources(this.checkBoxframework, "checkBoxframework");
+            this.checkBoxframework.Name = "checkBoxframework";
+            this.toolTip1.SetToolTip(this.checkBoxframework, resources.GetString("checkBoxframework.ToolTip"));
+            this.checkBoxframework.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxfixed
+            // 
+            resources.ApplyResources(this.checkBoxfixed, "checkBoxfixed");
+            this.checkBoxfixed.Name = "checkBoxfixed";
+            this.toolTip1.SetToolTip(this.checkBoxfixed, resources.GetString("checkBoxfixed.ToolTip"));
+            this.checkBoxfixed.UseVisualStyleBackColor = true;
+            // 
             // checkBoxuefi
             // 
             resources.ApplyResources(this.checkBoxuefi, "checkBoxuefi");
@@ -403,7 +406,6 @@
             this.radiochuantong.Name = "radiochuantong";
             this.radiochuantong.TabStop = true;
             this.radiochuantong.UseVisualStyleBackColor = true;
-            this.radiochuantong.CheckedChanged += new System.EventHandler(this.radiochuantong_CheckedChanged);
             // 
             // radiovhdx
             // 
@@ -411,11 +413,15 @@
             this.radiovhdx.Name = "radiovhdx";
             this.radiovhdx.TabStop = true;
             this.radiovhdx.UseVisualStyleBackColor = true;
-            this.radiovhdx.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // numericUpDown1
             // 
             resources.ApplyResources(this.numericUpDown1, "numericUpDown1");
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            2048,
+            0,
+            0,
+            0});
             this.numericUpDown1.Name = "numericUpDown1";
             // 
             // label1
@@ -456,12 +462,6 @@
             this.checkBoxcommon.Name = "checkBoxcommon";
             this.checkBoxcommon.UseVisualStyleBackColor = true;
             // 
-            // checkBoxwimboot
-            // 
-            resources.ApplyResources(this.checkBoxwimboot, "checkBoxwimboot");
-            this.checkBoxwimboot.Name = "checkBoxwimboot";
-            this.checkBoxwimboot.UseVisualStyleBackColor = true;
-            // 
             // checkBoxuefimbr
             // 
             resources.ApplyResources(this.checkBoxuefimbr, "checkBoxuefimbr");
@@ -474,19 +474,6 @@
             resources.ApplyResources(this.checkBoxdiswinre, "checkBoxdiswinre");
             this.checkBoxdiswinre.Name = "checkBoxdiswinre";
             this.checkBoxdiswinre.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxframework
-            // 
-            resources.ApplyResources(this.checkBoxframework, "checkBoxframework");
-            this.checkBoxframework.Name = "checkBoxframework";
-            this.checkBoxframework.UseVisualStyleBackColor = true;
-            this.checkBoxframework.CheckedChanged += new System.EventHandler(this.checkBoxframework_CheckedChanged);
-            // 
-            // checkBoxfixed
-            // 
-            resources.ApplyResources(this.checkBoxfixed, "checkBoxfixed");
-            this.checkBoxfixed.Name = "checkBoxfixed";
-            this.checkBoxfixed.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -542,7 +529,8 @@
             this.toolStripMenuItem6,
             this.toolStripMenuItem2,
             this.wIN7TOGOToolStripMenuItem,
-            this.bOOTICEToolStripMenuItem});
+            this.bOOTICEToolStripMenuItem,
+            this.修复盘符ToolStripMenuItem});
             this.工具ToolStripMenuItem.Name = "工具ToolStripMenuItem";
             resources.ApplyResources(this.工具ToolStripMenuItem, "工具ToolStripMenuItem");
             // 
@@ -602,6 +590,12 @@
             this.bOOTICEToolStripMenuItem.Name = "bOOTICEToolStripMenuItem";
             resources.ApplyResources(this.bOOTICEToolStripMenuItem, "bOOTICEToolStripMenuItem");
             this.bOOTICEToolStripMenuItem.Click += new System.EventHandler(this.bOOTICEToolStripMenuItem_Click);
+            // 
+            // 修复盘符ToolStripMenuItem
+            // 
+            this.修复盘符ToolStripMenuItem.Name = "修复盘符ToolStripMenuItem";
+            resources.ApplyResources(this.修复盘符ToolStripMenuItem, "修复盘符ToolStripMenuItem");
+            this.修复盘符ToolStripMenuItem.Click += new System.EventHandler(this.修复盘符ToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
@@ -704,7 +698,6 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.linkLabel3);
             this.Controls.Add(this.groupBoxadv);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.wimbox);
             this.Controls.Add(this.radiovhdx);
             this.Controls.Add(this.radiovhd);
@@ -760,7 +753,6 @@
         private System.Windows.Forms.ToolStripMenuItem 复制win8vhdToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 清理临时文件ToolStripMenuItem;
         private System.Windows.Forms.RadioButton radiovhdx;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBoxadv;
@@ -769,7 +761,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBoxuefi;
         private System.Windows.Forms.ToolStripMenuItem bootsectToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem diskpart重新分区ToolStripMenuItem;
         private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.CheckBox checkBox_san_policy;
         private System.Windows.Forms.CheckBox checkBoxnotemp;
@@ -812,6 +803,7 @@
         private System.Windows.Forms.ToolStripMenuItem chineseSimpleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 繁体中文ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem 修复盘符ToolStripMenuItem;
     }
 }
 

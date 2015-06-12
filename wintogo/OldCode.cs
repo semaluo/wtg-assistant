@@ -244,7 +244,7 @@
 //            //Thread.Sleep(100);
 //            //Application.DoEvents();
 
-//            ProcessManager.ECMD(Application.StartupPath + "\\files" + "\\fastcopy.exe", " /auto_close \"" + vo.vhdPath  + "\" /to=\"" + WTGOperation.ud + "\"");
+//            ProcessManager.ECMD(WTGOperation.filesPath+ "\\fastcopy.exe", " /auto_close \"" + vo.vhdPath  + "\" /to=\"" + WTGOperation.ud + "\"");
 //            //MsgManager.getResString("Msg_Copy")
 //            //复制文件中...大约需要10分钟~1小时，请耐心等待！\r\n
 //            ProcessManager.AppendText (MsgManager.getResString("Msg_Copy", MsgManager.ci));
@@ -253,7 +253,7 @@
 //            //AppendText("复制文件中...大约需要10分钟~1小时，请耐心等待！");
 //            //wp.Show();
 //            //Application.DoEvents();
-//            //System.Diagnostics.Process cp = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\fastcopy.exe", " /auto_close \"" + Form1.vpath + "\" /to=\"" + ud + "\"");
+//            //System.Diagnostics.Process cp = System.Diagnostics.Process.Start(WTGOperation.filesPath+ "\\fastcopy.exe", " /auto_close \"" + Form1.vpath + "\" /to=\"" + ud + "\"");
 //            //cp.WaitForExit();
 //            //wp.Close();
 //        }
@@ -308,20 +308,20 @@
 //{
 //    vo.CopyVHD();
 
-//    ProcessManager.ECMD("xcopy.exe", "\"" + Application.StartupPath + "\\files" + "\\" + "vhd" + "\\" + "*.*" + "\"" + " " + WTGOperation.ud + " /e /h /y");
+//    ProcessManager.ECMD("xcopy.exe", "\"" + WTGOperation.filesPath+ "\\" + "vhd" + "\\" + "*.*" + "\"" + " " + WTGOperation.ud + " /e /h /y");
 
 //    if (radiovhdx.Checked)
 //    {
-//        ProcessManager.ECMD("xcopy.exe", "\"" + Application.StartupPath + "\\files" + "\\" + "vhdx" + "\\" + "*.*" + "\"" + " " + WTGOperation.ud + "\\boot\\ /e /h /y");
+//        ProcessManager.ECMD("xcopy.exe", "\"" + WTGOperation.filesPath+ "\\" + "vhdx" + "\\" + "*.*" + "\"" + " " + WTGOperation.ud + "\\boot\\ /e /h /y");
 
 //    }
 //    BootFileOperation.BooticeWriteMBRPBRAndAct(WTGOperation.ud);
 //    ///////////////////////////////////////////////////////
-//    //System.Diagnostics.Process booice = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\BOOTICE.exe", (" /DEVICE=" + ud.Substring(0, 2) + " /mbr /install /type=nt60 /quiet"));//写入引导
+//    //System.Diagnostics.Process booice = System.Diagnostics.Process.Start(WTGOperation.filesPath+ "\\BOOTICE.exe", (" /DEVICE=" + ud.Substring(0, 2) + " /mbr /install /type=nt60 /quiet"));//写入引导
 //    //booice.WaitForExit();
-//    //System.Diagnostics.Process pbr = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\BOOTICE.exe", (" /DEVICE=" + ud.Substring(0, 2) + " /pbr /install /type=bootmgr /quiet"));//写入引导
+//    //System.Diagnostics.Process pbr = System.Diagnostics.Process.Start(WTGOperation.filesPath+ "\\BOOTICE.exe", (" /DEVICE=" + ud.Substring(0, 2) + " /pbr /install /type=bootmgr /quiet"));//写入引导
 //    //pbr.WaitForExit();
-//    //System.Diagnostics.Process act = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\bootice.exe", " /DEVICE=" + ud.Substring(0, 2) + " /partitions /activate /quiet");
+//    //System.Diagnostics.Process act = System.Diagnostics.Process.Start(WTGOperation.filesPath+ "\\bootice.exe", " /DEVICE=" + ud.Substring(0, 2) + " /partitions /activate /quiet");
 //    //act.WaitForExit();
 
 //}
@@ -466,7 +466,7 @@
 
 //ProcessManager.ECMD(Application.StartupPath + "\\files\\" + bcdboot, ud + "windows  /s  x: /f ALL");
 //
-//System.Diagnostics.Process p2 = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\bootice.exe", " /DEVICE=x: /partitions /activate  /quiet");
+//System.Diagnostics.Process p2 = System.Diagnostics.Process.Start(WTGOperation.filesPath+ "\\bootice.exe", " /DEVICE=x: /partitions /activate  /quiet");
 //p2.WaitForExit();
 
 //finish f = new finish();
@@ -1050,7 +1050,7 @@
 //          //MessageBox.Show(dsm.CreateScriptFile()); 
 //          //vo.detachVHDExtra();
 
-//          //ProcessManager.ECMD(Application.StartupPath + "\\files" + "\\fastcopy.exe", " /auto_close \"" + Form1.vpath + "\" /to=\"" + ud + "\"");
+//          //ProcessManager.ECMD(WTGOperation.filesPath+ "\\fastcopy.exe", " /auto_close \"" + Form1.vpath + "\" /to=\"" + ud + "\"");
 //          ////MsgManager.getResString("Msg_Copy")
 //          ////复制文件中...大约需要10分钟~1小时，请耐心等待！\r\n
 //          //AppendText(MsgManager.getResString("Msg_Copy", MsgManager.ci));
@@ -1238,11 +1238,11 @@
 /////////////
 //try
 //{
-//    System.Diagnostics.Process booice = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\BOOTICE.exe", (" /DEVICE=" + ud.Substring(0, 2) + " /mbr /install /type=nt60 /quiet"));//写入引导
+//    System.Diagnostics.Process booice = System.Diagnostics.Process.Start(WTGOperation.filesPath+ "\\BOOTICE.exe", (" /DEVICE=" + ud.Substring(0, 2) + " /mbr /install /type=nt60 /quiet"));//写入引导
 //    booice.WaitForExit();
-//    System.Diagnostics.Process pbr = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\BOOTICE.exe", (" /DEVICE=" + ud.Substring(0, 2) + " /pbr /install /type=bootmgr  /quiet"));//写入引导
+//    System.Diagnostics.Process pbr = System.Diagnostics.Process.Start(WTGOperation.filesPath+ "\\BOOTICE.exe", (" /DEVICE=" + ud.Substring(0, 2) + " /pbr /install /type=bootmgr  /quiet"));//写入引导
 //    pbr.WaitForExit();
-//    System.Diagnostics.Process p2 = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\BOOTICE.exe", " /DEVICE=" + ud.Substring(0, 2) + " /partitions /activate  /quiet");
+//    System.Diagnostics.Process p2 = System.Diagnostics.Process.Start(WTGOperation.filesPath+ "\\BOOTICE.exe", " /DEVICE=" + ud.Substring(0, 2) + " /partitions /activate  /quiet");
 //    p2.WaitForExit();
 //}
 //catch (Exception ex) { MessageBox.Show(ex.ToString()); }
@@ -1682,3 +1682,277 @@
 //BCDBOOT WRITE BOOT FILE    
 
 #endregion
+
+
+//RegistryKey key = Registry.LocalMachine;
+//RegistryKey sys = key.OpenSubKey("sys", true);
+//RegistryKey CS001 = null;
+//foreach (var item in sys.GetSubKeyNames())
+//{
+//    if (item == "ControlSet001")
+//    {
+//        CS001 = key.OpenSubKey("CS001"); break;
+//    }
+//}
+//if (CS001 == null)
+//{
+//    CS001 = sys.CreateSubKey("ControlSet001");
+//}
+//Register reg = new Register("sys", RegDomain.LocalMachine);
+//reg.SubKey = "ControlSet001";
+////reg.SubKey = "sys";
+////reg.RegeditKey = "";
+////reg.
+//if (!reg.IsSubKeyExist())
+//{
+//    reg.CreateSubKey();
+//}
+////reg.RegeditKey = "BootDriverFlags";
+//reg.WriteRegeditKey("BootDriverFlags", "00000006", RegValueKind.DWord);
+////reg.SubKey 
+//if (RegExportImport.ImportReg(Application.StartupPath + "\\files\\usb.reg", null) == 0) 
+//{
+//    throw new Exception("导入注册表出错！！！！！");
+//}
+
+//if (sys.GetSubKeyNames())
+
+//ProcessManager.SyncCMD("\""+Application.StartupPath + "\\files\\osletter7.bat\" /targetletter:c /currentos:" + ud.Substring(0, 1) + " > \"" + Application.StartupPath + "\\logs\\osletter7.log\"");
+
+
+
+//Console.WriteLine("reg.exe load HKU\\sys " + installdrive + "Windows\\System32\\Config\\SYSTEM  > \"" + Application.StartupPath + "\\logs\\Win7REGLoad.log\"");
+//Console.WriteLine("reg.exe import \"" + Application.StartupPath + "\\files\\usb.reg\" >nul &if %errorlevel% ==0 (echo 注册表导入成功) else (echo 注册表导入失败)" + " > \"" + Application.StartupPath + "\\logs\\Win7REGImport.log\"");
+//ProcessManager.ECMD("reg.exe", " load HKLM\\sys " + installdrive + "WINDOWS\\system32\\config\\system");
+
+
+
+//RegistryKey key = Registry.LocalMachine;
+//RegistryKey software = key.
+//installdriver :ud  such as e:\
+
+
+
+//needcopy = false;
+//WTGOperation.wimpart = ChoosePart.part;
+
+////win7////
+//int win7togo = iswin7(win8iso);
+//if (win7togo != 0 && radiovhdx.Checked) { MessageBox.Show("WIN7 WTG系统不支持VHDX模式！"); return; }
+//if (wimpart == 0)
+//{//自动判断模式
+
+//    if (win7togo == 1)
+//    {//WIN7 32 bit
+
+//        wimpart = 5;
+//    }
+//    else if (win7togo == 2)
+//    { //WIN7 64 BIT
+
+//        wimpart = 4;
+//    }
+//    else { wimpart = 1; }
+//}
+//MessageBox.Show(wimpart.ToString());
+//////////////
+
+
+#region REG operation
+//private bool IsRegeditExit(string name)
+//{
+//    bool _exit = false;
+//    string[] subkeyNames;
+//    RegistryKey hkml = Registry.CurrentUser;
+//    RegistryKey software = hkml.OpenSubKey("software", true);
+//    subkeyNames = software.GetSubKeyNames();
+//    foreach (string keyName in subkeyNames)
+//    {
+//        if (keyName == name)
+//        {
+//            _exit = true;
+//            return _exit;
+//        }
+//    }
+//    return _exit;
+//}
+//private string GetRegistData(string name)
+//{
+//    string registData;
+//    RegistryKey hkml = Registry.CurrentUser;
+//    RegistryKey software = hkml.OpenSubKey("software", true);
+//    RegistryKey aimdir = software.OpenSubKey(Application.ProductName, true);
+//    registData = aimdir.GetValue(name).ToString();
+//    return registData;
+//}
+//private void WTRegedit(string name, string tovalue)
+//{
+//    RegistryKey hklm = Registry.CurrentUser;
+//    RegistryKey software = hklm.OpenSubKey("SOFTWARE", true);
+//    RegistryKey aimdir = software.CreateSubKey(Application.ProductName);
+//    aimdir.SetValue(name, tovalue);
+//}
+#endregion
+
+
+#region UnUsed
+//public static string adlink;//公告
+//public static string adtitles;
+//public static string win8vhdfile = "win8.vhd";
+//public static string vpath;//源VHD文件完整路径
+//private  string[] topicname = new string[10];
+//private  string[] topiclink = new string[10];
+//string imagex = "imagex_x86.exe";
+//WTGOperation wtgo = new WTGOperation();
+//string msg = Properties.Resources.InfoMsg;
+//string vhd_size = "";//VHD 文件尺寸
+//string ud;//优盘盘符
+//string bcdboot;//bcdboot文件名
+//public static string filetype;//后缀名
+//string win8iso;//选择的WIM
+//int wimpart;//WIM分卷
+//int force=0;//强制格式化
+//bool usetemp = true;//使用临时文件夹
+//Thread copyfile;
+//bool needcopyvhdbootfile = false;
+//WriteProgress wp;
+//delegate void set_TextDelegate(string s); //定义委托
+//set_TextDelegate Set_Text;
+//Thread threadad;
+//bool isesd = false;
+//int win7togo;
+//string udiskstring;
+//string diskpartscriptpath = Application.StartupPath + "\\logs";
+
+#endregion
+
+
+//private void cleanvhdtemp() 
+//{
+//    /////////////////////删除临时文件////////////////////
+//    cleantemp();
+//}
+
+//System.Diagnostics.Process KILL = System.Diagnostics.Process.Start("cmd.exe", "/c taskkill /f /IM VD.exe");
+//KILL.WaitForExit();
+//MessageBox.Show(DiskOperation.GetHardDiskFreeSpace(SetTempPath.temppath.Substring(0, 3)).ToString());
+//MsgManager.getResString("Msg_WriteProcessing")
+
+//ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
+//Operation o = new Operation();
+//o.MyProperty = ud;
+
+
+//private void radioButton1_CheckedChanged(object sender, EventArgs e)
+//{
+//    //if (radiovhdx.Checked) { WTGOperation.win8VhdFile = "win8.vhdx"; }
+//    //else { WTGOperation.win8VhdFile = "win8.vhd"; }
+//    //checkBoxuefi.Enabled = !radiovhdx.Checked;
+//}
+
+//private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+//{
+//    //ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
+//}
+
+//private void radiovhd_CheckedChanged(object sender, EventArgs e)
+//{
+//    //if (radiovhdx.Checked) { WTGOperation.win8VhdFile = "win8.vhdx"; }
+//    //else { WTGOperation.win8VhdFile = "win8.vhd"; }
+//    //checkBoxuefi.Enabled = !radiovhd.Checked;
+//}
+
+//private void radiochuantong_CheckedChanged(object sender, EventArgs e)
+//{
+//    //if (radiovhdx.Checked) { WTGOperation.win8VhdFile = "win8.vhdx"; }
+//    //else { WTGOperation.win8VhdFile = "win8.vhd"; }
+
+//}
+
+
+//private void button2_Click_1(object sender, EventArgs e)
+//{
+//    if (button2.Text == ">")
+//    {
+//        formwide = this.Width;
+//        this.Width = (int)((double)this.Width / 0.675);
+//        //MessageBox.Show((this.Width * 100 / 66).ToString());
+//        button2.Text = "<";
+//    }
+//    else
+//    {
+//        this.Width = formwide;
+//        //MessageBox.Show((this.Width * 66 / 100).ToString());
+
+//        button2.Text = ">";
+
+//    }
+//}
+
+
+#region vHDUEFIBCDToolStripMenuItem_Click
+//MessageBox.Show("/store X:\\efi\\microsoft\\boot\\bcd /set {92382214-91cb-4c08-bed7-5c48c55d46bc} device vhd=[" + ud.Substring(0, 2) + "]\\" + win8vhdfile);
+//if (File.Exists(@"C:\Windows\WinSxS\amd64_microsoft-windows-b..iondata-cmdlinetool_31bf3856ad364e35_6.3.9600.16384_none_78e95cd07922a6bf\\bcdedit.exe")) { MessageBox.Show("存在"); } else { MessageBox.Show("不存在！"); }
+
+//System.Diagnostics.Process cv = System.Diagnostics.Process.Start(Application.StartupPath + "\\files\\" + "\\bcdedit.exe", " /store X:\\efi\\microsoft\\boot\\bcd /set {92382214-91cb-4c08-bed7-5c48c55d46bc} device vhd=[" + ud.Substring(0, 2) + "]\\" + win8vhdfile);
+//    cv.WaitForExit();
+//    System.Diagnostics.Process cv1 = System.Diagnostics.Process.Start(Application.StartupPath + "\\files\\" + "\\bcdedit.exe", " /store X:\\efi\\microsoft\\boot\\bcd /set {92382214-91cb-4c08-bed7-5c48c55d46bc} osdevice vhd=[" + ud.Substring(0, 2) + "]\\" + win8vhdfile);
+//    cv1.WaitForExit();
+
+
+
+//ProcessManager.ECMD("bcdedit /store X:\\efi\\microsoft\\boot\\bcd /set {92382214-91cb-4c08-bed7-5c48c55d46bc} device vhd=[" + ud.Substring(0, 2) + "]\\" + win8vhdfile);
+//ProcessManager.ECMD("bcdedit /store X:\\efi\\microsoft\\boot\\bcd /set {92382214-91cb-4c08-bed7-5c48c55d46bc} osdevice vhd=[" + ud.Substring(0, 2) + "]\\" + win8vhdfile);
+#endregion
+
+
+#region imagex解压写入ToolStripMenuItem_Click
+//wimpart = ChoosePart.part;
+//if (wimpart == 0)
+//{//自动判断模式
+//    win7togo = Iswin7(win8iso);
+
+//    if (win7togo == 1)
+//    {//WIN7 32 bit
+
+//        wimpart = 5;
+//    }
+//    else if (win7togo == 2)
+//    { //WIN7 64 BIT
+
+//        wimpart = 4;
+//    }
+//    else { wimpart = 1; }
+//}
+//MsgManager.getResString("Msg_FormatTip")
+#endregion
+
+
+//private void 不格式化磁盘ToolStripMenuItem_Click(object sender, EventArgs e)
+//{
+//    //isformat = !isformat ;
+//}
+
+
+//private string Distinguish64or32System()
+//{
+//    try
+//    {
+//        string addressWidth = String.Empty;
+//        ConnectionOptions mConnOption = new ConnectionOptions();
+//        ManagementScope mMs = new ManagementScope("//localhost", mConnOption);
+//        ObjectQuery mQuery = new ObjectQuery("select AddressWidth from Win32_Processor");
+//        ManagementObjectSearcher mSearcher = new ManagementObjectSearcher(mMs, mQuery);
+//        ManagementObjectCollection mObjectCollection = mSearcher.Get();
+//        foreach (ManagementObject mObject in mObjectCollection)
+//        {
+//            addressWidth = mObject["AddressWidth"].ToString();
+//        }
+//        return addressWidth;
+//    }
+//    catch (Exception ex)
+//    {
+//        Log.WriteLog("Distinguish64or32System.log", ex.ToString());
+//        return String.Empty;
+//    }
+//}

@@ -9,10 +9,15 @@ namespace wintogo
 {
     public  static class BootFileOperation
     {
+        /// <summary>
+        /// windows  /s  x: /f ALL
+        /// </summary>
+        /// <param name="bcdboot"></param>
+        /// <param name="ud"></param>
         public static void BcdbootWriteALLBootFileToXAndAct(string bcdboot,string ud) 
         {
             ProcessManager.ECMD(Application.StartupPath + "\\files\\" + bcdboot, ud + "windows  /s  x: /f ALL");
-            System.Diagnostics.Process p2 = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\bootice.exe", " /DEVICE=x: /partitions /activate  /quiet");
+            System.Diagnostics.Process p2 = System.Diagnostics.Process.Start(WTGOperation.filesPath+ "\\bootice.exe", " /DEVICE=x: /partitions /activate  /quiet");
             p2.WaitForExit();
         }
         public static void BooticeWriteMBRPBRAndAct(string targetDisk) 
@@ -24,24 +29,36 @@ namespace wintogo
         //public static void BooticeWritePbrAndAct
         public  static void BooticeMbr(string targetDisk) 
         {
-            System.Diagnostics.Process booice = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\BOOTICE.exe", (" /DEVICE=" + targetDisk.Substring(0, 2) + " /mbr /install /type=nt60 /quiet"));//写入引导
+            System.Diagnostics.Process booice = System.Diagnostics.Process.Start(WTGOperation.filesPath+ "\\BOOTICE.exe", (" /DEVICE=" + targetDisk.Substring(0, 2) + " /mbr /install /type=nt60 /quiet"));//写入引导
             booice.WaitForExit();
         }
         public static void BooticePbr(string targetDisk) 
         {
-            System.Diagnostics.Process pbr = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\BOOTICE.exe", (" /DEVICE=" + targetDisk.Substring(0, 2) + " /pbr /install /type=bootmgr /quiet"));//写入引导
+            System.Diagnostics.Process pbr = System.Diagnostics.Process.Start(WTGOperation.filesPath+ "\\BOOTICE.exe", (" /DEVICE=" + targetDisk.Substring(0, 2) + " /pbr /install /type=bootmgr /quiet"));//写入引导
             pbr.WaitForExit();
         }
         public static void BooticeAct(string targetDisk)
         {
-            System.Diagnostics.Process act = System.Diagnostics.Process.Start(Application.StartupPath + "\\files" + "\\bootice.exe", " /DEVICE=" + targetDisk.Substring(0, 2) + " /partitions /activate /quiet");
+            System.Diagnostics.Process act = System.Diagnostics.Process.Start(WTGOperation.filesPath+ "\\bootice.exe", " /DEVICE=" + targetDisk.Substring(0, 2) + " /partitions /activate /quiet");
             act.WaitForExit();
 
         }
+        /// <summary>
+        /// /f ALL参数
+        /// </summary>
+        /// <param name="sourceDisk">指定 windows 系统根目录</param>
+        /// <param name="targetDisk">该参数用于指定要将启动环境文件复制到哪个目标系统分区。</param>
+        /// <param name="bcdboot">bcdboot文件名，默认传bcdboot字段</param>
         public static void BcdbootWriteALLBootFile(string sourceDisk,string targetDisk,string bcdboot) 
         {
             ProcessManager.ECMD(Application.StartupPath + "\\files\\" + bcdboot, sourceDisk + "windows  /s  " + targetDisk.Substring(0, 2) + " /f ALL");
         }
+        /// <summary>
+        /// /f UEFI参数
+        /// </summary>
+        /// <param name="sourceDisk">指定 windows 系统根目录</param>
+        /// <param name="targetDisk">该参数用于指定要将启动环境文件复制到哪个目标系统分区。</param>
+        /// <param name="bcdboot">bcdboot文件名，默认传bcdboot字段</param>
         public static void BcdbootWriteUEFIBootFile(string sourceDisk, string targetDisk, string bcdboot)
         {
             ProcessManager.ECMD(Application.StartupPath + "\\files\\" + bcdboot, sourceDisk + "windows  /s  " + targetDisk.Substring(0, 2) + " /f UEFI");

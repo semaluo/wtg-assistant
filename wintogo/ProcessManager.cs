@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 //using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace wintogo
 {
-    public static class ProcessManager 
+    public static class ProcessManager
     {
-        public static WriteProgress wp=new WriteProgress ();
+        public static WriteProgress wp = new WriteProgress();
         public delegate void AppendTextCallback(string text);
+        //public static double percentage = -1;
 
         #region 解决多线程下控件访问的问题
         //private bool requiresClose = true;
@@ -41,6 +44,78 @@ namespace wintogo
 
 
         //}
+//        public static void RunDism(string StartFileArg)
+//        {
+
+//            string readtext = string.Empty;
+//            Regex reg = new Regex(@"
+//\=∗\s∗(\d1,3\.\d)
+//");
+//            Task task = new Task(() =>
+//            {
+//                Console.WriteLine("Start");
+//                while (percentage < 99.9)
+//                {
+//                    Console.WriteLine("X");
+//                    try
+//                    {
+//                        foreach (string line in DismWrapper.ReadFromBuffer(0, 5, (short)Console.BufferWidth, 1))
+//                        {
+//                            readtext = line;
+//                        }
+//                        //Console.Title = readtext;  
+//                        if (reg.IsMatch(readtext))
+//                        {
+//                            percentage = double.Parse(reg.Match(readtext).Groups[1].Value);
+//                            Console.WriteLine(percentage);
+
+//                            //Console.Title = reg.Match(readtext).Groups[1].Value;
+//                        }
+//                    }
+//                    catch(Exception ex)
+//                    { Console.WriteLine(ex.ToString ()); }
+//                }
+//                //Console.WriteLine("Exit");
+//            });
+//            task.Start();
+
+
+//            Process process = new Process();
+//            //wp.ShowDialog();
+
+//            try
+//            {
+//                AppendText("Command:DISM" + StartFileArg + "\r\n");
+//                process.StartInfo.FileName = "dism.exe";
+//                process.StartInfo.Arguments = StartFileArg;
+//                process.StartInfo.UseShellExecute = false;
+//                process.StartInfo.RedirectStandardInput = true;
+//                process.StartInfo.RedirectStandardOutput = true;
+//                process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+//                //process.StartInfo.RedirectStandardError = true;
+//                process.StartInfo.CreateNoWindow = false;
+//                process.OutputDataReceived += new DataReceivedEventHandler(process_OutputDataReceived);
+//                process.EnableRaisingEvents = true;
+//                process.Exited += new EventHandler(progress_Exited);
+
+//                process.Start();
+
+
+//                process.BeginOutputReadLine();
+
+
+//            }
+//            catch (Exception ex)
+//            {
+//                //MsgManager.getResString("Msg_Failure")
+//                //操作失败
+//                MessageBox.Show(MsgManager.getResString("Msg_Failure", MsgManager.ci) + ex.ToString());
+//            }
+//            wp.ShowDialog();
+
+//            //CommandCaller _dismCaller = new CommandCaller(command);
+//            //_dismCaller.Call(parameter);
+//        }
         public static void process_OutputDataReceived(object sender, DataReceivedEventArgs e)
         {
             // 这里仅做输出的示例，实际上您可以根据情况取消获取命令行的内容  
@@ -72,7 +147,7 @@ namespace wintogo
                 //wp.Invoke ()
                 //wp.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             { Console.WriteLine(ex); }
         }
 
@@ -98,7 +173,7 @@ namespace wintogo
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 //MessageBox.Show(ex.ToString());
@@ -106,10 +181,43 @@ namespace wintogo
         }
 
         #endregion
-        public static void SyncCMD(string cmd)
+        public static void SyncCMD(List<string> cmds)
         {
             System.Diagnostics.Process process = new System.Diagnostics.Process();
 
+            try
+            {
+                process.StartInfo.FileName = "cmd.exe";
+
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.RedirectStandardInput = true;
+                process.StartInfo.RedirectStandardOutput = true;
+                process.StartInfo.RedirectStandardError = true;
+                process.StartInfo.CreateNoWindow = true;
+                process.Start();
+                foreach (var cmd in cmds)
+                {
+                    process.StandardInput.WriteLine(cmd);
+                }
+                process.StandardInput.WriteLine("exit");
+
+                process.WaitForExit();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(MsgManager.getResString("Msg_Failure", MsgManager.ci) + ex.ToString());
+            }
+            finally
+            {
+                process.Close();
+
+            }
+        }
+        public static int SyncCMD(string cmd)
+        {
+            System.Diagnostics.Process process = new System.Diagnostics.Process();
+            int exitcode = 1;
             try
             {
                 process.StartInfo.FileName = "cmd.exe";
@@ -125,7 +233,7 @@ namespace wintogo
                 process.StandardInput.WriteLine("exit");
 
                 process.WaitForExit();
-
+                exitcode = process.ExitCode;
             }
             catch (Exception ex)
             {
@@ -136,6 +244,7 @@ namespace wintogo
                 process.Close();
 
             }
+            return exitcode;
         }
         private static void ExecuteCMD(string StartFileName, string StartFileArg)
         {

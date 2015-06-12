@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -19,6 +20,7 @@ namespace wintogo
         //public int win7togo { get; set; }
 
         #region 静态方法
+
         public static string AutoChooseESDImageIndex(string esdPath)
         {
             string outputFilePath = Path.GetTempFileName();
@@ -30,6 +32,7 @@ namespace wintogo
             args.Append("\"");
             args.Append(outputFilePath);
             args.Append("\"");
+            //ProcessManager.RunDism(args.ToString());
             ProcessManager.SyncCMD("dism.exe" + args.ToString());
 
             string outputFileText = File.ReadAllText(outputFilePath);
@@ -48,12 +51,27 @@ namespace wintogo
 
         }
 
-
+        /// <summary>
+        /// framework3.5，屏蔽本机硬盘，禁用WINRE
+        /// </summary>
+        /// <param name="framework"></param>
+        /// <param name="san_policy"></param>
+        /// <param name="diswinre"></param>
+        /// <param name="imageletter">可以是有盘盘符或V盘</param>
+        /// <param name="wimlocation">WIM文件路径</param>
         public static void ImageExtra(bool framework, bool san_policy, bool diswinre, string imageletter, string wimlocation)
         {
             if (framework)
             {
-                ProcessManager.ECMD("dism.exe", " /image:" + imageletter.Substring(0, 2) + " /enable-feature /featurename:NetFX3 /source:" + wimlocation.Substring(0, wimlocation.Length - 11) + "sxs");
+                StringBuilder args = new StringBuilder();
+                args.Append(" /image:");
+                args.Append(imageletter.Substring(0, 2));
+                args.Append(" /enable-feature /featurename:NetFX3 /source:");
+                args.Append(wimlocation.Substring(0, wimlocation.Length - 11));
+                args.Append("sxs");
+                //ProcessManager.RunDism(args.ToString());
+                ProcessManager.ECMD("dism.exe",args.ToString ());
+               
 
             }
             if (san_policy)
@@ -94,9 +112,11 @@ namespace wintogo
             ProcessManager.ECMD("Dism.exe", " /Export-Image /WIMBoot /SourceImageFile:\"" + sourceImageFile + "\" /SourceIndex:" + wimindex.ToString() + " /DestinationImageFile:" + destinationImageDisk + "wimboot.wim");
             ProcessManager.ECMD("Dism.exe", " /Apply-Image /ImageFile:\"" + destinationImageDisk + "wimboot.wim" + "\" /ApplyDir:" + applyDir.Substring(0, 2) + " /Index:" + wimindex.ToString() + " /WIMBoot");
         }
-        private static void ESDApply(string imageFile, string targetDisk, string wimIndex)
+        private static void DismApplyImage(string imageFile, string targetDisk, string wimIndex)
         {
-            ProcessManager.ECMD("Dism.exe", " /Apply-Image /ImageFile:\"" + imageFile + "\" /ApplyDir:" + targetDisk.Substring(0, 2) + " /Index:" + wimIndex.ToString());
+            
+            ProcessManager.ECMD("Dism.exe"," /Apply-Image /ImageFile:\"" + imageFile + "\" /ApplyDir:" + targetDisk.Substring(0, 2) + " /Index:" + wimIndex.ToString());
+            //ProcessManager.ECMD("Dism.exe", " /Apply-Image /ImageFile:\"" + imageFile + "\" /ApplyDir:" + targetDisk.Substring(0, 2) + " /Index:" + wimIndex.ToString());
             //wp.ShowDialog();
 
         }
@@ -105,6 +125,16 @@ namespace wintogo
             ProcessManager.ECMD(Application.StartupPath + "\\files\\" + imagex, " /apply " + "\"" + imageFile + "\"" + " " + wimIndex.ToString() + " " + targetDisk);
 
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="iswimboot">是否WIMBOOT</param>
+        /// <param name="isesd">是否ESD</param>
+        /// <param name="imagex">imagex路径</param>
+        /// <param name="imageFile">镜像文件</param>
+        /// <param name="wimIndex"></param>
+        /// <param name="targetDisk">目标磁盘</param>
+        /// <param name="wimbootApplyDir">/ImageFile:\"" + wimbootApplyDir + "wimboot.wim"</param>
         public static void ImageApply(bool iswimboot, bool isesd, string imagex, string imageFile, string wimIndex, string targetDisk, string wimbootApplyDir)
         {
             if (iswimboot)
@@ -113,9 +143,9 @@ namespace wintogo
             }
             else
             {
-                if (isesd)
+                if (isesd || WTGOperation.allowEsd)//allowEsd只是判断DISM版本
                 {
-                    ESDApply(imageFile, targetDisk, wimIndex);
+                    DismApplyImage(imageFile, targetDisk, wimIndex);
                 }
                 else
                 {
@@ -123,6 +153,12 @@ namespace wintogo
                 }
             }
         }
+        /// <summary>
+        /// 判断是否为WIN7 以及32或64位
+        /// </summary>
+        /// <param name="imagex">imagex文件名，默认传imagex字段</param>
+        /// <param name="wimfile">WIM文件路径</param>
+        /// <returns>不是WIN7系统：0，Windows 7 STARTER（表示为32位系统镜像）：1，Windows 7 HOMEBASIC（表示为64位系统镜像）：2</returns>
         public static int Iswin7(string imagex, string wimfile)
         {
             ProcessManager.SyncCMD("\"" + Application.StartupPath + "\\files\\" + imagex + "\"" + " /info \"" + wimfile + "\" /xml > " + "\"" + Application.StartupPath + "\\logs\\wiminfo.xml\"");
@@ -131,11 +167,12 @@ namespace wintogo
             System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
             System.Xml.XmlNodeReader reader = null;
             string strFilename = Application.StartupPath + "\\logs\\wiminfo.xml";
-            if (System.IO.File.Exists(strFilename) == false)
+            if (!File.Exists(strFilename))
             {
                 //MsgManager.getResString("Msg_wiminfoerror")
                 //WIM文件信息获取失败\n将按WIN8系统安装
-                MessageBox.Show(strFilename + MsgManager.getResString("Msg_wiminfoerror", MsgManager.ci));
+                Log.WriteLog("Iswin7.log", strFilename + "文件不存在");
+                //MessageBox.Show(strFilename + MsgManager.getResString("Msg_wiminfoerror", MsgManager.ci));
                 return 0;
             }
             try
@@ -163,7 +200,8 @@ namespace wintogo
             }
             catch (Exception ex)
             {
-                MessageBox.Show(strFilename + MsgManager.getResString("Msg_wiminfoerror", MsgManager.ci) + ex.ToString());
+                Log.WriteLog("Iswin7.log", strFilename + "\n" + ex.ToString());
+                //MessageBox.Show(strFilename + MsgManager.getResString("Msg_wiminfoerror", MsgManager.ci) + ex.ToString());
                 return 0;
             }
 
@@ -171,16 +209,20 @@ namespace wintogo
 
             return 0;
         }
+        /// <summary>
+        /// WIN7 TO GO注册表处理
+        /// </summary>
+        /// <param name="installdrive">系统盘所在盘盘符例如E:</param>
         public static void Win7REG(string installdrive)
         {
-            //installdriver :ud  such as e:\
             try
             {
-                ProcessManager.ECMD("reg.exe", " load HKLM\\sys " + installdrive + "WINDOWS\\system32\\config\\system");
-                ProcessManager.ECMD("reg.exe", " import " + Application.StartupPath + "\\files\\usb.reg");
-                ProcessManager.ECMD("reg.exe", " unload HKLM\\sys");
+                ProcessManager.SyncCMD("reg.exe load HKU\\sys " + installdrive + "Windows\\System32\\Config\\SYSTEM  > \"" + Application.StartupPath + "\\logs\\Win7REGLoad.log\"");
+                int errorlevel = ProcessManager.SyncCMD("reg.exe import \"" + Application.StartupPath + "\\files\\usb.reg\" >nul &if %errorlevel% ==0 (echo 注册表导入成功) else (echo 注册表导入失败)" + " > \"" + Application.StartupPath + "\\logs\\Win7REGImport.log\"");
+                ProcessManager.SyncCMD("reg.exe unload HKU\\sys " + " > \"" + Application.StartupPath + "\\logs\\Win7REGLoad.log\"");
+                Log.WriteLog("ImportReg.log", errorlevel.ToString());
                 Fixletter("C:", installdrive);
-                //ProcessManager.SyncCMD("\""+Application.StartupPath + "\\files\\osletter7.bat\" /targetletter:c /currentos:" + ud.Substring(0, 1) + " > \"" + Application.StartupPath + "\\logs\\osletter7.log\"");
+
             }
             catch (Exception err)
             {
@@ -189,6 +231,11 @@ namespace wintogo
                 MessageBox.Show(MsgManager.getResString("Msg_win7usberror", MsgManager.ci) + err.ToString());
             }
         }
+        /// <summary>
+        /// 修复盘符
+        /// </summary>
+        /// <param name="targetletter">一般为"C:"</param>
+        /// <param name="currentos">例如"V:"</param>
         public static void Fixletter(string targetletter, string currentos)
         {
             try
@@ -207,7 +254,8 @@ namespace wintogo
                     {
                         temp.DeleteSubKey("MountedDevices");
                     }
-                    catch { }
+                    catch (Exception ex)
+                    { Log.WriteLog("FixletterDeleteSubKey.log", ex.ToString()); }
                     RegistryKey wtgreg = temp.CreateSubKey("MountedDevices");
                     wtgreg.SetValue("\\DosDevices\\" + targetletter, registData, RegistryValueKind.Binary);
                     wtgreg.Close();
@@ -224,8 +272,17 @@ namespace wintogo
                     //MessageBox.Show(code);
 
                 }
+                else
+                {
+                    Log.WriteLog("registDataNull.log", "\\DosDevices\\null");
+
+                }
             }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                Log.WriteLog("Fixletter.log", ex.ToString());
+            }
         }
         #endregion
 

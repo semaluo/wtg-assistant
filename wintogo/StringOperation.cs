@@ -71,7 +71,12 @@ namespace wintogo
                 return builder.ToString();
             }
         }
-        public static string ToHexString(byte[] bytes) // 0xae00cf => "AE00CF "  
+        /// <summary>
+        /// // 0xae00cf => "AE00CF " 
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
+        public static string ToHexString(byte[] bytes) 
         {
             string hexString = string.Empty;
             if (bytes != null)

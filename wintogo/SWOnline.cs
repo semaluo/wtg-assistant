@@ -119,7 +119,7 @@ namespace wintogo
             catch (WebException webEx)
             {
 
-                Console.WriteLine(webEx.Message.ToString());
+                Log.WriteLog("UpdateLog.log", webEx.ToString());
 
             }
         }
@@ -156,7 +156,8 @@ namespace wintogo
             }
             catch (WebException webEx)
             {
-                Console.WriteLine(webEx.Message.ToString());
+                //Console.WriteLine(webEx.Message.ToString());
+                Log.WriteLog("UpdateLog.log", webEx.ToString());
             }
         }
 
@@ -164,13 +165,9 @@ namespace wintogo
 
         public void Showad()
         {
-            //Action<string> setLinkLabelText = setLinkLabel;
-            //set_TextDelegate Set_Text = new set_TextDelegate(set_Text);
             string pageHtml1;
-            //MessageBox.Show("Test");
             try
             {
-                //MessageBox.Show("Test");
                 WebClient MyWebClient = new WebClient();
 
                 MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于对向Internet资源的请求进行身份验证的网络凭据。
@@ -178,12 +175,8 @@ namespace wintogo
                 Byte[] pageData = MyWebClient.DownloadData("http://bbs.luobotou.org/app/wintogo.txt"); //从指定网站下载数据
 
                 pageHtml1 = Encoding.UTF8.GetString(pageData);
-                // MessageBox.Show(pageHtml1);
                 int index = pageHtml1.IndexOf("announcement=");
                 int indexbbs = pageHtml1.IndexOf("bbs=");
-                // MessageBox.Show(pageHtml1.Substring(index + 13, 1));
-                //MessageBox.Show(MsgManager.ci.EnglishName );
-                //CultureInfo ca = new CultureInfo("en");
                 if (pageHtml1.Substring(index + 13, 1) != "0" && MsgManager.ci.EnglishName != "English")
                 {
                     if (pageHtml1.Substring(indexbbs + 4, 1) == "1")
@@ -209,12 +202,12 @@ namespace wintogo
 
                             topicLink[i] = pageHtml.Substring(LinkStartIndex, LinkEndIndex - LinkStartIndex);
                             topicName[i] = pageHtml.Substring(TitleStartIndex, TitleEndIndex - TitleStartIndex);
-                            //MessageBox.Show(topiclink[i] + topicname[i]);
                             index1 = LinkEndIndex;
                             //topicstring 
                             //int adprogram = index1 + Application.ProductName.Length + 1;
 
                         }
+                        #region OldCode
                         //string portal_block = pageHtml.Substring;
                         //String adtitle;
                         ////MessageBox.Show(adprogram.ToString() + " " + startindex);
@@ -225,7 +218,7 @@ namespace wintogo
                         //MessageBox.Show("");
 
                         //MessageBox.Show(adtitle + "     " + adlink);
-
+                        #endregion
                     }
 
                     {
@@ -270,7 +263,12 @@ namespace wintogo
                     }
                 }
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            catch (Exception ex) 
+            {
+                Log.WriteLog("UpdateLog.log", ex.ToString());
+
+                //Console.WriteLine(ex.Message);
+            }
 
 
         }

@@ -117,37 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="textBoxDescription.Text" xml:space="preserve">
-    <value>官方论坛：http://bbs.luobotou.org/forum-88-1.html
-作者:nkc3g4，Email:microsoft5133@126.com
-感谢为此程序作出贡献的人们(以下为论坛ID):
-highseas
-oioxxx
-brook
-donkey
-shinobiyan 
-lrv
-fjy
-tommyzhong
-沉默融化了孤独
-kill211
-lindingyi
-阳光自由
-jiaopen
-8680765
-xbal123
-Mz丶Zep
-mytoolkit_cn
-笑饮砒霜
-蓅煋の眼涙
-拿命$_賭未來
-hsbmn 
-USB-windons8
-我好像贝壳
-georgezw
-......
-还有很多人做出过贡献，空间有限，写不下这么多。
-在此一并表示感谢！</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>关于</value>
   </data>
   <data name="&gt;&gt;labelCopyright.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -663,9 +634,6 @@ georgezw
   <data name="labelCopyright.Size" type="System.Drawing.Size, System.Drawing">
     <value>271, 16</value>
   </data>
-  <data name="&gt;&gt;labelCompanyName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="textBoxDescription.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 3, 3, 3</value>
   </data>
@@ -687,6 +655,9 @@ georgezw
   </data>
   <data name="labelProductName.Size" type="System.Drawing.Size, System.Drawing">
     <value>271, 16</value>
+  </data>
+  <data name="okButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>
@@ -712,11 +683,14 @@ georgezw
   <data name="&gt;&gt;logoPictureBox.Parent" xml:space="preserve">
     <value>tableLayoutPanel</value>
   </data>
-  <data name="okButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+  <data name="&gt;&gt;labelCompanyName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="textBoxDescription.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
     <value>Both</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>435, 261</value>
   </data>
   <data name="&gt;&gt;labelVersion.Name" xml:space="preserve">
     <value>labelVersion</value>
@@ -757,9 +731,6 @@ georgezw
   <data name="&gt;&gt;tableLayoutPanel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;labelCopyright.Name" xml:space="preserve">
-    <value>labelCopyright</value>
-  </data>
   <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>339, 221</value>
   </data>
@@ -781,14 +752,43 @@ georgezw
   <data name="labelCopyright.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
   </data>
-  <data name="labelVersion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;labelCompanyName.Parent" xml:space="preserve">
-    <value>tableLayoutPanel</value>
+  <data name="textBoxDescription.Text" xml:space="preserve">
+    <value>官方论坛：http://bbs.luobotou.org/forum-88-1.html
+作者:nkc3g4，Email:microsoft5133@126.com
+感谢为此程序作出贡献的人们(以下为论坛ID):
+highseas
+oioxxx
+brook
+donkey
+shinobiyan 
+lrv
+fjy
+tommyzhong
+沉默融化了孤独
+kill211
+lindingyi
+阳光自由
+jiaopen
+8680765
+xbal123
+Mz丶Zep
+mytoolkit_cn
+笑饮砒霜
+蓅煋の眼涙
+拿命$_賭未來
+hsbmn 
+USB-windons8
+我好像贝壳
+georgezw
+......
+还有很多人做出过贡献，空间有限，写不下这么多。
+在此一并表示感谢！</value>
   </data>
   <data name="labelProductName.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
+  </data>
+  <data name="&gt;&gt;textBoxDescription.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="tableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -817,9 +817,6 @@ georgezw
   <data name="&gt;&gt;okButton.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;okButton.Parent" xml:space="preserve">
-    <value>tableLayoutPanel</value>
-  </data>
   <data name="labelCopyright.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -829,8 +826,8 @@ georgezw
   <data name="labelProductName.Location" type="System.Drawing.Point, System.Drawing">
     <value>143, 0</value>
   </data>
-  <data name="labelVersion.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 24</value>
+  <data name="labelCopyright.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
   <data name="&gt;&gt;textBoxDescription.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -838,8 +835,8 @@ georgezw
   <data name="labelCopyright.Location" type="System.Drawing.Point, System.Drawing">
     <value>143, 48</value>
   </data>
-  <data name="labelCompanyName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 0, 3, 0</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="tableLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -850,8 +847,11 @@ georgezw
   <data name="&gt;&gt;logoPictureBox.Name" xml:space="preserve">
     <value>logoPictureBox</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>关于</value>
+  <data name="labelVersion.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 24</value>
+  </data>
+  <data name="&gt;&gt;labelCompanyName.Parent" xml:space="preserve">
+    <value>tableLayoutPanel</value>
   </data>
   <data name="labelCompanyName.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -886,20 +886,20 @@ georgezw
   <data name="&gt;&gt;logoPictureBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="labelCopyright.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="labelVersion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
   <data name="labelCompanyName.Text" xml:space="preserve">
     <value>公司名称</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>435, 261</value>
+  <data name="&gt;&gt;okButton.Parent" xml:space="preserve">
+    <value>tableLayoutPanel</value>
   </data>
   <data name="labelCopyright.Text" xml:space="preserve">
     <value>版权</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;labelCopyright.Name" xml:space="preserve">
+    <value>labelCopyright</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -913,8 +913,8 @@ georgezw
   <data name="labelCompanyName.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>0, 16</value>
   </data>
-  <data name="&gt;&gt;textBoxDescription.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="labelCompanyName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>6, 0, 3, 0</value>
   </data>
   <data name="okButton.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>

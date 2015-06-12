@@ -14,7 +14,7 @@
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>publish\</PublishUrl>
+    <PublishUrl>E:\MyProgram\WTGAPub\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -27,6 +27,7 @@
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -81,7 +82,16 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>01FA824BFEFD457EFE57E2A07723772DB1A3848B</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>wintogo_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\..\Users\波\Downloads\icsharpcode-SharpZipLib-9478d50\bin\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
@@ -92,9 +102,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Trinet.Core.IO.Ntfs">
-      <HintPath>C:\Users\波\Downloads\Compressed\Trinet.Core.IO.Ntfs-master\Trinet.Core.IO.Ntfs-master\bin\Trinet.Core.IO.Ntfs.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +134,14 @@
     </Compile>
     <Compile Include="CoreOperation\FileOperation.cs" />
     <Compile Include="CoreOperation\ImageOperation.cs" />
+    <Compile Include="SettingItems.cs" />
+    <Compile Include="Forms\Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UnZip.cs" />
     <Compile Include="IniOperation.cs" />
     <Compile Include="MultiLanguage\MsgManager.cs" />
     <Compile Include="CoreOperation\Operation.cs" />
@@ -150,7 +165,6 @@
     <Compile Include="StringOperation.cs" />
     <Compile Include="SWOnline.cs" />
     <Compile Include="CoreOperation\VHDOperation.cs" />
-    <Compile Include="Wimapi.cs" />
     <Compile Include="Forms\Finish.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -238,6 +252,9 @@
     <EmbeddedResource Include="Forms\Form1.zh-Hant.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -324,10 +341,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IPlugin\IPlugin.csproj">
-      <Project>{0a37a5bf-af83-4926-a1c2-f8998bca0be6}</Project>
-      <Name>IPlugin</Name>
-    </ProjectReference>
     <ProjectReference Include="..\iTuner\iTuner.csproj">
       <Project>{2ebfb74e-ff39-4bb0-96f7-3af1a99b1a15}</Project>
       <Name>iTuner</Name>

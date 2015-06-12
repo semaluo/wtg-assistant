@@ -25,7 +25,7 @@ namespace iTuner
 		/// </summary>
 		/// <param name="name">The Windows drive letter assigned to this device.</param>
 
-		internal UsbDisk (string name)
+		public UsbDisk (string name)
 		{
 			this.Name = name;
 			this.Model = String.Empty;
@@ -103,27 +103,37 @@ namespace iTuner
 		}
 
 
-		/// <summary>
-		/// Pretty print the disk.
-		/// </summary>
-		/// <returns></returns>
+        /// <summary>
+        /// Pretty print the disk.
+        /// </summary>
+        /// <returns></returns>
 
-		public override string ToString ()
-		{
-			StringBuilder builder = new StringBuilder();
-			builder.Append(Name);
-			builder.Append(" ");
-			builder.Append(Volume);
-			builder.Append(" (");
-			builder.Append(Model);
-			builder.Append(") ");
-            //builder.Append(FormatByteCount(FreeSpace));
-            //builder.Append(" free of ");
-			builder.Append(FormatByteCount(Size));
-            builder.Append(" (");
-            builder.Append(DriveType);
-            builder.Append(") ");
-			return builder.ToString();
+        public override string ToString()
+        {
+
+            //System.Windows.Forms.MessageBox.Show(this.Model); System.Windows.Forms.MessageBox.Show("Test");
+            if (this.Model == string.Empty)
+            {
+                //System.Windows.Forms.MessageBox.Show(this.Name);
+                return this.Name;
+            }
+            else
+            {
+                StringBuilder builder = new StringBuilder();
+                builder.Append(Name);
+                builder.Append(" ");
+                builder.Append(Volume);
+                builder.Append(" (");
+                builder.Append(Model);
+                builder.Append(") ");
+                //builder.Append(FormatByteCount(FreeSpace));
+                //builder.Append(" free of ");
+                builder.Append(FormatByteCount(Size));
+                builder.Append(" (");
+                builder.Append(DriveType);
+                builder.Append(") ");
+                return builder.ToString();
+            }
 		}
 
 

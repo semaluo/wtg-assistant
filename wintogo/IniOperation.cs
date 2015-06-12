@@ -53,7 +53,8 @@ namespace wintogo
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                rt = "";
+                
+                rt = string.Empty;
             }
             return rt;
         }

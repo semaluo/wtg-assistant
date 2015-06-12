@@ -6,6 +6,12 @@ namespace wintogo
 {
     public static class DiskOperation
     {
+        /// <summary>
+        /// WTGOperation.diskpartscriptpath + @"\uefi.txt"
+        /// </summary>
+        /// <param name="efisize"></param>
+        /// <param name="ud"></param>
+        /// <returns>return WTGOperation.diskpartscriptpath + "\\uefi.txt";</returns>
         public static string GenerateGPTAndUEFIScript(string efisize, string ud)
         {
             using (FileStream fs0 = new FileStream(WTGOperation.diskpartscriptpath + @"\uefi.txt", FileMode.Create, FileAccess.Write))
@@ -32,6 +38,11 @@ namespace wintogo
             //sw0.Close();
             return WTGOperation.diskpartscriptpath + "\\uefi.txt";
         }
+        /// <summary>
+        /// MBR+UEFI脚本Write到WTGOperation.diskpartscriptpath + @"\uefimbr.txt
+        /// </summary>
+        /// <param name="efisize">efisize(MB)</param>
+        /// <param name="ud">优盘盘符，":"、"\"不必须</param>
         public static void GenerateMBRAndUEFIScript(string efisize, string ud)
         {
             using (FileStream fs0 = new FileStream(WTGOperation.diskpartscriptpath + @"\uefimbr.txt", FileMode.Create, FileAccess.Write))
