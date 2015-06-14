@@ -1,8 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace wintogo
 {
@@ -11,30 +9,37 @@ namespace wintogo
         /// <summary>
         /// Diskpart命令
         /// </summary>
-        public string args { private get; set; }
-        private string scriptPath { get; set; }
-        public bool outputToFile { get; set; }
+        public string Args { private get; set; }
+        private string TempScriptFile
+        {
+         
+            get; set;
+        }
+        public bool OutputToFile { get; set; }
         /// <summary>
         /// 输出文件路径
         /// </summary>
-        public string outputFilePath { get; private set; }
+        public string OutputFilePath { get; private set; }
         public DiskpartScriptManager()
         {
-            this.outputToFile = false;
+            this.OutputToFile = false;
+            TempScriptFile = WTGOperation.diskpartScriptPath + "\\" + Guid.NewGuid().ToString();
         }
         public DiskpartScriptManager(bool outputToFile)
         {
-            if (outputToFile) this.outputToFile = true;
+            if (outputToFile) this.OutputToFile = true;
+            TempScriptFile = WTGOperation.diskpartScriptPath + "\\" + Guid.NewGuid().ToString();
+
         }
         private void CreateScriptFile()
         {
-            this.scriptPath = Path.GetTempFileName();
-            using (FileStream fs = new FileStream(scriptPath, FileMode.Create, FileAccess.Write))
+        
+            using (FileStream fs = new FileStream(TempScriptFile, FileMode.Create, FileAccess.Write))
             {
                 fs.SetLength(0);
                 using (StreamWriter sw = new StreamWriter(fs, Encoding.Default))
                 {
-                    string ws = args;
+                    string ws = Args;
                     //System.Windows.Forms.MessageBox.Show(args);
                     sw.Write(ws);
                 }
@@ -46,17 +51,17 @@ namespace wintogo
 
         public void RunDiskpartScript()
         {
-            this.outputFilePath = Path.GetTempFileName();
+            OutputFilePath = Path.GetTempFileName();
             CreateScriptFile();
             StringBuilder dpargs = new StringBuilder();
             dpargs.Append(" /s \"");
-            dpargs.Append(this.scriptPath);
+            dpargs.Append(TempScriptFile);
             dpargs.Append("\"");
-            if (this.outputToFile)
+            if (this.OutputToFile)
             {
                 dpargs.Append(" > ");
                 dpargs.Append("\"");
-                dpargs.Append(this.outputFilePath);
+                dpargs.Append(this.OutputFilePath);
                 dpargs.Append("\"");
                 ProcessManager.SyncCMD("diskpart.exe" + dpargs.ToString());
             }
@@ -69,14 +74,14 @@ namespace wintogo
             //System.Windows.Forms.MessageBox.Show(dpargs.ToString());
             
             //System.Console.WriteLine(File.ReadAllText (this.outputFilePath));
-            FileOperation.DeleteFile(this.scriptPath);
+            FileOperation.DeleteFile(TempScriptFile);
         }
         /// <summary>
         /// 删除输出文件
         /// </summary>
         public void DeleteOutputFile()
         {
-            FileOperation.DeleteFile(this.outputFilePath);
+            FileOperation.DeleteFile(this.OutputFilePath);
         }
 
   

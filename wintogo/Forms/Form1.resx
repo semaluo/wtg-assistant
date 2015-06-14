@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="comboBox1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 9pt</value>
+    <value>Microsoft YaHei UI, 9pt</value>
   </data>
   <data name="comboBox1.Items" xml:space="preserve">
     <value>请选择可移动设备</value>
@@ -154,7 +154,7 @@
     <value>16</value>
   </data>
   <data name="button1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 12pt</value>
+    <value>Microsoft YaHei UI, 12pt</value>
   </data>
   <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
     <value>117, 189</value>
@@ -193,7 +193,7 @@
     <value>True</value>
   </data>
   <data name="wimbox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 9.75pt, style=Bold</value>
+    <value>Microsoft YaHei UI, 9.75pt, style=Bold</value>
   </data>
   <data name="wimbox.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 96</value>
@@ -342,6 +342,9 @@
   <data name="强制格式化ToolStripMenuItem.Text" xml:space="preserve">
     <value>强制格式化</value>
   </data>
+  <data name="强制格式化ToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="萝卜头IT论坛ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
@@ -367,7 +370,7 @@
     <value>True</value>
   </data>
   <data name="linkLabel1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 11.25pt</value>
+    <value>Microsoft YaHei UI, 11.25pt</value>
   </data>
   <data name="linkLabel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>361, 35</value>
@@ -397,7 +400,7 @@
     <value>True</value>
   </data>
   <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 9pt</value>
+    <value>Microsoft YaHei UI, 9pt</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 38</value>
@@ -465,7 +468,7 @@
     <value>True</value>
   </data>
   <data name="radiovhd.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 9.75pt</value>
+    <value>Microsoft YaHei UI, 9.75pt</value>
   </data>
   <data name="radiovhd.Location" type="System.Drawing.Point, System.Drawing">
     <value>83, 160</value>
@@ -501,10 +504,13 @@
     <value>True</value>
   </data>
   <data name="linkLabel3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 11.25pt, style=Bold</value>
+    <value>Microsoft YaHei UI, 11.25pt, style=Bold</value>
   </data>
   <data name="linkLabel3.Location" type="System.Drawing.Point, System.Drawing">
     <value>354, 160</value>
+  </data>
+  <data name="linkLabel3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
   </data>
   <data name="linkLabel3.Size" type="System.Drawing.Size, System.Drawing">
     <value>16, 19</value>
@@ -534,7 +540,7 @@
     <value>True</value>
   </data>
   <data name="linkLabel5.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 11.25pt, style=Bold</value>
+    <value>Microsoft YaHei UI, 11.25pt, style=Bold</value>
   </data>
   <data name="linkLabel5.Location" type="System.Drawing.Point, System.Drawing">
     <value>174, 0</value>
@@ -564,7 +570,7 @@
     <value>4</value>
   </data>
   <data name="button3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 9pt</value>
+    <value>Microsoft YaHei UI, 9pt</value>
   </data>
   <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
     <value>383, 127</value>
@@ -792,7 +798,7 @@
     <value>True</value>
   </data>
   <data name="radiochuantong.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 9.75pt</value>
+    <value>Microsoft YaHei UI, 9.75pt</value>
   </data>
   <data name="radiochuantong.Location" type="System.Drawing.Point, System.Drawing">
     <value>17, 160</value>
@@ -825,7 +831,7 @@
     <value>True</value>
   </data>
   <data name="radiovhdx.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 9.75pt</value>
+    <value>Microsoft YaHei UI, 9.75pt</value>
   </data>
   <data name="radiovhdx.Location" type="System.Drawing.Point, System.Drawing">
     <value>147, 160</value>
@@ -1081,19 +1087,19 @@
     <value>665, 17</value>
   </metadata>
   <data name="打开程序运行目录ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 22</value>
+    <value>160, 22</value>
   </data>
   <data name="打开程序运行目录ToolStripMenuItem1.Text" xml:space="preserve">
     <value>打开运行目录</value>
   </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 22</value>
+    <value>160, 22</value>
   </data>
   <data name="toolStripMenuItem1.Text" xml:space="preserve">
-    <value>打开LOGS文件夹</value>
+    <value>打开日志文件夹</value>
   </data>
   <data name="退出ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 22</value>
+    <value>160, 22</value>
   </data>
   <data name="退出ToolStripMenuItem.Text" xml:space="preserve">
     <value>退出</value>
@@ -1166,6 +1172,12 @@
   </data>
   <data name="修复盘符ToolStripMenuItem.Text" xml:space="preserve">
     <value>修复盘符</value>
+  </data>
+  <data name="wTG高级设定选项ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="wTG高级设定选项ToolStripMenuItem.Text" xml:space="preserve">
+    <value>WTG高级设定选项</value>
   </data>
   <data name="工具ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 21</value>
@@ -1258,7 +1270,7 @@
     <value>True</value>
   </data>
   <data name="checkBoxdiskpart.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 9.75pt</value>
+    <value>Microsoft YaHei UI, 9.75pt</value>
   </data>
   <data name="checkBoxdiskpart.Location" type="System.Drawing.Point, System.Drawing">
     <value>217, 160</value>
@@ -1364,7 +1376,7 @@
     <value>650, 239</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei, 9pt</value>
+    <value>Microsoft YaHei UI, 9pt</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 4, 3, 4</value>
@@ -1668,6 +1680,12 @@
   </data>
   <data name="&gt;&gt;timer1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;wTG高级设定选项ToolStripMenuItem.Name" xml:space="preserve">
+    <value>wTG高级设定选项ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;wTG高级设定选项ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Form1</value>

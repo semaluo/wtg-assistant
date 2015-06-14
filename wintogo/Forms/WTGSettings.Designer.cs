@@ -1,6 +1,6 @@
 ﻿namespace wintogo.Forms
 {
-    partial class Settings
+    partial class WTGSettings
     {
         /// <summary>
         /// Required designer variable.
@@ -34,19 +34,21 @@
             // propertyGrid1
             // 
             this.propertyGrid1.CategoryForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.propertyGrid1.Location = new System.Drawing.Point(80, 61);
+            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid1.Location = new System.Drawing.Point(0, 0);
             this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(130, 130);
+            this.propertyGrid1.Size = new System.Drawing.Size(284, 261);
             this.propertyGrid1.TabIndex = 0;
             // 
-            // Settings
+            // WTGSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.propertyGrid1);
-            this.Name = "Settings";
+            this.Name = "WTGSettings";
             this.Text = "Settings";
+            this.Load += new System.EventHandler(this.WTGSettings_Load);
             this.ResumeLayout(false);
 
         }

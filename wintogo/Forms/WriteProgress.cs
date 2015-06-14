@@ -24,7 +24,7 @@ namespace wintogo
             try
             {
                 //if (System.IO.Directory .Exists ())
-                FileStream fs = new FileStream(Application.StartupPath + "\\logs\\" + DateTime.Now.ToFileTime() + ".log", FileMode.Create, FileAccess.Write);
+                FileStream fs = new FileStream(WTGOperation.logPath + "\\" + DateTime.Now.ToFileTime() + ".log", FileMode.Create, FileAccess.Write);
                 fs.SetLength(0);
                 StreamWriter sw = new StreamWriter(fs, Encoding.Default);
                 string ws = "";

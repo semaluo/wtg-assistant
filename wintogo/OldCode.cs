@@ -1282,42 +1282,42 @@
 //}
 //ProcessManager.ECMD("diskpart.exe", " /s \"" + diskpartscriptpath + "\\detach.txt\"");
 #endregion
-      //private void NonUEFIVHDFinish()
-      //  {
+//private void NonUEFIVHDFinish()
+//  {
 
-      //      if (!System.IO.File.Exists(WTGOperation.ud + WTGOperation.win8VhdFile))
-      //      {
-      //          //MsgManager.getResString("Msg_VHDCreationError")
-      //          //Win8 VHD文件不存在！未知错误原因！
-      //          ErrorMsg er = new ErrorMsg(MsgManager.getResString("Msg_VHDCreationError", MsgManager.ci));
-      //          er.ShowDialog();
-      //          //MessageBox.Show("Win8 VHD文件不存在！可到论坛发帖求助！\n建议将logs文件夹打包上传！");
-      //          //System.Diagnostics.Process.Start("http://bbs.luobotou.org/forum-88-1.html");                
-      //      }
+//      if (!System.IO.File.Exists(WTGOperation.ud + WTGOperation.win8VhdFile))
+//      {
+//          //MsgManager.getResString("Msg_VHDCreationError")
+//          //Win8 VHD文件不存在！未知错误原因！
+//          ErrorMsg er = new ErrorMsg(MsgManager.getResString("Msg_VHDCreationError", MsgManager.ci));
+//          er.ShowDialog();
+//          //MessageBox.Show("Win8 VHD文件不存在！可到论坛发帖求助！\n建议将logs文件夹打包上传！");
+//          //System.Diagnostics.Process.Start("http://bbs.luobotou.org/forum-88-1.html");                
+//      }
 
-      //      else if (!System.IO.File.Exists(WTGOperation.ud + "\\Boot\\BCD"))
-      //      {
-      //          //MsgManager.getResString("Msg_VHDBcdbootError")
-      //          //VHD模式下BCDBOOT执行出错！
-      //          ErrorMsg er = new ErrorMsg(MsgManager.getResString("Msg_VHDBcdbootError", MsgManager.ci));
-      //          er.ShowDialog();
+//      else if (!System.IO.File.Exists(WTGOperation.ud + "\\Boot\\BCD"))
+//      {
+//          //MsgManager.getResString("Msg_VHDBcdbootError")
+//          //VHD模式下BCDBOOT执行出错！
+//          ErrorMsg er = new ErrorMsg(MsgManager.getResString("Msg_VHDBcdbootError", MsgManager.ci));
+//          er.ShowDialog();
 
-      //          //MessageBox.Show("VHD模式下BCDBOOT执行出错！\nboot文件夹不存在\n请看论坛教程！","出错啦",MessageBoxButtons .OK ,MessageBoxIcon.Error );
-      //          //System.Diagnostics.Process.Start("http://bbs.luobotou.org/forum.php?mod=viewthread&tid=8561");
-      //      }
-      //      else if (!System.IO.File.Exists(WTGOperation.ud + "bootmgr"))
-      //      {
-      //          ErrorMsg er = new ErrorMsg(MsgManager.getResString("Msg_bootmgrError", MsgManager.ci));
-      //          er.ShowDialog();
+//          //MessageBox.Show("VHD模式下BCDBOOT执行出错！\nboot文件夹不存在\n请看论坛教程！","出错啦",MessageBoxButtons .OK ,MessageBoxIcon.Error );
+//          //System.Diagnostics.Process.Start("http://bbs.luobotou.org/forum.php?mod=viewthread&tid=8561");
+//      }
+//      else if (!System.IO.File.Exists(WTGOperation.ud + "bootmgr"))
+//      {
+//          ErrorMsg er = new ErrorMsg(MsgManager.getResString("Msg_bootmgrError", MsgManager.ci));
+//          er.ShowDialog();
 
-      //          //MessageBox.Show("文件写入出错！bootmgr不存在！\n请检查写入过程是否中断\n如有疑问，请访问官方论坛！");
-      //      }
-      //      else
-      //      {
-      //          Finish f = new Finish();
-      //          f.ShowDialog();
-      //      }
-      //  }
+//          //MessageBox.Show("文件写入出错！bootmgr不存在！\n请检查写入过程是否中断\n如有疑问，请访问官方论坛！");
+//      }
+//      else
+//      {
+//          Finish f = new Finish();
+//          f.ShowDialog();
+//      }
+//  }
 
 
 //private void Fixletter(string targetletter, string currentos) 
@@ -1956,3 +1956,338 @@
 //        return String.Empty;
 //    }
 //}
+
+//MessageBox.Show("\"" + Application.StartupPath + "\\files\\" + bcdboot + "\"  " + ud.Substring(0, 3) + "windows  /s  " + ud.Substring(0, 2));
+
+//ProcessManager.SyncCMD("\"" + Application.StartupPath + "\\files\\" + bcdboot + "\"  " + ud.Substring(0, 3) + "windows  /s  " + ud.Substring(0, 2)+" /f ALL");
+
+//System.Diagnostics.Process p1 = System.Diagnostics.Process.Start(Application.StartupPath + "\\files\\" + bcdboot, "  " + ud.Substring(0, 3) + "windows  /s  " + ud.Substring(0, 2));
+//p1.WaitForExit();
+
+
+//VHDOperation.CleanTemp();
+//vo.CreateVHD();
+//vo.VHDExtra();
+//vo.DetachVHD();
+//vo.CopyVHD();
+//if (!checkBoxfixed.Checked)
+//{
+//    vo.VHDDynamicSizeIns(WTGOperation.ud);
+//}
+//if (checkBoxuefimbr.Checked)
+//{
+//    //BootFileOperation.BooticeWriteMBRPBRAndAct("X:");
+//    //System.Diagnostics.Process pbr = System.Diagnostics.Process.Start(WTGOperation.filesPath+ "\\BOOTICE.exe", (" /DEVICE=X: /pbr /install /type=bootmgr /quiet"));//写入引导
+//    //pbr.WaitForExit();
+//    //System.Diagnostics.Process act = System.Diagnostics.Process.Start(WTGOperation.filesPath+ "\\bootice.exe", " /DEVICE=X: /partitions /activate /quiet");
+//    //act.WaitForExit();
+//}
+
+
+
+//VHDOperation.CleanTemp();
+//vo.CreateVHD();
+//vo.VHDExtra();
+//vo.WriteBootFiles();
+//vo.DetachVHD();
+//vo.CopyVHD();
+
+//if (!checkBoxfixed.Checked)
+//{
+//    vo.VHDDynamicSizeIns(WTGOperation.ud);
+
+//}
+//NonUEFIVHDFinish();
+
+//Copy(System.Environment.GetEnvironmentVariable("TEMP") + "\\" + win8vhdfile, ud);
+//copy cp = new copy(ud);
+//cp.ShowDialog();
+
+//Copy(System.Environment.GetEnvironmentVariable("TEMP") + "\\" + win8vhdfile, ud + win8vhdfile);
+
+
+
+//private void UnZipFiles()
+//{
+//    UnZipClass.UnZip(Application.StartupPath + "\\files.dat", StringOperation.Combine(Path.GetTempPath(), "WTGA"));
+//}
+
+//private void SerFiles()
+//{
+//    using (FileStream fsRead = File.OpenRead(@"E:\MyProgram\wintogo\wintogo\bin\Release\files\imagex_x64.exe"))
+//    {
+
+
+
+//            //byte[] byts = new byte[buffersize * 1024 * 1024];
+//            //int r = 0;
+//            //while ((r = fsRead.Read(byts, 0, byts.Length)) > 0)
+//            //{
+//            //    fsWrite.Write(byts, 0, r);
+//            //    //Console.WriteLine(fsWrite.Position / (double)fsRead.Length * 100);
+//            //    //r = fsRead.Read(byts, 0, byts.Length);
+//            //}
+
+
+//}
+//using (FileStream fs = new FileStream(@"E:\MyProgram\wintogo\wintogo\bin\Release\files\imagex_x64.exe", FileMode.Open))
+//{
+//    byte[] byts = new byte[fs.Length];
+//    fs.Read(byts, 0, byts.Length);
+//    BinaryFormatter bf = new BinaryFormatter();
+//    using (FileStream fsWrite =new FileStream(Application.StartupPath + @"\a.bin", FileMode.Create))
+//    {
+//        bf.Serialize(fsWrite, byts);
+//    }
+
+
+//}
+//using (FileStream fs = new FileStream(Application.StartupPath + @"\a.bin", FileMode.Open))
+//{
+//    BinaryFormatter bf = new BinaryFormatter();
+//    byte[] byts = bf.Deserialize(fs) as byte[];
+//    using (FileStream fsWrite = new FileStream(Path.GetTempPath() + "\\a.exe", FileMode.Create))
+//    {
+//        fsWrite.Write(byts, 0, byts.Length);
+//    }
+
+//}
+//}
+
+//MessageBox.Show(WTGOperation.diskpartscriptpath);
+//FileOperation.CleanLockStream(MsgManager.getResString("Msg_ntfsstream", MsgManager.ci), MsgManager.getResString("Msg_warning", MsgManager.ci));
+//this.Width = (int)((double)this.Width * 0.675);
+//MessageBox.Show(StringOperation.IsChina(@"C:\Users\Sugar-前妻\AppData\Local\Temp\").ToString ());
+
+
+#region OldCode
+//using (StreamReader sr=new StreamReader (@"c:\My\b.txt"))
+//{
+//    string fileStr=sr.ReadToEnd();
+//    MatchCollection mc = Regex.Matches(fileStr, @"Index : ([0-9]+)\nName : [\^]");
+//    MessageBox.Show(mc[1].Value);
+
+//}
+//string fileStr=File.ReadAllText(@"c:\b.txt");
+//UnZipFiles();
+//SerFiles();
+
+//WTGOperation.ud = "100";
+//vo.WinbootImagex();
+#endregion
+//Stopwatch sw = new Stopwatch();
+//sw.Start();
+
+
+//set_TextDelegate Set_Text = new set_TextDelegate(set_textboxText); ;
+
+//Set_Text  //实例化
+//sw.Stop();
+//MessageBox.Show(sw.Elapsed.ToString ());
+
+//private UsbManager manager;
+
+
+//int formwide = 623;
+//bool allowesd = false;//可使用ESD文件
+
+//private string efisize = "350";
+
+
+
+//VHDOperation.CleanTemp();
+//vo.CreateVHD();
+//vo.VHDExtra();
+//vo.DetachVHD();
+//vo.CopyVHD();
+//if (!checkBoxfixed.Checked)
+//{
+//    vo.VHDDynamicSizeIns(WTGOperation.ud);
+//}
+
+
+////finish f = new finish();
+////f.ShowDialog();
+
+
+//private void LoadPlugins()
+//{
+
+//    string pluginPath = StringOperation.Combine(Application.StartupPath, "plugins");
+//    //MessageBox.Show(pluginPath);
+//    foreach (var item in Directory.GetFiles(pluginPath, "*.dll"))
+//    {
+//        try
+//        {
+//            Assembly asm = Assembly.LoadFile(item);
+//            Type[] types = asm.GetExportedTypes();
+//            Type typeIPlugin = typeof(InterfacePlugin);
+//            foreach (var typeItem in types)
+//            {
+//                if (typeIPlugin.IsAssignableFrom(typeItem) && !typeItem.IsAbstract)
+//                {
+//                    InterfacePlugin iPlugin = (InterfacePlugin)Activator.CreateInstance(typeItem);
+//                    ToolStripItem tsItem = 工具ToolStripMenuItem.DropDownItems.Add(iPlugin.PluginName);
+//                    工具ToolStripMenuItem.Tag = iPlugin;
+//                    tsItem.Click += tsItem_Click;
+//                }
+//            }
+//        }
+//        catch (Exception ex)
+//        {
+//            //MessageBox.Show("Test");
+//            Log.WriteLog("LoadPlugins.log", ex.ToString());
+//        }
+//    }
+
+//}
+
+//void tsItem_Click(object sender, EventArgs e)
+//{
+//    InterfacePlugin iPlugin = 工具ToolStripMenuItem.Tag as InterfacePlugin;
+//    if (iPlugin != null)
+//    {
+//        iPlugin.Execute();
+//    }
+//}
+
+//UDList.Clear();
+////MsgManager.getResString("Msg_chooseud")
+////请选择可移动设备
+//UDList.Add(MsgManager.getResString("Msg_chooseud", MsgManager.ci));
+
+//foreach (UsbDisk disk in disks)
+//{
+
+//    UDList.Add(disk.ToString());
+//    //textBox.AppendText(disk.ToString() + CR);
+//}
+
+//List<string> list = new List<string>() { "a","b"};
+//List<string> listb = new List<string>() { "a", "b" };
+//if (list==listb)
+//{
+//    MessageBox.Show("Test");
+//}
+
+//UsbManager um = new UsbManager();
+
+
+//List<string> sw_filelist = new List<string>();
+
+////string[] sw_fl = new string[13]; ;//software filelist
+////ArrayList sw_filelist = new ArrayList();
+//sw_filelist.Add("\\files.dat");
+////sw_filelist.Add("\\files\\san_policy.xml");
+////sw_filelist.Add("\\files\\imagex_x86.exe");
+////sw_filelist.Add("\\files\\fbinst.exe");
+////sw_filelist.Add("\\files\\FastCopy.exe");
+////sw_filelist.Add("\\files\\bootsect.exe");
+////sw_filelist.Add("\\files\\BOOTICE.EXE");
+////sw_filelist.Add("\\files\\bcdboot.exe");
+////sw_filelist.Add("\\files\\bcdboot7601.exe");
+////sw_filelist.Add("\\files\\imagex_x64.exe");
+////sw_filelist.Add("\\files\\usb.reg");
+////sw_filelist.Add("\\files\\settings.ini");
+
+//for (int i = 1; i < sw_filelist.Count; i++)
+//{
+//    if (!File.Exists(Application.StartupPath + sw_filelist[i]))
+//    {
+//        //MsgManager.getResString("Msg_filelist")
+
+//        MessageBox.Show(MsgManager.getResString("Msg_filelist", MsgManager.ci) + Application.StartupPath + sw_filelist[i], MsgManager.getResString("Msg_error", MsgManager.ci), MessageBoxButtons.OK, MessageBoxIcon.Error);
+//        VisitWeb("http://bbs.luobotou.org/thread-761-1-1.html");
+
+//        Environment.Exit(0);
+//        break;
+//    }
+//}
+
+//LoadPlugins();
+//wp = new WriteProgress();
+//CheckForIllegalCrossThreadCalls = false;
+
+//MessageBox.Show("Test");
+//label4.Visible = true;
+
+//List<string> UDList = new List<string>();
+
+
+//ImageOperation io = new ImageOperation();
+//io.imageFile = WTGOperation.path;
+//io.imageX = WTGOperation.imagex;
+//io.AutoChooseWimIndex();
+//ImageOperation.AutoChooseWimIndex(ref WTGOperation.wimpart, WTGOperation.win7togo);
+//MessageBox.Show(WTGOperation.wimpart);
+//MessageBox.Show(WTGOperation.wimpart);
+
+
+//if (!this.NeedCopy)
+//{
+//    //this.NeedCopy = false;
+//    //usetemp = false;
+
+//    //this.VhdPath = WTGOperation.ud + this.VhdFileName;
+//}
+//else
+//{
+//    //SetTempPath.temppath + "\\" + win8vhdfile;
+//    //needcopy = true;
+//}
+
+
+//AppendText("复制文件中...大约需要10分钟~1小时，请耐心等待！");
+//wp.Show();
+//Application.DoEvents();
+//System.Diagnostics.Process cp = System.Diagnostics.Process.Start(WTGOperation.filesPath+ "\\fastcopy.exe", " /auto_close \"" + Form1.vpath + "\" /to=\"" + ud + "\"");
+//cp.WaitForExit();
+//wp.Close();
+
+
+
+////MessageBox.Show(adprogram.ToString() + " " + startindex);
+//adtitle = pageHtml.Substring(adprogram, startindex - adprogram);
+//adtitles = adtitle;
+//adlink = pageHtml.Substring(startindex + 1, endindex - startindex - 1);
+//Set_Text(adtitle);
+//Set_Text = new set_TextDelegate(set_textboxText); //实例化
+//MessageBox.Show("Test");
+//Form1.SetText(adtitle);'
+
+
+
+//linkLabel.Invoke(setLinkLabel, new object[] { adtitle });
+
+
+//linkLabel2(Set_Text);
+//MessageBox.Show("");
+//writeprogress .linklabel1
+//MessageBox.Show(adtitle + "     " + adlink);
+
+
+//Byte[] pageData1 = MyWebClient1.DownloadData("http://bbs.luobotou.org/app/announcement.txt"); //从指定网站下载数据
+//pageHtml = Encoding.UTF8.GetString(pageData1);
+//MessageBox.Show(pageHtml);
+//int index1 = pageHtml.IndexOf(Application.ProductName);
+//int startindex = pageHtml.IndexOf("~", index1);
+//int endindex = pageHtml.IndexOf("结束", index1);
+//int adprogram = index1 + Application.ProductName.Length + 1;
+
+//Set_Text(match.Groups[1].Value);
+
+
+#region OldCode
+//string portal_block = pageHtml.Substring;
+//String adtitle;
+////MessageBox.Show(adprogram.ToString() + " " + startindex);
+//adtitle = pageHtml.Substring(adprogram, startindex - adprogram);
+
+//adlink = pageHtml.Substring(startindex + 1, endindex - startindex - 1);
+//linkLabel2.Invoke(Set_Text, new object[] { adtitle });
+//MessageBox.Show("");
+
+//MessageBox.Show(adtitle + "     " + adlink);
+#endregion
+
+//MessageBox.Show("Test");

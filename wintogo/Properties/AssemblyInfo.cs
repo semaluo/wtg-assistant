@@ -7,7 +7,7 @@ using System.Resources;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("wintogo assistant")]
-[assembly: AssemblyDescription("可将win8装入可移动磁盘")]
+[assembly: AssemblyDescription("打造移动版Win8")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("bbs.luobotou.org")]
 [assembly: AssemblyProduct("WTG辅助工具")]
@@ -33,6 +33,6 @@ using System.Resources;
 // 可以指定所有这些值，也可以使用“内部版本号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("3.3.0.0")]
-[assembly: AssemblyFileVersion("3.3.0.0")]
+[assembly: AssemblyVersion("3.3.1.0")]
+[assembly: AssemblyFileVersion("3.3.1.0")]
 [assembly: NeutralResourcesLanguageAttribute("")]

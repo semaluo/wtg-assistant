@@ -60,12 +60,12 @@ namespace wintogo
             set { linkLabel = value; }
         }
 
-        private Action<string> setLinkLabel;
-        public Action<string> SetLinkLabel
-        {
-            get { return setLinkLabel; }
-            set { setLinkLabel = value; }
-        }
+        //private Action<string> setLinkLabel;
+        //public Action<string> SetLinkLabel
+        //{
+        //    get { return setLinkLabel; }
+        //    set { setLinkLabel = value; }
+        //}
         //private set_TextDelegate  set_Text;
 
         //public set_TextDelegate  Set_text
@@ -171,9 +171,9 @@ namespace wintogo
                 WebClient MyWebClient = new WebClient();
 
                 MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于对向Internet资源的请求进行身份验证的网络凭据。
-
-                Byte[] pageData = MyWebClient.DownloadData("http://bbs.luobotou.org/app/wintogo.txt"); //从指定网站下载数据
-
+                
+                byte[] pageData = MyWebClient.DownloadData("http://bbs.luobotou.org/app/wintogo.txt"); //从指定网站下载数据
+                //MyWebClient.DownloadString()
                 pageHtml1 = Encoding.UTF8.GetString(pageData);
                 int index = pageHtml1.IndexOf("announcement=");
                 int indexbbs = pageHtml1.IndexOf("bbs=");
@@ -182,14 +182,9 @@ namespace wintogo
                     if (pageHtml1.Substring(indexbbs + 4, 1) == "1")
                     {
                         string pageHtml;
-
-
-                        WebClient MyWebClient1 = new WebClient();
-
-                        MyWebClient1.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于对向Internet资源的请求进行身份验证的网络凭据。
-
-                        Byte[] pageData1 = MyWebClient1.DownloadData("http://bbs.luobotou.org/portal.php"); //从指定网站下载数据
-
+                        WebClient MyWebClient2 = new WebClient();
+                        MyWebClient2.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于对向Internet资源的请求进行身份验证的网络凭据。
+                        byte[] pageData1 = MyWebClient2.DownloadData("http://bbs.luobotou.org/portal.php"); //从指定网站下载数据
                         pageHtml = Encoding.UTF8.GetString(pageData1);
                         //MessageBox.Show(pageHtml);
                         int index1 = pageHtml.IndexOf("<ul><li><a href=");
@@ -207,63 +202,32 @@ namespace wintogo
                             //int adprogram = index1 + Application.ProductName.Length + 1;
 
                         }
-                        #region OldCode
-                        //string portal_block = pageHtml.Substring;
-                        //String adtitle;
-                        ////MessageBox.Show(adprogram.ToString() + " " + startindex);
-                        //adtitle = pageHtml.Substring(adprogram, startindex - adprogram);
-
-                        //adlink = pageHtml.Substring(startindex + 1, endindex - startindex - 1);
-                        //linkLabel2.Invoke(Set_Text, new object[] { adtitle });
-                        //MessageBox.Show("");
-
-                        //MessageBox.Show(adtitle + "     " + adlink);
-                        #endregion
-                    }
-
-                    {
-
-                        //MessageBox.Show("Test");
-                        string pageHtml;
-                        WebClient MyWebClient1 = new WebClient();
-
-                        MyWebClient1.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于对向Internet资源的请求进行身份验证的网络凭据。
-                        MyWebClient1.Encoding = Encoding.UTF8;
-                        pageHtml = MyWebClient1.DownloadString("http://bbs.luobotou.org/app/announcement.txt");
-
-                        //Byte[] pageData1 = MyWebClient1.DownloadData("http://bbs.luobotou.org/app/announcement.txt"); //从指定网站下载数据
-                        //pageHtml = Encoding.UTF8.GetString(pageData1);
-                        //MessageBox.Show(pageHtml);
-                        //int index1 = pageHtml.IndexOf(Application.ProductName);
-                        //int startindex = pageHtml.IndexOf("~", index1);
-                        //int endindex = pageHtml.IndexOf("结束", index1);
-                        //int adprogram = index1 + Application.ProductName.Length + 1;
-                        Match match = Regex.Match(pageHtml, Application.ProductName + "=(.+)~(.+)结束");
-                        //Set_Text(match.Groups[1].Value);
-                        string adlink;
-                        adlink = match.Groups[2].Value;
-                        String adtitle;
-                        adtitle = match.Groups[1].Value;
-                        ////MessageBox.Show(adprogram.ToString() + " " + startindex);
-                        //adtitle = pageHtml.Substring(adprogram, startindex - adprogram);
-                        //adtitles = adtitle;
-                        //adlink = pageHtml.Substring(startindex + 1, endindex - startindex - 1);
-                        //Set_Text(adtitle);
-                        //Set_Text = new set_TextDelegate(set_textboxText); //实例化
-                        //MessageBox.Show("Test");
-                        //Form1.SetText(adtitle);
-
-                        linkLabel.Invoke(setLinkLabel, new object[] { adtitle });
-                        linkLabel.Tag = adlink;
-                        //linkLabel2(Set_Text);
-                        //MessageBox.Show("");
-                        //writeprogress .linklabel1
-                        //MessageBox.Show(adtitle + "     " + adlink);
 
                     }
+
+
+
+                    //string pageHtml1;
+                    WebClient MyWebClient1 = new WebClient();
+
+                    MyWebClient1.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于对向Internet资源的请求进行身份验证的网络凭据。
+                    MyWebClient1.Encoding = Encoding.UTF8;
+                    pageHtml1 = MyWebClient1.DownloadString("http://bbs.luobotou.org/app/announcement.txt");
+
+
+                    Match match = Regex.Match(pageHtml1, Application.ProductName + "=(.+)~(.+)结束");
+                    string adlink = match.Groups[2].Value;
+                    string adtitle = match.Groups[1].Value;
+
+                    linkLabel.Invoke(new Action(() => { linkLabel.Text = adtitle; }));
+
+                    linkLabel.Tag = adlink;
+
+
+
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Log.WriteLog("UpdateLog.log", ex.ToString());
 

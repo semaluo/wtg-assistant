@@ -14,7 +14,7 @@ namespace wintogo
         /// <returns>return WTGOperation.diskpartscriptpath + "\\uefi.txt";</returns>
         public static string GenerateGPTAndUEFIScript(string efisize, string ud)
         {
-            using (FileStream fs0 = new FileStream(WTGOperation.diskpartscriptpath + @"\uefi.txt", FileMode.Create, FileAccess.Write))
+            using (FileStream fs0 = new FileStream(WTGOperation.diskpartScriptPath + @"\uefi.txt", FileMode.Create, FileAccess.Write))
             {
                 fs0.SetLength(0);
                 using (StreamWriter sw0 = new StreamWriter(fs0, Encoding.Default))
@@ -36,7 +36,7 @@ namespace wintogo
                 }
             }
             //sw0.Close();
-            return WTGOperation.diskpartscriptpath + "\\uefi.txt";
+            return WTGOperation.diskpartScriptPath + "\\uefi.txt";
         }
         /// <summary>
         /// MBR+UEFI脚本Write到WTGOperation.diskpartscriptpath + @"\uefimbr.txt
@@ -45,7 +45,7 @@ namespace wintogo
         /// <param name="ud">优盘盘符，":"、"\"不必须</param>
         public static void GenerateMBRAndUEFIScript(string efisize, string ud)
         {
-            using (FileStream fs0 = new FileStream(WTGOperation.diskpartscriptpath + @"\uefimbr.txt", FileMode.Create, FileAccess.Write))
+            using (FileStream fs0 = new FileStream(WTGOperation.diskpartScriptPath + @"\uefimbr.txt", FileMode.Create, FileAccess.Write))
             {
                 fs0.SetLength(0);
                 using (StreamWriter sw0 = new StreamWriter(fs0, Encoding.Default))
@@ -83,7 +83,7 @@ namespace wintogo
             sb.AppendLine("assign letter=" + WTGOperation.ud.Substring(0, 1));
             sb.AppendLine("exit");
             DiskpartScriptManager dsm = new DiskpartScriptManager();
-            dsm.args = sb.ToString();
+            dsm.Args = sb.ToString();
             dsm.RunDiskpartScript();
 
             //ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘

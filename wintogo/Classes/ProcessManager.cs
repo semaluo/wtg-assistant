@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 //using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -206,7 +202,7 @@ namespace wintogo
             }
             catch (Exception ex)
             {
-                MessageBox.Show(MsgManager.getResString("Msg_Failure", MsgManager.ci) + ex.ToString());
+                MessageBox.Show(MsgManager.GetResString("Msg_Failure", MsgManager.ci) + ex.ToString());
             }
             finally
             {
@@ -237,7 +233,7 @@ namespace wintogo
             }
             catch (Exception ex)
             {
-                MessageBox.Show(MsgManager.getResString("Msg_Failure", MsgManager.ci) + ex.ToString());
+                MessageBox.Show(MsgManager.GetResString("Msg_Failure", MsgManager.ci) + ex.ToString());
             }
             finally
             {
@@ -277,7 +273,7 @@ namespace wintogo
             {
                 //MsgManager.getResString("Msg_Failure")
                 //操作失败
-                MessageBox.Show(MsgManager.getResString("Msg_Failure", MsgManager.ci) + ex.ToString());
+                MessageBox.Show(MsgManager.GetResString("Msg_Failure", MsgManager.ci) + ex.ToString());
             }
 
         }

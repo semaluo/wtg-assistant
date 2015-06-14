@@ -110,6 +110,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.wTG高级设定选项ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBoxadv.SuspendLayout();
@@ -334,20 +335,24 @@
             // linkLabel3
             // 
             resources.ApplyResources(this.linkLabel3, "linkLabel3");
+            this.linkLabel3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.linkLabel3.LinkColor = System.Drawing.Color.Red;
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.TabStop = true;
             this.toolTip1.SetToolTip(this.linkLabel3, resources.GetString("linkLabel3.ToolTip"));
             this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked_2);
+            this.linkLabel3.Click += new System.EventHandler(this.linkLabel3_Click);
             // 
             // linkLabel5
             // 
             resources.ApplyResources(this.linkLabel5, "linkLabel5");
+            this.linkLabel5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.linkLabel5.LinkColor = System.Drawing.Color.Red;
             this.linkLabel5.Name = "linkLabel5";
             this.linkLabel5.TabStop = true;
             this.toolTip1.SetToolTip(this.linkLabel5, resources.GetString("linkLabel5.ToolTip"));
             this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel5_LinkClicked);
+            this.linkLabel5.Click += new System.EventHandler(this.linkLabel5_Click);
             // 
             // button3
             // 
@@ -530,7 +535,8 @@
             this.toolStripMenuItem2,
             this.wIN7TOGOToolStripMenuItem,
             this.bOOTICEToolStripMenuItem,
-            this.修复盘符ToolStripMenuItem});
+            this.修复盘符ToolStripMenuItem,
+            this.wTG高级设定选项ToolStripMenuItem});
             this.工具ToolStripMenuItem.Name = "工具ToolStripMenuItem";
             resources.ApplyResources(this.工具ToolStripMenuItem, "工具ToolStripMenuItem");
             // 
@@ -683,6 +689,12 @@
             this.timer1.Interval = 2000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // wTG高级设定选项ToolStripMenuItem
+            // 
+            this.wTG高级设定选项ToolStripMenuItem.Name = "wTG高级设定选项ToolStripMenuItem";
+            resources.ApplyResources(this.wTG高级设定选项ToolStripMenuItem, "wTG高级设定选项ToolStripMenuItem");
+            this.wTG高级设定选项ToolStripMenuItem.Click += new System.EventHandler(this.wTG高级设定选项ToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
@@ -804,6 +816,7 @@
         private System.Windows.Forms.ToolStripMenuItem 繁体中文ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
         private System.Windows.Forms.ToolStripMenuItem 修复盘符ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem wTG高级设定选项ToolStripMenuItem;
     }
 }
 

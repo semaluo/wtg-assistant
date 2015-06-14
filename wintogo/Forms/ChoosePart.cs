@@ -27,12 +27,12 @@ namespace wintogo
             //MessageBox.Show(mc[1].Value);
 
             //}
-            numericUpDown1.Value = Int32.Parse(WTGOperation.wimpart);
+            numericUpDown1.Value = Int32.Parse(WTGOperation.wimPart);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            WTGOperation.wimpart = numericUpDown1.Value.ToString();
+            WTGOperation.wimPart = numericUpDown1.Value.ToString();
             //part =(int) numericUpDown1.Value ;
             
             this.Close();

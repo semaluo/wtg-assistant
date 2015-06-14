@@ -9,11 +9,17 @@ using System.Windows.Forms;
 
 namespace wintogo.Forms
 {
-    public partial class Settings : Form
+    public partial class WTGSettings : Form
     {
-        public Settings()
+        public WTGSettings()
         {
             InitializeComponent();
+        }
+
+        private void WTGSettings_Load(object sender, EventArgs e)
+        {
+            WTGSettingItems wsi = new WTGSettingItems();
+            propertyGrid1.SelectedObject = wsi;
         }
     }
 }
