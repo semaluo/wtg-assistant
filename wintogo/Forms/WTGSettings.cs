@@ -18,8 +18,8 @@ namespace wintogo.Forms
 
         private void WTGSettings_Load(object sender, EventArgs e)
         {
-            WTGSettingItems wsi = new WTGSettingItems();
-            propertyGrid1.SelectedObject = wsi;
+            //UserSetWTGSettingItems wsi = new UserSetWTGSettingItems();
+            propertyGrid1.SelectedObject = WTGOperation.userSettings;
         }
     }
 }

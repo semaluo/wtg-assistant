@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="IsChinaMsg" xml:space="preserve">
     <value>请不要将程序放入中文文件夹运行。</value>
@@ -248,5 +248,8 @@
   </data>
   <data name="Msg_ApplyError" xml:space="preserve">
     <value>镜像文件应用失败！</value>
+  </data>
+  <data name="Msg_NtfsUefiSupport" xml:space="preserve">
+    <value>NTFS分区UEFI支持</value>
   </data>
 </root>

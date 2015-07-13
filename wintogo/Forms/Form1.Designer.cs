@@ -76,11 +76,12 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBoxadv = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.checkBoxunformat = new System.Windows.Forms.CheckBox();
             this.checkBoxcommon = new System.Windows.Forms.CheckBox();
             this.checkBoxuefimbr = new System.Windows.Forms.CheckBox();
-            this.checkBoxdiswinre = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.checkBoxdiswinre = new System.Windows.Forms.CheckBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.打开程序运行目录ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -97,6 +98,7 @@
             this.wIN7TOGOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bOOTICEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修复盘符ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wTG高级设定选项ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chineseSimpleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,7 +112,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.wTG高级设定选项ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBoxadv.SuspendLayout();
@@ -125,6 +126,7 @@
             this.comboBox1.Items.AddRange(new object[] {
             resources.GetString("comboBox1.Items")});
             this.comboBox1.Name = "comboBox1";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             this.comboBox1.MouseHover += new System.EventHandler(this.comboBox1_MouseHover);
             // 
             // button1
@@ -137,6 +139,7 @@
             // openFileDialog1
             // 
             resources.ApplyResources(this.openFileDialog1, "openFileDialog1");
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // wimbox
             // 
@@ -436,6 +439,7 @@
             // 
             // groupBoxadv
             // 
+            this.groupBoxadv.Controls.Add(this.button2);
             this.groupBoxadv.Controls.Add(this.checkBoxunformat);
             this.groupBoxadv.Controls.Add(this.checkBoxcommon);
             this.groupBoxadv.Controls.Add(this.checkBoxwimboot);
@@ -443,7 +447,6 @@
             this.groupBoxadv.Controls.Add(this.linkLabel5);
             this.groupBoxadv.Controls.Add(this.checkBox_san_policy);
             this.groupBoxadv.Controls.Add(this.checkBoxnotemp);
-            this.groupBoxadv.Controls.Add(this.checkBoxdiswinre);
             this.groupBoxadv.Controls.Add(this.checkBoxuefi);
             this.groupBoxadv.Controls.Add(this.checkBoxframework);
             this.groupBoxadv.Controls.Add(this.checkBoxfixed);
@@ -453,6 +456,13 @@
             resources.ApplyResources(this.groupBoxadv, "groupBoxadv");
             this.groupBoxadv.Name = "groupBoxadv";
             this.groupBoxadv.TabStop = false;
+            // 
+            // button2
+            // 
+            resources.ApplyResources(this.button2, "button2");
+            this.button2.Name = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // checkBoxunformat
             // 
@@ -474,16 +484,16 @@
             this.checkBoxuefimbr.UseVisualStyleBackColor = true;
             this.checkBoxuefimbr.CheckedChanged += new System.EventHandler(this.checkBoxuefimbr_CheckedChanged);
             // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
             // checkBoxdiswinre
             // 
             resources.ApplyResources(this.checkBoxdiswinre, "checkBoxdiswinre");
             this.checkBoxdiswinre.Name = "checkBoxdiswinre";
             this.checkBoxdiswinre.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
             // 
             // menuStrip1
             // 
@@ -603,6 +613,12 @@
             resources.ApplyResources(this.修复盘符ToolStripMenuItem, "修复盘符ToolStripMenuItem");
             this.修复盘符ToolStripMenuItem.Click += new System.EventHandler(this.修复盘符ToolStripMenuItem_Click);
             // 
+            // wTG高级设定选项ToolStripMenuItem
+            // 
+            this.wTG高级设定选项ToolStripMenuItem.Name = "wTG高级设定选项ToolStripMenuItem";
+            resources.ApplyResources(this.wTG高级设定选项ToolStripMenuItem, "wTG高级设定选项ToolStripMenuItem");
+            this.wTG高级设定选项ToolStripMenuItem.Click += new System.EventHandler(this.wTG高级设定选项ToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -689,12 +705,6 @@
             this.timer1.Interval = 2000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // wTG高级设定选项ToolStripMenuItem
-            // 
-            this.wTG高级设定选项ToolStripMenuItem.Name = "wTG高级设定选项ToolStripMenuItem";
-            resources.ApplyResources(this.wTG高级设定选项ToolStripMenuItem, "wTG高级设定选项ToolStripMenuItem");
-            this.wTG高级设定选项ToolStripMenuItem.Click += new System.EventHandler(this.wTG高级设定选项ToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
@@ -706,6 +716,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.checkBoxdiswinre);
             this.Controls.Add(this.checkBoxdiskpart);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.linkLabel3);
@@ -817,6 +828,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
         private System.Windows.Forms.ToolStripMenuItem 修复盘符ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem wTG高级设定选项ToolStripMenuItem;
+        private System.Windows.Forms.Button button2;
     }
 }
 

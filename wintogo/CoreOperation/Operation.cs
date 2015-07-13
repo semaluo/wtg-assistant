@@ -1,11 +1,15 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace wintogo
 {
     public class WTGOperation
     {
-        public static string userSetEfiSize = "350";
+        public static UserSetWTGSettingItems userSettings = new UserSetWTGSettingItems();
+        public static List<string> imagePartNames = new List<string>();
+        //public static bool appClosrForm = false;
+        //public static string userSetEfiSize = "350";
         /// <summary>
         /// 可使用ESD文件
         /// </summary>
@@ -57,6 +61,7 @@ namespace wintogo
         public static bool isUefiGpt;
         public static bool isUefiMbr;
         public static bool isNoTemp;
+
         /// <summary>
         ///  WTGOperation.filetype = Path.GetExtension(openFileDialog1.FileName.ToLower()).Substring(1);
         /// </summary>
@@ -72,11 +77,12 @@ namespace wintogo
         /// <summary>
         /// win8.vhd
         /// </summary>
-        public static string win8VHDFileName="win8.vhd";
+        public static string win8VHDFileName = "win8.vhd";
         /// <summary>
         /// Path.GetTempPath() + "\\WTGA";
         /// </summary>
         public static string applicationFilesPath = Path.GetTempPath() + "\\WTGA";
         public static string logPath = Application.StartupPath + "\\logs";
+        public static string vhdExtension = "vhd";
     }
 }

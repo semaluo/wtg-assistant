@@ -20,7 +20,21 @@ namespace wintogo
         //public int win7togo { get; set; }
 
         #region 静态方法
+        public static List<string> DismGetImagePartsInfo(string imageFile)
+        {
+            List<string> list = new List<string>();
+            string tempFile = Path.GetTempFileName();
+            ProcessManager.SyncCMD("Dism.exe /Get-ImageInfo  /ImageFile:\"" + imageFile + "\" /english > \"" + tempFile + "\"");
+            string partsInfo = File.ReadAllText(tempFile, Encoding.Default);
+            //MessageBox.Show(partsInfo);
+            MatchCollection matches = Regex.Matches(partsInfo, @"Index : ([0-9]+?)[\w\W]*?Name : (.+)", RegexOptions.ECMAScript);
+            foreach (Match item in matches)
+            {
+                list.Add(item.Groups[1].Value + " : " + item.Groups[2].Value);
+            }
+            return list;
 
+        }
         public static string AutoChooseESDImageIndex(string esdPath)
         {
             string outputFilePath = Path.GetTempFileName();
@@ -70,8 +84,15 @@ namespace wintogo
                 args.Append(wimlocation.Substring(0, wimlocation.Length - 11));
                 args.Append("sxs");
                 //ProcessManager.RunDism(args.ToString());
-                ProcessManager.ECMD("dism.exe",args.ToString ());
-               
+                try
+                {
+                    ProcessManager.ECMD("dism.exe", args.ToString());
+                }
+                catch (Exception)
+                {
+                    //ProcessManager.KillProcessByName("dism.exe");
+                }
+
 
             }
             if (san_policy)
@@ -118,8 +139,8 @@ namespace wintogo
         }
         private static void DismApplyImage(string imageFile, string targetDisk, string wimIndex)
         {
-            
-            ProcessManager.ECMD("Dism.exe"," /Apply-Image /ImageFile:\"" + imageFile + "\" /ApplyDir:" + targetDisk.Substring(0, 2) + " /Index:" + wimIndex.ToString());
+
+            ProcessManager.ECMD("Dism.exe", " /Apply-Image /ImageFile:\"" + imageFile + "\" /ApplyDir:" + targetDisk.Substring(0, 2) + " /Index:" + wimIndex.ToString());
             //ProcessManager.ECMD("Dism.exe", " /Apply-Image /ImageFile:\"" + imageFile + "\" /ApplyDir:" + targetDisk.Substring(0, 2) + " /Index:" + wimIndex.ToString());
             //wp.ShowDialog();
 
@@ -170,7 +191,7 @@ namespace wintogo
 
             System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
             System.Xml.XmlNodeReader reader = null;
-            
+
             string strFilename = WTGOperation.logPath + "\\wiminfo.xml";
             if (!File.Exists(strFilename))
             {
@@ -203,6 +224,7 @@ namespace wintogo
                     }
                 }
             }
+
             catch (Exception ex)
             {
                 Log.WriteLog("Iswin7.log", strFilename + "\n" + ex.ToString());
@@ -224,7 +246,7 @@ namespace wintogo
             {
                 ProcessManager.SyncCMD("reg.exe load HKU\\sys " + installdrive + "Windows\\System32\\Config\\SYSTEM  > \"" + WTGOperation.logPath + "\\Win7REGLoad.log\"");
                 int errorlevel = ProcessManager.SyncCMD("reg.exe import \"" + applicationFilesPath + "\\usb.reg\" >nul &if %errorlevel% ==0 (echo 注册表导入成功) else (echo 注册表导入失败)" + " > \"" + WTGOperation.logPath + "\\Win7REGImport.log\"");
-                ProcessManager.SyncCMD("reg.exe unload HKU\\sys " + " > \"" + WTGOperation.logPath+ "\\Win7REGLoad.log\"");
+                ProcessManager.SyncCMD("reg.exe unload HKU\\sys " + " > \"" + WTGOperation.logPath + "\\Win7REGLoad.log\"");
                 Log.WriteLog("ImportReg.log", errorlevel.ToString());
                 Fixletter("C:", installdrive);
 

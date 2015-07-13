@@ -286,6 +286,15 @@ namespace wintogo.MultiLanguage {
         }
         
         /// <summary>
+        ///   查找类似 NTFS分区UEFI支持 的本地化字符串。
+        /// </summary>
+        public static string Msg_NtfsUefiSupport {
+            get {
+                return ResourceManager.GetString("Msg_NtfsUefiSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 此选项仅在非UEFI模式下有效！ 的本地化字符串。
         /// </summary>
         public static string Msg_OnlyNonUefi {

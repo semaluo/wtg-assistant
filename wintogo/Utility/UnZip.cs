@@ -4,7 +4,7 @@ using System.IO;
 
 namespace wintogo
 {
-    class UnZipClass
+    public static class UnZipClass
     {
         public static void UnZip(string zipFilePath, string unZipDir)
         {
@@ -14,7 +14,7 @@ namespace wintogo
             }
             if (!File.Exists(zipFilePath))
             {
-                throw new System.IO.FileNotFoundException("压缩文件不存在！");
+                throw new FileNotFoundException("压缩文件不存在！");
             }
             //解压文件夹为空时默认与压缩文件同一级目录下，跟压缩文件同名的文件夹  
             if (unZipDir == string.Empty)
@@ -38,7 +38,7 @@ namespace wintogo
                     }
                     if (!directoryName.EndsWith("/"))
                         directoryName += "/";
-                    if (fileName != String.Empty)
+                    if (fileName != string.Empty)
                     {
                         using (FileStream streamWriter = File.Create(unZipDir + theEntry.Name))
                         {

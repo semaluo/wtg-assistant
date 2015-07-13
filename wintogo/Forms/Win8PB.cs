@@ -28,10 +28,18 @@ namespace wintogo
         public Win8PB()
         {
             InitializeComponent();
+            Console.WriteLine("初始化");
         }
 
         private void Win8PB_Load(object sender, EventArgs e)
         {
+            //InitializeComponent();
+            Console.WriteLine("Load");
+            //timer1 = new System.Windows.Forms.Timer();
+            //timer2 = new System.Windows.Forms.Timer();
+            //timer3 = new System.Windows.Forms.Timer();
+            //timer4 = new System.Windows.Forms.Timer();
+            //timer5 = new System.Windows.Forms.Timer();
             //MessageBox.Show("Test");
             //MessageBox.Show ("")
             timer1.Enabled = true;

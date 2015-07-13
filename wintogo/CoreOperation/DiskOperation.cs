@@ -6,6 +6,16 @@ namespace wintogo
 {
     public static class DiskOperation
     {
+        public static void SetNoDefaultDriveLetter(string uDisk)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("select volume " + uDisk.Substring(0, 1));
+            sb.AppendLine("attributes volume set nodefaultdriveletter");
+            DiskpartScriptManager dsm = new DiskpartScriptManager();
+            dsm.Args = sb.ToString();
+            dsm.RunDiskpartScript();
+            //attributes volume set nodefaultdriveletter
+        }
         /// <summary>
         /// WTGOperation.diskpartscriptpath + @"\uefi.txt"
         /// </summary>
@@ -43,7 +53,7 @@ namespace wintogo
         /// </summary>
         /// <param name="efisize">efisize(MB)</param>
         /// <param name="ud">优盘盘符，":"、"\"不必须</param>
-        public static void GenerateMBRAndUEFIScript(string efisize, string ud)
+        public static string GenerateMBRAndUEFIScript(string efisize, string ud)
         {
             using (FileStream fs0 = new FileStream(WTGOperation.diskpartScriptPath + @"\uefimbr.txt", FileMode.Create, FileAccess.Write))
             {
@@ -67,6 +77,7 @@ namespace wintogo
                 }
 
             }
+            return WTGOperation.diskpartScriptPath + @"\uefimbr.txt";
         }
 
         public static void DiskPartReformatUD()
@@ -86,6 +97,8 @@ namespace wintogo
             dsm.Args = sb.ToString();
             dsm.RunDiskpartScript();
 
+
+            #region OldCode
             //ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
             //if (DialogResult.No == MessageBox.Show("此操作将会清除移动磁盘所有分区的所有数据，确认？", "警告！", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
             //if (DialogResult.No == MessageBox.Show("您确定要继续吗？", "警告！", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; } 
@@ -122,6 +135,7 @@ namespace wintogo
 
             //System.Diagnostics.Process dpc = System.Diagnostics.Process.Start("diskpart.exe", " /s " + Application.StartupPath + "\\dp.txt");
             //dpc.WaitForExit();
+            #endregion
         }
         public static long GetHardDiskSpace(string str_HardDiskName)
         {

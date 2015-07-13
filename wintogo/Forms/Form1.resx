@@ -151,7 +151,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;comboBox1.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="button1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft YaHei UI, 12pt</value>
@@ -181,7 +181,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -217,7 +217,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;wimbox.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <metadata name="folderBrowserDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>157, 17</value>
@@ -498,7 +498,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;radiovhd.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="linkLabel3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -534,7 +534,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;linkLabel3.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="linkLabel5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -567,7 +567,7 @@
     <value>groupBoxadv</value>
   </data>
   <data name="&gt;&gt;linkLabel5.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="button3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft YaHei UI, 9pt</value>
@@ -603,7 +603,7 @@
     <value>True</value>
   </data>
   <data name="checkBoxnotemp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 133</value>
+    <value>6, 111</value>
   </data>
   <data name="checkBoxnotemp.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 4, 3, 4</value>
@@ -630,13 +630,13 @@
     <value>groupBoxadv</value>
   </data>
   <data name="&gt;&gt;checkBoxnotemp.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="checkBox_san_policy.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="checkBox_san_policy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 111</value>
+    <value>6, 89</value>
   </data>
   <data name="checkBox_san_policy.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 4, 3, 4</value>
@@ -663,7 +663,7 @@
     <value>groupBoxadv</value>
   </data>
   <data name="&gt;&gt;checkBox_san_policy.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="checkBoxwimboot.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -696,7 +696,7 @@
     <value>groupBoxadv</value>
   </data>
   <data name="&gt;&gt;checkBoxwimboot.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="checkBoxframework.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -825,7 +825,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;radiochuantong.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="radiovhdx.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -858,7 +858,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;radiovhdx.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="numericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
     <value>103, 33</value>
@@ -891,13 +891,13 @@
     <value>6, 29</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 34</value>
+    <value>80, 34</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>40</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>VHD文件容量
+    <value>虚拟硬盘大小
 (0=自动设定)</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
@@ -912,11 +912,35 @@
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
+  <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 153</value>
+  </data>
+  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 23</value>
+  </data>
+  <data name="button2.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="button2.Text" xml:space="preserve">
+    <value>更多高级选项</value>
+  </data>
+  <data name="&gt;&gt;button2.Name" xml:space="preserve">
+    <value>button2</value>
+  </data>
+  <data name="&gt;&gt;button2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button2.Parent" xml:space="preserve">
+    <value>groupBoxadv</value>
+  </data>
+  <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="checkBoxunformat.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="checkBoxunformat.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 155</value>
+    <value>105, 67</value>
   </data>
   <data name="checkBoxunformat.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 21</value>
@@ -937,13 +961,13 @@
     <value>groupBoxadv</value>
   </data>
   <data name="&gt;&gt;checkBoxunformat.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="checkBoxcommon.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="checkBoxcommon.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 155</value>
+    <value>6, 133</value>
   </data>
   <data name="checkBoxcommon.Size" type="System.Drawing.Size, System.Drawing">
     <value>99, 21</value>
@@ -964,7 +988,7 @@
     <value>groupBoxadv</value>
   </data>
   <data name="&gt;&gt;checkBoxcommon.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="checkBoxuefimbr.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -994,37 +1018,7 @@
     <value>groupBoxadv</value>
   </data>
   <data name="&gt;&gt;checkBoxuefimbr.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="checkBoxdiswinre.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="checkBoxdiswinre.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 89</value>
-  </data>
-  <data name="checkBoxdiswinre.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="checkBoxdiswinre.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 21</value>
-  </data>
-  <data name="checkBoxdiswinre.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
-  </data>
-  <data name="checkBoxdiswinre.Text" xml:space="preserve">
-    <value>禁用WinRE</value>
-  </data>
-  <data name="&gt;&gt;checkBoxdiswinre.Name" xml:space="preserve">
-    <value>checkBoxdiswinre</value>
-  </data>
-  <data name="&gt;&gt;checkBoxdiswinre.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBoxdiswinre.Parent" xml:space="preserve">
-    <value>groupBoxadv</value>
-  </data>
-  <data name="&gt;&gt;checkBoxdiswinre.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>4</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1081,7 +1075,40 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBoxadv.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
+  </data>
+  <data name="checkBoxdiswinre.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBoxdiswinre.Location" type="System.Drawing.Point, System.Drawing">
+    <value>371, 93</value>
+  </data>
+  <data name="checkBoxdiswinre.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="checkBoxdiswinre.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 21</value>
+  </data>
+  <data name="checkBoxdiswinre.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="checkBoxdiswinre.Text" xml:space="preserve">
+    <value>禁用WinRE</value>
+  </data>
+  <data name="checkBoxdiswinre.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;checkBoxdiswinre.Name" xml:space="preserve">
+    <value>checkBoxdiswinre</value>
+  </data>
+  <data name="&gt;&gt;checkBoxdiswinre.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxdiswinre.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;checkBoxdiswinre.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>665, 17</value>
@@ -1143,17 +1170,26 @@
   <data name="选择安装分卷ToolStripMenuItem1.Text" xml:space="preserve">
     <value>选择安装分卷</value>
   </data>
+  <data name="选择安装分卷ToolStripMenuItem1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="toolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 22</value>
   </data>
   <data name="toolStripMenuItem6.Text" xml:space="preserve">
     <value>设置EFI分区容量</value>
   </data>
+  <data name="toolStripMenuItem6.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 22</value>
   </data>
   <data name="toolStripMenuItem2.Text" xml:space="preserve">
     <value>设置临时文件夹</value>
+  </data>
+  <data name="toolStripMenuItem2.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="wIN7TOGOToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 22</value>
@@ -1165,7 +1201,7 @@
     <value>177, 22</value>
   </data>
   <data name="bOOTICEToolStripMenuItem.Text" xml:space="preserve">
-    <value>BOOTICE</value>
+    <value>启动BOOTICE</value>
   </data>
   <data name="修复盘符ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 22</value>
@@ -1179,6 +1215,9 @@
   <data name="wTG高级设定选项ToolStripMenuItem.Text" xml:space="preserve">
     <value>WTG高级设定选项</value>
   </data>
+  <data name="wTG高级设定选项ToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="工具ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 21</value>
   </data>
@@ -1186,19 +1225,19 @@
     <value>工具</value>
   </data>
   <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="englishToolStripMenuItem.Text" xml:space="preserve">
     <value>English</value>
   </data>
   <data name="chineseSimpleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="chineseSimpleToolStripMenuItem.Text" xml:space="preserve">
     <value>简体中文</value>
   </data>
   <data name="繁体中文ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="繁体中文ToolStripMenuItem.Text" xml:space="preserve">
     <value>繁體中文</value>
@@ -1210,25 +1249,25 @@
     <value>语言</value>
   </data>
   <data name="在线帮助ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="在线帮助ToolStripMenuItem.Text" xml:space="preserve">
     <value>在线教程</value>
   </data>
   <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="toolStripMenuItem4.Text" xml:space="preserve">
     <value>常见问题</value>
   </data>
   <data name="官方论坛ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="官方论坛ToolStripMenuItem.Text" xml:space="preserve">
     <value>官方论坛</value>
   </data>
   <data name="关于ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="关于ToolStripMenuItem.Text" xml:space="preserve">
     <value>关于</value>
@@ -1264,7 +1303,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="checkBoxdiskpart.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1297,7 +1336,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;checkBoxdiskpart.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 21.75pt, style=Bold</value>
@@ -1621,6 +1660,12 @@
   <data name="&gt;&gt;修复盘符ToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;wTG高级设定选项ToolStripMenuItem.Name" xml:space="preserve">
+    <value>wTG高级设定选项ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;wTG高级设定选项ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripMenuItem5.Name" xml:space="preserve">
     <value>toolStripMenuItem5</value>
   </data>
@@ -1680,12 +1725,6 @@
   </data>
   <data name="&gt;&gt;timer1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;wTG高级设定选项ToolStripMenuItem.Name" xml:space="preserve">
-    <value>wTG高级设定选项ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;wTG高级设定选项ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Form1</value>

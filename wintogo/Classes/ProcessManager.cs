@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 //using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -8,169 +9,81 @@ namespace wintogo
 {
     public static class ProcessManager
     {
-        public static WriteProgress wp = new WriteProgress();
-        public delegate void AppendTextCallback(string text);
+        public static WriteProgress wp;
+        //public delegate void AppendTextCallback(string text);
         //public static double percentage = -1;
 
         #region 解决多线程下控件访问的问题
         //private bool requiresClose = true;
 
-        /// <summary>
-        /// 结束进程
-        /// </summary>
-        /// 
-        //public static void ShowForm()
-        //{
-        //    Invoke(new MethodInvoker(Showd));
 
-        //}
-        //public static void End()
-        //{
-        //    Invoke(new MethodInvoker(DoEnd));
-
-        //}
-
-        //public static void DoEnd()
-        //{
-        //    wp.Close();
-        //}
-        //private void Showd()
-        //{
-        //    wp.ShowDialog();
-
-
-        //}
-//        public static void RunDism(string StartFileArg)
-//        {
-
-//            string readtext = string.Empty;
-//            Regex reg = new Regex(@"
-//\=∗\s∗(\d1,3\.\d)
-//");
-//            Task task = new Task(() =>
-//            {
-//                Console.WriteLine("Start");
-//                while (percentage < 99.9)
-//                {
-//                    Console.WriteLine("X");
-//                    try
-//                    {
-//                        foreach (string line in DismWrapper.ReadFromBuffer(0, 5, (short)Console.BufferWidth, 1))
-//                        {
-//                            readtext = line;
-//                        }
-//                        //Console.Title = readtext;  
-//                        if (reg.IsMatch(readtext))
-//                        {
-//                            percentage = double.Parse(reg.Match(readtext).Groups[1].Value);
-//                            Console.WriteLine(percentage);
-
-//                            //Console.Title = reg.Match(readtext).Groups[1].Value;
-//                        }
-//                    }
-//                    catch(Exception ex)
-//                    { Console.WriteLine(ex.ToString ()); }
-//                }
-//                //Console.WriteLine("Exit");
-//            });
-//            task.Start();
-
-
-//            Process process = new Process();
-//            //wp.ShowDialog();
-
-//            try
-//            {
-//                AppendText("Command:DISM" + StartFileArg + "\r\n");
-//                process.StartInfo.FileName = "dism.exe";
-//                process.StartInfo.Arguments = StartFileArg;
-//                process.StartInfo.UseShellExecute = false;
-//                process.StartInfo.RedirectStandardInput = true;
-//                process.StartInfo.RedirectStandardOutput = true;
-//                process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-//                //process.StartInfo.RedirectStandardError = true;
-//                process.StartInfo.CreateNoWindow = false;
-//                process.OutputDataReceived += new DataReceivedEventHandler(process_OutputDataReceived);
-//                process.EnableRaisingEvents = true;
-//                process.Exited += new EventHandler(progress_Exited);
-
-//                process.Start();
-
-
-//                process.BeginOutputReadLine();
-
-
-//            }
-//            catch (Exception ex)
-//            {
-//                //MsgManager.getResString("Msg_Failure")
-//                //操作失败
-//                MessageBox.Show(MsgManager.getResString("Msg_Failure", MsgManager.ci) + ex.ToString());
-//            }
-//            wp.ShowDialog();
-
-//            //CommandCaller _dismCaller = new CommandCaller(command);
-//            //_dismCaller.Call(parameter);
-//        }
         public static void process_OutputDataReceived(object sender, DataReceivedEventArgs e)
         {
             // 这里仅做输出的示例，实际上您可以根据情况取消获取命令行的内容  
             // 参考：process.CancelOutputRead()  
             //if (!wp.IsHandleCreated) { wp.Show(); }
+
             try
             {
 
-                if (String.IsNullOrEmpty(e.Data) == false)
-                    AppendText(e.Data + "\r\n");
+                if (string.IsNullOrEmpty(e.Data) == false)
+                { AppendText(e.Data + "\r\n"); }
             }
             catch (Exception ex) { Console.WriteLine(ex); }
         }
         private static void progress_Exited(object sender, EventArgs e)
         {
-            //MessageBox.Show("exz");
+
             try
             {
-
-                // Invoke an anonymous method on the thread of the form.
-                wp.Invoke((MethodInvoker)delegate
+                wp.Invoke(new Action(() =>
                 {
-                    // Show the current time in the form's title bar.
+                    wp.IsUserClosing = false;
                     wp.Close();
-                    //this.Text = DateTime.Now.ToLongTimeString();
-                });
+                }));
+                //// Invoke an anonymous method on the thread of the form.
+                //wp.Invoke((MethodInvoker)delegate
+                //{
 
-                //End();
-                //wp.Invoke ()
-                //wp.Close();
+                //    wp.Close();
+
+                //});
+
             }
             catch (Exception ex)
-            { Console.WriteLine(ex); }
+            {
+                Log.WriteLog("progress_Exited", ex.ToString());
+
+            }
         }
 
         public static void AppendText(string text)
         {
             try
             {
+                if (!wp.IsHandleCreated) return;
                 if (wp.textBox1.Lines.Length == 0 || wp.textBox1.Lines.Length == 1 || text != wp.textBox1.Lines[wp.textBox1.Lines.Length - 2] + "\r\n")
                 {
+                    wp.textBox1.Invoke(new Action(() => { wp.textBox1.AppendText(text); }));
                     //if (text.Contains("Leaving")) { wp.Close(); }
                     //if (wp.textBox1.Lines.Length != 0)
                     //MessageBox.Show(text+"\n/////////////\n"+ wp.textBox1.Lines[wp.textBox1.Lines.Length - 2] + "\r\n");
-                    if (wp.textBox1.InvokeRequired)
-                    {
-                        AppendTextCallback d = new AppendTextCallback(AppendText);
-                        wp.textBox1.Invoke(d, text);
-                    }
-                    else
-                    {
-                        wp.textBox1.AppendText(text);
+                    //if (wp.textBox1.InvokeRequired)
+                    //{
+                    //    AppendTextCallback d = new AppendTextCallback(AppendText);
+                    //    wp.textBox1.Invoke(d, text);
+                    //}
+                    //else
+                    //{
+                    //    wp.textBox1.AppendText(text);
 
-                        //this.textBox1.AppendText(text);
-                    }
+                    //    //this.textBox1.AppendText(text);
+                    //}
                 }
             }
             catch (Exception ex)
             {
+                Log.WriteLog("AppendText.log", ex.ToString());
                 Console.WriteLine(ex);
                 //MessageBox.Show(ex.ToString());
             }
@@ -179,7 +92,7 @@ namespace wintogo
         #endregion
         public static void SyncCMD(List<string> cmds)
         {
-            System.Diagnostics.Process process = new System.Diagnostics.Process();
+            Process process = new Process();
 
             try
             {
@@ -212,7 +125,7 @@ namespace wintogo
         }
         public static int SyncCMD(string cmd)
         {
-            System.Diagnostics.Process process = new System.Diagnostics.Process();
+            Process process = new Process();
             int exitcode = 1;
             try
             {
@@ -261,13 +174,8 @@ namespace wintogo
                 process.OutputDataReceived += new DataReceivedEventHandler(process_OutputDataReceived);
                 process.EnableRaisingEvents = true;
                 process.Exited += new EventHandler(progress_Exited);
-
                 process.Start();
-
-
                 process.BeginOutputReadLine();
-
-
             }
             catch (Exception ex)
             {
@@ -279,10 +187,50 @@ namespace wintogo
         }
         public static void ECMD(string StartFileName, string StartFileArg)
         {
+            wp = new WriteProgress();
+            wp.IsUserClosing = true;
             ExecuteCMD(StartFileName, StartFileArg);
-            wp.ShowDialog();
+            try
+            {
+                wp.ShowDialog();
+            }
+            catch (UserCancelException)
+            {
+                KillProcessByName(Path.GetFileName(StartFileName));
+            }
+
+        }
+        private static void KillProcessByName(string pName)
+        {
+            try
+            {
+                Process[] ps = Process.GetProcesses();
+                foreach (Process item in ps)
+                {
+                    if (item.ProcessName == pName)
+                    {
+                        item.Kill();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLog("KillProcessByName.log", ex.ToString());
+            }
 
         }
 
+    }
+
+    [Serializable]
+    public class UserCancelException : Exception
+    {
+        public UserCancelException() : base("用户取消操作！") { }
+        public UserCancelException(string message) : base(message) { }
+        public UserCancelException(string message, Exception inner) : base(message, inner) { }
+        protected UserCancelException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        { }
     }
 }

@@ -41,10 +41,10 @@ namespace wintogo
 
         public static string ReadVal(string section, string key, string filePath)
         {
-            string defVal = "";
+            string defVal = string.Empty;
             StringBuilder retVal = new StringBuilder(260);
             int size = 102400;
-            string rt = "";
+            string rt = string.Empty;
             try
             {
                 GetPrivateProfileString(section, key, defVal, retVal, size, filePath);
@@ -80,10 +80,10 @@ namespace wintogo
 
         public string ReadVal(string section, string key)
         {
-            string defVal = "";
+            string defVal = string.Empty;
             StringBuilder retVal = new StringBuilder();
             int size = 10240;
-            string rt = "";
+            string rt = string.Empty;
             try
             {
                 GetPrivateProfileString(section, key,
@@ -92,7 +92,7 @@ namespace wintogo
             }
             catch
             {
-                rt = "";
+                rt = string.Empty;
             }
             return rt;
         }

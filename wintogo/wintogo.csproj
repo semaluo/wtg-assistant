@@ -105,6 +105,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\PropertyGridDialogItem.cs" />
     <Compile Include="CoreOperation\DiskpartScriptManager.cs" />
     <Compile Include="Forms\AboutBox.cs">
       <SubType>Form</SubType>
@@ -113,19 +114,7 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="CoreOperation\BootFileOperation.cs" />
-    <Compile Include="Forms\ChoosePart.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ChoosePart.Designer.cs">
-      <DependentUpon>ChoosePart.cs</DependentUpon>
-    </Compile>
     <Compile Include="CoreOperation\DiskOperation.cs" />
-    <Compile Include="Forms\EfiSize.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\EfiSize.Designer.cs">
-      <DependentUpon>EfiSize.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\ErrorMsg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,14 +124,15 @@
     <Compile Include="CoreOperation\FileOperation.cs" />
     <Compile Include="CoreOperation\ImageOperation.cs" />
     <Compile Include="Classes\WTGSettingItems.cs" />
+    <Compile Include="Utility\FileNameConverter.cs" />
     <Compile Include="Forms\WTGSettings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\WTGSettings.Designer.cs">
       <DependentUpon>WTGSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\UnZip.cs" />
-    <Compile Include="Classes\IniOperation.cs" />
+    <Compile Include="Utility\UnZip.cs" />
+    <Compile Include="Utility\IniOperation.cs" />
     <Compile Include="MultiLanguage\MsgManager.cs" />
     <Compile Include="CoreOperation\Operation.cs" />
     <Compile Include="Classes\ProcessManager.cs" />
@@ -156,13 +146,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceLang.en.resx</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SetTempPath.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SetTempPath.Designer.cs">
-      <DependentUpon>SetTempPath.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Classes\StringOperation.cs" />
+    <Compile Include="Utility\StringOperation.cs" />
     <Compile Include="Classes\SWOnline.cs" />
     <Compile Include="CoreOperation\VHDOperation.cs" />
     <Compile Include="Forms\Finish.cs">
@@ -207,24 +191,6 @@
     <EmbeddedResource Include="Forms\AboutBox.zh-Hant.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ChoosePart.en.resx">
-      <DependentUpon>ChoosePart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ChoosePart.resx">
-      <DependentUpon>ChoosePart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ChoosePart.zh-Hant.resx">
-      <DependentUpon>ChoosePart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EfiSize.en.resx">
-      <DependentUpon>EfiSize.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EfiSize.resx">
-      <DependentUpon>EfiSize.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EfiSize.zh-Hant.resx">
-      <DependentUpon>EfiSize.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ErrorMsg.en.resx">
       <DependentUpon>ErrorMsg.cs</DependentUpon>
     </EmbeddedResource>
@@ -245,9 +211,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form1.en.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form1.zh-Hant.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -274,15 +242,6 @@
       <LastGenOutput>ResourceLang.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="MultiLanguage\ResourceLang.zh-Hant.resx" />
-    <EmbeddedResource Include="Forms\SetTempPath.en.resx">
-      <DependentUpon>SetTempPath.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SetTempPath.resx">
-      <DependentUpon>SetTempPath.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SetTempPath.zh-Hant.resx">
-      <DependentUpon>SetTempPath.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Update.en.resx">
       <DependentUpon>Update.cs</DependentUpon>
     </EmbeddedResource>

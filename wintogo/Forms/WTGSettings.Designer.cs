@@ -46,8 +46,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.propertyGrid1);
+            this.Icon = global::wintogo.Properties.Resources._2001;
+            this.MaximizeBox = false;
             this.Name = "WTGSettings";
-            this.Text = "Settings";
+            this.Text = "WTG高级设定";
             this.Load += new System.EventHandler(this.WTGSettings_Load);
             this.ResumeLayout(false);
 

@@ -9,7 +9,7 @@ namespace wintogo
     {
         public static string[] topicName = new string[10];
         public static string[] topicLink = new string[10];
-
+        public bool IsUserClosing { get; set; }
         public WriteProgress()
         {
             //CultureInfo ca = new System.Globalization.CultureInfo("en");
@@ -21,6 +21,18 @@ namespace wintogo
         int num = 0;
         private void writeprogress_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (IsUserClosing)
+            {
+                DialogResult dResult = MessageBox.Show("确认取消操作？", "询问", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+                if (dResult == DialogResult.Yes)
+                {
+                    throw new UserCancelException();
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
             try
             {
                 //if (System.IO.Directory .Exists ())
@@ -44,6 +56,7 @@ namespace wintogo
 
         private void writeprogress_Load(object sender, EventArgs e)
         {
+            //IsUserClosing = true/*/*;*/*/
             Random ra = new Random();
             num = ra.Next(0, 9);
             try
@@ -55,9 +68,9 @@ namespace wintogo
                 //滚动到控件光标处
                 textBox1.ScrollToCaret();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message );
+                MessageBox.Show(ex.Message);
                 Log.WriteLog("WriteProgressLoad.log", ex.ToString());
             }
 

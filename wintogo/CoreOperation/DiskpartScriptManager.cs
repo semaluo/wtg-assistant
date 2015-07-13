@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 
@@ -12,7 +13,7 @@ namespace wintogo
         public string Args { private get; set; }
         private string TempScriptFile
         {
-         
+
             get; set;
         }
         public bool OutputToFile { get; set; }
@@ -33,7 +34,7 @@ namespace wintogo
         }
         private void CreateScriptFile()
         {
-        
+
             using (FileStream fs = new FileStream(TempScriptFile, FileMode.Create, FileAccess.Write))
             {
                 fs.SetLength(0);
@@ -48,6 +49,25 @@ namespace wintogo
         /// <summary>
         /// 执行Diskpart命令
         /// </summary>
+
+
+        public void RunDiskpartScriptByScriptFile(string scriptFile)
+        {
+            StringBuilder dpargs = new StringBuilder();
+            dpargs.Append(" /s \"");
+            dpargs.Append(scriptFile);
+            try
+            {
+                ProcessManager.ECMD("diskpart.exe", dpargs.ToString());
+            }
+            catch(Exception)
+            {
+                //ProcessManager.KillProcessByName("diskpart.exe");
+                throw;
+
+            }
+        }
+
 
         public void RunDiskpartScript()
         {
@@ -67,12 +87,21 @@ namespace wintogo
             }
             else
             {
-                ProcessManager.ECMD("diskpart.exe", dpargs.ToString());
+                try
+                {
+                    ProcessManager.ECMD("diskpart.exe", dpargs.ToString());
+                }
+                catch(Exception)
+                {
+                    //ProcessManager.KillProcessByName("diskpart.exe");
+                    throw;
+
+                }
             }
             //System.Console.WriteLine(File.ReadAllText (this.scriptPath));
             //System.Console.WriteLine(dpargs.ToString());
             //System.Windows.Forms.MessageBox.Show(dpargs.ToString());
-            
+
             //System.Console.WriteLine(File.ReadAllText (this.outputFilePath));
             FileOperation.DeleteFile(TempScriptFile);
         }
@@ -84,7 +113,7 @@ namespace wintogo
             FileOperation.DeleteFile(this.OutputFilePath);
         }
 
-  
+
 
     }
 }

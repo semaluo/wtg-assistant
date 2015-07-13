@@ -145,7 +145,13 @@
 //    //            return;
 //    //        }
 //    //    }
-//    //    catch
+//    //    
+
+
+//private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+//{
+//    LoadUDList();
+//}
 //    //    {
 //    //        //创建VHD失败，未知错误
 //    //        ErrorMsg er = new ErrorMsg(MsgManager.getResString("Msg_VHDCreationError", MsgManager.ci));
@@ -2291,3 +2297,183 @@
 #endregion
 
 //MessageBox.Show("Test");
+
+
+//private Action<string> setLinkLabel;
+//public Action<string> SetLinkLabel
+//{
+//    get { return setLinkLabel; }
+//    set { setLinkLabel = value; }
+//}
+//private set_TextDelegate  set_Text;
+
+//public set_TextDelegate  Set_text
+//{
+//    get { return set_Text; }
+//    set { set_Text = value; }
+//}
+
+
+//public int MyProperty { get; set; }
+
+
+/// <summary>
+/// 结束进程
+/// </summary>
+/// 
+//public static void ShowForm()
+//{
+//    Invoke(new MethodInvoker(Showd));
+
+//}
+//public static void End()
+//{
+//    Invoke(new MethodInvoker(DoEnd));
+
+//}
+
+//public static void DoEnd()
+//{
+//    wp.Close();
+//}
+//private void Showd()
+//{
+//    wp.ShowDialog();
+
+
+//}
+//        public static void RunDism(string StartFileArg)
+//        {
+
+//            string readtext = string.Empty;
+//            Regex reg = new Regex(@"
+//\=∗\s∗(\d1,3\.\d)
+//");
+//            Task task = new Task(() =>
+//            {
+//                Console.WriteLine("Start");
+//                while (percentage < 99.9)
+//                {
+//                    Console.WriteLine("X");
+//                    try
+//                    {
+//                        foreach (string line in DismWrapper.ReadFromBuffer(0, 5, (short)Console.BufferWidth, 1))
+//                        {
+//                            readtext = line;
+//                        }
+//                        //Console.Title = readtext;  
+//                        if (reg.IsMatch(readtext))
+//                        {
+//                            percentage = double.Parse(reg.Match(readtext).Groups[1].Value);
+//                            Console.WriteLine(percentage);
+
+//                            //Console.Title = reg.Match(readtext).Groups[1].Value;
+//                        }
+//                    }
+//                    catch(Exception ex)
+//                    { Console.WriteLine(ex.ToString ()); }
+//                }
+//                //Console.WriteLine("Exit");
+//            });
+//            task.Start();
+
+
+//            Process process = new Process();
+//            //wp.ShowDialog();
+
+//            try
+//            {
+//                AppendText("Command:DISM" + StartFileArg + "\r\n");
+//                process.StartInfo.FileName = "dism.exe";
+//                process.StartInfo.Arguments = StartFileArg;
+//                process.StartInfo.UseShellExecute = false;
+//                process.StartInfo.RedirectStandardInput = true;
+//                process.StartInfo.RedirectStandardOutput = true;
+//                process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+//                //process.StartInfo.RedirectStandardError = true;
+//                process.StartInfo.CreateNoWindow = false;
+//                process.OutputDataReceived += new DataReceivedEventHandler(process_OutputDataReceived);
+//                process.EnableRaisingEvents = true;
+//                process.Exited += new EventHandler(progress_Exited);
+
+//                process.Start();
+
+
+//                process.BeginOutputReadLine();
+
+
+//            }
+//            catch (Exception ex)
+//            {
+//                //MsgManager.getResString("Msg_Failure")
+//                //操作失败
+//                MessageBox.Show(MsgManager.getResString("Msg_Failure", MsgManager.ci) + ex.ToString());
+//            }
+//            wp.ShowDialog();
+
+//            //CommandCaller _dismCaller = new CommandCaller(command);
+//            //_dismCaller.Call(parameter);
+// 
+
+//}
+
+
+
+//private void set_textboxText(string s)
+//{
+//    this.linkLabel2.Text = s;
+
+//    this.linkLabel2.Visible = true;
+//}
+
+//public static void CleanLockStream(string ErrorMsg, string ErrorTitle)
+//{
+//    ListFiles(new DirectoryInfo(Application.StartupPath + "\\files"), ErrorMsg, ErrorTitle);
+//}
+//public static void ListFiles(FileSystemInfo info, string ErrorMsg, string ErrorTitle)
+//{
+//    try
+//    {
+//        if (!info.Exists) return;
+//        DirectoryInfo dir = info as DirectoryInfo;
+//        //不是目录
+//        if (dir == null) return;
+//        FileSystemInfo[] files = dir.GetFileSystemInfos();
+//        for (int i = 0; i < files.Length; i++)
+//        {
+//            FileInfo file = files[i] as FileInfo;
+//            //是文件
+//            if (file != null)
+//            {
+//                //FileInfo file = new FileInfo(@"d:\Hanye.chm");
+//                //MessageBox.Show(file.FullName);
+//                foreach (AlternateDataStreamInfo s in file.ListAlternateDataStreams())
+//                {
+//                    s.Delete();//删除流
+//                }
+
+//                //Console.WriteLine(file.FullName + "\t " + file.Length);
+//                //if (file.FullName.Substring(file.FullName.LastIndexOf(".")) == ".jpg")
+//                ////此处为显示JPG格式，不加IF可遍历所有格式的文件
+//                //{
+//                //    //this.list1.Items.Add(file);
+//                //    //MessageBox.Show(file.FullName.Substring(file.FullName.LastIndexOf(".")));
+//                //}
+//            }
+//            //对于子目录，进行递归调用
+//            else
+//            {
+//                ListFiles(files[i], ErrorMsg, ErrorTitle);
+//            }
+//        }
+//    }
+//    catch (Exception ex)
+//    {
+//        //NTFS文件流异常\n请放心，此错误不影响正常使用
+//        //GetResString("Msg_ntfsstream");
+//        //MessageBox.Show(getResString("Msg_ntfsstream", ci) + ex.ToString(), getResString("Msg_warning", ci), MessageBoxButtons.OK, MessageBoxIcon.Information);
+//        MessageBox.Show(ErrorMsg + ex.ToString(), ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+//        Log.WriteLog("CleatNtfsStream.log", ex.ToString());
+
+//    }
+//}

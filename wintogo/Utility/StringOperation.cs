@@ -6,7 +6,7 @@ using System.Text;
 
 namespace wintogo
 {
-    public static class StringOperation
+    public static class StringUtility
     {
         public static bool IsChina(string CString)
         {
