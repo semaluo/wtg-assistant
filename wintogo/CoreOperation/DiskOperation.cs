@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using iTuner;
+using System.IO;
 using System.Text;
 //using System.Threading.Tasks;
 
@@ -24,7 +25,7 @@ namespace wintogo
         /// <returns>return WTGOperation.diskpartscriptpath + "\\uefi.txt";</returns>
         public static string GenerateGPTAndUEFIScript(string efisize, string ud)
         {
-            using (FileStream fs0 = new FileStream(WTGOperation.diskpartScriptPath + @"\uefi.txt", FileMode.Create, FileAccess.Write))
+            using (FileStream fs0 = new FileStream(WTGModel.diskpartScriptPath + @"\uefi.txt", FileMode.Create, FileAccess.Write))
             {
                 fs0.SetLength(0);
                 using (StreamWriter sw0 = new StreamWriter(fs0, Encoding.Default))
@@ -46,7 +47,7 @@ namespace wintogo
                 }
             }
             //sw0.Close();
-            return WTGOperation.diskpartScriptPath + "\\uefi.txt";
+            return WTGModel.diskpartScriptPath + "\\uefi.txt";
         }
         /// <summary>
         /// MBR+UEFI脚本Write到WTGOperation.diskpartscriptpath + @"\uefimbr.txt
@@ -55,7 +56,7 @@ namespace wintogo
         /// <param name="ud">优盘盘符，":"、"\"不必须</param>
         public static string GenerateMBRAndUEFIScript(string efisize, string ud)
         {
-            using (FileStream fs0 = new FileStream(WTGOperation.diskpartScriptPath + @"\uefimbr.txt", FileMode.Create, FileAccess.Write))
+            using (FileStream fs0 = new FileStream(WTGModel.diskpartScriptPath + @"\uefimbr.txt", FileMode.Create, FileAccess.Write))
             {
                 fs0.SetLength(0);
                 using (StreamWriter sw0 = new StreamWriter(fs0, Encoding.Default))
@@ -77,21 +78,21 @@ namespace wintogo
                 }
 
             }
-            return WTGOperation.diskpartScriptPath + @"\uefimbr.txt";
+            return WTGModel.diskpartScriptPath + @"\uefimbr.txt";
         }
 
         public static void DiskPartReformatUD()
         {
 
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("select volume " + WTGOperation.ud.Substring(0, 1));
+            sb.AppendLine("select volume " + WTGModel.ud.Substring(0, 1));
             sb.AppendLine("clean");
             sb.AppendLine("convert mbr");
             sb.AppendLine("create partition primary");
             sb.AppendLine("select partition 1");
             sb.AppendLine("format fs=ntfs quick");
             sb.AppendLine("active");
-            sb.AppendLine("assign letter=" + WTGOperation.ud.Substring(0, 1));
+            sb.AppendLine("assign letter=" + WTGModel.ud.Substring(0, 1));
             sb.AppendLine("exit");
             DiskpartScriptManager dsm = new DiskpartScriptManager();
             dsm.Args = sb.ToString();
@@ -155,6 +156,7 @@ namespace wintogo
         }
         public static long GetHardDiskFreeSpace(string str_HardDiskName)
         {
+            //return (long)ud.FreeSpace / 1024;
             long totalSize = new long();
             //str_HardDiskName = str_HardDiskName;
             System.IO.DriveInfo[] drives = System.IO.DriveInfo.GetDrives();

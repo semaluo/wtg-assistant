@@ -77,7 +77,7 @@
             this.label3.Name = "label3";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // error
+            // ErrorMsg
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -88,12 +88,13 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "error";
+            this.Icon = global::wintogo.Properties.Resources.WTGA;
+            this.Name = "ErrorMsg";
             this.Load += new System.EventHandler(this.error_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.Icon = global::wintogo.Properties.Resources._2001;
+
         }
 
         #endregion

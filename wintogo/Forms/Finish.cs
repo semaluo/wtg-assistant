@@ -7,10 +7,11 @@ namespace wintogo
 {
     public partial class Finish : Form
     {
-        public Finish()
+        public Finish(TimeSpan ts)
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = MsgManager.ci;
             InitializeComponent();
+            lblTime.Text = ts.ToString();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -26,7 +27,7 @@ namespace wintogo
 
         private void finish_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

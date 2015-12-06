@@ -1,11 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using iTuner;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
 namespace wintogo
 {
-    public class WTGOperation
+    public class WTGModel
     {
+        public static UsbDisk UdObj;
+        /// <summary>
+        /// UserSetWTGSettingItems();
+        /// </summary>
         public static UserSetWTGSettingItems userSettings = new UserSetWTGSettingItems();
         public static List<string> imagePartNames = new List<string>();
         //public static bool appClosrForm = false;
@@ -23,9 +28,9 @@ namespace wintogo
         /// </summary>
         public static string udString;
         public static bool isWimBoot;
-        public static bool isFramework;
+        //public static bool isFramework;
         public static bool isSan_policy;
-        public static bool isDiswinre;
+        //public static bool isDiswinre;
         /// <summary>
         /// 镜像文件路径
         /// </summary>
@@ -33,13 +38,13 @@ namespace wintogo
         /// <summary>
         /// WimIndex
         /// </summary>
-        public static string wimPart="0";
+        public static string wimPart = "0";
 
-        public static bool isEsd=false;
+        public static bool isEsd = false;
         /// <summary>
         /// 默认为imagex_x86.exe
         /// </summary>
-        public static string imagexFileName= "imagex_x86.exe";
+        public static string imagexFileName = "imagex_x86.exe";
         /// <summary>
         /// bcdboot文件名
         /// </summary>
@@ -61,15 +66,16 @@ namespace wintogo
         public static bool isUefiGpt;
         public static bool isUefiMbr;
         public static bool isNoTemp;
-
+        public static bool isLegacyUdiskUefi;
+        public static bool ntfsUefiSupport;
         /// <summary>
         ///  WTGOperation.filetype = Path.GetExtension(openFileDialog1.FileName.ToLower()).Substring(1);
         /// </summary>
-        public static string choosedFileType;
+        public static string choosedImageType;
         /// <summary>
         /// 是否勾选通用启动文件
         /// </summary>
-        public static bool commonBootFiles;
+        //public static bool commonBootFiles;
         /// <summary>
         /// Path.GetTempPath();
         /// </summary>
@@ -81,8 +87,27 @@ namespace wintogo
         /// <summary>
         /// Path.GetTempPath() + "\\WTGA";
         /// </summary>
-        public static string applicationFilesPath = Path.GetTempPath() + "\\WTGA";
+        public static string applicationFilesPath = StringUtility.Combine(Path.GetTempPath(), "WTGA");
+        /// <summary>
+        /// Application.StartupPath + "\\logs";
+        /// </summary>
         public static string logPath = Application.StartupPath + "\\logs";
+        /// <summary>
+        /// VHD OR VHDX
+        /// </summary>
         public static string vhdExtension = "vhd";
+        public static bool isCompactOS;
+        public static OS CurrentOS;
+        //public bool doNotFormat;
+    }
+    public enum OS
+    {
+        XP,
+        Vista,
+        Win7,
+        Win8_without_update,
+        Win8_1_with_update,
+        Win10,
+        Other
     }
 }

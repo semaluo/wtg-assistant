@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 //using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -65,8 +66,8 @@ namespace wintogo
                 if (wp.textBox1.Lines.Length == 0 || wp.textBox1.Lines.Length == 1 || text != wp.textBox1.Lines[wp.textBox1.Lines.Length - 2] + "\r\n")
                 {
                     wp.textBox1.Invoke(new Action(() => { wp.textBox1.AppendText(text); }));
-                    //if (text.Contains("Leaving")) { wp.Close(); }
-                    //if (wp.textBox1.Lines.Length != 0)
+                    //if (textContains("Leaving")) { wp.Close(); }
+                    //if (wp.t.extBox1.Lines.Length != 0)
                     //MessageBox.Show(text+"\n/////////////\n"+ wp.textBox1.Lines[wp.textBox1.Lines.Length - 2] + "\r\n");
                     //if (wp.textBox1.InvokeRequired)
                     //{
@@ -155,7 +156,7 @@ namespace wintogo
             }
             return exitcode;
         }
-        private static void ExecuteCMD(string StartFileName, string StartFileArg)
+        private static void ExecuteCMD(string StartFileName, string StartFileArg, params string[] Txt)
         {
 
             Process process = new Process();
@@ -164,6 +165,10 @@ namespace wintogo
             try
             {
                 AppendText("Command:" + StartFileName + StartFileArg + "\r\n");
+                for (int i = 0; i < Txt.Length; i++)
+                {
+                    AppendText(Txt[i]);
+                }
                 process.StartInfo.FileName = StartFileName;
                 process.StartInfo.Arguments = StartFileArg;
                 process.StartInfo.UseShellExecute = false;
@@ -185,22 +190,28 @@ namespace wintogo
             }
 
         }
-        public static void ECMD(string StartFileName, string StartFileArg)
+        public static void ECMD(string StartFileName, string StartFileArg, params string[] AppendText)
         {
-            wp = new WriteProgress();
-            wp.IsUserClosing = true;
-            ExecuteCMD(StartFileName, StartFileArg);
             try
             {
+                wp = new WriteProgress();
+                wp.IsUserClosing = true;
+                ExecuteCMD(StartFileName, StartFileArg);
                 wp.ShowDialog();
+                if (wp.OnClosingException != null)
+                {
+                    throw wp.OnClosingException;
+                }
             }
-            catch (UserCancelException)
+            catch
             {
+                //MessageBox.Show("Test");
                 KillProcessByName(Path.GetFileName(StartFileName));
+                throw;
             }
 
         }
-        private static void KillProcessByName(string pName)
+        public static void KillProcessByName(string pName)
         {
             try
             {

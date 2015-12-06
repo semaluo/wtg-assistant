@@ -40,23 +40,31 @@ namespace wintogo
                         directoryName += "/";
                     if (fileName != string.Empty)
                     {
-                        using (FileStream streamWriter = File.Create(unZipDir + theEntry.Name))
+                        try
                         {
-
-                            int size = 2048;
-                            byte[] data = new byte[2048];
-                            while (true)
+                            using (FileStream streamWriter = File.Create(unZipDir + theEntry.Name))
                             {
-                                size = s.Read(data, 0, data.Length);
-                                if (size > 0)
+
+                                int size = 2048;
+                                byte[] data = new byte[2048];
+                                while (true)
                                 {
-                                    streamWriter.Write(data, 0, size);
-                                }
-                                else
-                                {
-                                    break;
+                                    size = s.Read(data, 0, data.Length);
+                                    if (size > 0)
+                                    {
+                                        streamWriter.Write(data, 0, size);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                             }
+                        }
+                        catch (Exception ex)
+                        {
+                            ErrorMsg err = new ErrorMsg(ex.Message.Substring(0, 20) + "...");
+                            err.ShowDialog();
                         }
                     }
                 }

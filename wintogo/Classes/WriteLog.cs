@@ -15,9 +15,9 @@ namespace wintogo
         {
             try
             {
-                if (!Directory.Exists(WTGOperation.logPath)) { Directory.CreateDirectory(WTGOperation.logPath); }
-                if (File.Exists(WTGOperation.logPath + "\\" + LogName)) { File.Delete(WTGOperation.logPath + "\\" + LogName); }
-                using (FileStream fs0 = new FileStream(WTGOperation.logPath + "\\" + LogName, FileMode.Append, FileAccess.Write))
+                if (!Directory.Exists(WTGModel.logPath)) { Directory.CreateDirectory(WTGModel.logPath); }
+                if (File.Exists(WTGModel.logPath + "\\" + LogName)) { File.Delete(WTGModel.logPath + "\\" + LogName); }
+                using (FileStream fs0 = new FileStream(WTGModel.logPath + "\\" + LogName, FileMode.Append, FileAccess.Write))
                 {
                     fs0.SetLength(0);
                     using (StreamWriter sw0 = new StreamWriter(fs0, Encoding.Default))
@@ -45,7 +45,7 @@ namespace wintogo
         }
         public static void DeleteAllLogs()
         {
-            ProcessManager.SyncCMD("cmd.exe /c del /f /s /q \"" + WTGOperation.logPath + "\\*.*\"");
+            ProcessManager.SyncCMD("cmd.exe /c del /f /s /q \"" + WTGModel.logPath + "\\*.*\"");
         }
 
     }

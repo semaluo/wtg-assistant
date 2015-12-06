@@ -13,7 +13,6 @@ namespace wintogo
         public string Args { private get; set; }
         private string TempScriptFile
         {
-
             get; set;
         }
         public bool OutputToFile { get; set; }
@@ -24,12 +23,12 @@ namespace wintogo
         public DiskpartScriptManager()
         {
             this.OutputToFile = false;
-            TempScriptFile = WTGOperation.diskpartScriptPath + "\\" + Guid.NewGuid().ToString();
+            TempScriptFile = WTGModel.diskpartScriptPath + "\\" + Guid.NewGuid().ToString();
         }
         public DiskpartScriptManager(bool outputToFile)
         {
             if (outputToFile) this.OutputToFile = true;
-            TempScriptFile = WTGOperation.diskpartScriptPath + "\\" + Guid.NewGuid().ToString();
+            TempScriptFile = WTGModel.diskpartScriptPath + "\\" + Guid.NewGuid().ToString();
 
         }
         private void CreateScriptFile()
@@ -45,6 +44,7 @@ namespace wintogo
                     sw.Write(ws);
                 }
             }
+            Log.WriteLog("diskpart_" + DateTime.Now.ToFileTime() + ".log", Args);
         }
         /// <summary>
         /// 执行Diskpart命令
@@ -60,7 +60,7 @@ namespace wintogo
             {
                 ProcessManager.ECMD("diskpart.exe", dpargs.ToString());
             }
-            catch(Exception)
+            catch (Exception)
             {
                 //ProcessManager.KillProcessByName("diskpart.exe");
                 throw;
@@ -91,7 +91,7 @@ namespace wintogo
                 {
                     ProcessManager.ECMD("diskpart.exe", dpargs.ToString());
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     //ProcessManager.KillProcessByName("diskpart.exe");
                     throw;

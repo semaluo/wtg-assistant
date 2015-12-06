@@ -46,8 +46,8 @@
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.textBox1);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
@@ -70,7 +70,7 @@
             this.win8PB1.Name = "win8PB1";
             this.win8PB1.Load += new System.EventHandler(this.win8PB1_Load);
             // 
-            // writeprogress
+            // WriteProgress
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -80,9 +80,9 @@
             this.Controls.Add(this.groupBox1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = global::wintogo.Properties.Resources._2001;
+            this.Icon = global::wintogo.Properties.Resources.WTGA;
             this.MaximizeBox = false;
-            this.Name = "writeprogress";
+            this.Name = "WriteProgress";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.writeprogress_FormClosing);
             this.Load += new System.EventHandler(this.writeprogress_Load);

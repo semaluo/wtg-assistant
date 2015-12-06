@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -52,10 +52,11 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <RunCodeAnalysis>false</RunCodeAnalysis>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
-    <ApplicationIcon>2001.ico</ApplicationIcon>
+    <ApplicationIcon>WTGA.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
@@ -124,6 +125,13 @@
     <Compile Include="CoreOperation\FileOperation.cs" />
     <Compile Include="CoreOperation\ImageOperation.cs" />
     <Compile Include="Classes\WTGSettingItems.cs" />
+    <Compile Include="Forms\FormatAlert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormatAlert.Designer.cs">
+      <DependentUpon>FormatAlert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\SystemSleepManagement.cs" />
     <Compile Include="Utility\FileNameConverter.cs" />
     <Compile Include="Forms\WTGSettings.cs">
       <SubType>Form</SubType>
@@ -134,7 +142,7 @@
     <Compile Include="Utility\UnZip.cs" />
     <Compile Include="Utility\IniOperation.cs" />
     <Compile Include="MultiLanguage\MsgManager.cs" />
-    <Compile Include="CoreOperation\Operation.cs" />
+    <Compile Include="CoreOperation\WTGModel.cs" />
     <Compile Include="Classes\ProcessManager.cs" />
     <Compile Include="MultiLanguage\ResourceLang.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -182,6 +190,7 @@
     <Compile Include="Forms\WriteProgress.Designer.cs">
       <DependentUpon>WriteProgress.cs</DependentUpon>
     </Compile>
+    <Compile Include="Wimapi.cs" />
     <EmbeddedResource Include="Forms\AboutBox.en.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -190,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AboutBox.zh-Hant.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ErrorMsg.en-AS.resx">
+      <DependentUpon>ErrorMsg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ErrorMsg.en.resx">
       <DependentUpon>ErrorMsg.cs</DependentUpon>
@@ -220,6 +232,15 @@
     <EmbeddedResource Include="Forms\Form1.zh-Hant.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormatAlert.en.resx">
+      <DependentUpon>FormatAlert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormatAlert.resx">
+      <DependentUpon>FormatAlert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\WTGSettings.en.resx">
+      <DependentUpon>WTGSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\WTGSettings.resx">
       <DependentUpon>WTGSettings.cs</DependentUpon>
     </EmbeddedResource>
@@ -240,6 +261,7 @@
     <EmbeddedResource Include="MultiLanguage\ResourceLang.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceLang.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MultiLanguage\ResourceLang.zh-Hant.resx" />
     <EmbeddedResource Include="Forms\Update.en.resx">
@@ -282,6 +304,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="2001.ico" />
+    <None Include="Resources\WTGA.ico" />
+    <Content Include="WTGA.ico" />
     <None Include="OldCode.cs" />
   </ItemGroup>
   <ItemGroup>

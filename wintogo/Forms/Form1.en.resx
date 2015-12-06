@@ -137,31 +137,34 @@
     <value />
   </data>
   <data name="手动执行命令ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="手动执行命令ToolStripMenuItem.Text" xml:space="preserve">
     <value>Don't use this</value>
   </data>
   <data name="强制格式化ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="强制格式化ToolStripMenuItem.Text" xml:space="preserve">
     <value>Force Format</value>
   </data>
   <data name="萝卜头IT论坛ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="萝卜头IT论坛ToolStripMenuItem.Text" xml:space="preserve">
     <value>Our Website</value>
   </data>
   <data name="错误提示测试ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="contextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 92</value>
+    <value>153, 92</value>
   </data>
   <data name="contextMenuStrip1.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="linkLabel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>351, 32</value>
   </data>
   <data name="linkLabel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>
@@ -173,12 +176,11 @@
     <value />
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>340, 51</value>
+    <value>390, 34</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Windows To Go is a new feature for enterprise users 
-of Windows® 8 that enables users to boot a full version 
-of Windows from external USB drives on host PCs.</value>
+    <value>Windows To Go is a new feature of Win 8 that enables
+users to boot a full version of Windows from external USB drives.</value>
   </data>
   <data name="label3.ToolTip" xml:space="preserve">
     <value />
@@ -199,10 +201,22 @@ of Windows from external USB drives on host PCs.</value>
     <value>COMP Mode</value>
   </data>
   <data name="checkBox_san_policy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 21</value>
+    <value>83, 21</value>
   </data>
   <data name="checkBox_san_policy.Text" xml:space="preserve">
-    <value>Hide LCL Disk</value>
+    <value>Hide Disk</value>
+  </data>
+  <data name="checkBoxwimboot.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="checkBoxfixed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 21</value>
+  </data>
+  <data name="checkBoxfixed.Text" xml:space="preserve">
+    <value>Fixed Size</value>
+  </data>
+  <data name="checkBoxfixed.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="checkBoxuefi.ToolTip" xml:space="preserve">
     <value />
@@ -222,59 +236,38 @@ of Windows from external USB drives on host PCs.</value>
   <data name="numericUpDown1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 34</value>
+  <data name="lblVhdSize.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 34</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>VHD size
-(0=automatic)</value>
+  <data name="lblVhdSize.Text" xml:space="preserve">
+    <value>VHD Size
+(0=Auto)</value>
   </data>
-  <data name="label1.ToolTip" xml:space="preserve">
+  <data name="lblVhdSize.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="checkBoxunformat.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 21</value>
+  <data name="button2.Text" xml:space="preserve">
+    <value>More Options</value>
   </data>
-  <data name="checkBoxunformat.Text" xml:space="preserve">
-    <value>Not Format</value>
-  </data>
-  <data name="checkBoxunformat.ToolTip" xml:space="preserve">
+  <data name="button2.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="checkBoxcommon.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 21</value>
-  </data>
-  <data name="checkBoxcommon.Text" xml:space="preserve">
-    <value>General BCD</value>
-  </data>
-  <data name="checkBoxcommon.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="checkBoxwimboot.ToolTip" xml:space="preserve">
+  <data name="checkBoxCompactOS.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="checkBoxuefimbr.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="checkBoxdiswinre.Text" xml:space="preserve">
-    <value>DIS WinRE</value>
+  <data name="checkBoxdiskpart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 23</value>
   </data>
-  <data name="checkBoxdiswinre.ToolTip" xml:space="preserve">
+  <data name="checkBoxdiskpart.Text" xml:space="preserve">
+    <value>Re-Part.</value>
+  </data>
+  <data name="checkBoxdiskpart.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="checkBoxframework.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="checkBoxfixed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 21</value>
-  </data>
-  <data name="checkBoxfixed.Text" xml:space="preserve">
-    <value>Fixed Size</value>
-  </data>
-  <data name="checkBoxfixed.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label2.ToolTip" xml:space="preserve">
+  <data name="lblGB.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="groupBoxadv.Text" xml:space="preserve">
@@ -284,124 +277,103 @@ of Windows from external USB drives on host PCs.</value>
     <value />
   </data>
   <data name="打开程序运行目录ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>171, 22</value>
   </data>
   <data name="打开程序运行目录ToolStripMenuItem1.Text" xml:space="preserve">
     <value>Open Startup Path</value>
   </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>171, 22</value>
   </data>
   <data name="toolStripMenuItem1.Text" xml:space="preserve">
     <value>Open Logs Folder</value>
   </data>
   <data name="退出ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>171, 22</value>
   </data>
   <data name="退出ToolStripMenuItem.Text" xml:space="preserve">
     <value>Exit</value>
   </data>
   <data name="文件ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 21</value>
+    <value>37, 19</value>
   </data>
   <data name="文件ToolStripMenuItem.Text" xml:space="preserve">
     <value>File</value>
   </data>
   <data name="自动检查更新ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>254, 22</value>
+    <value>211, 22</value>
   </data>
   <data name="自动检查更新ToolStripMenuItem.Text" xml:space="preserve">
     <value>Check Updates</value>
   </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>254, 22</value>
+    <value>211, 22</value>
   </data>
   <data name="toolStripMenuItem3.Text" xml:space="preserve">
     <value>Check Updates on Startup</value>
   </data>
   <data name="diskpart重新分区ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>254, 22</value>
+    <value>211, 22</value>
   </data>
   <data name="diskpart重新分区ToolStripMenuItem1.Text" xml:space="preserve">
     <value>Re-partition with Diskpart</value>
   </data>
-  <data name="vHD扩容ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>254, 22</value>
-  </data>
-  <data name="vHD扩容ToolStripMenuItem.Text" xml:space="preserve">
-    <value>VHD size</value>
-  </data>
-  <data name="选择安装分卷ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>254, 22</value>
-  </data>
-  <data name="选择安装分卷ToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Choose WIM Index</value>
-  </data>
-  <data name="toolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>254, 22</value>
-  </data>
-  <data name="toolStripMenuItem6.Text" xml:space="preserve">
-    <value>Set up capacity of EFI partition</value>
-  </data>
-  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>254, 22</value>
-  </data>
-  <data name="toolStripMenuItem2.Text" xml:space="preserve">
-    <value>Set Temp Folder</value>
-  </data>
   <data name="wIN7TOGOToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>254, 22</value>
+    <value>211, 22</value>
   </data>
   <data name="wIN7TOGOToolStripMenuItem.Text" xml:space="preserve">
     <value>Force WIN7 TO GO</value>
   </data>
   <data name="bOOTICEToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>254, 22</value>
+    <value>211, 22</value>
+  </data>
+  <data name="bOOTICEToolStripMenuItem.Text" xml:space="preserve">
+    <value>Start BOOTICE</value>
   </data>
   <data name="修复盘符ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>254, 22</value>
+    <value>211, 22</value>
   </data>
   <data name="修复盘符ToolStripMenuItem.Text" xml:space="preserve">
     <value>FixLetter</value>
   </data>
   <data name="工具ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 21</value>
+    <value>47, 19</value>
   </data>
   <data name="工具ToolStripMenuItem.Text" xml:space="preserve">
     <value>Tools</value>
   </data>
   <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 21</value>
+    <value>71, 19</value>
   </data>
   <data name="toolStripMenuItem5.Text" xml:space="preserve">
     <value>Language</value>
   </data>
   <data name="在线帮助ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>202, 22</value>
+    <value>189, 22</value>
   </data>
   <data name="在线帮助ToolStripMenuItem.Text" xml:space="preserve">
     <value>Online Help(Chinese)</value>
   </data>
   <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>202, 22</value>
+    <value>189, 22</value>
   </data>
   <data name="toolStripMenuItem4.Text" xml:space="preserve">
     <value>FAQ(Chinese)</value>
   </data>
   <data name="官方论坛ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>202, 22</value>
+    <value>189, 22</value>
   </data>
   <data name="官方论坛ToolStripMenuItem.Text" xml:space="preserve">
     <value>Our Website(Chinese)</value>
   </data>
   <data name="关于ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>202, 22</value>
+    <value>189, 22</value>
   </data>
   <data name="关于ToolStripMenuItem.Text" xml:space="preserve">
     <value>About</value>
   </data>
   <data name="帮助ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 21</value>
+    <value>44, 19</value>
   </data>
   <data name="帮助ToolStripMenuItem.Text" xml:space="preserve">
     <value>Help</value>
@@ -409,27 +381,18 @@ of Windows from external USB drives on host PCs.</value>
   <data name="menuStrip1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="checkBoxdiskpart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 23</value>
-  </data>
-  <data name="checkBoxdiskpart.Text" xml:space="preserve">
-    <value>Re-partition</value>
-  </data>
-  <data name="checkBoxdiskpart.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="label4.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 45</value>
+  <data name="labelDisFunc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 34</value>
   </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Some features are 
-not available on
-XP or WIN7 system</value>
+  <data name="labelDisFunc.Text" xml:space="preserve">
+    <value>Some features
+need Win10.
+</value>
   </data>
-  <data name="label5.ToolTip" xml:space="preserve">
+  <data name="labelDisFunc.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="$this.Text" xml:space="preserve">

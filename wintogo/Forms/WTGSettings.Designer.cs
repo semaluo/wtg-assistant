@@ -28,28 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WTGSettings));
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.SuspendLayout();
             // 
             // propertyGrid1
             // 
+            resources.ApplyResources(this.propertyGrid1, "propertyGrid1");
             this.propertyGrid1.CategoryForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propertyGrid1.Location = new System.Drawing.Point(0, 0);
             this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(284, 261);
-            this.propertyGrid1.TabIndex = 0;
             // 
             // WTGSettings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.propertyGrid1);
-            this.Icon = global::wintogo.Properties.Resources._2001;
+            this.Icon = global::wintogo.Properties.Resources.WTGA;
             this.MaximizeBox = false;
             this.Name = "WTGSettings";
-            this.Text = "WTG高级设定";
             this.Load += new System.EventHandler(this.WTGSettings_Load);
             this.ResumeLayout(false);
 

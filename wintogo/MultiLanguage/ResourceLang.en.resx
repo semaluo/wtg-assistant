@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="IsChinaMsg" xml:space="preserve">
     <value>This program can not run in a directory contains Chinese</value>
@@ -157,7 +157,7 @@
     <value>Error!</value>
   </data>
   <data name="Msg_FormatWarning" xml:space="preserve">
-    <value> volume will be formatted, all data will be deleted, this operation will not be restored, are you sure to continue?</value>
+    <value>the volume will be formatted, all data will be deleted, this operation will not be restored, are you sure to continue?</value>
   </data>
   <data name="Msg_LetterV" xml:space="preserve">
     <value>Virtual CD-ROM cannot be mounted into V disk</value>
@@ -202,7 +202,7 @@
     <value>Operation failure!</value>
   </data>
   <data name="Msg_FormatTip" xml:space="preserve">
-    <value>GB,is the disk you want to be written.</value>
+    <value>is the disk you want to be written.</value>
   </data>
   <data name="Msg_ntfsstream" xml:space="preserve">
     <value>NTFS stream error!\nplease rest assured, this error does not affect the normal use.</value>
@@ -245,5 +245,11 @@
   </data>
   <data name="Msg_ApplyError" xml:space="preserve">
     <value>Image file apply failed.</value>
+  </data>
+  <data name="Msg_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Msg_Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

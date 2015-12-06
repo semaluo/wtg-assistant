@@ -13,7 +13,7 @@ namespace wintogo
         UEFI,
         ALL
     }
-    public  static class BootFileOperation
+    public static class BootFileOperation
     {
         ///// <summary>
         ///// windows  /s  x: /f ALL
@@ -26,26 +26,26 @@ namespace wintogo
         //    System.Diagnostics.Process p2 = System.Diagnostics.Process.Start(WTGOperation.applicationFilesPath+ "\\bootice.exe", " /DEVICE=x: /partitions /activate  /quiet");
         //    p2.WaitForExit();
         //}
-        public static void BooticeWriteMBRPBRAndAct(string targetDisk) 
+        public static void BooticeWriteMBRPBRAndAct(string targetDisk)
         {
             BooticeMbr(targetDisk);
             BooticePbr(targetDisk);
             BooticeAct(targetDisk);
         }
         //public static void BooticeWritePbrAndAct
-        public  static void BooticeMbr(string targetDisk) 
+        public static void BooticeMbr(string targetDisk)
         {
-            System.Diagnostics.Process booice = System.Diagnostics.Process.Start(WTGOperation.applicationFilesPath+ "\\BOOTICE.exe", (" /DEVICE=" + targetDisk.Substring(0, 2) + " /mbr /install /type=nt60 /quiet"));//写入引导
+            System.Diagnostics.Process booice = System.Diagnostics.Process.Start(WTGModel.applicationFilesPath + "\\BOOTICE.exe", (" /DEVICE=" + targetDisk.Substring(0, 2) + " /mbr /install /type=nt60 /quiet"));//写入引导
             booice.WaitForExit();
         }
-        public static void BooticePbr(string targetDisk) 
+        public static void BooticePbr(string targetDisk)
         {
-            System.Diagnostics.Process pbr = System.Diagnostics.Process.Start(WTGOperation.applicationFilesPath+ "\\BOOTICE.exe", (" /DEVICE=" + targetDisk.Substring(0, 2) + " /pbr /install /type=bootmgr /quiet"));//写入引导
+            System.Diagnostics.Process pbr = System.Diagnostics.Process.Start(WTGModel.applicationFilesPath + "\\BOOTICE.exe", (" /DEVICE=" + targetDisk.Substring(0, 2) + " /pbr /install /type=bootmgr /quiet"));//写入引导
             pbr.WaitForExit();
         }
         public static void BooticeAct(string targetDisk)
         {
-            System.Diagnostics.Process act = System.Diagnostics.Process.Start(WTGOperation.applicationFilesPath+ "\\bootice.exe", " /DEVICE=" + targetDisk.Substring(0, 2) + " /partitions /activate /quiet");
+            System.Diagnostics.Process act = System.Diagnostics.Process.Start(WTGModel.applicationFilesPath + "\\bootice.exe", " /DEVICE=" + targetDisk.Substring(0, 2) + " /partitions /activate /quiet");
             act.WaitForExit();
 
         }
@@ -78,28 +78,39 @@ namespace wintogo
         /// <param name="targetDisk">例如E:</param>
         /// <param name="bcdbootFileName">例如bcdboot.exe</param>
         /// <param name="fwType"></param>
-        public static void BcdbootWriteBootFile(string sourceDisk,string targetDisk,string bcdbootFileName,FirmwareType fwType)
+        public static void BcdbootWriteBootFile(string sourceDisk, string targetDisk, FirmwareType fwType)
         {
+
             StringBuilder args = new StringBuilder();
             args.Append(sourceDisk);
             args.Append("windows /s ");
-            args.Append(targetDisk.Substring(0,2));
-            if (fwType==FirmwareType.ALL)
+            args.Append(targetDisk.Substring(0, 2));
+            if (WTGModel.bcdbootFileName == "bcdboot.exe")
             {
-                args.Append(" /f all ");
-            }
-            else if(fwType==FirmwareType.BIOS)
-            {
-                args.Append(" /f bios ");
-            }
-            else
-            {
-                args.Append(" /f uefi ");
-
+                if (fwType == FirmwareType.ALL)
+                {
+                    args.Append(" /f all ");
+                }
+                else if (fwType == FirmwareType.BIOS)
+                {
+                    args.Append(" /f bios ");
+                }
+                else
+                {
+                    args.Append(" /f uefi ");
+                }
             }
             args.Append(" /l zh-ch ");
             args.Append(" /v ");
-            ProcessManager.ECMD(WTGOperation.applicationFilesPath + "\\" + bcdbootFileName, args.ToString());
+            //这里不能直接调用系统BCDBOOT,原因未知
+            //if (WTGModel.CurrentOS == OS.Win8_1_with_update || WTGModel.CurrentOS == OS.Win10 || WTGModel.CurrentOS == OS.Win8_without_update)
+            //{
+            //    ProcessManager.ECMD("bcdboot.exe", args.ToString());
+            //}
+            //else
+            //{
+            ProcessManager.ECMD(WTGModel.applicationFilesPath + "\\" + WTGModel.bcdbootFileName, args.ToString());
+            //}
         }
     }
 }

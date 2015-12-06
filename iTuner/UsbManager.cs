@@ -247,7 +247,7 @@ namespace iTuner
 			// browse all USB WMI physical disks
 			foreach (ManagementObject drive in
 				new ManagementObjectSearcher(
-					"select DeviceID, Model from Win32_DiskDrive where InterfaceType='USB'").Get())
+                    "select DeviceID, Model from Win32_DiskDrive where InterfaceType='USB' or MediaType='External hard disk media'").Get())
 			{
 				// associate physical disks with partitions
                 foreach (ManagementObject partition in new ManagementObjectSearcher(String.Format(

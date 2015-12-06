@@ -17,7 +17,7 @@ namespace wintogo
         public override StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
         {
             
-            return new StandardValuesCollection(WTGOperation.imagePartNames);
+            return new StandardValuesCollection(WTGModel.imagePartNames);
         }
         public override bool GetStandardValuesExclusive(ITypeDescriptorContext context)
         {

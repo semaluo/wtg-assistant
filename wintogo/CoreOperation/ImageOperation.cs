@@ -10,7 +10,7 @@ using System.Xml;
 
 namespace wintogo
 {
-    public class ImageOperation : WTGOperation
+    public class ImageOperation
     {
         public string imageFile { get; set; }
         public string imageX { get; set; }
@@ -97,7 +97,7 @@ namespace wintogo
             }
             if (san_policy)
             {
-                ProcessManager.ECMD("dism.exe", " /image:" + imageletter.Substring(0, 2) + " /Apply-Unattend:\"" + WTGOperation.applicationFilesPath + "\\san_policy.xml\"");
+                ProcessManager.ECMD("dism.exe", " /image:" + imageletter.Substring(0, 2) + " /Apply-Unattend:\"" + WTGModel.applicationFilesPath + "\\san_policy.xml\"");
 
             }
 
@@ -106,7 +106,7 @@ namespace wintogo
                 //try {  }
                 if (Directory.Exists(imageletter + "Windows\\System32\\sysprep\\"))
                 {
-                    File.Copy(WTGOperation.applicationFilesPath + "\\unattend.xml", imageletter + "Windows\\System32\\sysprep\\unattend.xml");
+                    File.Copy(WTGModel.applicationFilesPath + "\\unattend.xml", imageletter + "Windows\\System32\\sysprep\\unattend.xml");
                 }
             }
         }
@@ -114,8 +114,8 @@ namespace wintogo
         {
             if (wimpart == "0")
             {//自动判断模式
-                if (isEsd)
-                { wimpart = AutoChooseESDImageIndex(imageFilePath); }
+                if (WTGModel.isEsd)
+                { wimpart = AutoChooseESDImageIndex(WTGModel.imageFilePath); }
                 else
                 {
                     if (win7togo == 1)
@@ -137,17 +137,23 @@ namespace wintogo
             ProcessManager.ECMD("Dism.exe", " /Export-Image /WIMBoot /SourceImageFile:\"" + sourceImageFile + "\" /SourceIndex:" + wimindex.ToString() + " /DestinationImageFile:" + destinationImageDisk + "wimboot.wim");
             ProcessManager.ECMD("Dism.exe", " /Apply-Image /ImageFile:\"" + destinationImageDisk + "wimboot.wim" + "\" /ApplyDir:" + applyDir.Substring(0, 2) + " /Index:" + wimindex.ToString() + " /WIMBoot");
         }
-        private static void DismApplyImage(string imageFile, string targetDisk, string wimIndex)
+        private static void DismApplyImage(string imageFile, string targetDisk, string wimIndex, bool isCompactOS)
         {
-
-            ProcessManager.ECMD("Dism.exe", " /Apply-Image /ImageFile:\"" + imageFile + "\" /ApplyDir:" + targetDisk.Substring(0, 2) + " /Index:" + wimIndex.ToString());
+            if (isCompactOS)
+            {
+                ProcessManager.ECMD("Dism.exe", " /Apply-Image /ImageFile:\"" + imageFile + "\" /ApplyDir:" + targetDisk.Substring(0, 2) + " /Index:" + wimIndex.ToString() + " /compact");
+            }
+            else
+            {
+                ProcessManager.ECMD("Dism.exe", " /Apply-Image /ImageFile:\"" + imageFile + "\" /ApplyDir:" + targetDisk.Substring(0, 2) + " /Index:" + wimIndex.ToString());
+            }
             //ProcessManager.ECMD("Dism.exe", " /Apply-Image /ImageFile:\"" + imageFile + "\" /ApplyDir:" + targetDisk.Substring(0, 2) + " /Index:" + wimIndex.ToString());
             //wp.ShowDialog();
 
         }
         private static void ImageXApply(string imagex, string imageFile, string wimIndex, string targetDisk)
         {
-            ProcessManager.ECMD(WTGOperation.applicationFilesPath + "\\" + imagex, " /apply " + "\"" + imageFile + "\"" + " " + wimIndex.ToString() + " " + targetDisk);
+            ProcessManager.ECMD(WTGModel.applicationFilesPath + "\\" + imagex, " /apply " + "\"" + imageFile + "\"" + " " + wimIndex.ToString() + " " + targetDisk);
 
         }
         /// <summary>
@@ -168,9 +174,9 @@ namespace wintogo
             }
             else
             {
-                if (isesd || WTGOperation.allowEsd)//allowEsd只是判断DISM版本
+                if (isesd || WTGModel.allowEsd)//allowEsd只是判断DISM版本,支持COMPACTOS必然AllowESD=TRUE
                 {
-                    DismApplyImage(imageFile, targetDisk, wimIndex);
+                    DismApplyImage(imageFile, targetDisk, wimIndex, WTGModel.isCompactOS);
                 }
                 else
                 {
@@ -186,13 +192,13 @@ namespace wintogo
         /// <returns>不是WIN7系统：0，Windows 7 STARTER（表示为32位系统镜像）：1，Windows 7 HOMEBASIC（表示为64位系统镜像）：2</returns>
         public static int Iswin7(string imagex, string wimfile)
         {
-            ProcessManager.SyncCMD("\"" + WTGOperation.applicationFilesPath + "\\" + imagex + "\"" + " /info \"" + wimfile + "\" /xml > " + "\"" + WTGOperation.logPath + "\\wiminfo.xml\"");
+            ProcessManager.SyncCMD("\"" + WTGModel.applicationFilesPath + "\\" + imagex + "\"" + " /info \"" + wimfile + "\" /xml > " + "\"" + WTGModel.logPath + "\\wiminfo.xml\"");
             XmlDocument xml = new XmlDocument();
 
             System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
             System.Xml.XmlNodeReader reader = null;
 
-            string strFilename = WTGOperation.logPath + "\\wiminfo.xml";
+            string strFilename = WTGModel.logPath + "\\wiminfo.xml";
             if (!File.Exists(strFilename))
             {
                 //MsgManager.getResString("Msg_wiminfoerror")
@@ -244,9 +250,9 @@ namespace wintogo
         {
             try
             {
-                ProcessManager.SyncCMD("reg.exe load HKU\\sys " + installdrive + "Windows\\System32\\Config\\SYSTEM  > \"" + WTGOperation.logPath + "\\Win7REGLoad.log\"");
-                int errorlevel = ProcessManager.SyncCMD("reg.exe import \"" + applicationFilesPath + "\\usb.reg\" >nul &if %errorlevel% ==0 (echo 注册表导入成功) else (echo 注册表导入失败)" + " > \"" + WTGOperation.logPath + "\\Win7REGImport.log\"");
-                ProcessManager.SyncCMD("reg.exe unload HKU\\sys " + " > \"" + WTGOperation.logPath + "\\Win7REGLoad.log\"");
+                ProcessManager.SyncCMD("reg.exe load HKU\\sys " + installdrive + "Windows\\System32\\Config\\SYSTEM  > \"" + WTGModel.logPath + "\\Win7REGLoad.log\"");
+                int errorlevel = ProcessManager.SyncCMD("reg.exe import \"" + WTGModel.applicationFilesPath + "\\usb.reg\" >nul &if %errorlevel% ==0 (echo 注册表导入成功) else (echo 注册表导入失败)" + " > \"" + WTGModel.logPath + "\\Win7REGImport.log\"");
+                ProcessManager.SyncCMD("reg.exe unload HKU\\sys " + " > \"" + WTGModel.logPath + "\\Win7REGLoad.log\"");
                 Log.WriteLog("ImportReg.log", errorlevel.ToString());
                 Fixletter("C:", installdrive);
 
@@ -274,7 +280,7 @@ namespace wintogo
                 registData = (byte[])aimdir.GetValue("\\DosDevices\\" + currentos);
                 if (registData != null)
                 {
-                    ProcessManager.SyncCMD("reg.exe load HKU\\TEMP " + currentos + "\\Windows\\System32\\Config\\SYSTEM  > \"" + WTGOperation.logPath + "\\loadreg.log\"");
+                    ProcessManager.SyncCMD("reg.exe load HKU\\TEMP " + currentos + "\\Windows\\System32\\Config\\SYSTEM  > \"" + WTGModel.logPath + "\\loadreg.log\"");
                     RegistryKey hklm = Registry.Users;
                     RegistryKey temp = hklm.OpenSubKey("TEMP", true);
                     try
@@ -287,7 +293,7 @@ namespace wintogo
                     wtgreg.SetValue("\\DosDevices\\" + targetletter, registData, RegistryValueKind.Binary);
                     wtgreg.Close();
                     temp.Close();
-                    ProcessManager.SyncCMD("reg.exe unload HKU\\TEMP > \"" + WTGOperation.logPath + "\\unloadreg.log\"");
+                    ProcessManager.SyncCMD("reg.exe unload HKU\\TEMP > \"" + WTGModel.logPath + "\\unloadreg.log\"");
 
 
 
@@ -316,13 +322,13 @@ namespace wintogo
         #region 对象方法
         public void AutoChooseWimIndex()
         {
-            string tempindex = WTGOperation.wimPart.ToString();
-            AutoChooseWimIndex(ref tempindex, win7togo);
-            WTGOperation.wimPart = tempindex;
+            string tempindex = WTGModel.wimPart;
+            AutoChooseWimIndex(ref tempindex, WTGModel.win7togo);
+            WTGModel.wimPart = tempindex;
         }
         public void ImageApplyToUD()
         {
-            ImageApply(isWimBoot, isEsd, imageX, imageFile, wimPart, ud, ud);
+            ImageApply(WTGModel.isWimBoot, WTGModel.isEsd, imageX, imageFile, WTGModel.wimPart, WTGModel.ud, WTGModel.ud);
         }
         #endregion
 

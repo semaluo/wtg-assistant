@@ -151,7 +151,7 @@
     <value>引导文件写入出错！boot文件夹不存在！</value>
   </data>
   <data name="Msg_bootmgrError" xml:space="preserve">
-    <value>文件写入出错！bootmgr不存在！\n请检查写入过程是否中断</value>
+    <value>文件写入出错！请检查写入过程是否中断！</value>
   </data>
   <data name="Msg_ClearPartition" xml:space="preserve">
     <value>此操作将会清除移动磁盘所有分区的所有数据，确认？</value>
@@ -178,10 +178,10 @@
     <value>操作失败！</value>
   </data>
   <data name="Msg_FormatTip" xml:space="preserve">
-    <value>GB 是将要写入的优盘或移动硬盘\n误格式化，后果自负！</value>
+    <value>是将要写入的优盘或移动硬盘</value>
   </data>
   <data name="Msg_FormatWarning" xml:space="preserve">
-    <value>盘将会被格式化，此操作将不可恢复，您确定要继续吗？\n由于写入时间较长，请您耐心等待！\n写入过程中弹出写入可能无效属于正常现象，选是即可。</value>
+    <value>此分区将会被格式化，不可恢复，您确定要继续吗？</value>
   </data>
   <data name="Msg_LetterV" xml:space="preserve">
     <value>盘符V不能被占用！</value>
@@ -251,5 +251,14 @@
   </data>
   <data name="Msg_NtfsUefiSupport" xml:space="preserve">
     <value>NTFS分区UEFI支持</value>
+  </data>
+  <data name="Msg_No" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="Msg_Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="Msg_TwiceConfirm" xml:space="preserve">
+    <value>请确认优盘信息无误</value>
   </data>
 </root>

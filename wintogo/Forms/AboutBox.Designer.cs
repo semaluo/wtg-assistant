@@ -100,7 +100,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = global::wintogo.Properties.Resources._2001;
+            this.Icon = global::wintogo.Properties.Resources.WTGA;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AboutBox";

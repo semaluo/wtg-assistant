@@ -1,6 +1,7 @@
 ﻿using iTuner;
 using Microsoft.Win32;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -14,16 +15,18 @@ namespace wintogo
     public partial class Form1 : Form
     {
 
-        string currentlist;//当前优盘列表
+        string currentList;//当前优盘列表
         private UsbDiskCollection diskCollection = new UsbDiskCollection();
 
         bool autoupdate = true;
-        private Thread threadwrite;
-        private Thread listUdisks;
+        private Thread tWrite;
+        private Thread tListUDisks;
+        Stopwatch writeSw = new Stopwatch();
 
         private readonly string releaseUrl = "http://bbs.luobotou.org/app/wintogo.txt";
         private readonly string reportUrl = "http://myapp.luobotou.org/statistics.aspx?name=wtg&ver=";
         private readonly string settingFilePath = Application.StartupPath + "\\settings.ini";
+
 
         public Form1()
         {
@@ -31,9 +34,11 @@ namespace wintogo
             InitializeComponent();
         }
 
-        private void FileValidate()
+
+
+        private void FileValidation()
         {
-            if (StringUtility.IsChina(WTGOperation.diskpartScriptPath))
+            if (StringUtility.IsChina(WTGModel.diskpartScriptPath))
             {
                 if (StringUtility.IsChina(Application.StartupPath))
                 {
@@ -43,84 +48,96 @@ namespace wintogo
                 }
                 else
                 {
-                    WTGOperation.diskpartScriptPath = WTGOperation.logPath;
+                    WTGModel.diskpartScriptPath = WTGModel.logPath;
                 }
             }
-
-
+            ProcessManager.SyncCMD("taskkill /f /IM BOOTICE.exe");
+            //ProcessManager.KillProcessByName("bootice.exe");
             //解压文件
-            UnZipClass.UnZip(Application.StartupPath + "\\files.dat", StringUtility.Combine(Path.GetTempPath(), "WTGA"));
-
-
+            UnZipClass.UnZip(Application.StartupPath + "\\files.dat", WTGModel.applicationFilesPath);
         }
-
-       
 
         private void SystemDetection()
         {
-            WTGOperation.bcdbootFileName = "bcdboot.exe";
+            WTGModel.bcdbootFileName = "bcdboot.exe";
             string osVersionStr = Environment.OSVersion.ToString();
             if (osVersionStr.Contains("5.1")) //XP 禁用功能
             {
-                radiovhd.Enabled = false;
-                radiovhdx.Enabled = false;
-                radiochuantong.Checked = true;
-                //button2.Enabled = false;
-                groupBoxadv.Enabled = false;
-                checkBoxdiskpart.Checked = false;
-                checkBoxdiskpart.Enabled = false;
+                radiobtnVhd.Enabled = false;
+                radiobtnVhdx.Enabled = false;
+                radiobtnLegacy.Checked = true;
+                groupBoxAdv.Enabled = false;
+                checkBoxDiskpart.Checked = false;
+                checkBoxDiskpart.Enabled = false;
                 bcdboot9200.Checked = false;
                 bcdboot7601.Checked = true;
-                WTGOperation.bcdbootFileName = "bcdboot7601.exe";
-                label4.Visible = true;
-                label5.Visible = true;
-
+                WTGModel.bcdbootFileName = "bcdboot7601.exe";
+                labelDisFuncEM.Visible = true;
+                labelDisFunc.Visible = true;
+                WTGModel.CurrentOS = OS.XP;
             }
             else if (osVersionStr.Contains("6.0")) //vista
             {
-                radiovhd.Enabled = false;
-                radiovhdx.Enabled = false;
-                radiochuantong.Checked = true;
-
-                //button2.Enabled = false;
-                groupBoxadv.Enabled = false;
-                checkBoxdiskpart.Checked = false;
-                checkBoxdiskpart.Enabled = false;
+                radiobtnVhd.Enabled = false;
+                radiobtnVhdx.Enabled = false;
+                radiobtnLegacy.Checked = true;
+                groupBoxAdv.Enabled = false;
+                checkBoxDiskpart.Checked = false;
+                checkBoxDiskpart.Enabled = false;
                 bcdboot9200.Checked = false;
                 bcdboot7601.Checked = true;
-                WTGOperation.bcdbootFileName = "bcdboot7601.exe";
-                label4.Visible = true;
-                label5.Visible = true;
+                WTGModel.bcdbootFileName = "bcdboot7601.exe";
+                labelDisFuncEM.Visible = true;
+                labelDisFunc.Visible = true;
+                WTGModel.CurrentOS = OS.Vista;
 
             }
             else if (osVersionStr.Contains("6.1"))//WIN7
             {
-                label4.Visible = true;
-                label5.Visible = true;
-                radiovhd.Checked = true; radiovhdx.Enabled = false;
+                labelDisFuncEM.Visible = true;
+                labelDisFunc.Visible = true;
+                radiobtnVhd.Checked = true;
+                radiobtnVhdx.Enabled = false;
+                WTGModel.CurrentOS = OS.Win7;
+
             }
             else if (osVersionStr.Contains("6.2") || osVersionStr.Contains("6.3"))//WIN8及以上
             {
-                radiovhd.Checked = true;
+                radiobtnVhd.Checked = true;
                 //WIN8.1 UPDATE1 WIMBOOT  已修复WIN10版本号问题
                 string dismversion = FileOperation.GetFileVersion(System.Environment.GetEnvironmentVariable("windir") + "\\System32\\dism.exe");
-                if (dismversion.Substring(0, 14) == "6.3.9600.17031" || dismversion.Substring(0, 3) == "6.4" || dismversion.Substring(0, 5) == "10.0.")
+                if (dismversion.Substring(0, 14) == "6.3.9600.17031" || dismversion.Substring(0, 3) == "6.4")
                 {
-                    checkBoxwimboot.Enabled = true;
-                    WTGOperation.allowEsd = true;
+                    checkBoxWimboot.Enabled = true;
+                    WTGModel.allowEsd = true;
+                    labelDisFunc.Visible = true;
+                    labelDisFuncEM.Visible = true;
+                    WTGModel.CurrentOS = OS.Win8_1_with_update;
+
+                }
+                else if (dismversion.Substring(0, 3) == "10.")
+                {
+                    checkBoxWimboot.Enabled = true;
+                    checkBoxCompactOS.Enabled = true;
+                    WTGModel.allowEsd = true;
+                    WTGModel.CurrentOS = OS.Win10;
+
+                }
+                else
+                {
+                    WTGModel.CurrentOS = OS.Win8_without_update;
                 }
             }
 
 
             if (Environment.Is64BitOperatingSystem)
             {
-                WTGOperation.imagexFileName = "imagex_x64.exe";
+                WTGModel.imagexFileName = "imagex_x64.exe";
             }
         }
 
         private void ReadConfigFile()
         {
-
             string autoup;
             string tp;
             string language;
@@ -130,7 +147,7 @@ namespace wintogo
             if (autoup == "0") { autoupdate = false; }
             if (!string.IsNullOrEmpty(tp))
             {
-                WTGOperation.userSettings.VHDTempPath = tp;
+                WTGModel.userSettings.VHDTempPath = tp;
             }
             if (language == "EN")
             {
@@ -167,11 +184,6 @@ namespace wintogo
             }
             comboBox1.DataSource = null;
             comboBox1.DataSource = dtSource;
-            //foreach (UsbDisk item in (UsbDiskCollection)dtSource)
-            //{
-            //    MessageBox.Show(item.ToString());
-            //}
-            //MessageBox.Show(((UsbDiskCollection)dtSource).ToString ());
             if (comboBox1.Items.Count != 0)
             {
                 comboBox1.SelectedIndex = 0;
@@ -198,10 +210,10 @@ namespace wintogo
                     newlist += disk.ToString();
 
                 }
-                if (newlist != currentlist)
+                if (newlist != currentList)
                 {
 
-                    currentlist = newlist;
+                    currentList = newlist;
 
                     OutText(false, diskCollection);
                 }
@@ -214,8 +226,8 @@ namespace wintogo
         private void LoadUDList()
         {
             //Udlist = new Udlist();
-            listUdisks = new Thread(GetUdiskInfo);
-            listUdisks.Start();
+            tListUDisks = new Thread(GetUdiskInfo);
+            tListUDisks.Start();
 
         }
         private void timer1_Tick(object sender, EventArgs e)
@@ -232,35 +244,47 @@ namespace wintogo
 
         private void GoWrite()
         {
+
             try
             {
                 //wimpart = ChoosePart.part;//读取选择分卷，默认选择第一分卷
                 #region 各种提示
                 //各种提示
-                if (wimbox.Text.ToLower().Substring(wimbox.Text.Length - 3, 3) != "wim" && wimbox.Text.ToLower().Substring(wimbox.Text.Length - 3, 3) != "esd" && wimbox.Text.ToLower().Substring(wimbox.Text.Length - 3, 3) != "vhd" && wimbox.Text.ToLower().Substring(wimbox.Text.Length - 4, 4) != "vhdx")//不是WIM文件
+                if (lblWim.Text.ToLower().Substring(lblWim.Text.Length - 3, 3) != "wim" && lblWim.Text.ToLower().Substring(lblWim.Text.Length - 3, 3) != "esd" && lblWim.Text.ToLower().Substring(lblWim.Text.Length - 3, 3) != "vhd" && lblWim.Text.ToLower().Substring(lblWim.Text.Length - 4, 4) != "vhdx")//不是WIM文件
                 {
-                    //                MsgManager.getResString("Msg_chooseinstallwim")
                     //镜像文件选择错误！请选择install.wim！
-                    MessageBox.Show(MsgManager.GetResString("Msg_chooseinstallwim", MsgManager.ci)); return;
+                    MessageBox.Show(MsgManager.GetResString("Msg_chooseinstallwim", MsgManager.ci), MsgManager.GetResString("Msg_error", MsgManager.ci), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
                 else
                 {
                     //请选择install.wim文件
-                    if (!System.IO.File.Exists(wimbox.Text)) { MessageBox.Show(MsgManager.GetResString("Msg_chooseinstallwim", MsgManager.ci), MsgManager.GetResString("Msg_error", MsgManager.ci), MessageBoxButtons.OK, MessageBoxIcon.Error); return; }//文件不存在.
-                    WTGOperation.imageFilePath = wimbox.Text;
+                    if (!System.IO.File.Exists(lblWim.Text))
+                    {
+                        MessageBox.Show(MsgManager.GetResString("Msg_chooseinstallwim", MsgManager.ci), MsgManager.GetResString("Msg_error", MsgManager.ci), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }//文件不存在.
+                    WTGModel.imageFilePath = lblWim.Text;
                 }
 
 
-                if (!Directory.Exists(WTGOperation.ud)) { MessageBox.Show(MsgManager.GetResString("Msg_chooseud", MsgManager.ci) + "!", MsgManager.GetResString("Msg_error", MsgManager.ci), MessageBoxButtons.OK, MessageBoxIcon.Error); return; }//是否选择优盘
-                if (DiskOperation.GetHardDiskSpace(WTGOperation.ud) <= 12582912) //优盘容量<12 GB提示
+                if (!Directory.Exists(WTGModel.ud))
+                {
+                    MessageBox.Show(MsgManager.GetResString("Msg_chooseud", MsgManager.ci) + "!", MsgManager.GetResString("Msg_error", MsgManager.ci), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }//是否选择优盘
+                if (DiskOperation.GetHardDiskSpace(WTGModel.ud) <= 12582912) //优盘容量<12 GB提示
                 {
                     //MsgManager.getResString("Msg_DiskSpaceWarning") 
                     //可移动磁盘容量不足16G，继续写入可能会导致程序出错！您确定要继续吗？
-                    if (DialogResult.No == MessageBox.Show(MsgManager.GetResString("Msg_DiskSpaceWarning", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
+                    if (DialogResult.No == MessageBox.Show(MsgManager.GetResString("Msg_DiskSpaceWarning", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                    {
+                        return;
+                    }
                 }
 
 
-                if (DiskOperation.GetHardDiskSpace(WTGOperation.ud) <= numericUpDown1.Value * 1048576)
+                if (DiskOperation.GetHardDiskSpace(WTGModel.ud) <= numericUpDown1.Value * 1048576)
                 {
                     //优盘容量小于VHD设定大小，请修改设置！
                     //MsgManager.getResString("Msg_DiskSpaceError")
@@ -273,45 +297,55 @@ namespace wintogo
                 //Msg_FormatTip
 
                 //GB 是将要写入的优盘或移动硬盘\n误格式化，后果自负！
-
-                if (DialogResult.No == MessageBox.Show(MsgManager.GetResString("Msg_ConfirmChoose", MsgManager.ci) + WTGOperation.ud.Substring(0, 1) + MsgManager.GetResString("Msg_Disk_Space", MsgManager.ci) + DiskOperation.GetHardDiskSpace(WTGOperation.ud) / 1024 / 1024 + MsgManager.GetResString("Msg_FormatTip", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk)) { return; }
-                if (checkBoxdiskpart.Checked && !checkBoxuefi.Checked && !checkBoxuefimbr.Checked)//勾选重新分区提示
+                StringBuilder formatTip = new StringBuilder();
+                formatTip.AppendLine(MsgManager.GetResString("Msg_ConfirmChoose", MsgManager.ci));
+                formatTip.AppendFormat(WTGModel.udString);
+                formatTip.AppendLine(MsgManager.GetResString("Msg_FormatTip", MsgManager.ci));
+                if (checkBoxDiskpart.Checked && !checkBoxUefigpt.Checked && !checkBoxUefimbr.Checked)//勾选重新分区提示
                 {
+                    formatTip.AppendLine(MsgManager.GetResString("Msg_Repartition", MsgManager.ci));
+                    FormatAlert fa = new FormatAlert(formatTip.ToString());
                     //MsgManager.getResString("Msg_Repartition")
-                    //Msg_Repartition
                     //您勾选了重新分区，优盘或移动硬盘上的所有文件将被删除！\n注意是整个磁盘，不是一个分区！
-                    if (DialogResult.No == MessageBox.Show(MsgManager.GetResString("Msg_Repartition", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
+                    if (DialogResult.Yes != fa.ShowDialog())
+                    {
+                        return;
+                    }
 
-                    //MsgManager.getResString("Msg_DoWhat")
-                    //如果您不清楚您在做什么，请立即停止操作！
-
-                    if (DialogResult.No == MessageBox.Show(MsgManager.GetResString("Msg_DoWhat", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
                     DiskOperation.DiskPartReformatUD();
-
-                    //diskPart();
                 }
                 else//普通格式化提示
                 {
-                    if (!checkBoxunformat.Checked)
+                    if (!WTGModel.userSettings.DoNotFormat)
                     {
-                        //MsgManager.getResString("Msg_FormatWarning")
-                        //盘将会被格式化，此操作将不可恢复，您确定要继续吗？\n由于写入时间较长，请您耐心等待！\n写入过程中弹出写入可能无效属于正常现象，选是即可。
-                        if (DialogResult.No == MessageBox.Show(WTGOperation.ud.Substring(0, 1) + MsgManager.GetResString("Msg_FormatWarning", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
-                        //if (DialogResult.No == MessageBox.Show("如果您不清楚您在做什么，请立即停止操作！", "警告！", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
+                        formatTip.AppendLine(MsgManager.GetResString("Msg_FormatWarning", MsgManager.ci));
+                        FormatAlert fa = new FormatAlert(formatTip.ToString());
+                        if (DialogResult.Yes != fa.ShowDialog())
+                        {
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        FormatAlert fa = new FormatAlert(formatTip.ToString());
+                        if (DialogResult.Yes != fa.ShowDialog())
+                        {
+                            return;
+                        }
                     }
                 }
                 #endregion
 
+                SystemSleepManagement.PreventSleep();
 
-
-                ///////删除旧LOG文件
+                //删除旧LOG文件
                 Log.DeleteAllLogs();
-                //ProcessManager.SyncCMD ("cmd.exe /c del /f /s /q \""+Application .StartupPath +"\\logs\\*.*\"");
-                //////////////将程序运行信息写入LOG
+                ProcessManager.KillProcessByName("bootice.exe");
                 WriteProgramRunInfoToLog();
 
+                writeSw.Restart();
 
-                if (checkBoxuefi.Checked)
+                if (checkBoxUefigpt.Checked)
                 {
                     //UEFI+GPT
                     if (System.Environment.OSVersion.ToString().Contains("5.1") || System.Environment.OSVersion.ToString().Contains("5.2"))
@@ -320,44 +354,43 @@ namespace wintogo
                         //XP系统不支持UEFI模式写入
                         MessageBox.Show(MsgManager.GetResString("Msg_XPUefiError", MsgManager.ci)); return;
                     }
-                    if (WTGOperation.udString.Contains("Removable Disk"))
+                    if (WTGModel.udString.Contains("Removable Disk"))
                     {
-                        //MsgManager.getResString("Msg_UefiError")
-                        //此优盘不支持UEFI模式\n只有 Fixed Disk格式支持\n详情请看论坛说明！
-                        MessageBox.Show(MsgManager.GetResString("Msg_UefiError", MsgManager.ci), MsgManager.GetResString("Msg_error", MsgManager.ci), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        VisitWeb("http://bbs.luobotou.org/thread-6506-1-1.html");
-                        return;
+                        //普通优盘UEFI
+                        WTGModel.isLegacyUdiskUefi = true;
+                        RemoveableDiskUefiGpt();
+                        FinishSuccessful();
+
+                       
                     }
-                    //MsgManager.getResString("Msg_UefiFormatWarning")
-                    //您所选择的是UEFI模式，此模式将会格式化您的整个移动磁盘！\n注意是整个磁盘！！！\n程序将会删除所有优盘分区！
-                    if (DialogResult.No == MessageBox.Show(MsgManager.GetResString("Msg_UefiFormatWarning", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
-
-                    DiskpartScriptManager dsm = new DiskpartScriptManager();
-                    dsm.RunDiskpartScriptByScriptFile(DiskOperation.GenerateGPTAndUEFIScript(WTGOperation.userSettings.EFIPartitionSize.ToString(), WTGOperation.ud));
-
-                    //ProcessManager.ECMD("diskpart.exe", " /s \"" + WTGOperation.diskpartScriptPath + "\\uefi.txt\"");
-                    if (radiochuantong.Checked)
+                    else
                     {
-                        //UEFI+GPT 传统
-                        UefiGptTypical();
+                        //MsgManager.getResString("Msg_UefiFormatWarning")
+                        //您所选择的是UEFI模式，此模式将会格式化您的整个移动磁盘！\n注意是整个磁盘！！！\n程序将会删除所有优盘分区！
+                        if (DialogResult.No == MessageBox.Show(MsgManager.GetResString("Msg_UefiFormatWarning", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
+
+                        DiskpartScriptManager dsm = new DiskpartScriptManager();
+                        dsm.RunDiskpartScriptByScriptFile(DiskOperation.GenerateGPTAndUEFIScript(WTGModel.userSettings.EFIPartitionSize.ToString(), WTGModel.ud));
+
+                        //ProcessManager.ECMD("diskpart.exe", " /s \"" + WTGOperation.diskpartScriptPath + "\\uefi.txt\"");
+                        if (radiobtnLegacy.Checked)
+                        {
+                            //UEFI+GPT 传统
+                            UefiGptTypical();
 
 
+                        }
+                        else // UEFI+GPT VHD、VHDX模式
+                        {
+
+                            UefiGptVhdVhdx();
+                        }
                     }
-                    else // UEFI+GPT VHD、VHDX模式
-                    {
-
-                        UefiGptVhdVhdx();
-                    }
-                    RemoveLetterX();
-                    //Finish f = new Finish();
-                    //f.ShowDialog();
-                    FinishSuccessful();
-                    //MessageBox.Show("UEFI模式写入完成！\n请重启电脑用优盘启动\n如有问题，可去论坛反馈！","完成啦！",MessageBoxButtons .OK ,MessageBoxIcon.Information );
                 }
-                else if (checkBoxuefimbr.Checked)
+                else if (checkBoxUefimbr.Checked)
                 {
                     //UEFI+MBR
-                    if (WTGOperation.udString.Contains("Removable Disk"))
+                    if (WTGModel.udString.Contains("Removable Disk"))
                     {
                         MessageBox.Show(MsgManager.GetResString("Msg_UefiError", MsgManager.ci), MsgManager.GetResString("Msg_error", MsgManager.ci), MessageBoxButtons.OK, MessageBoxIcon.Error);
                         VisitWeb("http://bbs.luobotou.org/thread-6506-1-1.html");
@@ -365,11 +398,11 @@ namespace wintogo
                     }
                     if (DialogResult.No == MessageBox.Show(MsgManager.GetResString("Msg_UefiFormatWarning", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
                     DiskpartScriptManager dsm = new DiskpartScriptManager();
-                    dsm.RunDiskpartScriptByScriptFile(DiskOperation.GenerateMBRAndUEFIScript(WTGOperation.userSettings.EFIPartitionSize.ToString(), WTGOperation.ud));
+                    dsm.RunDiskpartScriptByScriptFile(DiskOperation.GenerateMBRAndUEFIScript(WTGModel.userSettings.EFIPartitionSize.ToString(), WTGModel.ud));
 
                     //ProcessManager.ECMD("diskpart.exe", " /s \"" + WTGOperation.diskpartScriptPath + "\\uefimbr.txt\"");
 
-                    if (radiochuantong.Checked)
+                    if (radiobtnLegacy.Checked)
                     {
                         UEFIMBRTypical();
 
@@ -378,6 +411,7 @@ namespace wintogo
                     {
                         UefiMbrVHDVHDX();
                     }
+
                     //MessageBox.Show("UEFI模式写入完成！\n请重启电脑用优盘启动\n如有问题，可去论坛反馈！", "完成啦！", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
@@ -385,14 +419,14 @@ namespace wintogo
                 {
                     //传统
                     #region 格式化
-                    if (WTGOperation.udString.Contains("Removable Disk") && radiochuantong.Checked)
+                    if (WTGModel.udString.Contains("Removable Disk") && radiobtnLegacy.Checked)
                     {
                         if (DialogResult.No == MessageBox.Show(MsgManager.GetResString("Msg_Legacywarning", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
                     }
 
-                    if (!checkBoxdiskpart.Checked && !checkBoxunformat.Checked)//普通格式化
+                    if (!checkBoxDiskpart.Checked && !WTGModel.userSettings.DoNotFormat)//普通格式化
                     {
-                        ProcessManager.ECMD("cmd.exe", "/c format " + WTGOperation.ud.Substring(0, 2) + "/FS:ntfs /q /V: /Y");
+                        ProcessManager.ECMD("cmd.exe", "/c format " + WTGModel.ud.Substring(0, 2) + "/FS:ntfs /q /V: /Y");
                         //
                     }
                     //if (WTGOperation.forceFormat) //强制格式化
@@ -402,22 +436,81 @@ namespace wintogo
                     //}
                     #endregion
                     ///////////////////////////////////正式开始////////////////////////////////////////////////
-                    if (radiochuantong.Checked)
+                    if (radiobtnLegacy.Checked)
                     {
                         NonUEFITypical();
 
                     }
                     else //非UEFI VHD VHDX
                     {
-                        NonUEFIVHDVHDX();
+                        NonUEFIVHDVHDX(false);
                     }
                 }
 
             }
             catch (UserCancelException ex)
             {
-                MessageBox.Show(ex.Message);
+                ErrorMsg em = new ErrorMsg(ex.Message);
+                em.ShowDialog();
             }
+            catch (Exception ex)
+            {
+
+                ErrorMsg em = new ErrorMsg(ex.Message);
+                em.ShowDialog();
+            }
+            finally
+            {
+                writeSw.Stop();
+                SystemSleepManagement.ResotreSleep();
+            }
+        }
+
+        private void RemoveableDiskUefiGpt()
+        {
+            string tempFileName = WTGModel.diskpartScriptPath + "\\" + Guid.NewGuid().ToString() + ".txt";
+            Process diskInfo = Process.Start(WTGModel.applicationFilesPath + "\\bootice.exe", " /diskinfo /find: /usbonly /file=" + tempFileName);
+            diskInfo.WaitForExit();
+
+            string tempUdiskInfo = File.ReadAllText(tempFileName);
+            Match match = Regex.Match(tempUdiskInfo, @"SET DRIVE([0-9])DESC=(.+)\r\nSET DRIVE([0-9])SIZE=(.+)\r\nSET DRIVE([0-9])LETTER=" + WTGModel.ud.Substring(0, 2).ToUpper(), RegexOptions.ECMAScript);
+            string UdiskNumber = match.Groups[1].Value;
+            if (DialogResult.No == MessageBox.Show(match.Groups[2].Value + "\n" + MsgManager.GetResString("Msg_TwiceConfirm", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
+            //59055800320
+            long udiskSize = long.Parse(match.Groups[4].Value);
+            string dptFile = string.Empty;
+            if (udiskSize > 59055800320)
+            {
+                dptFile = "55G";
+            }
+            else if (udiskSize > 28991029248)
+            {
+                dptFile = "27G";
+            }
+            else if (udiskSize > 13958643712)
+            {
+                dptFile = "13G";
+            }
+            else
+            {
+                throw new NotSupportedException("Your Usb Key is not suppotred");
+            }
+            //MessageBox.Show(WTGModel.applicationFilesPath + "\\DPTs\\" + dptFile + "-1.dpt");
+            Process p1 = Process.Start(WTGModel.applicationFilesPath + "\\bootice.exe", "/DEVICE=" + UdiskNumber + " /partitions  /quiet /restore_dpt=" + WTGModel.applicationFilesPath + "\\DPTs\\" + dptFile + "-1.dpt");
+            p1.WaitForExit();
+            ProcessManager.ECMD("cmd.exe", "/c format " + WTGModel.ud.Substring(0, 2) + "/FS:ntfs /q /V: /Y");
+            WTGModel.ntfsUefiSupport = true;
+            NonUEFIVHDVHDX(true);
+
+            ProcessManager.ECMD("xcopy.exe", "\"" + WTGModel.ud.Substring(0, 2) + "\\EFI\\*.*" + "\"" + " \"" + WTGModel.diskpartScriptPath + "\\EFI\\\" /e /h /y");
+
+            Process p2 = Process.Start(WTGModel.applicationFilesPath + "\\bootice.exe", "/DEVICE=" + UdiskNumber + " /partitions  /quiet /restore_dpt=" + WTGModel.applicationFilesPath + "\\DPTs\\" + dptFile + "-2.dpt");
+            p2.WaitForExit();
+            ProcessManager.ECMD("cmd.exe", "/c format " + WTGModel.ud.Substring(0, 2) + "/FS:fat /q /V: /Y");
+            ProcessManager.ECMD("xcopy.exe", "\"" + WTGModel.diskpartScriptPath + "\\EFI\\*.*" + "\"" + " \"" + WTGModel.ud.Substring(0, 2) + "\\EFI\\\" /e /h /y");
+
+            Process p3 = Process.Start(WTGModel.applicationFilesPath + "\\bootice.exe", "/DEVICE=" + UdiskNumber + " /partitions  /quiet /restore_dpt=" + WTGModel.applicationFilesPath + "\\DPTs\\" + dptFile + "-1.dpt");
+            p3.WaitForExit();
         }
 
 
@@ -425,16 +518,14 @@ namespace wintogo
         private void UefiGptTypical()
         {
             ImageOperation io = new ImageOperation();
-            //io.isESD = WTGOperation.isesd;
-            io.imageX = WTGOperation.imagexFileName;
-            io.imageFile = WTGOperation.imageFilePath;
-            //io.imageIndex = WTGOperation.wimpart;
-            //io.isWimboot = checkBoxwimboot.Checked;
-            //io.win7togo = WTGOperation.win7togo;
+            io.imageX = WTGModel.imagexFileName;
+            io.imageFile = WTGModel.imageFilePath;
             io.AutoChooseWimIndex();
             io.ImageApplyToUD();
-            ImageOperation.ImageExtra(WTGOperation.userSettings.InstallDonet35, checkBox_san_policy.Checked, WTGOperation.userSettings.DisableWinRe, WTGOperation.ud, wimbox.Text);
-            BootFileOperation.BcdbootWriteBootFile(WTGOperation.ud, @"X:\", WTGOperation.bcdbootFileName, FirmwareType.UEFI);
+            ImageOperation.ImageExtra(WTGModel.userSettings.InstallDonet35, checkBoxSan_policy.Checked, WTGModel.userSettings.DisableWinRe, WTGModel.ud, lblWim.Text);
+            BootFileOperation.BcdbootWriteBootFile(WTGModel.ud, @"X:\", FirmwareType.UEFI);
+            RemoveLetterX();
+            FinishSuccessful();
         }
 
         private void UefiGptVhdVhdx()
@@ -442,27 +533,32 @@ namespace wintogo
             VHDOperation vo = new VHDOperation();
             vo.Execute();
 
+            RemoveLetterX();
 
-            if (File.Exists(WTGOperation.ud + WTGOperation.win8VHDFileName))
+            if (File.Exists(WTGModel.ud + WTGModel.win8VHDFileName))
             {
-
+                FinishSuccessful();
             }
             else
             {
-                //                //MsgManager.getResString("Msg_VHDCreationError")
+
                 //VHD文件创建出错！
                 ErrorMsg er = new ErrorMsg(MsgManager.GetResString("Msg_VHDCreationError", MsgManager.ci));
                 er.ShowDialog();
                 //MessageBox.Show("Win8 VHD文件不存在！，可到论坛发帖求助！\n建议将程序目录下logs文件夹打包上传，谢谢！","出错啦！",MessageBoxButtons .OK ,MessageBoxIcon.Error );
-                //System.Diagnostics.Process.Start("http://bbs.luobotou.org/forum-88-1.html");
+
             }
         }
 
-        private void NonUEFIVHDVHDX()
+        private void NonUEFIVHDVHDX(bool legacyUdiskUefi)
         {
             VHDOperation vo = new VHDOperation();
             vo.Execute();
-            if (!System.IO.File.Exists(WTGOperation.ud + WTGOperation.win8VHDFileName))
+            if (!legacyUdiskUefi)
+            {
+                BootFileOperation.BooticeWriteMBRPBRAndAct(WTGModel.ud);
+            }
+            if (!File.Exists(WTGModel.ud + WTGModel.win8VHDFileName))
             {
                 //MsgManager.getResString("Msg_VHDCreationError")
                 //Win8 VHD文件不存在！未知错误原因！
@@ -470,14 +566,14 @@ namespace wintogo
                 er.ShowDialog();
             }
 
-            else if (!System.IO.File.Exists(WTGOperation.ud + "\\Boot\\BCD"))
+            else if (!File.Exists(WTGModel.ud + "\\Boot\\BCD"))
             {
                 //MsgManager.getResString("Msg_VHDBcdbootError")
                 //VHD模式下BCDBOOT执行出错！
                 ErrorMsg er = new ErrorMsg(MsgManager.GetResString("Msg_VHDBcdbootError", MsgManager.ci));
                 er.ShowDialog();
             }
-            else if (!File.Exists(WTGOperation.ud + "bootmgr"))
+            else if (!File.Exists(WTGModel.ud + "bootmgr"))
             {
                 ErrorMsg er = new ErrorMsg(MsgManager.GetResString("Msg_bootmgrError", MsgManager.ci));
                 er.ShowDialog();
@@ -485,18 +581,23 @@ namespace wintogo
             }
             else
             {
-                FinishSuccessful();
+                if (!legacyUdiskUefi)
+                {
+                    FinishSuccessful();
+                }
             }
 
         }
 
         private void FinishSuccessful()
         {
-            if (WTGOperation.userSettings.NoDefaultDriveLetter && !WTGOperation.udString.Contains("Removable Disk"))
+            if (WTGModel.userSettings.NoDefaultDriveLetter && !WTGModel.udString.Contains("Removable Disk"))
             {
-                DiskOperation.SetNoDefaultDriveLetter(WTGOperation.ud);
+                DiskOperation.SetNoDefaultDriveLetter(WTGModel.ud);
             }
-            Finish f = new Finish();
+            writeSw.Stop();
+
+            Finish f = new Finish(writeSw.Elapsed);
             f.ShowDialog();
         }
 
@@ -505,9 +606,11 @@ namespace wintogo
             VHDOperation vo = new VHDOperation();
             vo.Execute();
 
+            RemoveLetterX();
 
-            if (System.IO.File.Exists(WTGOperation.ud + WTGOperation.win8VHDFileName))
+            if (System.IO.File.Exists(WTGModel.ud + WTGModel.win8VHDFileName))
             {
+                FinishSuccessful();
                 //finish f = new finish();
                 //f.ShowDialog();
             }
@@ -518,7 +621,6 @@ namespace wintogo
                 //shouldcontinue = false;
             }
             //removeLetterX();
-            FinishSuccessful();
             //Finish f = new Finish();
             //f.ShowDialog();
         }
@@ -527,39 +629,34 @@ namespace wintogo
 
         private void UEFIMBRTypical()
         {
-            ImageOperation.AutoChooseWimIndex(ref WTGOperation.wimPart, WTGOperation.win7togo);
+            ImageOperation.AutoChooseWimIndex(ref WTGModel.wimPart, WTGModel.win7togo);
             //IMAGEX解压
-            ImageOperation.ImageApply(checkBoxwimboot.Checked, WTGOperation.isEsd, WTGOperation.imagexFileName, WTGOperation.imageFilePath, WTGOperation.wimPart, WTGOperation.ud, WTGOperation.ud);
+            ImageOperation.ImageApply(checkBoxWimboot.Checked, WTGModel.isEsd, WTGModel.imagexFileName, WTGModel.imageFilePath, WTGModel.wimPart, WTGModel.ud, WTGModel.ud);
 
             //安装EXTRA
-            ImageOperation.ImageExtra(WTGOperation.userSettings.InstallDonet35, checkBox_san_policy.Checked, WTGOperation.userSettings.DisableWinRe, WTGOperation.ud, wimbox.Text);
+            ImageOperation.ImageExtra(WTGModel.userSettings.InstallDonet35, checkBoxSan_policy.Checked, WTGModel.userSettings.DisableWinRe, WTGModel.ud, lblWim.Text);
             //BCDBOOT WRITE BOOT FILE  
-            BootFileOperation.BcdbootWriteBootFile(WTGOperation.ud, @"X:\", WTGOperation.bcdbootFileName, FirmwareType.ALL);
+            BootFileOperation.BcdbootWriteBootFile(WTGModel.ud, @"X:\", FirmwareType.ALL);
             //BootFileOperation.BcdbootWriteALLBootFileToXAndAct(WTGOperation.bcdbootFileName, WTGOperation.ud);
+
             BootFileOperation.BooticeAct(@"X:\");
+            RemoveLetterX();
+            FinishSuccessful();
+
         }
 
         private void NonUEFITypical()
         {
-            ImageOperation.AutoChooseWimIndex(ref WTGOperation.wimPart, WTGOperation.win7togo);
-            ImageOperation.ImageApply(checkBoxwimboot.Checked, WTGOperation.isEsd, WTGOperation.imagexFileName, WTGOperation.imageFilePath, WTGOperation.wimPart, WTGOperation.ud, WTGOperation.ud);
-            if (WTGOperation.win7togo != 0) { ImageOperation.Win7REG(WTGOperation.ud); }
+            ImageOperation.AutoChooseWimIndex(ref WTGModel.wimPart, WTGModel.win7togo);
+            ImageOperation.ImageApply(checkBoxWimboot.Checked, WTGModel.isEsd, WTGModel.imagexFileName, WTGModel.imageFilePath, WTGModel.wimPart, WTGModel.ud, WTGModel.ud);
+            if (WTGModel.win7togo != 0) { ImageOperation.Win7REG(WTGModel.ud); }
 
-            BootFileOperation.BooticeWriteMBRPBRAndAct(WTGOperation.ud);
-            ProcessManager.ECMD(WTGOperation.applicationFilesPath + "\\" + WTGOperation.bcdbootFileName, WTGOperation.ud.Substring(0, 3) + "windows  /s  " + WTGOperation.ud.Substring(0, 2) + " /f ALL");
+            BootFileOperation.BooticeWriteMBRPBRAndAct(WTGModel.ud);
+            ProcessManager.ECMD(WTGModel.applicationFilesPath + "\\" + WTGModel.bcdbootFileName, WTGModel.ud.Substring(0, 3) + "windows  /s  " + WTGModel.ud.Substring(0, 2) + " /f ALL");
 
-            if (WTGOperation.win7togo == 0) { ImageOperation.ImageExtra(WTGOperation.userSettings.InstallDonet35, checkBox_san_policy.Checked, WTGOperation.userSettings.DisableWinRe, WTGOperation.ud, wimbox.Text); }
+            if (WTGModel.win7togo == 0) { ImageOperation.ImageExtra(WTGModel.userSettings.InstallDonet35, checkBoxSan_policy.Checked, WTGModel.userSettings.DisableWinRe, WTGModel.ud, lblWim.Text); }
 
-            if (!System.IO.File.Exists(WTGOperation.ud + "\\Boot\\BCD"))
-            {
-                //MsgManager.getResString("Msg_BCDError")
-                //引导文件写入出错！boot文件夹不存在！
-                ErrorMsg er = new ErrorMsg(MsgManager.GetResString("Msg_BCDError", MsgManager.ci));
-                er.ShowDialog();
-                //MessageBox.Show("引导文件写入出错！boot文件夹不存在\n请看论坛教程！", "出错啦", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //System.Diagnostics.Process.Start("http://bbs.luobotou.org/thread-1625-1-1.html");
-            }
-            else if (!System.IO.File.Exists(WTGOperation.ud + "bootmgr"))
+            if (!System.IO.File.Exists(WTGModel.ud + "bootmgr"))
             {
                 //MsgManager.getResString("Msg_bootmgrError")
                 //文件写入出错！bootmgr不存在！\n请检查写入过程是否中断
@@ -567,6 +664,15 @@ namespace wintogo
                 er.ShowDialog();
 
                 //MessageBox.Show("文件写入出错！bootmgr不存在！\n请检查写入过程是否中断\n如有疑问，请访问官方论坛！");
+            }
+            else if (!System.IO.File.Exists(WTGModel.ud + "\\Boot\\BCD"))
+            {
+                //MsgManager.getResString("Msg_BCDError")
+                //引导文件写入出错！boot文件夹不存在！
+                ErrorMsg er = new ErrorMsg(MsgManager.GetResString("Msg_BCDError", MsgManager.ci));
+                er.ShowDialog();
+                //MessageBox.Show("引导文件写入出错！boot文件夹不存在\n请看论坛教程！", "出错啦", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //System.Diagnostics.Process.Start("http://bbs.luobotou.org/thread-1625-1-1.html");
             }
             else
             {
@@ -591,29 +697,29 @@ namespace wintogo
                     "\r\nApp Path:" + Application.StartupPath +
                     "\r\nOSVersion:" + System.Environment.OSVersion.ToString() +
                     "\r\nDism Version:" + FileOperation.GetFileVersion(System.Environment.GetEnvironmentVariable("windir") + "\\System32\\dism.exe") +
-                    "\r\nWim file:" + wimbox.Text +
-                    "\r\nUsb Disk:" + WTGOperation.udString +
-                    "\r\nClassical:" + radiochuantong.Checked.ToString() +
-                    "\r\nVHD:" + radiovhd.Checked.ToString() +
-                    "\r\nVHDX:" + radiovhdx.Checked.ToString() +
-                    "\r\nRe-Partition:" + checkBoxdiskpart.Checked +
+                    "\r\nWim file:" + lblWim.Text +
+                    "\r\nUsb Disk:" + WTGModel.udString +
+                    "\r\nClassical:" + radiobtnLegacy.Checked.ToString() +
+                    "\r\nVHD:" + radiobtnVhd.Checked.ToString() +
+                    "\r\nVHDX:" + radiobtnVhdx.Checked.ToString() +
+                    "\r\nRe-Partition:" + checkBoxDiskpart.Checked +
                     "\r\nVHD Size Set:" + numericUpDown1.Value.ToString() +
-                    "\r\nFixed VHD:" + checkBoxfixed.Checked.ToString() +
-                    "\r\nDonet:" + WTGOperation.userSettings.InstallDonet35.ToString() +
-                    "\r\nDisable-WinRE:" + WTGOperation.userSettings.DisableWinRe.ToString() +
-                    "\r\nBlock Local Disk:" + checkBox_san_policy.Checked.ToString() +
-                    "\r\nNoTemp:" + checkBoxnotemp.Checked.ToString() +
-                    "\r\nUEFI+GPT:" + checkBoxuefi.Checked.ToString() +
-                    "\r\nUEFI+MBR:" + checkBoxuefimbr.Checked.ToString() +
-                    "\r\nWIMBOOT:" + checkBoxwimboot.Checked.ToString() +
-                    "\r\nCommon-VHD-boot-file：" + checkBoxcommon.Checked.ToString() +
-                    "\r\nNo-format：" + checkBoxunformat.Checked.ToString());
+                    "\r\nFixed VHD:" + checkBoxFixed.Checked.ToString() +
+                    "\r\nDonet:" + WTGModel.userSettings.InstallDonet35.ToString() +
+                    "\r\nDisable-WinRE:" + WTGModel.userSettings.DisableWinRe.ToString() +
+                    "\r\nBlock Local Disk:" + checkBoxSan_policy.Checked.ToString() +
+                    "\r\nNoTemp:" + checkBoxNotemp.Checked.ToString() +
+                    "\r\nUEFI+GPT:" + checkBoxUefigpt.Checked.ToString() +
+                    "\r\nUEFI+MBR:" + checkBoxUefimbr.Checked.ToString() +
+                    "\r\nWIMBOOT:" + checkBoxWimboot.Checked.ToString() +
+                    "\r\nCompactOS:" + checkBoxCompactOS.Checked.ToString() +
+                    "\r\nNo-format:" + WTGModel.userSettings.DoNotFormat.ToString());
             }
             catch (Exception ex) { MessageBox.Show("Error!\n" + ex.ToString()); }
 
             if (File.Exists(Environment.GetEnvironmentVariable("windir") + "\\Logs\\DISM\\dism.log"))
             {
-                File.Copy(Environment.GetEnvironmentVariable("windir") + "\\Logs\\DISM\\dism.log", WTGOperation.logPath + "\\dism.log");
+                File.Copy(Environment.GetEnvironmentVariable("windir") + "\\Logs\\DISM\\dism.log", WTGModel.logPath + "\\dism.log");
             }
         }
 
@@ -622,33 +728,26 @@ namespace wintogo
         {
             try
             {
-                using (FileStream fs0 = new FileStream(WTGOperation.diskpartScriptPath + "\\removex.txt", FileMode.Create, FileAccess.Write))
-                {
-                    fs0.SetLength(0);
-                    using (StreamWriter sw0 = new StreamWriter(fs0, Encoding.Default))
-                    {
-                        string ws0 = "";
-                        ws0 = "select volume x";
-                        sw0.WriteLine(ws0);
-                        ws0 = "remove";
-                        sw0.WriteLine(ws0);
-                        ws0 = "exit";
-                        sw0.WriteLine(ws0);
-                    }
-                }
+                DiskpartScriptManager dsm = new DiskpartScriptManager();
+                StringBuilder args = new StringBuilder();
+                args.AppendLine("select volume x");
+                args.AppendLine("remove");
+                args.AppendLine("exit");
+                dsm.Args = args.ToString();
+                dsm.RunDiskpartScript();
             }
             catch (Exception ex)
             {
                 //Console.WriteLine(ex.ToString());
                 Log.WriteLog("removeLetterX.log", ex.ToString());
             }
-            ProcessManager.ECMD("diskpart.exe", " /s \"" + WTGOperation.diskpartScriptPath + "\\removex.txt\"");
+            //ProcessManager.ECMD("diskpart.exe", " /s \"" + WTGOperation.diskpartScriptPath + "\\removex.txt\"");
         }
 
 
         #endregion
 
-       
+
 
         #region MenuItemClick/Miscellaneous
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -676,12 +775,12 @@ namespace wintogo
 
         private void imagex解压写入ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ImageOperation.AutoChooseWimIndex(ref WTGOperation.wimPart, WTGOperation.win7togo);
+            ImageOperation.AutoChooseWimIndex(ref WTGModel.wimPart, WTGModel.win7togo);
             if (comboBox1.SelectedIndex == 0) { MessageBox.Show(MsgManager.GetResString("Msg_chooseud", MsgManager.ci)); return; }
-            if (!System.IO.File.Exists(wimbox.Text)) { MessageBox.Show(MsgManager.GetResString("Msg_chooseinstallwim", MsgManager.ci), MsgManager.GetResString("Msg_error", MsgManager.ci), MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
-            WTGOperation.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
-            if (DialogResult.No == MessageBox.Show(MsgManager.GetResString("Msg_ConfirmChoose", MsgManager.ci) + WTGOperation.ud.Substring(0, 1) + MsgManager.GetResString("Msg_Disk_Space", MsgManager.ci) + DiskOperation.GetHardDiskSpace(WTGOperation.ud) / 1024 / 1024 + MsgManager.GetResString("Msg_FormatTip", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.YesNo)) { return; }
-            System.Diagnostics.Process p = System.Diagnostics.Process.Start(WTGOperation.applicationFilesPath + "\\" + WTGOperation.imagexFileName, " /apply " + "\"" + wimbox.Text + "\"" + " " + WTGOperation.wimPart + " " + WTGOperation.ud);
+            if (!System.IO.File.Exists(lblWim.Text)) { MessageBox.Show(MsgManager.GetResString("Msg_chooseinstallwim", MsgManager.ci), MsgManager.GetResString("Msg_error", MsgManager.ci), MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            WTGModel.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
+            if (DialogResult.No == MessageBox.Show(MsgManager.GetResString("Msg_ConfirmChoose", MsgManager.ci) + WTGModel.ud.Substring(0, 1) + MsgManager.GetResString("Msg_Disk_Space", MsgManager.ci) + DiskOperation.GetHardDiskSpace(WTGModel.ud) / 1024 / 1024 + MsgManager.GetResString("Msg_FormatTip", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.YesNo)) { return; }
+            System.Diagnostics.Process p = System.Diagnostics.Process.Start(WTGModel.applicationFilesPath + "\\" + WTGModel.imagexFileName, " /apply " + "\"" + lblWim.Text + "\"" + " " + WTGModel.wimPart + " " + WTGModel.ud);
             p.WaitForExit();
             //MsgManager.getResString("Msg_Complete")
             MessageBox.Show(MsgManager.GetResString("Msg_Complete", MsgManager.ci));
@@ -691,13 +790,13 @@ namespace wintogo
         {
             if (comboBox1.SelectedIndex == 0) { MessageBox.Show(MsgManager.GetResString("Msg_chooseud", MsgManager.ci)); return; }
 
-            WTGOperation.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
-            if (DialogResult.No == MessageBox.Show(MsgManager.GetResString("Msg_ConfirmChoose", MsgManager.ci) + WTGOperation.ud.Substring(0, 1) + MsgManager.GetResString("Msg_Disk_Space", MsgManager.ci) + DiskOperation.GetHardDiskSpace(WTGOperation.ud) / 1024 / 1024 + MsgManager.GetResString("Msg_FormatTip", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.YesNo)) { return; }
+            WTGModel.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
+            if (DialogResult.No == MessageBox.Show(MsgManager.GetResString("Msg_ConfirmChoose", MsgManager.ci) + WTGModel.ud.Substring(0, 1) + MsgManager.GetResString("Msg_Disk_Space", MsgManager.ci) + DiskOperation.GetHardDiskSpace(WTGModel.ud) / 1024 / 1024 + MsgManager.GetResString("Msg_FormatTip", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.YesNo)) { return; }
             try
             {
-                ProcessManager.ECMD(WTGOperation.applicationFilesPath + "\\" + WTGOperation.bcdbootFileName, WTGOperation.ud.Substring(0, 3) + "windows  /s  " + WTGOperation.ud.Substring(0, 2) + " /f ALL");
+                ProcessManager.ECMD(WTGModel.applicationFilesPath + "\\" + WTGModel.bcdbootFileName, WTGModel.ud.Substring(0, 3) + "windows  /s  " + WTGModel.ud.Substring(0, 2) + " /f ALL");
 
-                BootFileOperation.BcdbootWriteBootFile(WTGOperation.ud, WTGOperation.ud, WTGOperation.bcdbootFileName, FirmwareType.BIOS);
+                BootFileOperation.BcdbootWriteBootFile(WTGModel.ud, WTGModel.ud, FirmwareType.BIOS);
                 MessageBox.Show(MsgManager.GetResString("Msg_Complete", MsgManager.ci));
             }
             catch (UserCancelException ex)
@@ -711,10 +810,10 @@ namespace wintogo
         {
             if (comboBox1.SelectedIndex == 0) { MessageBox.Show(MsgManager.GetResString("Msg_chooseud", MsgManager.ci)); return; }
 
-            WTGOperation.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
+            WTGModel.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
 
-            if (DialogResult.No == MessageBox.Show(MsgManager.GetResString("Msg_ConfirmChoose", MsgManager.ci) + WTGOperation.ud.Substring(0, 1) + MsgManager.GetResString("Msg_Disk_Space", MsgManager.ci) + DiskOperation.GetHardDiskSpace(WTGOperation.ud) / 1024 / 1024 + MsgManager.GetResString("Msg_FormatTip", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.YesNo)) { return; }
-            BootFileOperation.BooticeWriteMBRPBRAndAct(WTGOperation.ud);
+            if (DialogResult.No == MessageBox.Show(MsgManager.GetResString("Msg_ConfirmChoose", MsgManager.ci) + WTGModel.ud.Substring(0, 1) + MsgManager.GetResString("Msg_Disk_Space", MsgManager.ci) + DiskOperation.GetHardDiskSpace(WTGModel.ud) / 1024 / 1024 + MsgManager.GetResString("Msg_FormatTip", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.YesNo)) { return; }
+            BootFileOperation.BooticeWriteMBRPBRAndAct(WTGModel.ud);
             //System.Diagnostics.Process p2 = System.Diagnostics.Process.Start(Application.StartupPath + "\\files\\bootice.exe", " /DEVICE=" + WTGOperation.ud.Substring(0, 2) + " /partitions /activate /quiet");
             //p2.WaitForExit();
             MessageBox.Show(MsgManager.GetResString("Msg_Complete", MsgManager.ci));
@@ -724,9 +823,9 @@ namespace wintogo
         {
             if (comboBox1.SelectedIndex == 0) { MessageBox.Show(MsgManager.GetResString("Msg_chooseud", MsgManager.ci)); return; }
 
-            WTGOperation.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
-            if (DialogResult.No == MessageBox.Show(MsgManager.GetResString("Msg_ConfirmChoose", MsgManager.ci) + WTGOperation.ud.Substring(0, 1) + MsgManager.GetResString("Msg_Disk_Space", MsgManager.ci) + DiskOperation.GetHardDiskSpace(WTGOperation.ud) / 1024 / 1024 + MsgManager.GetResString("Msg_FormatTip", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.YesNo)) { return; }
-            BootFileOperation.BooticeWriteMBRPBRAndAct(WTGOperation.ud);
+            WTGModel.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
+            if (DialogResult.No == MessageBox.Show(MsgManager.GetResString("Msg_ConfirmChoose", MsgManager.ci) + WTGModel.ud.Substring(0, 1) + MsgManager.GetResString("Msg_Disk_Space", MsgManager.ci) + DiskOperation.GetHardDiskSpace(WTGModel.ud) / 1024 / 1024 + MsgManager.GetResString("Msg_FormatTip", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.YesNo)) { return; }
+            BootFileOperation.BooticeWriteMBRPBRAndAct(WTGModel.ud);
             //System.Diagnostics.Process booice = System.Diagnostics.Process.Start(WTGOperation.filesPath+ "\\BOOTICE.exe", (" /DEVICE=" + WTGOperation.ud.Substring(0, 2) + " /mbr /install /type=nt60 /quiet"));//写入引导
             //booice.WaitForExit();
             //System.Diagnostics.Process pbr = System.Diagnostics.Process.Start(Application.StartupPath + "\\files\\BOOTICE.exe", (" /DEVICE=" + WTGOperation.ud.Substring(0, 2) + " /pbr /install /type=bootmgr /quiet"));//写入引导
@@ -739,25 +838,15 @@ namespace wintogo
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             bcdboot9200.Checked = false;
-            WTGOperation.bcdbootFileName = "bcdboot7601.exe";
+            WTGModel.bcdbootFileName = "bcdboot7601.exe";
         }
 
         private void bcdboot9200_Click(object sender, EventArgs e)
         {
             bcdboot7601.Checked = false;
-            WTGOperation.bcdbootFileName = "bcdboot.exe";
+            WTGModel.bcdbootFileName = "bcdboot.exe";
         }
 
-        private void 选择安装分卷ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //ChoosePart frmf = new ChoosePart();
-            //frmf.Show();
-        }
-
-        private void 强制格式化ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //WTGOperation.forceFormat = true;
-        }
 
         private void wimbox_Click(object sender, EventArgs e)
         {
@@ -766,27 +855,27 @@ namespace wintogo
             if (File.Exists(openFileDialog1.FileName))
             {
 
-                wimbox.Text = openFileDialog1.FileName;
-                WTGOperation.imageFilePath = openFileDialog1.FileName;
+                lblWim.Text = openFileDialog1.FileName;
+                WTGModel.imageFilePath = openFileDialog1.FileName;
                 //Regex.Match ("",@".+\.[")
-                WTGOperation.choosedFileType = Path.GetExtension(openFileDialog1.FileName.ToLower()).Substring(1);
+                WTGModel.choosedImageType = Path.GetExtension(openFileDialog1.FileName.ToLower()).Substring(1);
                 //MessageBox.Show(WTGOperation.filetype);
-                if (WTGOperation.choosedFileType == "iso")
+                if (WTGModel.choosedImageType == "iso")
                 {
 
                     //ProcessManager.ECMD(Application.StartupPath + "\\isocmd.exe  -i");
-                    ProcessManager.SyncCMD("\"" + WTGOperation.applicationFilesPath + "\\isocmd.exe\" -i");
-                    ProcessManager.SyncCMD("\"" + WTGOperation.applicationFilesPath + "\\isocmd.exe\" -s");
-                    ProcessManager.SyncCMD("\"" + WTGOperation.applicationFilesPath + "\\isocmd.exe\" -NUMBER 1");
-                    ProcessManager.SyncCMD("\"" + WTGOperation.applicationFilesPath + "\\isocmd.exe\" -eject 0: ");
-                    ProcessManager.SyncCMD("\"" + WTGOperation.applicationFilesPath + "\\isocmd.exe\" -MOUNT 0: \"" + openFileDialog1.FileName + "\"");
+                    ProcessManager.SyncCMD("\"" + WTGModel.applicationFilesPath + "\\isocmd.exe\" -i");
+                    ProcessManager.SyncCMD("\"" + WTGModel.applicationFilesPath + "\\isocmd.exe\" -s");
+                    ProcessManager.SyncCMD("\"" + WTGModel.applicationFilesPath + "\\isocmd.exe\" -NUMBER 1");
+                    ProcessManager.SyncCMD("\"" + WTGModel.applicationFilesPath + "\\isocmd.exe\" -eject 0: ");
+                    ProcessManager.SyncCMD("\"" + WTGModel.applicationFilesPath + "\\isocmd.exe\" -MOUNT 0: \"" + openFileDialog1.FileName + "\"");
                     //mount.WaitForExit();
                     for (int i = 68; i <= 90; i++)
                     {
                         string ascll_to_eng = Convert.ToChar(i).ToString();
                         if (File.Exists(ascll_to_eng + ":\\sources\\install.wim"))
                         {
-                            wimbox.Text = ascll_to_eng + ":\\sources\\install.wim";
+                            lblWim.Text = ascll_to_eng + ":\\sources\\install.wim";
                             mount_successfully = true;
                             break;
                         }
@@ -800,9 +889,9 @@ namespace wintogo
                         //useiso = true;
                     }
                 }
-                else if (WTGOperation.choosedFileType == "esd")
+                else if (WTGModel.choosedImageType == "esd")
                 {
-                    if (!WTGOperation.allowEsd)
+                    if (!WTGModel.allowEsd)
                     {
                         //MsgManager.getResString("Msg_ESDError")
                         //此系统不支持ESD文件处理！");
@@ -813,19 +902,19 @@ namespace wintogo
                     else
                     {
                         //MessageBox.Show("Test");
-                        WTGOperation.isEsd = true;
-                        checkBoxwimboot.Checked = false;
-                        checkBoxwimboot.Enabled = false;
+                        WTGModel.isEsd = true;
+                        checkBoxWimboot.Checked = false;
+                        checkBoxWimboot.Enabled = false;
                     }
 
                 }
-                else if (WTGOperation.choosedFileType == "vhd")
+                else if (WTGModel.choosedImageType == "vhd")
                 {
-                    if (!radiovhd.Enabled)
+                    if (!radiobtnVhd.Enabled)
                     {
-                        radiovhd.Checked = true;
-                        radiochuantong.Enabled = false;
-                        radiovhdx.Enabled = false;
+                        radiobtnVhd.Checked = true;
+                        radiobtnLegacy.Enabled = false;
+                        radiobtnVhdx.Enabled = false;
 
 
                         //checkBoxcommon.Checked = true;
@@ -835,48 +924,48 @@ namespace wintogo
                     }
                     else
                     {
-                        radiovhd.Checked = true;
-                        radiochuantong.Enabled = false;
-                        radiovhdx.Enabled = false;
+                        radiobtnVhd.Checked = true;
+                        radiobtnLegacy.Enabled = false;
+                        radiobtnVhdx.Enabled = false;
                     }
                 }
-                else if (WTGOperation.choosedFileType == "vhdx")
+                else if (WTGModel.choosedImageType == "vhdx")
                 {
-                    if (!radiovhd.Enabled)
+                    if (!radiobtnVhd.Enabled)
                     {
-                        radiovhdx.Checked = true;
-                        radiochuantong.Enabled = false;
-                        radiovhd.Enabled = false;
+                        radiobtnVhdx.Checked = true;
+                        radiobtnLegacy.Enabled = false;
+                        radiobtnVhd.Enabled = false;
 
-                        checkBoxcommon.Checked = true;
-                        checkBoxcommon.Enabled = false;
+                        checkBoxCompactOS.Checked = true;
+                        checkBoxCompactOS.Enabled = false;
 
                         //MessageBox.Show("此系统不支持VHD文件处理！"); 
                     }
                     else
                     {
-                        radiovhdx.Checked = true;
-                        radiochuantong.Enabled = false;
-                        radiovhd.Enabled = false;
+                        radiobtnVhdx.Checked = true;
+                        radiobtnLegacy.Enabled = false;
+                        radiobtnVhd.Enabled = false;
                     }
 
                 }
                 else
                 {
-                    WTGOperation.win7togo = ImageOperation.Iswin7(WTGOperation.imagexFileName, wimbox.Text);
-                    if (WTGOperation.win7togo != 0) //WIN7 cannot comptible with VHDX disk or wimboot
+                    WTGModel.win7togo = ImageOperation.Iswin7(WTGModel.imagexFileName, lblWim.Text);
+                    if (WTGModel.win7togo != 0) //WIN7 cannot comptible with VHDX disk or wimboot
                     {
-                        if (radiovhdx.Checked) { radiovhd.Checked = true; }
-                        radiovhdx.Enabled = false;
-                        checkBoxwimboot.Checked = false;
-                        checkBoxwimboot.Enabled = false;
+                        if (radiobtnVhdx.Checked) { radiobtnVhd.Checked = true; }
+                        radiobtnVhdx.Enabled = false;
+                        checkBoxWimboot.Checked = false;
+                        checkBoxWimboot.Enabled = false;
                     }
                 }
-                if (Regex.IsMatch(WTGOperation.choosedFileType, @"wim|esd"))
+                if (Regex.IsMatch(WTGModel.choosedImageType, @"wim|esd") && WTGModel.CurrentOS != OS.XP && WTGModel.CurrentOS != OS.Vista)
                 {
-                    WTGOperation.imagePartNames.Clear();
-                    WTGOperation.imagePartNames.Add("0 : 自动选择");
-                    WTGOperation.imagePartNames.AddRange(ImageOperation.DismGetImagePartsInfo(wimbox.Text));
+                    WTGModel.imagePartNames.Clear();
+                    WTGModel.imagePartNames.Add("0 : 自动选择");
+                    WTGModel.imagePartNames.AddRange(ImageOperation.DismGetImagePartsInfo(lblWim.Text));
                     //dism / Get - ImageInfo
                     //#warning 为实现此代码
                 }
@@ -899,7 +988,7 @@ namespace wintogo
 
         private void 创建VHDToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            WTGOperation.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
+            WTGModel.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
             VHDOperation vo = new VHDOperation();
             vo.CreateVHD();
 
@@ -907,8 +996,8 @@ namespace wintogo
 
         private void 向V盘写入ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ImageOperation.AutoChooseWimIndex(ref WTGOperation.wimPart, WTGOperation.win7togo);
-            System.Diagnostics.Process p = System.Diagnostics.Process.Start(WTGOperation.applicationFilesPath + "\\" + WTGOperation.imagexFileName, " /apply " + "\"" + wimbox.Text + "\"" + " " + WTGOperation.wimPart.ToString() + " " + "v:\\");
+            ImageOperation.AutoChooseWimIndex(ref WTGModel.wimPart, WTGModel.win7togo);
+            System.Diagnostics.Process p = System.Diagnostics.Process.Start(WTGModel.applicationFilesPath + "\\" + WTGModel.imagexFileName, " /apply " + "\"" + lblWim.Text + "\"" + " " + WTGModel.wimPart.ToString() + " " + "v:\\");
             p.WaitForExit();
 
         }
@@ -925,11 +1014,11 @@ namespace wintogo
 
             //MsgManager.getResString("Msg_chooseud")
             if (comboBox1.SelectedIndex == 0) { MessageBox.Show(MsgManager.GetResString("Msg_chooseud", MsgManager.ci)); return; }
-            WTGOperation.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
+            WTGModel.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
             try
             {
-                ProcessManager.ECMD("takeown.exe", " /f \"" + WTGOperation.ud + "\\boot\\" + "\" /r /d y && icacls \"" + WTGOperation.ud + "\\boot\\" + "\" /grant administrators:F /t");
-                ProcessManager.ECMD("xcopy.exe", "\"" + WTGOperation.applicationFilesPath + "\\" + "vhd" + "\\" + "*.*" + "\"" + " " + WTGOperation.ud + " /e /h /y");
+                ProcessManager.ECMD("takeown.exe", " /f \"" + WTGModel.ud + "\\boot\\" + "\" /r /d y && icacls \"" + WTGModel.ud + "\\boot\\" + "\" /grant administrators:F /t");
+                ProcessManager.ECMD("xcopy.exe", "\"" + WTGModel.applicationFilesPath + "\\" + "vhd" + "\\" + "*.*" + "\"" + " " + WTGModel.ud + " /e /h /y");
             }
             catch (UserCancelException ex)
             {
@@ -944,7 +1033,7 @@ namespace wintogo
         private void 复制win8vhdToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedIndex == 0) { MessageBox.Show(MsgManager.GetResString("Msg_chooseud", MsgManager.ci)); return; }
-            WTGOperation.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
+            WTGModel.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
             VHDOperation vo = new VHDOperation();
             vo.CopyVHD();
 
@@ -957,21 +1046,21 @@ namespace wintogo
 
         private void checkBoxuefi_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxuefimbr.Checked && checkBoxuefi.Checked) { checkBoxuefimbr.Checked = false; checkBoxuefi.Checked = true; }
-            checkBoxdiskpart.Enabled = !checkBoxuefi.Checked;
-            checkBoxdiskpart.Checked = checkBoxuefi.Checked;
+            if (checkBoxUefimbr.Checked && checkBoxUefigpt.Checked) { checkBoxUefimbr.Checked = false; checkBoxUefigpt.Checked = true; }
+            checkBoxDiskpart.Enabled = !checkBoxUefigpt.Checked;
+            checkBoxDiskpart.Checked = checkBoxUefigpt.Checked;
         }
 
         private void radiovhd_EnabledChanged(object sender, EventArgs e)
         {
-            radiochuantong.Checked = true;
+            radiobtnLegacy.Checked = true;
         }
 
         private void bootsectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedIndex == 0) { MessageBox.Show(MsgManager.GetResString("Msg_chooseud", MsgManager.ci)); return; }
             //
-            System.Diagnostics.Process p1 = System.Diagnostics.Process.Start(WTGOperation.applicationFilesPath + "\\" + "\\bootsect.exe", " /nt60 " + WTGOperation.ud.Substring(0, 2) + " /force /mbr");
+            System.Diagnostics.Process p1 = System.Diagnostics.Process.Start(WTGModel.applicationFilesPath + "\\" + "\\bootsect.exe", " /nt60 " + WTGModel.ud.Substring(0, 2) + " /force /mbr");
             p1.WaitForExit();
             MessageBox.Show(MsgManager.GetResString("Msg_Complete", MsgManager.ci));
         }
@@ -1011,7 +1100,7 @@ namespace wintogo
         {
             //MsgManager.getResString("Msg_chooseud")
             if (comboBox1.SelectedIndex == 0) { MessageBox.Show(MsgManager.GetResString("Msg_chooseud", MsgManager.ci)); return; }
-            WTGOperation.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
+            WTGModel.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
             //MsgManager.getResString("Msg_XPNotCOMP")
             //XP系统不支持此操作
             //MsgManager.getResString("Msg_ClearPartition")
@@ -1061,7 +1150,7 @@ namespace wintogo
 
         private void vHDUEFIBCDToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            WTGOperation.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
+            WTGModel.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
         }
 
         private void 自动检查更新ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1079,16 +1168,16 @@ namespace wintogo
 
         private void checkBoxdiskpart_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxdiskpart.Checked)
+            if (checkBoxDiskpart.Checked)
             {
                 //Msg_Repartition
                 MessageBox.Show(MsgManager.GetResString("Msg_Repartition", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                checkBoxunformat.Checked = false;
-                checkBoxunformat.Enabled = false;
+                WTGModel.userSettings.DoNotFormat = false;
+                //checkBoxunformat.Enabled = false;
             }
             else
             {
-                checkBoxunformat.Enabled = true;
+                ///*checkBoxunformat*/.Enabled = true;
             }
         }
 
@@ -1119,51 +1208,39 @@ namespace wintogo
 
         private void bOOTICEToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(WTGOperation.applicationFilesPath + "\\BOOTICE.EXE");
+            System.Diagnostics.Process.Start(WTGModel.applicationFilesPath + "\\BOOTICE.EXE");
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(WTGOperation.logPath);
+            System.Diagnostics.Process.Start(WTGModel.logPath);
 
         }
 
         private void checkBoxuefimbr_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxuefi.Checked && checkBoxuefimbr.Checked) { checkBoxuefi.Checked = false; checkBoxuefimbr.Checked = true; }
-            if (checkBoxuefimbr.Checked) { WTGOperation.userSettings.DisableWinRe = true; }
-            checkBoxdiskpart.Enabled = !checkBoxuefimbr.Checked;
-            checkBoxdiskpart.Checked = checkBoxuefimbr.Checked;
+            if (checkBoxUefigpt.Checked && checkBoxUefimbr.Checked) { checkBoxUefigpt.Checked = false; checkBoxUefimbr.Checked = true; }
+            if (checkBoxUefimbr.Checked) { WTGModel.userSettings.DisableWinRe = true; }
+            checkBoxDiskpart.Enabled = !checkBoxUefimbr.Checked;
+            checkBoxDiskpart.Checked = checkBoxUefimbr.Checked;
         }
 
-        private void checkBoxunformat_CheckedChanged(object sender, EventArgs e)
-        {
-            //MsgManager.getResString("Msg_OnlyNonUefi")
-            //此选项仅在非UEFI模式下有效！
-            if (checkBoxunformat.Checked) { MessageBox.Show(MsgManager.GetResString("Msg_OnlyNonUefi", MsgManager.ci)); }
-        }
+
 
         private void toolStripMenuItemvhdx_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedIndex == 0) { MessageBox.Show(MsgManager.GetResString("Msg_chooseud", MsgManager.ci)); return; }
-            WTGOperation.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
+            WTGModel.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
             try
             {
-                ProcessManager.ECMD("xcopy.exe", "\"" + WTGOperation.applicationFilesPath + "\\" + "vhd" + "\\" + "*.*" + "\"" + " " + WTGOperation.ud + " /e /h /y");
-                ProcessManager.ECMD("xcopy.exe", "\"" + WTGOperation.applicationFilesPath + "\\" + "vhdx" + "\\" + "*.*" + "\"" + " " + WTGOperation.ud + "\\boot\\ /e /h /y");
+                ProcessManager.ECMD("xcopy.exe", "\"" + WTGModel.applicationFilesPath + "\\" + "vhd" + "\\" + "*.*" + "\"" + " " + WTGModel.ud + " /e /h /y");
+                ProcessManager.ECMD("xcopy.exe", "\"" + WTGModel.applicationFilesPath + "\\" + "vhdx" + "\\" + "*.*" + "\"" + " " + WTGModel.ud + "\\boot\\ /e /h /y");
             }
             catch (Exception ex)
             {
                 ErrorMsg err = new ErrorMsg(ex.Message);
                 err.Show();
             }
-
-        }
-
-        private void toolStripMenuItem2_Click_1(object sender, EventArgs e)
-        {
-            //SetTempPath stp = new SetTempPath();
-            //stp.Show();
 
         }
 
@@ -1212,20 +1289,14 @@ namespace wintogo
 
         }
 
-        private void toolStripMenuItem6_Click(object sender, EventArgs e)
-        {
-            //EfiSize efz = new EfiSize(WTGOperation.userSetEfiSize);
-            //efz.ShowDialog();
-            //WTGOperation.userSetEfiSize = efz.EfiSz;
 
-        }
 
         private void 修复盘符ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedIndex == 0) { MessageBox.Show(MsgManager.GetResString("Msg_chooseud", MsgManager.ci)); return; }
-            WTGOperation.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
+            WTGModel.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
             string vhdPath = string.Empty;
-            if (File.Exists(vhdPath = WTGOperation.ud + "win8.vhd") || File.Exists(vhdPath = WTGOperation.ud + "win8.vhdx"))
+            if (File.Exists(vhdPath = WTGModel.ud + "win8.vhd") || File.Exists(vhdPath = WTGModel.ud + "win8.vhdx"))
             {
                 VHDOperation vo = new VHDOperation();
                 vo.AttachVHD(vhdPath);
@@ -1234,7 +1305,7 @@ namespace wintogo
             }
             else
             {
-                ImageOperation.Fixletter("C:", WTGOperation.ud.Substring(0, 2));
+                ImageOperation.Fixletter("C:", WTGModel.ud.Substring(0, 2));
             }
             MessageBox.Show(MsgManager.GetResString("Msg_Complete", MsgManager.ci));
         }
@@ -1286,15 +1357,11 @@ namespace wintogo
 
         }
         #region UserControls
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+      
         private void Form1_Load(object sender, EventArgs e)
         {
             toolStripMenuItem3.Checked = autoupdate;
-            FileValidate();
+            FileValidation();
             SystemDetection();
             timer1.Start();
             SWOnline swo = new SWOnline(releaseUrl, reportUrl);
@@ -1318,17 +1385,24 @@ namespace wintogo
 
             Thread threadReport = new Thread(swo.Report);
             threadReport.Start();
-            Thread threadShowad = new Thread(swo.Showad);
-            threadShowad.Start();
+            if (Assembly.GetExecutingAssembly().GetName().Version.Revision == 0)
+            {
+                Thread threadShowad = new Thread(swo.Showad);
+                threadShowad.Start();
+            }
+            
             LoadUDList();
 
 
         }
         private void button1_Click(object sender, EventArgs e)
         {
+
+            //MessageBox.Show(((UsbDisk)comboBox1.SelectedItem).Size.ToString());
+            //MessageBox.Show((DiskOperation.GetHardDiskFreeSpace("F:\\")*1024).ToString());
             try
             {
-                if (threadwrite != null && threadwrite.IsAlive)
+                if (tWrite != null && tWrite.IsAlive)
                 {
                     MessageBox.Show(MsgManager.GetResString("Msg_WriteProcessing", MsgManager.ci));
                     return;
@@ -1339,37 +1413,35 @@ namespace wintogo
                 Log.WriteLog("Msg_WriteProcessing.log", ex.ToString());
                 //Console.WriteLine(ex);
             }
-            WTGOperation.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//
+            WTGModel.ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//
+            WTGModel.UdObj = (UsbDisk)comboBox1.SelectedItem;
+            WTGModel.udString = comboBox1.SelectedItem.ToString();
+            WTGModel.isWimBoot = checkBoxWimboot.Checked;
+            WTGModel.isSan_policy = checkBoxSan_policy.Checked;
+            WTGModel.imageFilePath = lblWim.Text;
+            WTGModel.isCompactOS = checkBoxCompactOS.Checked;
+            WTGModel.userSetSize = (int)numericUpDown1.Value;
+            WTGModel.isFixedVHD = checkBoxFixed.Checked;
+            WTGModel.isUefiGpt = checkBoxUefigpt.Checked;
+            WTGModel.isUefiMbr = checkBoxUefimbr.Checked;
+            WTGModel.isNoTemp = checkBoxNotemp.Checked;
+            WTGModel.ntfsUefiSupport = checkBoxNtfsUefi.Checked;
+            //RemoveableDiskUefiGptFormat();
 
-
-
-            WTGOperation.udString = comboBox1.SelectedItem.ToString();
-            WTGOperation.isWimBoot = checkBoxwimboot.Checked;
-            WTGOperation.isFramework = WTGOperation.userSettings.InstallDonet35;
-            WTGOperation.isSan_policy = checkBox_san_policy.Checked;
-            WTGOperation.isDiswinre = WTGOperation.userSettings.DisableWinRe;
-            WTGOperation.imageFilePath = wimbox.Text;
-            //WTGOperation.wimpart = ChoosePart.part;
-            WTGOperation.userSetSize = (int)numericUpDown1.Value;
-            WTGOperation.isFixedVHD = checkBoxfixed.Checked;
-            WTGOperation.isUefiGpt = checkBoxuefi.Checked;
-            WTGOperation.isUefiMbr = checkBoxuefimbr.Checked;
-            WTGOperation.isNoTemp = checkBoxnotemp.Checked;
-            WTGOperation.commonBootFiles = checkBoxcommon.Checked;
-            WTGOperation.win8VHDFileName = WTGOperation.userSettings.VHDNameWithoutExt + "." + WTGOperation.vhdExtension;
-            if (radiovhdx.Checked)
+            if (radiobtnVhdx.Checked)
             {
-                WTGOperation.vhdExtension = "vhdx";
+                WTGModel.vhdExtension = "vhdx";
             }
-            threadwrite = new Thread(new ThreadStart(GoWrite));
-            threadwrite.Start();
+            WTGModel.win8VHDFileName = WTGModel.userSettings.VHDNameWithoutExt + "." + WTGModel.vhdExtension;
+            tWrite = new Thread(new ThreadStart(GoWrite));
+            tWrite.Start();
 
         }
 
         private void isobutton_Click(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();
-            if (File.Exists(openFileDialog1.FileName)) { wimbox.Text = openFileDialog1.FileName; }
+            if (File.Exists(openFileDialog1.FileName)) { lblWim.Text = openFileDialog1.FileName; }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -1400,7 +1472,7 @@ namespace wintogo
 
             try
             {
-                if (threadwrite != null && threadwrite.IsAlive)
+                if (tWrite != null && tWrite.IsAlive)
                 {
                     //MsgManager.getResString("Msg_WritingAbort")
                     //正在写入，您确定要取消吗？
@@ -1421,8 +1493,6 @@ namespace wintogo
             }
             catch (Exception ex)
             {
-
-
                 Log.WriteLog("DeleteTempPath.log", ex.ToString());
             }
 
@@ -1441,11 +1511,52 @@ namespace wintogo
         {
             WTGSettings ws = new WTGSettings();
             ws.Show();
+            //有些设置项目需要应用到WTGModel
+            WTGModel.wimPart = WTGModel.userSettings.ImageIndex.Substring(0, 1);
+        }
+
+        private void 错误提示测试ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormatAlert fa = new FormatAlert("ces");
+            fa.ShowDialog();
+            //BootFileOperation.BcdbootWriteBootFile("h:", "h:", FirmwareType.BIOS);
+        }
+
+        private void radiochuantong_CheckedChanged(object sender, EventArgs e)
+        {
+            numericUpDown1.Enabled = false;
+            checkBoxFixed.Enabled = false;
+            checkBoxNotemp.Enabled = false;
+            lblVhdSize.Enabled = false;
+            lblGB.Enabled = false;
+        }
+
+        private void radiovhd_CheckedChanged(object sender, EventArgs e)
+        {
+            numericUpDown1.Enabled = true;
+            checkBoxFixed.Enabled = true;
+            checkBoxNotemp.Enabled = true;
+            lblVhdSize.Enabled = true;
+            lblGB.Enabled = true;
 
         }
 
-       
+        private void radiovhdx_CheckedChanged(object sender, EventArgs e)
+        {
+            numericUpDown1.Enabled = true;
+            checkBoxFixed.Enabled = true;
+            checkBoxNotemp.Enabled = true;
+            lblVhdSize.Enabled = true;
+            lblGB.Enabled = true;
+        }
 
+        private void 更多高级选项ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WTGSettings ws = new WTGSettings();
+            ws.Show();
+            //有些设置项目需要应用到WTGModel
+            WTGModel.wimPart = WTGModel.userSettings.ImageIndex.Substring(0, 1);
+        }
         #endregion
     }
 }

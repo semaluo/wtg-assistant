@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace wintogo
@@ -10,6 +11,7 @@ namespace wintogo
         public static string[] topicName = new string[10];
         public static string[] topicLink = new string[10];
         public bool IsUserClosing { get; set; }
+        public Exception OnClosingException { get; protected set; }
         public WriteProgress()
         {
             //CultureInfo ca = new System.Globalization.CultureInfo("en");
@@ -23,10 +25,11 @@ namespace wintogo
         {
             if (IsUserClosing)
             {
-                DialogResult dResult = MessageBox.Show("确认取消操作？", "询问", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+                DialogResult dResult = MessageBox.Show(MsgManager.GetResString("Msg_WritingAbort"), MsgManager.GetResString("Msg_Tip"), MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
                 if (dResult == DialogResult.Yes)
                 {
-                    throw new UserCancelException();
+                    IsUserClosing = false;
+                    OnClosingException = new UserCancelException();
                 }
                 else
                 {
@@ -36,7 +39,7 @@ namespace wintogo
             try
             {
                 //if (System.IO.Directory .Exists ())
-                FileStream fs = new FileStream(WTGOperation.logPath + "\\" + DateTime.Now.ToFileTime() + ".log", FileMode.Create, FileAccess.Write);
+                FileStream fs = new FileStream(WTGModel.logPath + "\\" + DateTime.Now.ToFileTime() + ".log", FileMode.Create, FileAccess.Write);
                 fs.SetLength(0);
                 StreamWriter sw = new StreamWriter(fs, Encoding.Default);
                 string ws = "";

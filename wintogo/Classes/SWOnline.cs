@@ -94,7 +94,7 @@ namespace wintogo
             catch (WebException webEx)
             {
 
-                Log.WriteLog("UpdateLog.log", webEx.ToString());
+                Log.WriteLog("ReportErr.log", webEx.ToString());
 
             }
         }
@@ -125,7 +125,7 @@ namespace wintogo
             catch (WebException webEx)
             {
                 //Console.WriteLine(webEx.Message.ToString());
-                Log.WriteLog("UpdateLog.log", webEx.ToString());
+                Log.WriteLog("UpdateErr.log", webEx.ToString());
             }
         }
 
@@ -192,13 +192,18 @@ namespace wintogo
                     Match match = Regex.Match(pageHtml, Application.ProductName + "=(.+)~(.+)结束");
                     string adlink = match.Groups[2].Value;
                     string adtitle = match.Groups[1].Value;
-                    linkLabel.Invoke(new Action(() => { linkLabel.Text = adtitle; }));
+                    linkLabel.Invoke(new Action(() => 
+                    {
+                        linkLabel.Text = adtitle;
+                        linkLabel.Visible = true;
+                    }));
                     linkLabel.Tag = adlink;
                 }
             }
             catch (Exception ex)
             {
-                Log.WriteLog("UpdateLog.log", ex.ToString());
+
+                Log.WriteLog("ShowAdError.log", ex.ToString());
             }
         }
     }

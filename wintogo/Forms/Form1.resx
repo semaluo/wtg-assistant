@@ -117,32 +117,1035 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;lblVhdSize.Parent" xml:space="preserve">
+    <value>groupBoxAdv</value>
+  </data>
+  <data name="&gt;&gt;labelDisFunc.Name" xml:space="preserve">
+    <value>labelDisFunc</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
+  </data>
+  <data name="&gt;&gt;linklblVisit.Name" xml:space="preserve">
+    <value>linklblVisit</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="checkBoxUefigpt.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 90</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="labelDisFuncEM.TabIndex" type="System.Int32, mscorlib">
+    <value>46</value>
+  </data>
+  <data name="&gt;&gt;设置活动分区ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="checkBoxSan_policy.Text" xml:space="preserve">
+    <value>屏蔽本机硬盘</value>
+  </data>
+  <data name="&gt;&gt;打开程序运行目录ToolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;设置活动分区ToolStripMenuItem.Name" xml:space="preserve">
+    <value>设置活动分区ToolStripMenuItem</value>
+  </data>
+  <data name="comboBox1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="萝卜头IT论坛ToolStripMenuItem.Text" xml:space="preserve">
+    <value>萝卜头IT论坛</value>
+  </data>
+  <data name="radiobtnLegacy.Text" xml:space="preserve">
+    <value>传统</value>
+  </data>
+  <data name="&gt;&gt;bootsectToolStripMenuItem.Name" xml:space="preserve">
+    <value>bootsectToolStripMenuItem</value>
+  </data>
+  <data name="checkBoxFixed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 67</value>
+  </data>
+  <data name="&gt;&gt;linklblVhd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblVhdSize.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="btnBrowser.Location" type="System.Drawing.Point, System.Drawing">
+    <value>324, 100</value>
+  </data>
+  <data name="&gt;&gt;在线帮助ToolStripMenuItem.Name" xml:space="preserve">
+    <value>在线帮助ToolStripMenuItem</value>
+  </data>
+  <data name="checkBoxCompactOS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 21</value>
+  </data>
+  <data name="&gt;&gt;checkBoxCompactOS.Name" xml:space="preserve">
+    <value>checkBoxCompactOS</value>
+  </data>
+  <data name="checkBoxDiskpart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="&gt;&gt;englishToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bootsectToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="chineseSimpleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 22</value>
+  </data>
+  <data name="bootsectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
+  </data>
+  <data name="&gt;&gt;radiobtnLegacy.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="复制VHD启动文件ToolStripMenuItem.Text" xml:space="preserve">
+    <value>复制VHD启动文件</value>
+  </data>
+  <data name="checkBoxNtfsUefi.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 21</value>
+  </data>
+  <data name="向V盘写入ToolStripMenuItem.Text" xml:space="preserve">
+    <value>向V盘写入</value>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>打开日志文件夹</value>
+  </data>
+  <data name="btnBrowser.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 1, 0, 1</value>
+  </data>
+  <data name="checkBoxWimboot.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="radiobtnVhdx.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;checkBoxNotemp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxDiskpart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;自动检查更新ToolStripMenuItem.Name" xml:space="preserve">
+    <value>自动检查更新ToolStripMenuItem</value>
+  </data>
+  <data name="labelDisFunc.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="diskpart重新分区ToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Diskpart重新分区</value>
+  </data>
+  <data name="btnGo.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;checkBoxWimboot.Name" xml:space="preserve">
+    <value>checkBoxWimboot</value>
+  </data>
+  <data name="checkBoxUefimbr.Text" xml:space="preserve">
+    <value>UEFI+MBR</value>
+  </data>
+  <data name="openFileDialog1.Filter" xml:space="preserve">
+    <value>映像文件|install.wim;*.esd;*.vhd;*.vhdx|所有文件|*.*</value>
+  </data>
+  <data name="修复盘符ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="numericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>111, 34</value>
+  </data>
+  <data name="&gt;&gt;复制VHD启动文件ToolStripMenuItem.Name" xml:space="preserve">
+    <value>复制VHD启动文件ToolStripMenuItem</value>
+  </data>
+  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 22</value>
+  </data>
+  <data name="&gt;&gt;comboBox1.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;创建VHDToolStripMenuItem.Name" xml:space="preserve">
+    <value>创建VHDToolStripMenuItem</value>
+  </data>
+  <data name="工具ToolStripMenuItem.Text" xml:space="preserve">
+    <value>工具</value>
+  </data>
+  <data name="手动执行命令ToolStripMenuItem.Text" xml:space="preserve">
+    <value>手动执行命令(慎用)</value>
+  </data>
+  <data name="创建VHDToolStripMenuItem.Text" xml:space="preserve">
+    <value>创建VHD</value>
+  </data>
+  <data name="lblWim.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="checkBoxWimboot.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 21</value>
+  </data>
+  <data name="&gt;&gt;checkBoxSan_policy.Parent" xml:space="preserve">
+    <value>groupBoxAdv</value>
+  </data>
+  <data name="lblDescription.Text" xml:space="preserve">
+    <value>"Windows To Go"可以制作在U盘上运行的Win系统。
+可使用MSDN版本WIin7/8/10的install.wim、ESD或VHD文件。</value>
+  </data>
+  <data name="&gt;&gt;openFileDialog1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="linklblAdv.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;checkBoxUefimbr.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="卸载V盘ToolStripMenuItem.Text" xml:space="preserve">
+    <value>卸载V盘</value>
+  </data>
+  <data name="&gt;&gt;btnBrowser.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;checkBoxUefigpt.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem5.Name" xml:space="preserve">
+    <value>toolStripMenuItem5</value>
+  </data>
+  <data name="bcdboot9200.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 22</value>
+  </data>
+  <data name="labelDisFuncEM.Size" type="System.Drawing.Size, System.Drawing">
+    <value>21, 44</value>
+  </data>
+  <data name="&gt;&gt;radiobtnVhdx.Name" xml:space="preserve">
+    <value>radiobtnVhdx</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown1.Name" xml:space="preserve">
+    <value>numericUpDown1</value>
+  </data>
+  <data name="radiobtnLegacy.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei, 9.75pt</value>
+  </data>
+  <data name="checkBoxNotemp.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
+    <value>toolTip1</value>
+  </data>
+  <data name="帮助ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 22</value>
+  </data>
+  <data name="lblWim.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBoxAdv.Location" type="System.Drawing.Point, System.Drawing">
+    <value>377, 35</value>
+  </data>
+  <data name="&gt;&gt;checkBoxNtfsUefi.Parent" xml:space="preserve">
+    <value>groupBoxAdv</value>
+  </data>
+  <data name="radiobtnVhd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 23</value>
+  </data>
+  <data name="修复盘符ToolStripMenuItem.Text" xml:space="preserve">
+    <value>修复盘符</value>
+  </data>
+  <data name="&gt;&gt;lblGB.Parent" xml:space="preserve">
+    <value>groupBoxAdv</value>
+  </data>
+  <data name="&gt;&gt;退出ToolStripMenuItem.Name" xml:space="preserve">
+    <value>退出ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;错误提示测试ToolStripMenuItem.Name" xml:space="preserve">
+    <value>错误提示测试ToolStripMenuItem</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>WTG辅助工具</value>
+  </data>
+  <data name="vHDUEFIBCDToolStripMenuItem.Text" xml:space="preserve">
+    <value>VHD-UEFI-BCD</value>
+  </data>
+  <data name="&gt;&gt;checkBoxUefimbr.Name" xml:space="preserve">
+    <value>checkBoxUefimbr</value>
+  </data>
+  <data name="&gt;&gt;lblGB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="linklblAdv.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 19</value>
+  </data>
+  <data name="&gt;&gt;复制win8vhdToolStripMenuItem.Name" xml:space="preserve">
+    <value>复制win8vhdToolStripMenuItem</value>
+  </data>
+  <data name="lblWim.Text" xml:space="preserve">
+    <value>点此选择ISO镜像sources目录下的install.wim或VHD文件</value>
+  </data>
+  <data name="checkBoxUefimbr.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown1.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="checkBoxFixed.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 1, 0, 1</value>
+  </data>
+  <data name="&gt;&gt;diskpart重新分区ToolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnBrowser.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="checkBoxDiskpart.Text" xml:space="preserve">
+    <value>重新分区</value>
+  </data>
+  <data name="&gt;&gt;radiobtnVhd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblGB.Name" xml:space="preserve">
+    <value>lblGB</value>
+  </data>
+  <data name="lblDescription.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 35</value>
+  </data>
+  <data name="comboBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 100</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="comboBox1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 9pt</value>
+    <value>Microsoft YaHei, 9pt</value>
+  </data>
+  <data name="&gt;&gt;imagex解压写入ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem4.Name" xml:space="preserve">
+    <value>toolStripMenuItem4</value>
+  </data>
+  <data name="checkBoxUefimbr.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 1, 0, 1</value>
+  </data>
+  <data name="写入引导文件ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
+  </data>
+  <data name="&gt;&gt;自动检查更新ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblDescription.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="linkLabel2.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="comboBox1.Items" xml:space="preserve">
     <value>请选择可移动设备</value>
   </data>
-  <data name="comboBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 127</value>
+  <data name="wIN7TOGOToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="comboBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+  <data name="繁体中文ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 22</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="退出ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="diskpart重新分区ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="checkBoxCompactOS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>427, 1</value>
+  </data>
+  <data name="numericUpDown1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 1, 0, 1</value>
+  </data>
+  <data name="radiobtnVhdx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 23</value>
+  </data>
+  <data name="checkBoxUefigpt.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="menuStrip1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;关于ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;帮助ToolStripMenuItem.Name" xml:space="preserve">
+    <value>帮助ToolStripMenuItem</value>
+  </data>
+  <data name="radiobtnLegacy.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="labelDisFunc.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei, 9pt</value>
+  </data>
+  <data name="checkBoxFixed.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>96, 96</value>
+  </data>
+  <data name="&gt;&gt;labelDisFunc.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>593, 24</value>
+  </data>
+  <data name="&gt;&gt;vHDUEFIBCDToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblVhdSize.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="checkBoxUefigpt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 1, 0, 1</value>
+  </data>
+  <data name="radiobtnVhd.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei, 9.75pt</value>
+  </data>
+  <data name="btnGo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 1, 0, 1</value>
+  </data>
+  <data name="checkBoxUefigpt.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;labelDisFunc.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radiobtnLegacy.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="btnBrowser.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei, 9pt</value>
+  </data>
+  <data name="radiobtnVhdx.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei, 9.75pt</value>
+  </data>
+  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblVhdSize.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="checkBoxWimboot.ToolTip" xml:space="preserve">
+    <value>仅有WIN8.1 UPDATE1及以上系统可用</value>
+  </data>
+  <data name="labelDisFuncEM.Text" xml:space="preserve">
+    <value>！</value>
+  </data>
+  <data name="checkBoxNotemp.ToolTip" xml:space="preserve">
+    <value>直接在移动磁盘中创建VHD文件</value>
+  </data>
+  <data name="linklblVisit.Text" xml:space="preserve">
+    <value>看教程</value>
+  </data>
+  <data name="checkBoxWimboot.Location" type="System.Drawing.Point, System.Drawing">
+    <value>111, 135</value>
+  </data>
+  <data name="&gt;&gt;checkBoxDiskpart.Name" xml:space="preserve">
+    <value>checkBoxDiskpart</value>
+  </data>
+  <data name="&gt;&gt;工具ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="linklblVhd.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="checkBoxUefigpt.Text" xml:space="preserve">
+    <value>UEFI+GPT</value>
+  </data>
+  <data name="labelDisFuncEM.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="&gt;&gt;linkLabel2.Name" xml:space="preserve">
+    <value>linkLabel2</value>
+  </data>
+  <data name="wIN7TOGOToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;labelDisFuncEM.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;btnGo.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnBrowser.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStrip1.Name" xml:space="preserve">
+    <value>contextMenuStrip1</value>
+  </data>
+  <data name="&gt;&gt;写入磁盘引导ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="写入磁盘引导ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
+  </data>
+  <data name="&gt;&gt;chineseSimpleToolStripMenuItem.Name" xml:space="preserve">
+    <value>chineseSimpleToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;comboBox1.Name" xml:space="preserve">
+    <value>comboBox1</value>
+  </data>
+  <data name="checkBoxWimboot.Text" xml:space="preserve">
+    <value>WIMBOOT</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 1, 0, 1</value>
+  </data>
+  <data name="englishToolStripMenuItem.Text" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="&gt;&gt;手动执行命令ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxFixed.Parent" xml:space="preserve">
+    <value>groupBoxAdv</value>
+  </data>
+  <data name="&gt;&gt;清理临时文件ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="comboBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>297, 25</value>
+  </data>
+  <data name="&gt;&gt;复制win8vhdToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="linkLabel2.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="手动执行命令ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="toolStripMenuItemvhdx.Text" xml:space="preserve">
+    <value>复制VHDX启动文件</value>
+  </data>
+  <data name="&gt;&gt;bcdbootToolStripMenuItem.Name" xml:space="preserve">
+    <value>bcdbootToolStripMenuItem</value>
+  </data>
+  <data name="lblGB.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="checkBoxSan_policy.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 1, 0, 1</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="linklblAdv.ToolTip" xml:space="preserve">
+    <value>查看详细信息</value>
+  </data>
+  <data name="linkLabel2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblWim.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 76</value>
+  </data>
   <data name="comboBox1.MaxDropDownItems" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="comboBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>348, 25</value>
+  <data name="打开程序运行目录ToolStripMenuItem1.Text" xml:space="preserve">
+    <value>打开运行目录</value>
+  </data>
+  <data name="&gt;&gt;wIN7USBBOOTToolStripMenuItem.Name" xml:space="preserve">
+    <value>wIN7USBBOOTToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;lblWim.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="linklblVhd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>345, 132</value>
+  </data>
+  <data name="checkBoxCompactOS.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="btnBrowser.Text" xml:space="preserve">
+    <value>···</value>
+  </data>
+  <data name="menuStrip1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>1, 1, 0, 1</value>
+  </data>
+  <data name="checkBoxUefimbr.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 21</value>
+  </data>
+  <data name="&gt;&gt;radiobtnVhdx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblVhdSize.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 34</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;linklblVisit.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lblGB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 17</value>
+  </data>
+  <data name="&gt;&gt;checkBoxFixed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;imagex解压写入ToolStripMenuItem.Name" xml:space="preserve">
+    <value>imagex解压写入ToolStripMenuItem</value>
+  </data>
+  <data name="labelDisFunc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 34</value>
+  </data>
+  <data name="checkBoxFixed.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;checkBoxDiskpart.Parent" xml:space="preserve">
+    <value>groupBoxAdv</value>
+  </data>
+  <data name="&gt;&gt;radiobtnVhdx.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;写入磁盘引导ToolStripMenuItem.Name" xml:space="preserve">
+    <value>写入磁盘引导ToolStripMenuItem</value>
+  </data>
+  <data name="lblGB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 36</value>
+  </data>
+  <data name="&gt;&gt;checkBoxDiskpart.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="checkBoxUefigpt.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="在线帮助ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 22</value>
+  </data>
+  <data name="radiobtnLegacy.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 132</value>
+  </data>
+  <data name="btnGo.Text" xml:space="preserve">
+    <value>写入</value>
+  </data>
+  <data name="checkBoxNtfsUefi.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;radiobtnVhd.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxWimboot.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;更多高级选项ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="labelDisFunc.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="contextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 92</value>
+  </data>
+  <data name="&gt;&gt;checkBoxUefigpt.Name" xml:space="preserve">
+    <value>checkBoxUefigpt</value>
+  </data>
+  <data name="checkBoxUefimbr.Location" type="System.Drawing.Point, System.Drawing">
+    <value>111, 90</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown1.Parent" xml:space="preserve">
+    <value>groupBoxAdv</value>
+  </data>
+  <data name="checkBoxWimboot.TabIndex" type="System.Int32, mscorlib">
+    <value>46</value>
+  </data>
+  <data name="&gt;&gt;groupBoxAdv.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="btnBrowser.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 25</value>
+  </data>
+  <data name="lblWim.Size" type="System.Drawing.Size, System.Drawing">
+    <value>352, 19</value>
+  </data>
+  <data name="&gt;&gt;checkBoxCompactOS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxAdv.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="linklblAdv.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 11.25pt, style=Bold</value>
+  </data>
+  <data name="radiobtnLegacy.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 1, 0, 1</value>
+  </data>
+  <data name="文件ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 22</value>
+  </data>
+  <data name="labelDisFuncEM.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="卸载V盘ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
+  </data>
+  <data name="&gt;&gt;官方论坛ToolStripMenuItem.Name" xml:space="preserve">
+    <value>官方论坛ToolStripMenuItem</value>
+  </data>
+  <data name="linkLabel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 17</value>
+  </data>
+  <data name="&gt;&gt;打开程序运行目录ToolStripMenuItem1.Name" xml:space="preserve">
+    <value>打开程序运行目录ToolStripMenuItem1</value>
+  </data>
+  <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="radiobtnLegacy.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;在线帮助ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="radiobtnVhd.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 1, 0, 1</value>
+  </data>
+  <data name="设置活动分区ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
+  </data>
+  <data name="&gt;&gt;labelDisFuncEM.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="linkLabel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>205, 4</value>
+  </data>
+  <data name="lblDescription.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="&gt;&gt;lblWim.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxFixed.Name" xml:space="preserve">
+    <value>checkBoxFixed</value>
+  </data>
+  <data name="checkBoxCompactOS.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;checkBoxNotemp.Name" xml:space="preserve">
+    <value>checkBoxNotemp</value>
+  </data>
+  <data name="&gt;&gt;复制VHD启动文件ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="imagex解压写入ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
+  </data>
+  <data name="&gt;&gt;wIN7TOGOToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="checkBoxWimboot.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 1, 0, 1</value>
+  </data>
+  <data name="vHDUEFIBCDToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
+  </data>
+  <data name="退出ToolStripMenuItem.Text" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="btnGo.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnBrowser.ToolTip" xml:space="preserve">
+    <value>手动选择移动磁盘</value>
+  </data>
+  <data name="清理临时文件ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
+  </data>
+  <data name="&gt;&gt;修复盘符ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxUefigpt.Parent" xml:space="preserve">
+    <value>groupBoxAdv</value>
+  </data>
+  <data name="强制格式化ToolStripMenuItem.Text" xml:space="preserve">
+    <value>强制格式化</value>
+  </data>
+  <data name="&gt;&gt;文件ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;官方论坛ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="linklblAdv.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="&gt;&gt;退出ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblVhdSize.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="checkBoxDiskpart.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="复制VHD启动文件ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
+  </data>
+  <data name="bootsectToolStripMenuItem.Text" xml:space="preserve">
+    <value>bootsect</value>
+  </data>
+  <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 22</value>
+  </data>
+  <data name="&gt;&gt;labelDisFuncEM.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="checkBoxNotemp.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 1, 0, 1</value>
+  </data>
+  <data name="checkBoxCompactOS.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
+  </data>
+  <data name="在线帮助ToolStripMenuItem.Text" xml:space="preserve">
+    <value>在线教程</value>
+  </data>
+  <data name="checkBoxFixed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 21</value>
+  </data>
+  <data name="checkBoxFixed.Text" xml:space="preserve">
+    <value>固定大小</value>
+  </data>
+  <data name="&gt;&gt;卸载V盘ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxAdv.Name" xml:space="preserve">
+    <value>groupBoxAdv</value>
+  </data>
+  <data name="&gt;&gt;bcdbootToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="打开程序运行目录ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="toolStripMenuItemvhdx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemvhdx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;繁体中文ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="自动检查更新ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="checkBoxNtfsUefi.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="linklblAdv.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="&gt;&gt;wIN7USBBOOTToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="checkBoxDiskpart.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei, 9.75pt</value>
+  </data>
+  <data name="labelDisFunc.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="contextMenuStrip1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;linklblAdv.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="写入引导文件ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Bcdboot(传统)</value>
+  </data>
+  <data name="radiobtnVhdx.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;checkBoxUefimbr.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="toolStripMenuItem5.Text" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 22</value>
+  </data>
+  <data name="linklblVhd.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="&gt;&gt;萝卜头IT论坛ToolStripMenuItem.Name" xml:space="preserve">
+    <value>萝卜头IT论坛ToolStripMenuItem</value>
+  </data>
+  <data name="radiobtnVhd.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
   <data name="comboBox1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;comboBox1.Name" xml:space="preserve">
-    <value>comboBox1</value>
+  <data name="checkBoxNotemp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>111, 67</value>
+  </data>
+  <data name="&gt;&gt;diskpart重新分区ToolStripMenuItem1.Name" xml:space="preserve">
+    <value>diskpart重新分区ToolStripMenuItem1</value>
+  </data>
+  <data name="&gt;&gt;写入引导文件ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxWimboot.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;openFileDialog1.Name" xml:space="preserve">
+    <value>openFileDialog1</value>
+  </data>
+  <data name="linklblVhd.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="&gt;&gt;checkBoxNtfsUefi.Name" xml:space="preserve">
+    <value>checkBoxNtfsUefi</value>
+  </data>
+  <data name="&gt;&gt;chineseSimpleToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="linkLabel2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei, 9pt</value>
+  </data>
+  <data name="&gt;&gt;linkLabel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="checkBoxUefimbr.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="labelDisFunc.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="bcdbootToolStripMenuItem.Text" xml:space="preserve">
+    <value>Bcdboot版本选择</value>
+  </data>
+  <data name="设置活动分区ToolStripMenuItem.Text" xml:space="preserve">
+    <value>设置活动分区</value>
+  </data>
+  <data name="checkBoxSan_policy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 21</value>
+  </data>
+  <data name="checkBoxNotemp.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="&gt;&gt;radiobtnLegacy.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnBrowser.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;radiobtnVhd.Name" xml:space="preserve">
+    <value>radiobtnVhd</value>
+  </data>
+  <data name="radiobtnVhdx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>248, 132</value>
+  </data>
+  <data name="&gt;&gt;繁体中文ToolStripMenuItem.Name" xml:space="preserve">
+    <value>繁体中文ToolStripMenuItem</value>
+  </data>
+  <data name="向V盘写入ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
+  </data>
+  <data name="&gt;&gt;linklblVhd.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="checkBoxCompactOS.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="强制格式化ToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;folderBrowserDialog1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FolderBrowserDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;radiobtnVhd.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="bcdboot7601.Text" xml:space="preserve">
+    <value>7601</value>
+  </data>
+  <data name="btnGo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 41</value>
+  </data>
+  <data name="&gt;&gt;lblWim.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;checkBoxNotemp.Parent" xml:space="preserve">
+    <value>groupBoxAdv</value>
+  </data>
+  <data name="官方论坛ToolStripMenuItem.Text" xml:space="preserve">
+    <value>官方论坛</value>
+  </data>
+  <data name="&gt;&gt;checkBoxFixed.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;linklblVisit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="linklblVisit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="繁体中文ToolStripMenuItem.Text" xml:space="preserve">
+    <value>繁體中文</value>
+  </data>
+  <data name="lblGB.Text" xml:space="preserve">
+    <value>GB</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>Form1</value>
+  </data>
+  <data name="comboBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 1, 0, 1</value>
+  </data>
+  <data name="&gt;&gt;vHDUEFIBCDToolStripMenuItem.Name" xml:space="preserve">
+    <value>vHDUEFIBCDToolStripMenuItem</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 9pt</value>
+  </data>
+  <data name="linklblVhd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 19</value>
+  </data>
+  <data name="&gt;&gt;checkBoxSan_policy.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnGo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 157</value>
+  </data>
+  <data name="更多高级选项ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="&gt;&gt;checkBoxNtfsUefi.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="checkBoxNtfsUefi.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnGo.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei, 12pt</value>
   </data>
   <data name="&gt;&gt;comboBox1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -150,1586 +1153,546 @@
   <data name="&gt;&gt;comboBox1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;comboBox1.ZOrder" xml:space="preserve">
-    <value>17</value>
+  <data name="toolStripMenuItem3.Text" xml:space="preserve">
+    <value>自动检查更新</value>
   </data>
-  <data name="button1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 12pt</value>
+  <data name="&gt;&gt;错误提示测试ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 189</value>
+  <data name="&gt;&gt;创建VHDToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="button1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 37</value>
-  </data>
-  <data name="button1.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="button1.Text" xml:space="preserve">
-    <value>写入</value>
-  </data>
-  <data name="&gt;&gt;button1.Name" xml:space="preserve">
-    <value>button1</value>
-  </data>
-  <data name="&gt;&gt;button1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="openFileDialog1.Filter" xml:space="preserve">
-    <value>映像文件|install.wim;*.esd;*.vhd;*.vhdx|所有文件|*.*</value>
-  </data>
-  <data name="wimbox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="wimbox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 9.75pt, style=Bold</value>
-  </data>
-  <data name="wimbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 96</value>
-  </data>
-  <data name="wimbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>352, 19</value>
-  </data>
-  <data name="wimbox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="wimbox.Text" xml:space="preserve">
-    <value>点此选择ISO镜像sources目录下的install.wim或VHD文件</value>
-  </data>
-  <data name="&gt;&gt;wimbox.Name" xml:space="preserve">
-    <value>wimbox</value>
-  </data>
-  <data name="&gt;&gt;wimbox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;wimbox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;wimbox.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <metadata name="folderBrowserDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>157, 17</value>
-  </metadata>
-  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>326, 17</value>
-  </metadata>
-  <data name="imagex解压写入ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 22</value>
-  </data>
-  <data name="imagex解压写入ToolStripMenuItem.Text" xml:space="preserve">
-    <value>imagex解压写入</value>
-  </data>
-  <data name="写入引导文件ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 22</value>
-  </data>
-  <data name="写入引导文件ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Bcdboot(传统)</value>
-  </data>
-  <data name="设置活动分区ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 22</value>
-  </data>
-  <data name="设置活动分区ToolStripMenuItem.Text" xml:space="preserve">
-    <value>设置活动分区</value>
-  </data>
-  <data name="写入磁盘引导ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 22</value>
-  </data>
-  <data name="写入磁盘引导ToolStripMenuItem.Text" xml:space="preserve">
-    <value>写入磁盘引导</value>
-  </data>
-  <data name="bcdboot7601.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 22</value>
-  </data>
-  <data name="bcdboot7601.Text" xml:space="preserve">
-    <value>7601</value>
-  </data>
-  <data name="bcdboot9200.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 22</value>
-  </data>
-  <data name="bcdboot9200.Text" xml:space="preserve">
-    <value>9600</value>
+  <data name="&gt;&gt;btnGo.ZOrder" xml:space="preserve">
+    <value>15</value>
   </data>
   <data name="bcdbootToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 22</value>
-  </data>
-  <data name="bcdbootToolStripMenuItem.Text" xml:space="preserve">
-    <value>Bcdboot版本选择</value>
-  </data>
-  <data name="创建VHDToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 22</value>
-  </data>
-  <data name="创建VHDToolStripMenuItem.Text" xml:space="preserve">
-    <value>创建VHD</value>
-  </data>
-  <data name="向V盘写入ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 22</value>
-  </data>
-  <data name="向V盘写入ToolStripMenuItem.Text" xml:space="preserve">
-    <value>向V盘写入</value>
-  </data>
-  <data name="卸载V盘ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 22</value>
-  </data>
-  <data name="卸载V盘ToolStripMenuItem.Text" xml:space="preserve">
-    <value>卸载V盘</value>
-  </data>
-  <data name="复制VHD启动文件ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 22</value>
-  </data>
-  <data name="复制VHD启动文件ToolStripMenuItem.Text" xml:space="preserve">
-    <value>复制VHD启动文件</value>
-  </data>
-  <data name="toolStripMenuItemvhdx.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 22</value>
-  </data>
-  <data name="toolStripMenuItemvhdx.Text" xml:space="preserve">
-    <value>复制VHDX启动文件</value>
-  </data>
-  <data name="复制win8vhdToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>182, 22</value>
   </data>
   <data name="复制win8vhdToolStripMenuItem.Text" xml:space="preserve">
     <value>复制win8vhd</value>
   </data>
-  <data name="清理临时文件ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="创建VHDToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>182, 22</value>
   </data>
-  <data name="清理临时文件ToolStripMenuItem.Text" xml:space="preserve">
-    <value>清理临时文件</value>
-  </data>
-  <data name="bootsectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 22</value>
-  </data>
-  <data name="bootsectToolStripMenuItem.Text" xml:space="preserve">
-    <value>bootsect</value>
-  </data>
-  <data name="vHDUEFIBCDToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 22</value>
-  </data>
-  <data name="vHDUEFIBCDToolStripMenuItem.Text" xml:space="preserve">
-    <value>VHD-UEFI-BCD</value>
-  </data>
-  <data name="vHDUEFIBCDToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="wIN7USBBOOTToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 22</value>
-  </data>
-  <data name="wIN7USBBOOTToolStripMenuItem.Text" xml:space="preserve">
-    <value>WIN7-USB-BOOT</value>
-  </data>
-  <data name="手动执行命令ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="手动执行命令ToolStripMenuItem.Text" xml:space="preserve">
-    <value>手动执行命令(慎用)</value>
-  </data>
-  <data name="强制格式化ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="强制格式化ToolStripMenuItem.Text" xml:space="preserve">
-    <value>强制格式化</value>
-  </data>
-  <data name="强制格式化ToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="萝卜头IT论坛ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="萝卜头IT论坛ToolStripMenuItem.Text" xml:space="preserve">
-    <value>萝卜头IT论坛</value>
-  </data>
-  <data name="错误提示测试ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="错误提示测试ToolStripMenuItem.Text" xml:space="preserve">
-    <value>错误提示测试</value>
-  </data>
-  <data name="contextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 92</value>
-  </data>
-  <data name="&gt;&gt;contextMenuStrip1.Name" xml:space="preserve">
-    <value>contextMenuStrip1</value>
-  </data>
-  <data name="&gt;&gt;contextMenuStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="linkLabel1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="linkLabel1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 11.25pt</value>
-  </data>
-  <data name="linkLabel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>361, 35</value>
-  </data>
-  <data name="linkLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 20</value>
-  </data>
-  <data name="linkLabel1.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="linkLabel1.Text" xml:space="preserve">
-    <value>看教程</value>
-  </data>
-  <data name="&gt;&gt;linkLabel1.Name" xml:space="preserve">
-    <value>linkLabel1</value>
-  </data>
-  <data name="&gt;&gt;linkLabel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;linkLabel1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;checkBoxCompactOS.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="&gt;&gt;linkLabel1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 9pt</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 38</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>374, 51</value>
-  </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>"Windows To Go"可以制作在U盘上运行的Win7/8/10系统。
-可使用MSDN版本WIin7/8/10的install.wim、VHD文件和ESD文件。
-安装Win10 WTG系统，本机请用Win8.1 UP1及以上系统。</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="linkLabel2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="linkLabel2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 9pt</value>
-  </data>
-  <data name="linkLabel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>226, 5</value>
-  </data>
-  <data name="linkLabel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>66, 17</value>
-  </data>
-  <data name="linkLabel2.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="linkLabel2.Text" xml:space="preserve">
-    <value>linkLabel2</value>
-  </data>
-  <data name="linkLabel2.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;linkLabel2.Name" xml:space="preserve">
-    <value>linkLabel2</value>
-  </data>
-  <data name="&gt;&gt;linkLabel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;linkLabel2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;linkLabel2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>481, 17</value>
-  </metadata>
-  <data name="radiovhd.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="radiovhd.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 9.75pt</value>
-  </data>
-  <data name="radiovhd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>83, 160</value>
-  </data>
-  <data name="radiovhd.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="radiovhd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 23</value>
-  </data>
-  <data name="radiovhd.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="radiovhd.Text" xml:space="preserve">
-    <value>VHD</value>
-  </data>
-  <data name="radiovhd.ToolTip" xml:space="preserve">
-    <value>Some features are </value>
-  </data>
-  <data name="&gt;&gt;radiovhd.Name" xml:space="preserve">
-    <value>radiovhd</value>
-  </data>
-  <data name="&gt;&gt;radiovhd.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radiovhd.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;radiovhd.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="linkLabel3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="linkLabel3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 11.25pt, style=Bold</value>
-  </data>
-  <data name="linkLabel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>354, 160</value>
-  </data>
-  <data name="linkLabel3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="linkLabel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 19</value>
-  </data>
-  <data name="linkLabel3.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
-  </data>
-  <data name="linkLabel3.Text" xml:space="preserve">
-    <value>?</value>
-  </data>
-  <data name="linkLabel3.ToolTip" xml:space="preserve">
-    <value>查看三种模式区别</value>
-  </data>
-  <data name="&gt;&gt;linkLabel3.Name" xml:space="preserve">
-    <value>linkLabel3</value>
-  </data>
-  <data name="&gt;&gt;linkLabel3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;linkLabel3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;linkLabel3.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="linkLabel5.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="linkLabel5.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 11.25pt, style=Bold</value>
-  </data>
-  <data name="linkLabel5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 0</value>
-  </data>
-  <data name="linkLabel5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 19</value>
-  </data>
-  <data name="linkLabel5.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
-  </data>
-  <data name="linkLabel5.Text" xml:space="preserve">
-    <value>?</value>
-  </data>
-  <data name="linkLabel5.ToolTip" xml:space="preserve">
-    <value>查看详细信息</value>
-  </data>
-  <data name="&gt;&gt;linkLabel5.Name" xml:space="preserve">
-    <value>linkLabel5</value>
-  </data>
-  <data name="&gt;&gt;linkLabel5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;linkLabel5.Parent" xml:space="preserve">
-    <value>groupBoxadv</value>
-  </data>
-  <data name="&gt;&gt;linkLabel5.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="button3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 9pt</value>
-  </data>
-  <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>383, 127</value>
-  </data>
-  <data name="button3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 25</value>
-  </data>
-  <data name="button3.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
-  </data>
-  <data name="button3.Text" xml:space="preserve">
-    <value>···</value>
-  </data>
-  <data name="button3.ToolTip" xml:space="preserve">
-    <value>手动选择移动磁盘</value>
-  </data>
-  <data name="&gt;&gt;button3.Name" xml:space="preserve">
-    <value>button3</value>
-  </data>
-  <data name="&gt;&gt;button3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;button3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;button3.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="checkBoxnotemp.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="checkBoxnotemp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 111</value>
-  </data>
-  <data name="checkBoxnotemp.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="checkBoxnotemp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 21</value>
-  </data>
-  <data name="checkBoxnotemp.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
-  </data>
-  <data name="checkBoxnotemp.Text" xml:space="preserve">
-    <value>不中转VHD</value>
-  </data>
-  <data name="checkBoxnotemp.ToolTip" xml:space="preserve">
-    <value>直接在移动磁盘中创建VHD文件</value>
-  </data>
-  <data name="&gt;&gt;checkBoxnotemp.Name" xml:space="preserve">
-    <value>checkBoxnotemp</value>
-  </data>
-  <data name="&gt;&gt;checkBoxnotemp.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBoxnotemp.Parent" xml:space="preserve">
-    <value>groupBoxadv</value>
-  </data>
-  <data name="&gt;&gt;checkBoxnotemp.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="checkBox_san_policy.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="checkBox_san_policy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 89</value>
-  </data>
-  <data name="checkBox_san_policy.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="checkBox_san_policy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 21</value>
-  </data>
-  <data name="checkBox_san_policy.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
-  </data>
-  <data name="checkBox_san_policy.Text" xml:space="preserve">
-    <value>屏蔽本机硬盘</value>
-  </data>
-  <data name="checkBox_san_policy.ToolTip" xml:space="preserve">
-    <value>WTG系统启动后不显示本机硬盘</value>
-  </data>
-  <data name="&gt;&gt;checkBox_san_policy.Name" xml:space="preserve">
-    <value>checkBox_san_policy</value>
-  </data>
-  <data name="&gt;&gt;checkBox_san_policy.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBox_san_policy.Parent" xml:space="preserve">
-    <value>groupBoxadv</value>
-  </data>
-  <data name="&gt;&gt;checkBox_san_policy.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="checkBoxwimboot.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="checkBoxwimboot.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="checkBoxwimboot.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 133</value>
-  </data>
-  <data name="checkBoxwimboot.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 21</value>
-  </data>
-  <data name="checkBoxwimboot.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
-  </data>
-  <data name="checkBoxwimboot.Text" xml:space="preserve">
-    <value>WIMBOOT</value>
-  </data>
-  <data name="checkBoxwimboot.ToolTip" xml:space="preserve">
-    <value>仅有WIN8.1 UPDATE1及以上系统可用</value>
-  </data>
-  <data name="&gt;&gt;checkBoxwimboot.Name" xml:space="preserve">
-    <value>checkBoxwimboot</value>
-  </data>
-  <data name="&gt;&gt;checkBoxwimboot.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBoxwimboot.Parent" xml:space="preserve">
-    <value>groupBoxadv</value>
-  </data>
-  <data name="&gt;&gt;checkBoxwimboot.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="checkBoxframework.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="checkBoxframework.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 67</value>
-  </data>
-  <data name="checkBoxframework.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="checkBoxframework.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 21</value>
-  </data>
-  <data name="checkBoxframework.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="checkBoxframework.Text" xml:space="preserve">
-    <value>.NET 3.5</value>
-  </data>
-  <data name="checkBoxframework.ToolTip" xml:space="preserve">
-    <value>在WTG系统中安装.NET 3.5</value>
-  </data>
-  <data name="&gt;&gt;checkBoxframework.Name" xml:space="preserve">
-    <value>checkBoxframework</value>
-  </data>
-  <data name="&gt;&gt;checkBoxframework.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBoxframework.Parent" xml:space="preserve">
-    <value>groupBoxadv</value>
-  </data>
-  <data name="&gt;&gt;checkBoxframework.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="checkBoxfixed.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="checkBoxfixed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 67</value>
-  </data>
-  <data name="checkBoxfixed.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="checkBoxfixed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 21</value>
-  </data>
-  <data name="checkBoxfixed.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="checkBoxfixed.Text" xml:space="preserve">
-    <value>固定大小</value>
-  </data>
-  <data name="checkBoxfixed.ToolTip" xml:space="preserve">
-    <value>不选默认为动态大小</value>
-  </data>
-  <data name="&gt;&gt;checkBoxfixed.Name" xml:space="preserve">
-    <value>checkBoxfixed</value>
-  </data>
-  <data name="&gt;&gt;checkBoxfixed.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBoxfixed.Parent" xml:space="preserve">
-    <value>groupBoxadv</value>
-  </data>
-  <data name="&gt;&gt;checkBoxfixed.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="checkBoxuefi.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="checkBoxuefi.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 89</value>
-  </data>
-  <data name="checkBoxuefi.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="checkBoxuefi.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 21</value>
-  </data>
-  <data name="checkBoxuefi.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="checkBoxuefi.Text" xml:space="preserve">
-    <value>UEFI+GPT</value>
-  </data>
-  <data name="&gt;&gt;checkBoxuefi.Name" xml:space="preserve">
-    <value>checkBoxuefi</value>
-  </data>
-  <data name="&gt;&gt;checkBoxuefi.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBoxuefi.Parent" xml:space="preserve">
-    <value>groupBoxadv</value>
-  </data>
-  <data name="&gt;&gt;checkBoxuefi.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="radiochuantong.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="radiochuantong.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 9.75pt</value>
-  </data>
-  <data name="radiochuantong.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 160</value>
-  </data>
-  <data name="radiochuantong.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="radiochuantong.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 23</value>
-  </data>
-  <data name="radiochuantong.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="radiochuantong.Text" xml:space="preserve">
-    <value>传统</value>
-  </data>
-  <data name="&gt;&gt;radiochuantong.Name" xml:space="preserve">
-    <value>radiochuantong</value>
-  </data>
-  <data name="&gt;&gt;radiochuantong.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radiochuantong.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;radiochuantong.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="radiovhdx.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="radiovhdx.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 9.75pt</value>
-  </data>
-  <data name="radiovhdx.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 160</value>
-  </data>
-  <data name="radiovhdx.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="radiovhdx.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 23</value>
-  </data>
-  <data name="radiovhdx.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="radiovhdx.Text" xml:space="preserve">
-    <value>VHDX</value>
-  </data>
-  <data name="&gt;&gt;radiovhdx.Name" xml:space="preserve">
-    <value>radiovhdx</value>
-  </data>
-  <data name="&gt;&gt;radiovhdx.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radiovhdx.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;radiovhdx.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="numericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>103, 33</value>
-  </data>
-  <data name="numericUpDown1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="numericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 23</value>
-  </data>
-  <data name="numericUpDown1.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;numericUpDown1.Name" xml:space="preserve">
-    <value>numericUpDown1</value>
-  </data>
-  <data name="&gt;&gt;numericUpDown1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;numericUpDown1.Parent" xml:space="preserve">
-    <value>groupBoxadv</value>
-  </data>
-  <data name="&gt;&gt;numericUpDown1.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 29</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 34</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>虚拟硬盘大小
-(0=自动设定)</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>groupBoxadv</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 153</value>
-  </data>
-  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 23</value>
-  </data>
-  <data name="button2.TabIndex" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="button2.Text" xml:space="preserve">
-    <value>更多高级选项</value>
-  </data>
-  <data name="&gt;&gt;button2.Name" xml:space="preserve">
-    <value>button2</value>
-  </data>
-  <data name="&gt;&gt;button2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;button2.Parent" xml:space="preserve">
-    <value>groupBoxadv</value>
-  </data>
-  <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="checkBoxunformat.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="checkBoxunformat.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 67</value>
-  </data>
-  <data name="checkBoxunformat.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 21</value>
-  </data>
-  <data name="checkBoxunformat.TabIndex" type="System.Int32, mscorlib">
-    <value>49</value>
-  </data>
-  <data name="checkBoxunformat.Text" xml:space="preserve">
-    <value>不格式化</value>
-  </data>
-  <data name="&gt;&gt;checkBoxunformat.Name" xml:space="preserve">
-    <value>checkBoxunformat</value>
-  </data>
-  <data name="&gt;&gt;checkBoxunformat.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBoxunformat.Parent" xml:space="preserve">
-    <value>groupBoxadv</value>
-  </data>
-  <data name="&gt;&gt;checkBoxunformat.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="checkBoxcommon.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="checkBoxcommon.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 133</value>
-  </data>
-  <data name="checkBoxcommon.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 21</value>
-  </data>
-  <data name="checkBoxcommon.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
-  </data>
-  <data name="checkBoxcommon.Text" xml:space="preserve">
-    <value>通用启动文件</value>
-  </data>
-  <data name="&gt;&gt;checkBoxcommon.Name" xml:space="preserve">
-    <value>checkBoxcommon</value>
-  </data>
-  <data name="&gt;&gt;checkBoxcommon.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBoxcommon.Parent" xml:space="preserve">
-    <value>groupBoxadv</value>
-  </data>
-  <data name="&gt;&gt;checkBoxcommon.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="checkBoxuefimbr.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="checkBoxuefimbr.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 111</value>
-  </data>
-  <data name="checkBoxuefimbr.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="checkBoxuefimbr.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 21</value>
-  </data>
-  <data name="checkBoxuefimbr.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
-  </data>
-  <data name="checkBoxuefimbr.Text" xml:space="preserve">
-    <value>UEFI+MBR</value>
-  </data>
-  <data name="&gt;&gt;checkBoxuefimbr.Name" xml:space="preserve">
-    <value>checkBoxuefimbr</value>
-  </data>
-  <data name="&gt;&gt;checkBoxuefimbr.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBoxuefimbr.Parent" xml:space="preserve">
-    <value>groupBoxadv</value>
-  </data>
-  <data name="&gt;&gt;checkBoxuefimbr.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>151, 35</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>25, 17</value>
-  </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>GB</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>groupBoxadv</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="groupBoxadv.Location" type="System.Drawing.Point, System.Drawing">
-    <value>442, 36</value>
-  </data>
-  <data name="groupBoxadv.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="groupBoxadv.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="groupBoxadv.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 190</value>
-  </data>
-  <data name="groupBoxadv.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
-  </data>
-  <data name="groupBoxadv.Text" xml:space="preserve">
-    <value>高级选项</value>
-  </data>
-  <data name="&gt;&gt;groupBoxadv.Name" xml:space="preserve">
-    <value>groupBoxadv</value>
-  </data>
-  <data name="&gt;&gt;groupBoxadv.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBoxadv.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBoxadv.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="checkBoxdiswinre.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="checkBoxdiswinre.Location" type="System.Drawing.Point, System.Drawing">
-    <value>371, 93</value>
-  </data>
-  <data name="checkBoxdiswinre.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="checkBoxdiswinre.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 21</value>
-  </data>
-  <data name="checkBoxdiswinre.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
-  </data>
-  <data name="checkBoxdiswinre.Text" xml:space="preserve">
-    <value>禁用WinRE</value>
-  </data>
-  <data name="checkBoxdiswinre.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;checkBoxdiswinre.Name" xml:space="preserve">
-    <value>checkBoxdiswinre</value>
-  </data>
-  <data name="&gt;&gt;checkBoxdiswinre.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBoxdiswinre.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;checkBoxdiswinre.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>665, 17</value>
-  </metadata>
-  <data name="打开程序运行目录ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="打开程序运行目录ToolStripMenuItem1.Text" xml:space="preserve">
-    <value>打开运行目录</value>
-  </data>
-  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="toolStripMenuItem1.Text" xml:space="preserve">
-    <value>打开日志文件夹</value>
-  </data>
-  <data name="退出ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="退出ToolStripMenuItem.Text" xml:space="preserve">
-    <value>退出</value>
-  </data>
-  <data name="文件ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 21</value>
-  </data>
-  <data name="文件ToolStripMenuItem.Text" xml:space="preserve">
-    <value>文件</value>
-  </data>
-  <data name="自动检查更新ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="自动检查更新ToolStripMenuItem.Text" xml:space="preserve">
-    <value>检查更新</value>
-  </data>
-  <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="toolStripMenuItem3.Text" xml:space="preserve">
-    <value>自动检查更新</value>
-  </data>
-  <data name="diskpart重新分区ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="diskpart重新分区ToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Diskpart重新分区</value>
-  </data>
-  <data name="vHD扩容ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="vHD扩容ToolStripMenuItem.Text" xml:space="preserve">
-    <value>VHD扩容</value>
-  </data>
-  <data name="vHD扩容ToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="选择安装分卷ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="选择安装分卷ToolStripMenuItem1.Text" xml:space="preserve">
-    <value>选择安装分卷</value>
-  </data>
-  <data name="选择安装分卷ToolStripMenuItem1.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="toolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="toolStripMenuItem6.Text" xml:space="preserve">
-    <value>设置EFI分区容量</value>
-  </data>
-  <data name="toolStripMenuItem6.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="toolStripMenuItem2.Text" xml:space="preserve">
-    <value>设置临时文件夹</value>
-  </data>
-  <data name="toolStripMenuItem2.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="wIN7TOGOToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="wIN7TOGOToolStripMenuItem.Text" xml:space="preserve">
-    <value>强制WIN7 TO GO</value>
-  </data>
-  <data name="bOOTICEToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="bOOTICEToolStripMenuItem.Text" xml:space="preserve">
-    <value>启动BOOTICE</value>
-  </data>
-  <data name="修复盘符ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="修复盘符ToolStripMenuItem.Text" xml:space="preserve">
-    <value>修复盘符</value>
-  </data>
-  <data name="wTG高级设定选项ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="wTG高级设定选项ToolStripMenuItem.Text" xml:space="preserve">
-    <value>WTG高级设定选项</value>
-  </data>
-  <data name="wTG高级设定选项ToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="工具ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 21</value>
-  </data>
-  <data name="工具ToolStripMenuItem.Text" xml:space="preserve">
-    <value>工具</value>
-  </data>
-  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="englishToolStripMenuItem.Text" xml:space="preserve">
-    <value>English</value>
-  </data>
-  <data name="chineseSimpleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="chineseSimpleToolStripMenuItem.Text" xml:space="preserve">
-    <value>简体中文</value>
-  </data>
-  <data name="繁体中文ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="繁体中文ToolStripMenuItem.Text" xml:space="preserve">
-    <value>繁體中文</value>
-  </data>
-  <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 21</value>
-  </data>
-  <data name="toolStripMenuItem5.Text" xml:space="preserve">
-    <value>语言</value>
-  </data>
-  <data name="在线帮助ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="在线帮助ToolStripMenuItem.Text" xml:space="preserve">
-    <value>在线教程</value>
-  </data>
-  <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="toolStripMenuItem4.Text" xml:space="preserve">
-    <value>常见问题</value>
-  </data>
-  <data name="官方论坛ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="官方论坛ToolStripMenuItem.Text" xml:space="preserve">
-    <value>官方论坛</value>
-  </data>
-  <data name="关于ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="关于ToolStripMenuItem.Text" xml:space="preserve">
-    <value>关于</value>
-  </data>
-  <data name="帮助ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 21</value>
-  </data>
-  <data name="帮助ToolStripMenuItem.Text" xml:space="preserve">
-    <value>帮助</value>
-  </data>
-  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="menuStrip1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>7, 3, 0, 3</value>
-  </data>
-  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>650, 27</value>
-  </data>
-  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
-  </data>
-  <data name="menuStrip1.Text" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="checkBoxdiskpart.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="checkBoxdiskpart.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 9.75pt</value>
-  </data>
-  <data name="checkBoxdiskpart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>217, 160</value>
-  </data>
-  <data name="checkBoxdiskpart.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="checkBoxdiskpart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 23</value>
-  </data>
-  <data name="checkBoxdiskpart.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
-  </data>
-  <data name="checkBoxdiskpart.Text" xml:space="preserve">
-    <value>重新分区(慎用)</value>
-  </data>
-  <data name="&gt;&gt;checkBoxdiskpart.Name" xml:space="preserve">
-    <value>checkBoxdiskpart</value>
-  </data>
-  <data name="&gt;&gt;checkBoxdiskpart.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBoxdiskpart.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;checkBoxdiskpart.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 21.75pt, style=Bold</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>297, 189</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>18, 37</value>
-  </data>
-  <data name="label4.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>！</value>
-  </data>
-  <data name="label4.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label5.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9pt</value>
-  </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>321, 189</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 30</value>
-  </data>
-  <data name="label5.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>某些功能在WIN8
-及以下系统不可用</value>
-  </data>
-  <data name="label5.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>578, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>96, 96</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>650, 239</value>
-  </data>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 9pt</value>
-  </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>WTG辅助工具</value>
-  </data>
-  <data name="&gt;&gt;openFileDialog1.Name" xml:space="preserve">
-    <value>openFileDialog1</value>
-  </data>
-  <data name="&gt;&gt;openFileDialog1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;folderBrowserDialog1.Name" xml:space="preserve">
-    <value>folderBrowserDialog1</value>
-  </data>
-  <data name="&gt;&gt;folderBrowserDialog1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FolderBrowserDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;手动执行命令ToolStripMenuItem.Name" xml:space="preserve">
     <value>手动执行命令ToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;手动执行命令ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;imagex解压写入ToolStripMenuItem.Name" xml:space="preserve">
-    <value>imagex解压写入ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;imagex解压写入ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;写入引导文件ToolStripMenuItem.Name" xml:space="preserve">
-    <value>写入引导文件ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;写入引导文件ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;设置活动分区ToolStripMenuItem.Name" xml:space="preserve">
-    <value>设置活动分区ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;设置活动分区ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;写入磁盘引导ToolStripMenuItem.Name" xml:space="preserve">
-    <value>写入磁盘引导ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;写入磁盘引导ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bcdbootToolStripMenuItem.Name" xml:space="preserve">
-    <value>bcdbootToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;bcdbootToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bcdboot7601.Name" xml:space="preserve">
-    <value>bcdboot7601</value>
-  </data>
-  <data name="&gt;&gt;bcdboot7601.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bcdboot9200.Name" xml:space="preserve">
-    <value>bcdboot9200</value>
-  </data>
-  <data name="&gt;&gt;bcdboot9200.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;创建VHDToolStripMenuItem.Name" xml:space="preserve">
-    <value>创建VHDToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;创建VHDToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;向V盘写入ToolStripMenuItem.Name" xml:space="preserve">
-    <value>向V盘写入ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;向V盘写入ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;卸载V盘ToolStripMenuItem.Name" xml:space="preserve">
-    <value>卸载V盘ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;卸载V盘ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;复制VHD启动文件ToolStripMenuItem.Name" xml:space="preserve">
-    <value>复制VHD启动文件ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;复制VHD启动文件ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItemvhdx.Name" xml:space="preserve">
-    <value>toolStripMenuItemvhdx</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItemvhdx.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;复制win8vhdToolStripMenuItem.Name" xml:space="preserve">
-    <value>复制win8vhdToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;复制win8vhdToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;清理临时文件ToolStripMenuItem.Name" xml:space="preserve">
-    <value>清理临时文件ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;清理临时文件ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bootsectToolStripMenuItem.Name" xml:space="preserve">
-    <value>bootsectToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;bootsectToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;vHDUEFIBCDToolStripMenuItem.Name" xml:space="preserve">
-    <value>vHDUEFIBCDToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;vHDUEFIBCDToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;wIN7USBBOOTToolStripMenuItem.Name" xml:space="preserve">
-    <value>wIN7USBBOOTToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;wIN7USBBOOTToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;强制格式化ToolStripMenuItem.Name" xml:space="preserve">
-    <value>强制格式化ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;强制格式化ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;萝卜头IT论坛ToolStripMenuItem.Name" xml:space="preserve">
-    <value>萝卜头IT论坛ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;萝卜头IT论坛ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;错误提示测试ToolStripMenuItem.Name" xml:space="preserve">
-    <value>错误提示测试ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;错误提示测试ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
-    <value>toolTip1</value>
-  </data>
-  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;文件ToolStripMenuItem.Name" xml:space="preserve">
-    <value>文件ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;文件ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;打开程序运行目录ToolStripMenuItem1.Name" xml:space="preserve">
-    <value>打开程序运行目录ToolStripMenuItem1</value>
-  </data>
-  <data name="&gt;&gt;打开程序运行目录ToolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
-    <value>toolStripMenuItem1</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;退出ToolStripMenuItem.Name" xml:space="preserve">
-    <value>退出ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;退出ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;工具ToolStripMenuItem.Name" xml:space="preserve">
-    <value>工具ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;工具ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;自动检查更新ToolStripMenuItem.Name" xml:space="preserve">
-    <value>自动检查更新ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;自动检查更新ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem3.Name" xml:space="preserve">
-    <value>toolStripMenuItem3</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;diskpart重新分区ToolStripMenuItem1.Name" xml:space="preserve">
-    <value>diskpart重新分区ToolStripMenuItem1</value>
-  </data>
-  <data name="&gt;&gt;diskpart重新分区ToolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;vHD扩容ToolStripMenuItem.Name" xml:space="preserve">
-    <value>vHD扩容ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;vHD扩容ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;选择安装分卷ToolStripMenuItem1.Name" xml:space="preserve">
-    <value>选择安装分卷ToolStripMenuItem1</value>
-  </data>
-  <data name="&gt;&gt;选择安装分卷ToolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem6.Name" xml:space="preserve">
-    <value>toolStripMenuItem6</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem2.Name" xml:space="preserve">
-    <value>toolStripMenuItem2</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;wIN7TOGOToolStripMenuItem.Name" xml:space="preserve">
-    <value>wIN7TOGOToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;wIN7TOGOToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bOOTICEToolStripMenuItem.Name" xml:space="preserve">
-    <value>bOOTICEToolStripMenuItem</value>
+  <data name="checkBoxSan_policy.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 113</value>
   </data>
   <data name="&gt;&gt;bOOTICEToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;修复盘符ToolStripMenuItem.Name" xml:space="preserve">
-    <value>修复盘符ToolStripMenuItem</value>
+  <data name="&gt;&gt;linkLabel2.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;修复盘符ToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;linklblVisit.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lblDescription.Size" type="System.Drawing.Size, System.Drawing">
+    <value>350, 34</value>
+  </data>
+  <data name="&gt;&gt;checkBoxUefigpt.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="checkBoxNotemp.Text" xml:space="preserve">
+    <value>不中转VHD</value>
+  </data>
+  <data name="写入磁盘引导ToolStripMenuItem.Text" xml:space="preserve">
+    <value>写入磁盘引导</value>
+  </data>
+  <data name="&gt;&gt;bcdboot9200.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;wTG高级设定选项ToolStripMenuItem.Name" xml:space="preserve">
-    <value>wTG高级设定选项ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;wTG高级设定选项ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem5.Name" xml:space="preserve">
-    <value>toolStripMenuItem5</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem5.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;englishToolStripMenuItem.Name" xml:space="preserve">
-    <value>englishToolStripMenuItem</value>
+  <data name="labelDisFuncEM.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="&gt;&gt;englishToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;linklblAdv.Name" xml:space="preserve">
+    <value>linklblAdv</value>
   </data>
-  <data name="&gt;&gt;chineseSimpleToolStripMenuItem.Name" xml:space="preserve">
-    <value>chineseSimpleToolStripMenuItem</value>
+  <data name="labelDisFunc.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="&gt;&gt;chineseSimpleToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="checkBoxCompactOS.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 1, 0, 1</value>
   </data>
-  <data name="&gt;&gt;繁体中文ToolStripMenuItem.Name" xml:space="preserve">
-    <value>繁体中文ToolStripMenuItem</value>
+  <data name="wIN7TOGOToolStripMenuItem.Text" xml:space="preserve">
+    <value>强制WIN7 TO GO</value>
   </data>
-  <data name="&gt;&gt;繁体中文ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;linklblAdv.Parent" xml:space="preserve">
+    <value>groupBoxAdv</value>
   </data>
-  <data name="&gt;&gt;帮助ToolStripMenuItem.Name" xml:space="preserve">
-    <value>帮助ToolStripMenuItem</value>
+  <data name="&gt;&gt;groupBoxAdv.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;帮助ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnGo.Name" xml:space="preserve">
+    <value>btnGo</value>
   </data>
-  <data name="&gt;&gt;在线帮助ToolStripMenuItem.Name" xml:space="preserve">
-    <value>在线帮助ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;在线帮助ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem4.Name" xml:space="preserve">
-    <value>toolStripMenuItem4</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;官方论坛ToolStripMenuItem.Name" xml:space="preserve">
-    <value>官方论坛ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;官方论坛ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;关于ToolStripMenuItem.Name" xml:space="preserve">
-    <value>关于ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;关于ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="工具ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 22</value>
   </data>
   <data name="&gt;&gt;timer1.Name" xml:space="preserve">
     <value>timer1</value>
   </data>
+  <data name="&gt;&gt;checkBoxCompactOS.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;bOOTICEToolStripMenuItem.Name" xml:space="preserve">
+    <value>bOOTICEToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;lblVhdSize.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="lblVhdSize.Text" xml:space="preserve">
+    <value>虚拟硬盘大小
+(0=自动设定)</value>
+  </data>
+  <data name="imagex解压写入ToolStripMenuItem.Text" xml:space="preserve">
+    <value>imagex解压写入</value>
+  </data>
+  <data name="checkBoxCompactOS.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;radiobtnLegacy.Name" xml:space="preserve">
+    <value>radiobtnLegacy</value>
+  </data>
+  <data name="linklblVhd.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="错误提示测试ToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;lblDescription.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="linklblVisit.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="bcdboot9200.Text" xml:space="preserve">
+    <value>9600</value>
+  </data>
+  <data name="lblDescription.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="checkBoxFixed.ToolTip" xml:space="preserve">
+    <value>不选默认为动态大小</value>
+  </data>
+  <data name="numericUpDown1.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;工具ToolStripMenuItem.Name" xml:space="preserve">
+    <value>工具ToolStripMenuItem</value>
+  </data>
+  <data name="labelDisFunc.Location" type="System.Drawing.Point, System.Drawing">
+    <value>263, 161</value>
+  </data>
+  <data name="radiobtnVhd.ToolTip" xml:space="preserve">
+    <value>Some features are </value>
+  </data>
+  <data name="&gt;&gt;checkBoxNtfsUefi.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDescription.Name" xml:space="preserve">
+    <value>lblDescription</value>
+  </data>
+  <data name="&gt;&gt;强制格式化ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="linklblAdv.Location" type="System.Drawing.Point, System.Drawing">
+    <value>176, 0</value>
+  </data>
+  <data name="萝卜头IT论坛ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="官方论坛ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 22</value>
+  </data>
+  <data name="&gt;&gt;清理临时文件ToolStripMenuItem.Name" xml:space="preserve">
+    <value>清理临时文件ToolStripMenuItem</value>
+  </data>
+  <data name="lblDescription.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei, 9pt</value>
+  </data>
+  <data name="清理临时文件ToolStripMenuItem.Text" xml:space="preserve">
+    <value>清理临时文件</value>
+  </data>
+  <data name="radiobtnLegacy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 23</value>
+  </data>
+  <data name="&gt;&gt;修复盘符ToolStripMenuItem.Name" xml:space="preserve">
+    <value>修复盘符ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;lblDescription.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;卸载V盘ToolStripMenuItem.Name" xml:space="preserve">
+    <value>卸载V盘ToolStripMenuItem</value>
+  </data>
+  <data name="checkBoxSan_policy.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="linkLabel2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="&gt;&gt;btnGo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="linklblVisit.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;关于ToolStripMenuItem.Name" xml:space="preserve">
+    <value>关于ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;帮助ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;folderBrowserDialog1.Name" xml:space="preserve">
+    <value>folderBrowserDialog1</value>
+  </data>
+  <data name="lblGB.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="labelDisFuncEM.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 21.75pt, style=Bold</value>
+  </data>
+  <data name="强制格式化ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="&gt;&gt;写入引导文件ToolStripMenuItem.Name" xml:space="preserve">
+    <value>写入引导文件ToolStripMenuItem</value>
+  </data>
+  <data name="radiobtnVhdx.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 1, 0, 1</value>
+  </data>
+  <data name="&gt;&gt;bcdboot9200.Name" xml:space="preserve">
+    <value>bcdboot9200</value>
+  </data>
+  <data name="checkBoxSan_policy.ToolTip" xml:space="preserve">
+    <value>WTG系统启动后不显示本机硬盘</value>
+  </data>
+  <data name="checkBoxWimboot.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;labelDisFunc.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="toolStripMenuItem4.Text" xml:space="preserve">
+    <value>常见问题</value>
+  </data>
+  <data name="checkBoxDiskpart.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 1, 0, 1</value>
+  </data>
+  <data name="&gt;&gt;labelDisFuncEM.Name" xml:space="preserve">
+    <value>labelDisFuncEM</value>
+  </data>
+  <data name="groupBoxAdv.Size" type="System.Drawing.Size, System.Drawing">
+    <value>203, 166</value>
+  </data>
+  <data name="linklblVhd.ToolTip" xml:space="preserve">
+    <value>查看三种模式区别</value>
+  </data>
+  <data name="lblWim.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="lblWim.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="关于ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 22</value>
+  </data>
+  <data name="checkBoxSan_policy.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="&gt;&gt;向V盘写入ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;checkBoxWimboot.Parent" xml:space="preserve">
+    <value>groupBoxAdv</value>
+  </data>
+  <data name="&gt;&gt;linklblAdv.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;checkBoxUefimbr.Parent" xml:space="preserve">
+    <value>groupBoxAdv</value>
+  </data>
+  <data name="radiobtnVhd.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBoxAdv.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 1, 0, 1</value>
+  </data>
+  <data name="&gt;&gt;wIN7TOGOToolStripMenuItem.Name" xml:space="preserve">
+    <value>wIN7TOGOToolStripMenuItem</value>
+  </data>
+  <data name="groupBoxAdv.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 1, 0, 1</value>
+  </data>
+  <data name="checkBoxNotemp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 21</value>
+  </data>
+  <data name="&gt;&gt;lblWim.Name" xml:space="preserve">
+    <value>lblWim</value>
+  </data>
+  <data name="linklblVhd.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 11.25pt, style=Bold</value>
+  </data>
+  <data name="checkBoxUefimbr.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;向V盘写入ToolStripMenuItem.Name" xml:space="preserve">
+    <value>向V盘写入ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;文件ToolStripMenuItem.Name" xml:space="preserve">
+    <value>文件ToolStripMenuItem</value>
+  </data>
+  <data name="linklblAdv.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="linkLabel2.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="radiobtnVhdx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblGB.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemvhdx.Name" xml:space="preserve">
+    <value>toolStripMenuItemvhdx</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>593, 212</value>
+  </data>
+  <data name="&gt;&gt;englishToolStripMenuItem.Name" xml:space="preserve">
+    <value>englishToolStripMenuItem</value>
+  </data>
+  <data name="linklblVisit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>308, 32</value>
+  </data>
+  <data name="&gt;&gt;linklblVhd.Name" xml:space="preserve">
+    <value>linklblVhd</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem3.Name" xml:space="preserve">
+    <value>toolStripMenuItem3</value>
+  </data>
+  <data name="radiobtnLegacy.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="文件ToolStripMenuItem.Text" xml:space="preserve">
+    <value>文件</value>
+  </data>
+  <data name="&gt;&gt;checkBoxSan_policy.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bcdboot7601.Name" xml:space="preserve">
+    <value>bcdboot7601</value>
+  </data>
+  <data name="checkBoxCompactOS.Text" xml:space="preserve">
+    <value>CompactOS</value>
+  </data>
+  <data name="lblDescription.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;lblVhdSize.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;linklblVhd.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="radiobtnVhd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>132, 132</value>
+  </data>
+  <data name="&gt;&gt;checkBoxSan_policy.Name" xml:space="preserve">
+    <value>checkBoxSan_policy</value>
+  </data>
+  <data name="&gt;&gt;lblGB.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
   <data name="&gt;&gt;timer1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>Form1</value>
+  <data name="labelDisFunc.Text" xml:space="preserve">
+    <value>某些功能在Win10
+以下系统不可用</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="复制win8vhdToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
   </data>
+  <data name="lblGB.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="bOOTICEToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="groupBoxAdv.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei, 9pt</value>
+  </data>
+  <data name="wIN7USBBOOTToolStripMenuItem.Text" xml:space="preserve">
+    <value>WIN7-USB-BOOT</value>
+  </data>
+  <data name="groupBoxAdv.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="linklblVisit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 19</value>
+  </data>
+  <data name="radiobtnVhd.Text" xml:space="preserve">
+    <value>VHD</value>
+  </data>
+  <data name="bcdboot7601.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 22</value>
+  </data>
+  <data name="&gt;&gt;bcdboot7601.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="linkLabel2.Text" xml:space="preserve">
+    <value>linkLabel2</value>
+  </data>
+  <data name="checkBoxUefigpt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 21</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="wIN7USBBOOTToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
+  </data>
+  <data name="关于ToolStripMenuItem.Text" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="radiobtnVhdx.Text" xml:space="preserve">
+    <value>VHDX</value>
+  </data>
+  <data name="numericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="menuStrip1.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="checkBoxDiskpart.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="linklblVisit.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei, 9.75pt</value>
+  </data>
+  <data name="&gt;&gt;btnBrowser.Name" xml:space="preserve">
+    <value>btnBrowser</value>
+  </data>
+  <data name="bOOTICEToolStripMenuItem.Text" xml:space="preserve">
+    <value>启动BOOTICE</value>
+  </data>
+  <data name="labelDisFuncEM.Location" type="System.Drawing.Point, System.Drawing">
+    <value>242, 161</value>
+  </data>
+  <data name="checkBoxDiskpart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>111, 111</value>
+  </data>
+  <data name="&gt;&gt;checkBoxNotemp.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;lblDescription.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
+    <value>toolStripMenuItem1</value>
+  </data>
+  <data name="错误提示测试ToolStripMenuItem.Text" xml:space="preserve">
+    <value>错误提示测试</value>
+  </data>
+  <data name="checkBoxNtfsUefi.Text" xml:space="preserve">
+    <value>NTFS-UEFI</value>
+  </data>
+  <data name="&gt;&gt;萝卜头IT论坛ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="linklblVisit.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="vHDUEFIBCDToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="lblWim.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei, 9.75pt, style=Bold</value>
+  </data>
+  <data name="更多高级选项ToolStripMenuItem.Text" xml:space="preserve">
+    <value>更多高级选项</value>
+  </data>
+  <data name="&gt;&gt;radiobtnVhdx.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="错误提示测试ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="&gt;&gt;强制格式化ToolStripMenuItem.Name" xml:space="preserve">
+    <value>强制格式化ToolStripMenuItem</value>
+  </data>
+  <data name="checkBoxNtfsUefi.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 135</value>
+  </data>
+  <data name="chineseSimpleToolStripMenuItem.Text" xml:space="preserve">
+    <value>简体中文</value>
+  </data>
+  <data name="checkBoxDiskpart.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="lblVhdSize.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 26</value>
+  </data>
+  <data name="numericUpDown1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;linkLabel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="自动检查更新ToolStripMenuItem.Text" xml:space="preserve">
+    <value>检查更新</value>
+  </data>
+  <data name="groupBoxAdv.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="帮助ToolStripMenuItem.Text" xml:space="preserve">
+    <value>帮助</value>
+  </data>
+  <data name="&gt;&gt;lblVhdSize.Name" xml:space="preserve">
+    <value>lblVhdSize</value>
+  </data>
+  <data name="&gt;&gt;更多高级选项ToolStripMenuItem.Name" xml:space="preserve">
+    <value>更多高级选项ToolStripMenuItem</value>
+  </data>
+  <data name="groupBoxAdv.Text" xml:space="preserve">
+    <value>高级选项</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>578, 17</value>
+  </metadata>
+  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>326, 17</value>
+  </metadata>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>665, 17</value>
+  </metadata>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>481, 17</value>
+  </metadata>
+  <metadata name="folderBrowserDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>157, 17</value>
+  </metadata>
 </root>

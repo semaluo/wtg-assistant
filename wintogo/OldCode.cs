@@ -1,4 +1,17 @@
-﻿#region VHDOperation
+﻿
+
+//File.Copy(WTGModel.ud.Substring(0, 2) + "\\EFI\\Boot\\bootx64.efi", WTGModel.diskpartScriptPath + "\\bootx64.efi", true);
+//File.Copy(WTGModel.ud.Substring(0, 2) + "\\EFI\\Microsoft\\Boot\\BCD", WTGModel.diskpartScriptPath + "\\BCD", true);
+
+
+//Directory.CreateDirectory(WTGModel.ud.Substring(0, 2) + "\\EFI");
+//Directory.CreateDirectory(WTGModel.ud.Substring(0, 2) + "\\EFI\\Boot");
+//Directory.CreateDirectory(WTGModel.ud.Substring(0, 2) + "\\EFI\\Microsoft");
+//Directory.CreateDirectory(WTGModel.ud.Substring(0, 2) + "\\EFI\\Microsoft\\Boot");
+//File.Copy(WTGModel.diskpartScriptPath + "\\bootx64.efi", WTGModel.ud.Substring(0, 2) + "\\EFI\\Boot\\bootx64.efi", true);
+//File.Copy(WTGModel.diskpartScriptPath + "\\BCD", WTGModel.ud.Substring(0, 2) + "\\EFI\\Microsoft\\Boot\\BCD", true);
+
+#region VHDOperation
 //private void createVHD(VHDOperation vo)
 //{
 //    if (WTGOperation.filetype == "vhd" || WTGOperation.filetype == "vhdx")
@@ -2475,5 +2488,100 @@
 //        MessageBox.Show(ErrorMsg + ex.ToString(), ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
 //        Log.WriteLog("CleatNtfsStream.log", ex.ToString());
 
+//    }
+//}
+//public string Win8VHDFileName { get; set; }
+
+
+//private bool ShouldContinue { get; set; }
+//public int wimpart { get; set; }
+
+
+
+//else
+//{
+//    //this.ShouldContinue = true;
+
+//}
+//}
+//catch
+//{
+//    throw new VHDException(MsgManager.GetResString("Msg_VHDCreationError"));
+//    //创建VHD失败，未知错误
+//    //ErrorMsg er = new ErrorMsg(MsgManager.GetResString("Msg_VHDCreationError", MsgManager.ci));
+//    //er.ShowDialog();
+//    //this.ShouldContinue = false;
+//    //shouldcontinue = false;
+
+//}
+
+
+//ErrorMsg er = new ErrorMsg(MsgManager.GetResString("Msg_VHDCreationError", MsgManager.ci));
+//er.ShowDialog();
+//this.ShouldContinue = false;
+
+//shouldcontinue = false;
+//return;
+
+
+//needcopyvhdbootfile = true;
+//copyvhdbootfile();
+//WindowsImageContainer wic = new WindowsImageContainer("", WindowsImageContainer.CreateFileMode.OpenExisting, WindowsImageContainer.CreateFileAccess.Read);
+//wic[0].Apply("");
+
+
+//foreach (UsbDisk item in (UsbDiskCollection)dtSource)
+//{
+//    MessageBox.Show(item.ToString());
+//}
+//MessageBox.Show(((UsbDiskCollection)dtSource).ToString ());
+
+
+//FormatAlert fa = new FormatAlert(
+//    MsgManager.GetResString("Msg_ConfirmChoose", MsgManager.ci)
+//    +"\n"
+//    + WTGModel.udString
+//    +"\n"
+//    //+ MsgManager.GetResString("Msg_Disk_Space", MsgManager.ci)
+//    //+ DiskOperation.GetHardDiskSpace(WTGModel.ud) / 1024 / 1024
+//    + MsgManager.GetResString("Msg_FormatTip", MsgManager.ci));
+
+////if (DialogResult.No == fa.ShowDialog())
+////{
+////    return;
+////}
+
+
+//MsgManager.getResString("Msg_DoWhat")
+//如果您不清楚您在做什么，请立即停止操作！
+
+//if (DialogResult.No == MessageBox.Show(MsgManager.GetResString("Msg_DoWhat", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+//{
+//    return;
+//}
+
+
+//MsgManager.getResString("Msg_FormatWarning")
+//盘将会被格式化，此操作将不可恢复，您确定要继续吗？\n由于写入时间较长，请您耐心等待！\n写入过程中弹出写入可能无效属于正常现象，选是即可。
+//if (DialogResult.No == MessageBox.Show(WTGModel.ud.Substring(0, 1) + MsgManager.GetResString("Msg_FormatWarning", MsgManager.ci), MsgManager.GetResString("Msg_warning", MsgManager.ci), MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
+//if (DialogResult.No == MessageBox.Show("如果您不清楚您在做什么，请立即停止操作！", "警告！", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
+
+
+//ProcessManager.SyncCMD ("cmd.exe /c del /f /s /q \""+Application .StartupPath +"\\logs\\*.*\"");
+//////////////将程序运行信息写入LOG
+
+
+//using (FileStream fs0 = new FileStream(WTGOperation.diskpartScriptPath + "\\removex.txt", FileMode.Create, FileAccess.Write))
+//{
+//    fs0.SetLength(0);
+//    using (StreamWriter sw0 = new StreamWriter(fs0, Encoding.Default))
+//    {
+//        string ws0 = "";
+//        ws0 = "select volume x";
+//        sw0.WriteLine(ws0);
+//        ws0 = "remove";
+//        sw0.WriteLine(ws0);
+//        ws0 = "exit";
+//        sw0.WriteLine(ws0);
 //    }
 //}

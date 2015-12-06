@@ -67,7 +67,7 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // update
+            // Update
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -77,10 +77,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = global::wintogo.Properties.Resources._2001;
+            this.Icon = global::wintogo.Properties.Resources.WTGA;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "update";
+            this.Name = "Update";
             this.Load += new System.EventHandler(this.update_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FileName_VHD_Dynamic" xml:space="preserve">
     <value>VHD模式說明.TXT</value>
@@ -172,10 +172,10 @@
     <value>操作失敗！</value>
   </data>
   <data name="Msg_FormatTip" xml:space="preserve">
-    <value>GB 是將要寫入的優盤或移動硬盤\n誤格式化，後果自負！</value>
+    <value>是將要寫入的優盤或移動硬盤</value>
   </data>
   <data name="Msg_FormatWarning" xml:space="preserve">
-    <value>盤將會被格式化，此操作將不可恢復，您確定要繼續嗎？\n由於寫入時間較長，請您耐心等待！\n寫入過程中彈出寫入可能無效屬於正常現象，選是即可。</value>
+    <value>此分区將會被格式化，此操作將不可恢復，您確定要繼續嗎？</value>
   </data>
   <data name="Msg_LetterV" xml:space="preserve">
     <value>盤符V不能被佔用！</value>
@@ -248,5 +248,11 @@
   </data>
   <data name="Msg_ApplyError" xml:space="preserve">
     <value>鏡像文件應用失敗！</value>
+  </data>
+  <data name="Msg_No" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="Msg_Yes" xml:space="preserve">
+    <value>是</value>
   </data>
 </root>

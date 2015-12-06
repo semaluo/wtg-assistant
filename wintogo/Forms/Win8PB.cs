@@ -28,13 +28,13 @@ namespace wintogo
         public Win8PB()
         {
             InitializeComponent();
-            Console.WriteLine("初始化");
+            //Console.WriteLine("初始化");
         }
 
         private void Win8PB_Load(object sender, EventArgs e)
         {
             //InitializeComponent();
-            Console.WriteLine("Load");
+            //Console.WriteLine("Load");
             //timer1 = new System.Windows.Forms.Timer();
             //timer2 = new System.Windows.Forms.Timer();
             //timer3 = new System.Windows.Forms.Timer();
