@@ -313,7 +313,6 @@ namespace wintogo
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
                 Log.WriteLog("Fixletter.log", ex.ToString());
             }
         }

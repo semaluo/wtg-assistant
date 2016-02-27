@@ -78,7 +78,7 @@ namespace iTuner
 
 
 		/// <summary>
-		/// Gets the total size of the disk, specified in bytes.
+		/// Gets the total size of the volume, specified in bytes.
 		/// </summary>
 
 		public ulong Size
@@ -87,16 +87,24 @@ namespace iTuner
 			internal set;
 		}
 
+        /// <summary>
+        /// Gets the total size of the disk, specified in bytes.
+        /// </summary>
 
-		/// <summary>
-		/// Get the volume name of this disk.  This is the friently name ("Stick").
-		/// </summary>
-		/// <remarks>
-		/// When this class is used to identify a removed USB device, the Volume
-		/// property is set to String.Empty.
-		/// </remarks>
+        public ulong DiskSize
+        {
+            get;
+            internal set;
+        }
+        /// <summary>
+        /// Get the volume name of this disk.  This is the friently name ("Stick").
+        /// </summary>
+        /// <remarks>
+        /// When this class is used to identify a removed USB device, the Volume
+        /// property is set to String.Empty.
+        /// </remarks>
 
-		public string Volume
+        public string Volume
 		{
 			get;
 			internal set;

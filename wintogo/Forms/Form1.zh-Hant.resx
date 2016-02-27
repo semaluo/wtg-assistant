@@ -117,11 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="comboBox1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 9pt</value>
-  </data>
-  <data name="comboBox1.ToolTip" xml:space="preserve">
+  <data name="comboBoxUd.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnGo.Text" xml:space="preserve">
@@ -149,6 +145,7 @@
   <data name="lblDescription.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="linkLabel2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft YaHei UI, 9pt</value>
   </data>
@@ -180,7 +177,43 @@
   <data name="lblVhdSize.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="groupBoxAdv.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="checkBoxNoDefaultLetter.Text" xml:space="preserve">
+    <value>無默認盤符</value>
+  </data>
+  <data name="checkBoxNoDefaultLetter.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="comboBoxParts.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 17</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>虛擬硬碟檔名</value>
+  </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtVhdNameWithoutExt.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="checkBoxFixLetter.Text" xml:space="preserve">
+    <value>修復盤符</value>
+  </data>
+  <data name="checkBoxFixLetter.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="checkBoxNtfsUefi.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="checkBoxDoNotFormat.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="checkBoxCompactOS.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="checkBoxUefimbr.ToolTip" xml:space="preserve">
@@ -193,12 +226,6 @@
     <value />
   </data>
   <data name="lblGB.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBoxAdv.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="checkBoxCompactOS.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="打开程序运行目录ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
@@ -227,15 +254,6 @@
   </data>
   <data name="修复盘符ToolStripMenuItem.Text" xml:space="preserve">
     <value>修復盤符</value>
-  </data>
-  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="chineseSimpleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="繁体中文ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
   </data>
   <data name="toolStripMenuItem5.Text" xml:space="preserve">
     <value>語言</value>
@@ -274,6 +292,132 @@
     <value />
   </data>
   <data name="labelDisFunc.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabPage1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="checkBoxDonet.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="checkBoxDisWinre.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 17</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>選擇安裝分卷（請先選擇鏡像）</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>系統</value>
+  </data>
+  <data name="tabPage2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 17</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>多分區（請先選擇随身碟）</value>
+  </data>
+  <data name="label6.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="linklblRestoreMultiPartition.Text" xml:space="preserve">
+    <value>恢復預設值</value>
+  </data>
+  <data name="linklblRestoreMultiPartition.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label13.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label12.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label11.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>EFI分區大小</value>
+  </data>
+  <data name="label8.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEfiSize.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>分區3</value>
+  </data>
+  <data name="label5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtPartitionSize3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>分區2</value>
+  </data>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtPartitionSize2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>分區1</value>
+  </data>
+  <data name="label3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtPartitionSize1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>分區</value>
+  </data>
+  <data name="tabPage3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="linklblTabPage4Resotre.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>VHD中轉目錄</value>
+  </data>
+  <data name="label10.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>虛擬磁碟分割格式</value>
+  </data>
+  <data name="label9.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="comboBoxVhdPartitionType.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnVhdTempPath.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtVhdTempPath.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>磁片</value>
+  </data>
+  <data name="tabPage4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabControl1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="$this.Text" xml:space="preserve">

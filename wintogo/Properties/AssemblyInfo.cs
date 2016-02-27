@@ -11,8 +11,8 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("bbs.luobotou.org")]
 [assembly: AssemblyProduct("WTG辅助工具")]
-[assembly: AssemblyCopyright("Copyright  © 2012-2015    nkc3g4")]
-[assembly: AssemblyTrademark("nkc3g4")]
+[assembly: AssemblyCopyright("Copyright  © 2012-2016    nkc3g4")]
+[assembly: AssemblyTrademark("萝卜头IT论坛")]
 [assembly: AssemblyCulture("")]
 
 // 将 ComVisible 设置为 false 使此程序集中的类型
@@ -33,6 +33,6 @@ using System.Resources;
 // 可以指定所有这些值，也可以使用“内部版本号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("3.8.0.0")]
-[assembly: AssemblyFileVersion("3.8.0.0")]
+[assembly: AssemblyVersion("3.9.2.0")]
+[assembly: AssemblyFileVersion("3.9.2.0")]
 [assembly: NeutralResourcesLanguageAttribute("")]

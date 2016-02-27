@@ -33,6 +33,7 @@ namespace wintogo
 
         private void Win8PB_Load(object sender, EventArgs e)
         {
+           
             //InitializeComponent();
             //Console.WriteLine("Load");
             //timer1 = new System.Windows.Forms.Timer();

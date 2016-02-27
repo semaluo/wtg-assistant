@@ -160,7 +160,7 @@ namespace wintogo.MultiLanguage {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 复制文件中...大约需要10分钟~1小时，请耐心等待！.
+        ///   Looks up a localized string similar to 复制文件中...大约需要10分钟~1小时，请耐心等待！\n.
         /// </summary>
         public static string Msg_Copy {
             get {

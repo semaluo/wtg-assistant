@@ -16,7 +16,7 @@ namespace wintogo
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Form1.VisitWeb("http://www.luobotou.pw/forum-88-1.html");
+            Form1.VisitWeb("http://bbs.luobotou.org/forum-88-1.html");
         }
 
         private void error_Load(object sender, System.EventArgs e)

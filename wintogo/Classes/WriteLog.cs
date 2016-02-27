@@ -20,7 +20,7 @@ namespace wintogo
                 using (FileStream fs0 = new FileStream(WTGModel.logPath + "\\" + LogName, FileMode.Append, FileAccess.Write))
                 {
                     fs0.SetLength(0);
-                    using (StreamWriter sw0 = new StreamWriter(fs0, Encoding.Default))
+                    using (StreamWriter sw0 = new StreamWriter(fs0, Encoding.UTF8))
                     {
                         string ws0 = "";
 
@@ -34,9 +34,9 @@ namespace wintogo
                     }
                 }
             }
-            catch (Exception e)
+            catch
             {
-                MessageBox.Show(e.ToString());
+                //MessageBox.Show(e.ToString());
             }
 
             //sw0.Close();

@@ -241,7 +241,7 @@
     <value>This USB Disk using Legacy mode may not be able to start, confirm to continue?</value>
   </data>
   <data name="Msg_Copy" xml:space="preserve">
-    <value>Copying files...</value>
+    <value>Copying files...\n</value>
   </data>
   <data name="Msg_ApplyError" xml:space="preserve">
     <value>Image file apply failed.</value>

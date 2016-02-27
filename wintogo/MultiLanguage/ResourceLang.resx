@@ -244,7 +244,7 @@
     <value>此类优盘使用传统模式可能无法启动，确认继续？</value>
   </data>
   <data name="Msg_Copy" xml:space="preserve">
-    <value>复制文件中...大约需要10分钟~1小时，请耐心等待！</value>
+    <value>复制文件中...大约需要10分钟~1小时，请耐心等待！\n</value>
   </data>
   <data name="Msg_ApplyError" xml:space="preserve">
     <value>镜像文件应用失败！</value>

@@ -106,25 +106,23 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\PropertyGridDialogItem.cs" />
-    <Compile Include="CoreOperation\DiskpartScriptManager.cs" />
+    <Compile Include="Core\DiskpartScriptManager.cs" />
     <Compile Include="Forms\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="CoreOperation\BootFileOperation.cs" />
-    <Compile Include="CoreOperation\DiskOperation.cs" />
+    <Compile Include="Core\BootFileOperation.cs" />
+    <Compile Include="Core\DiskOperation.cs" />
     <Compile Include="Forms\ErrorMsg.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ErrorMsg.Designer.cs">
       <DependentUpon>ErrorMsg.cs</DependentUpon>
     </Compile>
-    <Compile Include="CoreOperation\FileOperation.cs" />
-    <Compile Include="CoreOperation\ImageOperation.cs" />
-    <Compile Include="Classes\WTGSettingItems.cs" />
+    <Compile Include="Core\FileOperation.cs" />
+    <Compile Include="Core\ImageOperation.cs" />
     <Compile Include="Forms\FormatAlert.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,17 +130,10 @@
       <DependentUpon>FormatAlert.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\SystemSleepManagement.cs" />
-    <Compile Include="Utility\FileNameConverter.cs" />
-    <Compile Include="Forms\WTGSettings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\WTGSettings.Designer.cs">
-      <DependentUpon>WTGSettings.cs</DependentUpon>
-    </Compile>
     <Compile Include="Utility\UnZip.cs" />
     <Compile Include="Utility\IniOperation.cs" />
     <Compile Include="MultiLanguage\MsgManager.cs" />
-    <Compile Include="CoreOperation\WTGModel.cs" />
+    <Compile Include="Core\WTGModel.cs" />
     <Compile Include="Classes\ProcessManager.cs" />
     <Compile Include="MultiLanguage\ResourceLang.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -156,7 +147,7 @@
     </Compile>
     <Compile Include="Utility\StringOperation.cs" />
     <Compile Include="Classes\SWOnline.cs" />
-    <Compile Include="CoreOperation\VHDOperation.cs" />
+    <Compile Include="Core\VHDOperation.cs" />
     <Compile Include="Forms\Finish.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,12 +228,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormatAlert.resx">
       <DependentUpon>FormatAlert.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\WTGSettings.en.resx">
-      <DependentUpon>WTGSettings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\WTGSettings.resx">
-      <DependentUpon>WTGSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

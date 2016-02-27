@@ -1,4 +1,60 @@
 ﻿
+//if (textContains("Leaving")) { wp.Close(); }
+//if (wp.t.extBox1.Lines.Length != 0)
+//MessageBox.Show(text+"\n/////////////\n"+ wp.textBox1.Lines[wp.textBox1.Lines.Length - 2] + "\r\n");
+//if (wp.textBox1.InvokeRequired)
+//{
+//    AppendTextCallback d = new AppendTextCallback(AppendText);
+//    wp.textBox1.Invoke(d, text);
+//}
+//else
+//{
+//    wp.textBox1.AppendText(text);
+
+//    //this.textBox1.AppendText(text);
+//}
+
+//// Invoke an anonymous method on the thread of the form.
+//wp.Invoke((MethodInvoker)delegate
+//{
+
+//    wp.Close();
+
+//});
+
+
+// 这里仅做输出的示例，实际上您可以根据情况取消获取命令行的内容  
+// 参考：process.CancelOutputRead()  
+//if (!wp.IsHandleCreated) { wp.Show(); }
+
+//private void button2_Click_1(object sender, EventArgs e)
+//{
+//    WTGSettings ws = new WTGSettings();
+//    ws.Show();
+//    //有些设置项目需要应用到WTGModel
+//    WTGModel.wimPart = WTGModel.imageIndex.Substring(0, 1);
+//}
+
+//private void 更多高级选项ToolStripMenuItem_Click(object sender, EventArgs e)
+//{
+//    WTGSettings ws = new WTGSettings();
+//    ws.Show();
+//    //有些设置项目需要应用到WTGModel
+//    WTGModel.wimPart = WTGModel.imageIndex.Substring(0, 1);
+//}
+
+
+//if (Environment.Is64BitOperatingSystem)
+//{
+//    WTGModel.imagexFileName = "imagex_x64.exe";
+//}
+
+//if (WTGOperation.forceFormat) //强制格式化
+//{
+//    System.Diagnostics.Process ud1 = System.Diagnostics.Process.Start(Application.StartupPath + "\\files\\" + "\\fbinst.exe", (" " + WTGOperation.ud.Substring(0, 2) + " format -r -f"));//Format disk
+//    ud1.WaitForExit();
+//}
+
 
 //File.Copy(WTGModel.ud.Substring(0, 2) + "\\EFI\\Boot\\bootx64.efi", WTGModel.diskpartScriptPath + "\\bootx64.efi", true);
 //File.Copy(WTGModel.ud.Substring(0, 2) + "\\EFI\\Microsoft\\Boot\\BCD", WTGModel.diskpartScriptPath + "\\BCD", true);
@@ -2190,7 +2246,44 @@
 //}
 
 //UsbManager um = new UsbManager();
+#region OldCode
+//ud = comboBox1.SelectedItem.ToString().Substring(0, 2) + "\\";//优盘
+//if (DialogResult.No == MessageBox.Show("此操作将会清除移动磁盘所有分区的所有数据，确认？", "警告！", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; }
+//if (DialogResult.No == MessageBox.Show("您确定要继续吗？", "警告！", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)) { return; } 
 
+//FileStream fs0 = new FileStream(WTGOperation.diskpartscriptpath + "\\dp.txt", FileMode.Create, FileAccess.Write);
+//fs0.SetLength(0);
+//StreamWriter sw0 = new StreamWriter(fs0, Encoding.Default);
+//string ws0 = "";
+//try
+//{
+//    ws0 = "select volume " + WTGOperation.ud.Substring(0, 1);
+//    sw0.WriteLine(ws0);
+//    ws0 = "clean";
+//    sw0.WriteLine(ws0);
+//    ws0 = "convert mbr";
+//    sw0.WriteLine(ws0);
+//    ws0 = "create partition primary";
+//    sw0.WriteLine(ws0);
+//    ws0 = "select partition 1";
+//    sw0.WriteLine(ws0);
+//    ws0 = "format fs=ntfs quick";
+//    sw0.WriteLine(ws0);
+//    ws0 = "active";
+//    sw0.WriteLine(ws0);
+//    ws0 = "assign letter=" + WTGOperation.ud.Substring(0, 1);
+//    sw0.WriteLine(ws0);
+//    ws0 = "exit";
+//    sw0.WriteLine(ws0);
+//}
+//catch { }
+//sw0.Close();
+
+//ProcessManager.ECMD("diskpart.exe", " /s \"" + WTGOperation.diskpartscriptpath + "\\dp.txt\"");
+
+//System.Diagnostics.Process dpc = System.Diagnostics.Process.Start("diskpart.exe", " /s " + Application.StartupPath + "\\dp.txt");
+//dpc.WaitForExit();
+#endregion
 
 //List<string> sw_filelist = new List<string>();
 

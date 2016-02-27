@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace wintogo
@@ -15,7 +16,6 @@ namespace wintogo
             SetVhdProp();
         }
         private bool NeedTwiceAttach { get; set; }
-        //public string WTGModel.diskpartScriptPath { get; set; }
         /// <summary>
         /// vhd or vhdx
         /// </summary>
@@ -30,7 +30,7 @@ namespace wintogo
         public string VhdType { get; set; }
         public bool NeedCopy { get; set; }
         public string VhdFileName { get; set; }
-
+        private static readonly string vhdDefaultSize = "30720";
 
         public static void CleanTemp()
         {
@@ -72,8 +72,11 @@ namespace wintogo
                 FileOperation.DeleteFile(WTGModel.diskpartScriptPath + "\\attach.txt");
                 FileOperation.DeleteFile(Environment.GetEnvironmentVariable("TEMP") + "\\win8.vhd");
                 FileOperation.DeleteFile(Environment.GetEnvironmentVariable("TEMP") + "\\win8.vhdx");
-                FileOperation.DeleteFile(WTGModel.userSettings.VHDTempPath + "\\win8.vhd");
-                FileOperation.DeleteFile(WTGModel.userSettings.VHDTempPath + "\\win8.vhdx");
+                FileOperation.DeleteFile(WTGModel.vhdTempPath + "\\win8.vhd");
+                FileOperation.DeleteFile(WTGModel.vhdTempPath + "\\win8.vhdx");
+                FileOperation.DeleteFile(WTGModel.vhdTempPath + "\\" + WTGModel.vhdNameWithoutExt + ".vhd");
+                FileOperation.DeleteFile(WTGModel.vhdTempPath + "\\" + WTGModel.vhdNameWithoutExt + ".vhdx");
+
             }
             catch (Exception ex)
             {
@@ -182,7 +185,7 @@ namespace wintogo
                 sb.AppendLine("create vdisk file=\"" + this.VhdPath + "\" type=" + this.VhdType + " maximum=" + this.VhdSize);
                 sb.AppendLine("select vdisk file=\"" + this.VhdPath + "\"");
                 sb.AppendLine("attach vdisk");
-                if (WTGModel.userSettings.VHDPartitionType == PartitionTableType.GPT)
+                if (WTGModel.vhdPartitionType == "GPT")
                 {
                     sb.AppendLine("convert gpt");
                 }
@@ -226,7 +229,7 @@ namespace wintogo
         {
             //if (!ShouldContinue) return;
 
-            ImageOperation.ImageExtra(WTGModel.userSettings.InstallDonet35, WTGModel.isSan_policy, WTGModel.userSettings.DisableWinRe, @"v:\", WTGModel.imageFilePath);
+            ImageOperation.ImageExtra(WTGModel.installDonet35, WTGModel.isSan_policy, WTGModel.disableWinRe, @"v:\", WTGModel.imageFilePath);
             UEFIAndWin7ToGo();
 
         }
@@ -243,7 +246,7 @@ namespace wintogo
                     //Thread.Sleep(100);
                     //Application.DoEvents();
                     //BigFileCopy(VhdPath, WTGModel.ud + WTGModel.userSettings.VHDNameWithoutExt + "." + WTGModel.vhdExtension, 32);
-                    //ProcessManager.AppendText(MsgManager.GetResString("Msg_Copy", MsgManager.ci));
+                    ProcessManager.AppendText(MsgManager.GetResString("Msg_Copy", MsgManager.ci));
                     ProcessManager.ECMD(WTGModel.applicationFilesPath + "\\fastcopy.exe", " /auto_close \"" + this.VhdPath + "\" /to=\"" + WTGModel.ud + "\"", MsgManager.GetResString("Msg_Copy", MsgManager.ci));
 
                     //BigFileCopy ()
@@ -260,7 +263,7 @@ namespace wintogo
                     //重命名错误
                     try
                     {
-                        File.Move(WTGModel.ud + this.VhdPath.Substring(this.VhdPath.LastIndexOf("\\") + 1), WTGModel.ud + WTGModel.userSettings.VHDNameWithoutExt + "." + WTGModel.choosedImageType);
+                        File.Move(WTGModel.ud + this.VhdPath.Substring(this.VhdPath.LastIndexOf("\\") + 1), WTGModel.ud + WTGModel.vhdNameWithoutExt + "." + WTGModel.choosedImageType);
                     }
                     catch (Exception ex) { MessageBox.Show(MsgManager.GetResString("Msg_RenameError", MsgManager.ci) + ex.ToString()); }
                 }
@@ -275,7 +278,7 @@ namespace wintogo
             }
             else
             {
-                if (WTGModel.userSettings.CommonBootFiles && WTGModel.userSettings.VHDNameWithoutExt == "win8")
+                if (WTGModel.vhdNameWithoutExt == "win8")
                 {
                     CopyVHDBootFiles();
                 }
@@ -306,24 +309,24 @@ namespace wintogo
             }
             else
             {
-                if (!WTGModel.userSettings.CommonBootFiles)
+                //if (!WTGModel.userSettings.CommonBootFiles)
+                //{
+                if (WTGModel.ntfsUefiSupport)
                 {
-                    if (WTGModel.ntfsUefiSupport)
-                    {
-                        BootFileOperation.BcdbootWriteBootFile(@"V:\", WTGModel.ud, FirmwareType.ALL);
+                    BootFileOperation.BcdbootWriteBootFile(@"V:\", WTGModel.ud, FirmwareType.ALL);
 
-                    }
-                    else
-                    {
-                        BootFileOperation.BcdbootWriteBootFile(@"V:\", WTGModel.ud, FirmwareType.BIOS);
-                    }
-                    //ProcessManager.ECMD(Application.StartupPath + "\\files\\" + bcdboot, "  " + "V:\\" + "windows  /s  " + WTGOperation.WTGModel.ud.Substring(0, 2) + " /f ALL");
                 }
                 else
                 {
-                    CopyVHDBootFiles();
-
+                    BootFileOperation.BcdbootWriteBootFile(@"V:\", WTGModel.ud, FirmwareType.BIOS);
                 }
+                //ProcessManager.ECMD(Application.StartupPath + "\\files\\" + bcdboot, "  " + "V:\\" + "windows  /s  " + WTGOperation.WTGModel.ud.Substring(0, 2) + " /f ALL");
+                //}
+                //else
+                //{
+                //    CopyVHDBootFiles();
+
+                //}
             }
         }
 
@@ -335,14 +338,14 @@ namespace wintogo
                 if (WTGModel.choosedImageType == "vhd" || WTGModel.choosedImageType == "vhdx")
                 {
                     CopyVHD();
-                    if (WTGModel.userSettings.CommonBootFiles)
-                    {
-                        CopyVHDBootFiles();
-                    }
-                    else
-                    {
-                        TwiceAttachVHDAndWriteBootFile();
-                    }
+                    //if (WTGModel.userSettings.CommonBootFiles)
+                    //{
+                    //    CopyVHDBootFiles();
+                    //}
+                    //else
+                    //{
+                    TwiceAttachVHDAndWriteBootFile();
+                    //}
                 }
                 else
                 {
@@ -351,6 +354,7 @@ namespace wintogo
                     WriteBootFiles();
                     DetachVHD();
                     CopyVHD();
+                    Thread.Sleep(1500);
                     TwiceAttachVHDAndWriteBootFile();
                     //BootFileOperation.BooticeWriteMBRPBRAndAct(WTGOperation.WTGModel.ud);
                     if (VhdType != "fixed") VHDDynamicSizeIns();
@@ -385,30 +389,16 @@ namespace wintogo
             sb.AppendLine("assign letter=v");
             sb.AppendLine("exit");
             DiskpartScriptManager dsm = new DiskpartScriptManager();
-            Log.WriteLog("TwiceAttachVhd.log", sb.ToString());
-
             dsm.Args = sb.ToString();
             dsm.RunDiskpartScript();
 
-            try
-            {
-                if (!Directory.Exists("V:\\"))
-                {
-                    Log.WriteLog("TwiceAttachVhdError.log", "二次加载VHD失败");
-                }
 
-            }
-            catch
+            if (!Directory.Exists("V:\\"))
             {
+                Log.WriteLog("TwiceAttachVhdError.log", "二次加载VHD失败");
                 throw new VHDException(MsgManager.GetResString("Msg_VHDCreationError", MsgManager.ci));
-                //创建VHD失败，未知错误
-                //ErrorMsg er = new ErrorMsg(MsgManager.GetResString("Msg_VHDCreationError", MsgManager.ci));
-                //er.ShowDialog();
-                //this.ShouldContinue = false;
-                //shouldcontinue = false;
-
             }
-            //需要二次加载，一定不是UEFI模式
+            //需要二次加载，一定不是需要写入X盘的UEFI模式
             if (WTGModel.ntfsUefiSupport)
             {
                 BootFileOperation.BcdbootWriteBootFile(@"V:\", WTGModel.ud, FirmwareType.ALL);
@@ -461,19 +451,29 @@ namespace wintogo
                     else
                     {
                         long hardDiskFreeSpace = (long)WTGModel.UdObj.Size / 1048576;
+                        //MessageBox.Show(hardDiskFreeSpace.ToString ());
                         //MessageBox.Show(hardDiskFreeSpace.ToString());
                         if (!WTGModel.isWimBoot)
                         {
-                            if (hardDiskFreeSpace >= 21504) { VhdSize = "20480"; }
+                            if (hardDiskFreeSpace >= (int.Parse(vhdDefaultSize) + 1024))
+                            {
+                                VhdSize = vhdDefaultSize;
+                            }
                             else
                             {
-                                VhdSize = hardDiskFreeSpace == 0 ? "20480" : (hardDiskFreeSpace - 500).ToString();
+                                VhdSize = hardDiskFreeSpace == 0 ? vhdDefaultSize : (hardDiskFreeSpace - 500).ToString();
                             }
                         }
                         else
                         {
-                            if (hardDiskFreeSpace >= 24576) { VhdSize = "20480"; }
-                            else { VhdSize = hardDiskFreeSpace == 0 ? "20480" : (hardDiskFreeSpace - 4096).ToString(); }
+                            if (hardDiskFreeSpace >= (int.Parse(vhdDefaultSize) + 4096))
+                            {
+                                VhdSize = vhdDefaultSize;
+                            }
+                            else
+                            {
+                                VhdSize = hardDiskFreeSpace == 0 ? vhdDefaultSize : (hardDiskFreeSpace - 4096).ToString();
+                            }
                         }
                     }
 
@@ -488,10 +488,10 @@ namespace wintogo
                     }
                     else
                     {
-                        vhdmaxsize = 10485670;
+                        vhdmaxsize = 10485670;//10GB
                     }
 
-                    if (DiskOperation.GetHardDiskFreeSpace(WTGModel.userSettings.VHDTempPath.Substring(0, 2) + "\\") <= vhdmaxsize || StringUtility.IsChina(WTGModel.userSettings.VHDTempPath) || (WTGModel.isUefiGpt && !WTGModel.isLegacyUdiskUefi) || WTGModel.isUefiMbr || WTGModel.isWimBoot || WTGModel.isNoTemp)
+                    if (DiskOperation.GetHardDiskFreeSpace(WTGModel.vhdTempPath.Substring(0, 2) + "\\") <= vhdmaxsize || StringUtility.IsChina(WTGModel.vhdTempPath) || (WTGModel.isUefiGpt && !WTGModel.isLegacyUdiskUefi) || WTGModel.isUefiMbr || WTGModel.isWimBoot || WTGModel.isNoTemp)
                     {
                         this.NeedCopy = false;
                         this.VhdPath = StringUtility.Combine(WTGModel.ud, WTGModel.win8VHDFileName);
@@ -499,7 +499,7 @@ namespace wintogo
                     else
                     {
                         this.NeedCopy = true;
-                        this.VhdPath = StringUtility.Combine(WTGModel.userSettings.VHDTempPath, WTGModel.win8VHDFileName);
+                        this.VhdPath = StringUtility.Combine(WTGModel.vhdTempPath, WTGModel.win8VHDFileName);
                     }
 
                 }
@@ -539,7 +539,7 @@ namespace wintogo
             //////////////
             //if (isuefigpt)
             //{
-            if (WTGModel.userSettings.FixLetter)
+            if (WTGModel.fixLetter)
             {
                 ImageOperation.Fixletter("C:", "V:");
 

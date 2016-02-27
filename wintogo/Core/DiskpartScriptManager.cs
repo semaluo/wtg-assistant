@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Text;
 
@@ -51,22 +50,22 @@ namespace wintogo
         /// </summary>
 
 
-        public void RunDiskpartScriptByScriptFile(string scriptFile)
-        {
-            StringBuilder dpargs = new StringBuilder();
-            dpargs.Append(" /s \"");
-            dpargs.Append(scriptFile);
-            try
-            {
-                ProcessManager.ECMD("diskpart.exe", dpargs.ToString());
-            }
-            catch (Exception)
-            {
-                //ProcessManager.KillProcessByName("diskpart.exe");
-                throw;
+        //public void RunDiskpartScriptByScriptFile(string scriptFile)
+        //{
+        //    StringBuilder dpargs = new StringBuilder();
+        //    dpargs.Append(" /s \"");
+        //    dpargs.Append(scriptFile);
+        //    try
+        //    {
+        //        ProcessManager.ECMD("diskpart.exe", dpargs.ToString());
+        //    }
+        //    catch (Exception)
+        //    {
+        //        //ProcessManager.KillProcessByName("diskpart.exe");
+        //        throw;
 
-            }
-        }
+        //    }
+        //}
 
 
         public void RunDiskpartScript()

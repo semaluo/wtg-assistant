@@ -20,9 +20,6 @@ namespace wintogo
 
         public static void process_OutputDataReceived(object sender, DataReceivedEventArgs e)
         {
-            // 这里仅做输出的示例，实际上您可以根据情况取消获取命令行的内容  
-            // 参考：process.CancelOutputRead()  
-            //if (!wp.IsHandleCreated) { wp.Show(); }
 
             try
             {
@@ -42,13 +39,6 @@ namespace wintogo
                     wp.IsUserClosing = false;
                     wp.Close();
                 }));
-                //// Invoke an anonymous method on the thread of the form.
-                //wp.Invoke((MethodInvoker)delegate
-                //{
-
-                //    wp.Close();
-
-                //});
 
             }
             catch (Exception ex)
@@ -60,34 +50,34 @@ namespace wintogo
 
         public static void AppendText(string text)
         {
-            try
+            //try
+            //{
+            Thread t = new Thread(() =>
             {
-                if (!wp.IsHandleCreated) return;
-                if (wp.textBox1.Lines.Length == 0 || wp.textBox1.Lines.Length == 1 || text != wp.textBox1.Lines[wp.textBox1.Lines.Length - 2] + "\r\n")
+                try
                 {
-                    wp.textBox1.Invoke(new Action(() => { wp.textBox1.AppendText(text); }));
-                    //if (textContains("Leaving")) { wp.Close(); }
-                    //if (wp.t.extBox1.Lines.Length != 0)
-                    //MessageBox.Show(text+"\n/////////////\n"+ wp.textBox1.Lines[wp.textBox1.Lines.Length - 2] + "\r\n");
-                    //if (wp.textBox1.InvokeRequired)
-                    //{
-                    //    AppendTextCallback d = new AppendTextCallback(AppendText);
-                    //    wp.textBox1.Invoke(d, text);
-                    //}
-                    //else
-                    //{
-                    //    wp.textBox1.AppendText(text);
+                    while (!wp.IsHandleCreated)
+                    {
+                        Thread.Sleep(50);
+                    }
+                    //IntPtr IsHandleCreated = wp.Handle;
+                    if (wp.textBox1.Lines.Length == 0 || wp.textBox1.Lines.Length == 1 || text != wp.textBox1.Lines[wp.textBox1.Lines.Length - 2] + "\r\n")
+                    {
+                        wp.textBox1.Invoke(new Action(() => { wp.textBox1.AppendText(text); }));
 
-                    //    //this.textBox1.AppendText(text);
-                    //}
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                Log.WriteLog("AppendText.log", ex.ToString());
-                Console.WriteLine(ex);
-                //MessageBox.Show(ex.ToString());
-            }
+                catch (Exception ex)
+                {
+                    Log.WriteLog("AppendText.log", ex.ToString());
+                    Console.WriteLine(ex);
+                    //MessageBox.Show(ex.ToString());
+                }
+            });
+            t.Start();
+            //if (!wp.IsHandleCreated) return;
+
+
         }
 
         #endregion

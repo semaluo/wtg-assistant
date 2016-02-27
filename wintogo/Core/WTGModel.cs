@@ -7,14 +7,27 @@ namespace wintogo
 {
     public class WTGModel
     {
+        public static  string[] partitionSize;
+        //public static string partitionSize1;
+        //public static string partitionSize2;
+        //public static string partitionSize3;
+        public static bool doNotFormat;
+        public static bool noDefaultDriveLetter;
+        public static bool installDonet35;
+        public static bool disableWinRe;
+        public static string vhdTempPath;
+        //public static string imageIndex;
+        public static bool fixLetter;
+        public static string vhdNameWithoutExt;
+        public static string vhdPartitionType;
+        public static string efiPartitionSize;
         public static UsbDisk UdObj;
         /// <summary>
         /// UserSetWTGSettingItems();
         /// </summary>
-        public static UserSetWTGSettingItems userSettings = new UserSetWTGSettingItems();
-        public static List<string> imagePartNames = new List<string>();
-        //public static bool appClosrForm = false;
-        //public static string userSetEfiSize = "350";
+        //public static UserSetWTGSettingItems userSettings = new UserSetWTGSettingItems();
+        //public static List<string> imagePartNames = new List<string>();
+      
         /// <summary>
         /// 可使用ESD文件
         /// </summary>
@@ -98,7 +111,6 @@ namespace wintogo
         public static string vhdExtension = "vhd";
         public static bool isCompactOS;
         public static OS CurrentOS;
-        //public bool doNotFormat;
     }
     public enum OS
     {

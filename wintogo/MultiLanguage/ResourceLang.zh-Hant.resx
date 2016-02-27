@@ -244,7 +244,7 @@
     <value>此類優盤使用傳統模式可能無法啟動，確認繼續？</value>
   </data>
   <data name="Msg_Copy" xml:space="preserve">
-    <value>復制文件中...大約需要10分鐘~1小時，請耐心等待！</value>
+    <value>復制文件中...大約需要10分鐘~1小時，請耐心等待！\n</value>
   </data>
   <data name="Msg_ApplyError" xml:space="preserve">
     <value>鏡像文件應用失敗！</value>

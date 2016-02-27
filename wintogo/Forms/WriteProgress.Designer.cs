@@ -66,6 +66,7 @@
             // 
             // win8PB1
             // 
+            this.win8PB1.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.win8PB1, "win8PB1");
             this.win8PB1.Name = "win8PB1";
             this.win8PB1.Load += new System.EventHandler(this.win8PB1_Load);
@@ -73,7 +74,7 @@
             // WriteProgress
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.win8PB1);
             this.Controls.Add(this.label1);
